@@ -1,6 +1,5 @@
 /* ============================================================
-   AVANZATO · Разработка сайтов под ключ
-   "Liquid Glass" design system — frosted glass, depth, refraction
+   AVANZATO — Liquid Glass design system
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
@@ -11,23 +10,18 @@
   --ink-2:        rgba(29, 29, 31, 0.62);
   --ink-3:        rgba(29, 29, 31, 0.40);
   --hairline:     rgba(29, 29, 31, 0.10);
-
   --accent:       #5b6b85;
   --accent-ink:   #34415a;
   --glow:         #0a84ff;
-
-  /* glass — driven live by Tweaks */
   --glass-blur:     20px;
   --glass-alpha:    0.40;
   --glass-sat:      180%;
-
   --glass-bg:        rgba(255, 255, 255, var(--glass-alpha));
   --glass-bg-strong: rgba(255, 255, 255, calc(var(--glass-alpha) + 0.24));
   --glass-border:    rgba(255, 255, 255, 0.60);
   --glass-shadow:    0 8px 32px rgba(0, 0, 0, 0.08);
   --glass-shadow-lg: 0 22px 60px rgba(0, 0, 0, 0.14);
   --glass-inner:     inset 0 1px 0 rgba(255, 255, 255, 0.55), inset 0 -1px 0 rgba(255, 255, 255, 0.18);
-
   --radius:   22px;
   --radius-lg:30px;
   --radius-sm:14px;
@@ -57,7 +51,6 @@ img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 ::selection { background: rgba(10, 132, 255, 0.16); }
 
-/* ---------------- GLASS PRIMITIVE ---------------- */
 .glass {
   position: relative;
   background: var(--glass-bg);
@@ -73,7 +66,6 @@ a { color: inherit; text-decoration: none; }
   opacity: .8; mix-blend-mode: screen;
 }
 
-/* ---------------- TYPE ---------------- */
 .eyebrow { font-size: 12.5px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin: 0; }
 h1, h2, h3 { margin: 0; font-weight: 600; line-height: 1.04; letter-spacing: -0.03em; }
 .display { font-size: clamp(42px, 7.6vw, 100px); font-weight: 700; letter-spacing: -0.045em; }
@@ -81,7 +73,6 @@ h1, h2, h3 { margin: 0; font-weight: 600; line-height: 1.04; letter-spacing: -0.
 .lede { font-size: clamp(17px, 1.6vw, 21px); line-height: 1.5; color: var(--ink-2); font-weight: 400; }
 .muted { color: var(--ink-2); }
 
-/* ---------------- NAV ---------------- */
 .scrollbar {
   position: fixed; top: 0; left: 0; height: 2.5px; width: 100%; z-index: 1000;
   transform-origin: 0 50%; transform: scaleX(0);
@@ -91,48 +82,37 @@ h1, h2, h3 { margin: 0; font-weight: 600; line-height: 1.04; letter-spacing: -0.
 .navwrap { position: fixed; top: 18px; left: 0; right: 0; z-index: 900; display: flex; justify-content: center; pointer-events: none; padding: 0 16px; }
 .nav { pointer-events: auto; display: flex; align-items: center; gap: 6px; padding: 7px 8px 7px 16px; border-radius: 999px; }
 .nav .brand { font-weight: 700; letter-spacing: 0.16em; font-size: 14px; text-transform: uppercase; padding-right: 14px; margin-right: 4px; border-right: 1px solid var(--hairline); white-space: nowrap; }
-.nav a.link { position: relative; font-size: 14.5px; font-weight: 500; color: var(--ink-2); padding: 8px 16px; border-radius: 999px; transition: color .25s, background .25s, box-shadow .25s; white-space: nowrap; }
+.nav a.link { font-size: 14.5px; font-weight: 500; color: var(--ink-2); padding: 8px 16px; border-radius: 999px; transition: color .25s, background .25s, box-shadow .25s; }
 .nav a.link:hover { color: var(--ink); background: rgba(255,255,255,0.45); }
 .nav a.link.active { color: var(--ink); background: rgba(255,255,255,0.92); box-shadow: 0 2px 10px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.9); }
 
-/* ---------------- LAYOUT ---------------- */
 .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
-section { position: relative; }
 .block { padding: clamp(72px, 11vw, 130px) 0 0; }
 
-/* parallax bg photo layer */
 .bg-photo { position: absolute; inset: -12% 0 -12% 0; z-index: -2; overflow: hidden; }
 .bg-photo image-slot, .bg-photo .photo-fill { width: 100%; height: 100%; filter: blur(26px) saturate(118%) brightness(1.04); transform: scale(1.18); will-change: transform; }
 .bg-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(241,240,238,0.42), rgba(241,240,238,0.72)); }
 
-/* ---------------- BUTTONS ---------------- */
-.btn { display: inline-flex; align-items: center; gap: 9px; font-size: 15px; font-weight: 600; letter-spacing: -0.01em; padding: 13px 24px; border-radius: 999px; cursor: pointer; border: 1px solid transparent; transition: transform .2s var(--ease-spring), box-shadow .25s, background .25s, gap .35s var(--ease-soft); will-change: transform; }
+.btn { display: inline-flex; align-items: center; gap: 9px; font-size: 15px; font-weight: 600; padding: 13px 24px; border-radius: 999px; cursor: pointer; border: 1px solid transparent; transition: transform .2s var(--ease-spring), box-shadow .25s, background .25s, gap .35s var(--ease-soft); }
 .btn:active { transform: scale(0.97); }
 .btn:hover { gap: 13px; }
 .btn-primary { background: linear-gradient(180deg, #2b3650, #1f2940); color: #fff; box-shadow: 0 8px 22px rgba(31,41,64,0.30), inset 0 1px 0 rgba(255,255,255,0.18); }
 .btn-primary:hover { box-shadow: 0 12px 30px rgba(31,41,64,0.40), inset 0 1px 0 rgba(255,255,255,0.18); }
-.btn-glass { background: var(--glass-bg-strong); -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)); backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)); border: 1px solid var(--glass-border); color: var(--ink); box-shadow: var(--glass-shadow), var(--glass-inner); }
+.btn-glass { background: var(--glass-bg-strong); backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)); border: 1px solid var(--glass-border); color: var(--ink); box-shadow: var(--glass-shadow), var(--glass-inner); }
 .btn-glass:hover { background: rgba(255,255,255,0.82); }
 
-/* ---------------- REVEAL ---------------- */
 .reveal { opacity: 0; filter: blur(8px); transform: translateY(26px); }
 .reveal.in { opacity: 1; filter: blur(0); transform: none; transition: opacity .9s var(--ease-soft), filter .9s var(--ease-soft), transform 1s var(--ease-spring); }
 .reveal[data-d="1"].in { transition-delay: .08s; }
 .reveal[data-d="2"].in { transition-delay: .16s; }
 .reveal[data-d="3"].in { transition-delay: .24s; }
 .reveal[data-d="4"].in { transition-delay: .32s; }
-@media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1 !important; filter: none !important; transform: none !important; }
-  .bg-photo image-slot, .bg-photo .photo-fill { transform: scale(1.18) !important; }
-}
 .lift { transition: transform .5s var(--ease-soft), box-shadow .5s var(--ease-soft); will-change: transform; }
 
-/* ---------------- SHIMMER ---------------- */
 [data-shimmer] { --mx: 50%; --my: 0%; }
 [data-shimmer]::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: radial-gradient(220px 220px at var(--mx) var(--my), rgba(255,255,255,0.45), transparent 60%); opacity: 0; transition: opacity .4s; mix-blend-mode: screen; }
 [data-shimmer]:hover::after { opacity: 1; }
 
-/* ---------------- FOOTER ---------------- */
 .footer { margin-top: 110px; padding: 40px 0 48px; border-top: 1px solid var(--hairline); display: flex; flex-wrap: wrap; gap: 18px 36px; align-items: center; justify-content: space-between; color: var(--ink-2); font-size: 14px; }
 .footer .brand { font-weight: 700; color: var(--ink); letter-spacing: 0.16em; text-transform: uppercase; font-size: 13px; }
 .footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
@@ -140,32 +120,9 @@ section { position: relative; }
 
 image-slot { --is-bg: rgba(255,255,255,0.30); background: var(--is-bg); }
 
-/* ---------------- TWEAKS PANEL ---------------- */
-#tweaks { position: fixed; right: 16px; bottom: 16px; z-index: 2147483646; width: 268px; display: none; }
-#tweaks.on { display: block; }
-#tweaks .tk-card { padding: 6px 0 10px; border-radius: var(--radius-sm); }
-#tweaks .tk-hd { display:flex; align-items:center; justify-content:space-between; padding: 12px 14px 10px; }
-#tweaks .tk-hd b { font-size: 13px; font-weight: 650; }
-#tweaks .tk-x { border:0; background:transparent; color: var(--ink-3); width:24px;height:24px;border-radius:7px;cursor:pointer;font-size:15px; }
-#tweaks .tk-x:hover { background: rgba(0,0,0,0.06); color: var(--ink); }
-#tweaks .tk-row { padding: 9px 14px; display:flex; flex-direction:column; gap:8px; }
-#tweaks .tk-lbl { display:flex; justify-content:space-between; font-size:12.5px; color: var(--ink-2); font-weight:500; }
-#tweaks .tk-lbl .v { color: var(--ink-3); font-variant-numeric: tabular-nums; }
-#tweaks input[type=range] { -webkit-appearance:none; appearance:none; width:100%; height:4px; border-radius:99px; background: rgba(0,0,0,0.12); outline:none; }
-#tweaks input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:16px;height:16px;border-radius:50%;background:#fff;border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.25);cursor:pointer; }
-#tweaks input[type=range]::-moz-range-thumb { width:16px;height:16px;border-radius:50%;background:#fff;border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.25);cursor:pointer; }
-#tweaks .tk-note { padding: 4px 14px 6px; font-size: 11px; color: var(--ink-3); }
-#tweaks .tk-seg { display:flex; gap:6px; }
-#tweaks .tk-seg button { flex:1; font:inherit; font-size:12px; font-weight:600; padding:7px 6px; border-radius:9px; border:1px solid var(--hairline); background:rgba(255,255,255,0.5); color:var(--ink-2); cursor:pointer; }
-#tweaks .tk-seg button.sel { background:#fff; color:var(--ink); box-shadow:0 1px 6px rgba(0,0,0,0.08); }
-
-/* ---------------- MOODS ---------------- */
 body[data-mood="frost"] { --bg: #eef1f4; --accent: #5d7390; --accent-ink: #324a66; }
-body[data-mood="frost"] .ambient { background: radial-gradient(48vmax 48vmax at 80% -10%, rgba(150,184,214,0.34), transparent 60%), radial-gradient(42vmax 42vmax at 6% 112%, rgba(168,196,214,0.30), transparent 62%), var(--bg); }
 body[data-mood="warm"] { --bg: #f3efea; --accent: #9a7b66; --accent-ink: #6e5240; }
-body[data-mood="warm"] .ambient { background: radial-gradient(48vmax 48vmax at 80% -10%, rgba(222,189,158,0.36), transparent 60%), radial-gradient(42vmax 42vmax at 6% 112%, rgba(214,176,180,0.30), transparent 62%), var(--bg); }
 
-/* ---------------- RESPONSIVE ---------------- */
 @media (max-width: 720px) {
   .nav { padding: 6px 7px 6px 14px; gap: 2px; }
   .nav .brand { font-size: 12.5px; padding-right: 10px; }
@@ -173,4 +130,3 @@ body[data-mood="warm"] .ambient { background: radial-gradient(48vmax 48vmax at 8
   .wrap { padding: 0 18px; }
   .footer { flex-direction: column; align-items: flex-start; gap: 16px; }
 }
-
