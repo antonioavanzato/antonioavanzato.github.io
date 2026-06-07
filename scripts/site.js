@@ -201,6 +201,14 @@
     var form = document.getElementById('leadForm');
     if (!form) return;
 
+    /* Предвыбор формата по ?pkg= (из кнопок тарифов на странице цен) */
+    var pkgParam = (location.search.match(/[?&]pkg=([^&]+)/) || [])[1];
+    if (pkgParam) {
+      var sel = form.querySelector('#f-pkg');
+      var map = { landing: 'Лендинг — одна страница', multi: 'Многостраничный сайт' };
+      if (sel && map[pkgParam]) sel.value = map[pkgParam];
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -216,8 +224,8 @@
 
       var btn = form.querySelector('.c-submit');
       var lbl = btn && btn.querySelector('.lbl');
-      if (lbl) lbl.textContent = 'Отправляю…';
-      if (btn) btn.disabled = true;
+      if (lbl) lbl.textContent = 'Отправляю';
+      if (btn) { btn.disabled = true; btn.classList.add('loading'); }
 
       var get = function (id) { var el = form.querySelector(id); return el ? el.value.trim() : ''; };
 
@@ -249,7 +257,7 @@
         })
         .catch(function () {
           if (lbl) lbl.textContent = 'Ошибка — напишите в Telegram';
-          if (btn) btn.disabled = false;
+          if (btn) { btn.disabled = false; btn.classList.remove('loading'); }
         });
     });
   }
@@ -262,10 +270,10 @@
       var n = (i + 1 < 10 ? '0' : '') + (i + 1);
       return '<a class="m-item ' + (p.size || '') + ' reveal" data-d="' + (i % 3) + '" ' +
         'href="' + p.href + '" target="_blank" rel="noopener noreferrer">' +
-        '<span class="m-frame"><img src="' + p.src + '" alt="Сайт ' + p.title + ' — разработка сайтов в Казани, Антон Аванзато" loading="lazy" decoding="async"></span>' +
+        '<span class="m-frame"><img src="' + p.src + '" alt="Сайт ' + p.title + ' — разработка сайтов в Казани, Антон Аванзато" loading="lazy" decoding="async">' +
+        '<span class="m-arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>' +
         '<span class="m-meta"><span class="m-num">' + n + '</span>' +
-        '<span class="m-txt"><b>' + p.title + '</b><i>' + p.desc + '</i></span>' +
-        '<span class="m-arr"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a>';
+        '<span class="m-txt"><b>' + p.title + '</b><i>' + p.desc + '</i></span></span></a>';
     }).join('');
     // re-observe newly injected reveals
     setupReveal();
