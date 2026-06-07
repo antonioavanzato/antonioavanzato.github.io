@@ -4,6 +4,15 @@
 (function () {
   'use strict';
 
+  /* ── Telegram Bot ─────────────────────────────────────────
+     Вставь свои значения перед публикацией:
+     TG_TOKEN — токен бота от @BotFather
+     TG_CHAT  — твой chat_id (узнать через @userinfobot)
+  ─────────────────────────────────────────────────────────── */
+  var TG_TOKEN = 'ТВОЙ_BOT_TOKEN';
+  var TG_CHAT  = 'ТВОЙ_CHAT_ID';
+  /* ────────────────────────────────────────────────────────── */
+
   var PAGES = [
     { id: 'home',     label: 'Главная',  href: 'index.html' },
     { id: 'pricing',  label: 'Цены',     href: 'pricing.html' },
@@ -31,7 +40,7 @@
   ];
   window.AVW_PORTFOLIO = PORTFOLIO;
 
-  /* ---------- chrome: scroll progress + nav ---------- */
+  /* ---------- chrome ---------- */
   function buildChrome() {
     var bar = document.createElement('div');
     bar.className = 'scrollbar';
@@ -151,26 +160,66 @@
     });
   }
 
-  /* ---------- contact form ---------- */
+  /* ---------- contact form + Telegram ---------- */
   function setupForm() {
     var form = document.getElementById('leadForm');
     if (!form) return;
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+
+      /* Валидация */
       var ok = true;
       ['#f-name', '#f-contact'].forEach(function (sel) {
         var f = form.querySelector(sel);
-        if (!f.value.trim()) { f.style.borderColor = '#e0584e'; f.style.boxShadow = '0 0 0 4px rgba(224,88,78,0.12)'; ok = false; }
-        else { f.style.borderColor = ''; f.style.boxShadow = ''; }
+        if (!f || !f.value.trim()) {
+          if (f) { f.style.borderColor = '#e0584e'; f.style.boxShadow = '0 0 0 4px rgba(224,88,78,0.12)'; }
+          ok = false;
+        } else {
+          f.style.borderColor = ''; f.style.boxShadow = '';
+        }
       });
       if (!ok) return;
-      form.classList.add('sent');
+
+      /* Loading state */
+      var btn = form.querySelector('.c-submit');
+      var lbl = btn && btn.querySelector('.lbl');
+      if (lbl) lbl.textContent = 'Отправляю…';
+      if (btn) btn.disabled = true;
+
+      /* Сборка данных */
+      var get = function (id) { var el = form.querySelector(id); return el ? el.value.trim() || '—' : '—'; };
+      var text =
+        '🌐 *Новая заявка — AVANZATO Веб*\n\n' +
+        '👤 *Имя:* '          + get('#f-name')    + '\n' +
+        '📱 *Контакт:* '       + get('#f-contact') + '\n' +
+        '📋 *Формат сайта:* '  + get('#f-pkg')     + '\n' +
+        '🔗 *Домен:* '         + get('#f-domain')  + '\n' +
+        '💬 *Сообщение:* '     + get('#f-msg')     + '\n\n' +
+        '🕐 ' + new Date().toLocaleString('ru-RU');
+
+      /* Отправка в Telegram */
+      fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: TG_CHAT, text: text, parse_mode: 'Markdown' })
+      }).then(function (r) {
+        if (r.ok) {
+          form.classList.add('sent');
+        } else {
+          if (lbl) lbl.textContent = 'Ошибка — напишите в Telegram';
+          if (btn) btn.disabled = false;
+        }
+      }).catch(function () {
+        if (lbl) lbl.textContent = 'Ошибка — напишите в Telegram';
+        if (btn) btn.disabled = false;
+      });
     });
   }
 
   /* ============================================================
-     TWEAKS (vanilla + host protocol)
-     ============================================================ */
+     TWEAKS
+  ============================================================ */
   var TK_KEY = 'avw_glass_tweaks_v2';
   var tk = { blur: 20, alpha: 40, sat: 180, mood: 'airy' };
   try { Object.assign(tk, JSON.parse(localStorage.getItem(TK_KEY) || '{}')); } catch (e) {}
