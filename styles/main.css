@@ -202,7 +202,12 @@ body.nav-open .mlink {
 }
 .bg-photo::after {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(255,255,229,0.62) 0%, rgba(255,255,229,0.40) 38%, rgba(255,255,229,0.96) 100%);
+  background: linear-gradient(180deg,
+    rgba(255,255,229,0.55) 0%,
+    rgba(255,255,229,0.22) 32%,
+    rgba(255,255,229,0.55) 72%,
+    rgba(255,255,229,0.92) 90%,
+    var(--bg) 100%);
 }
 
 /* ---------- buttons ---------- */
@@ -277,6 +282,7 @@ image-slot { --is-bg: rgba(28,27,20,0.04); background: var(--is-bg); }
   :root { --gutter: 20px; }
   .nav .nav-links { display: none; }
   .burger { display: block; }
+  .nav { border-bottom: 0; }
   .footer { flex-direction: column; align-items: flex-start; gap: 18px; }
 }
 @media (min-width: 721px) {
