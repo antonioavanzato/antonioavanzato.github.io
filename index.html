@@ -13,8 +13,7 @@
 
 <header class="hero" data-screen-label="Hero">
   <div class="bg-photo">
-    <image-slot id="home-hero-bg" data-parallax="0.4" data-base-scale="1.12"
-      placeholder="Фон героя — перетащите изображение" fit="cover"></image-slot>
+    <img class="hero-cover" src="images/Cover.jpg" alt="AVANZATO — разработка сайтов под ключ в Казани" fetchpriority="high">
   </div>
   <div class="wrap hero-inner">
     <p class="eyebrow hero-eb">Digital Architecture · Казань</p>
@@ -111,8 +110,9 @@
 </section>
 
 <style>
-.hero { position:relative; min-height:100svh; display:flex; flex-direction:column; justify-content:flex-end; padding:140px 0 0; overflow:hidden; }
+.hero { position:relative; aspect-ratio:16/9; min-height:600px; display:flex; flex-direction:column; justify-content:flex-end; padding:140px 0 0; overflow:hidden; }
 .hero-inner { width:100%; }
+.hero-cover { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; transform:none; filter:none; }
 .hero-eb { opacity:0; animation:fadeUp .8s var(--ease-soft) .15s forwards; }
 .hero-title { margin:22px 0 0; }
 .hero-title .line { display:block; overflow:hidden; padding-bottom:.02em; }
@@ -170,6 +170,7 @@
 @keyframes lineUp { to{transform:none} }
 @media(prefers-reduced-motion:reduce){.hero-eb,.hero-lede,.hero-cta,.hero-meta,.scroll-hint{opacity:1!important;animation:none!important}.hero-title .line>span{transform:none!important;animation:none!important}}
 @media(max-width:900px){.intro-grid{grid-template-columns:1fr;gap:24px}.do-grid{grid-template-columns:1fr}.do-card{border-right:0;border-bottom:1px solid var(--hairline)}.do-card:last-child{border-bottom:0}}
+@media(max-width:760px){.hero{aspect-ratio:9/16;min-height:560px}}
 @media(max-width:640px){.hero{padding-top:120px}.gallery{grid-template-columns:1fr}.work-head{flex-direction:column;align-items:flex-start}.scroll-hint{display:none}.hero-meta{flex-wrap:wrap;gap:22px 40px}}
 </style>
 
