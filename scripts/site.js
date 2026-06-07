@@ -10,7 +10,7 @@
      SECRET_KEY — должен совпадать с PHOTO_SECRET_KEY в Script Properties.
   ─────────────────────────────────────────────────────────── */
   var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwG3MRzQR7NA-J4oMZgpyqQ6LQ8tiPJkER_JSH-q-OV_N6zBPabop8bbnPg1S4hVklGoA/exec';
-  var SECRET_KEY = 'ВСТАВЬ_СЮДА_PHOTO_SECRET_KEY';
+  var SECRET_KEY = '222897Avanzato!';
   /* ────────────────────────────────────────────────────────── */
 
   var PAGES = [
@@ -39,6 +39,38 @@
       src:'https://i.wfolio.ru/x/IpIDXWsy6fAubMzqJy3peT9C_63INnIW/uPNqZb6-pqtDzBlZ-MRJEQlHRPvoh3IF/7skTmO4p5_xtjZFaAvJwPXbpKTGmEDGn/2PnckuH3i2QBSlL4uB5dBwzgPiY8FSx8/2uFEfFkivs3fpFfgEQgM0GKcKZ_ccFRQ/4UA5Qlv2Wuo91JcekPwnXZoD10he_811.jpeg' }
   ];
   window.AVW_PORTFOLIO = PORTFOLIO;
+
+  /* ---------- scramble hover ---------- */
+  var GLYPHS = 'АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩЭЮЯ#%&*<>_/—=+';
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function scramble(el) {
+    if (reduceMotion) return;
+    var final = el.getAttribute('data-text') || el.textContent;
+    el.setAttribute('data-text', final);
+    if (el._raf) cancelAnimationFrame(el._raf);
+    var len = final.length, start = performance.now(), dur = 460;
+    var locks = [];
+    for (var i = 0; i < len; i++) locks.push(0.18 + Math.random() * 0.55);
+    function tick(now) {
+      var p = Math.min(1, (now - start) / dur), out = '';
+      for (var i = 0; i < len; i++) {
+        var ch = final.charAt(i);
+        if (ch === ' ') { out += ' '; }
+        else if (p >= locks[i]) { out += ch; }
+        else { out += GLYPHS.charAt((Math.random() * GLYPHS.length) | 0); }
+      }
+      el.textContent = out;
+      if (p < 1) { el._raf = requestAnimationFrame(tick); }
+      else { el.textContent = final; el._raf = null; }
+    }
+    el._raf = requestAnimationFrame(tick);
+  }
+  function setupScramble(root) {
+    root.querySelectorAll('.nav .link').forEach(function (el) {
+      el.setAttribute('data-text', el.textContent);
+      el.addEventListener('mouseenter', function () { scramble(el); });
+    });
+  }
 
   /* ---------- chrome ---------- */
   function buildChrome() {
@@ -80,6 +112,8 @@
     mob.addEventListener('click', function (e) { if (e.target.classList.contains('mlink')) setNav(false); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setNav(false); });
     window.addEventListener('resize', function () { if (window.innerWidth > 720) setNav(false); });
+
+    setupScramble(navwrap);
 
     return bar;
   }
