@@ -275,7 +275,7 @@ image-slot { --is-bg: rgba(28,27,20,0.04); background: var(--is-bg); }
 /* ---------- responsive ---------- */
 @media (max-width: 720px) {
   :root { --gutter: 20px; }
-  .nav-links { display: none; }
+  .nav .nav-links { display: none; }
   .burger { display: block; }
   .footer { flex-direction: column; align-items: flex-start; gap: 18px; }
 }
