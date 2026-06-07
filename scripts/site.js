@@ -9,8 +9,8 @@
      TG_TOKEN — токен бота от @BotFather
      TG_CHAT  — твой chat_id (узнать через @userinfobot)
   ─────────────────────────────────────────────────────────── */
-  var TG_TOKEN = 'ТВОЙ_BOT_TOKEN';
-  var TG_CHAT  = 'ТВОЙ_CHAT_ID';
+  var TG_TOKEN = '8503433014:AAHSVknQgkq7yR8ZM5NoN4Wf9B0OTS0uYqY';
+  var TG_CHAT  = '595711';
   /* ────────────────────────────────────────────────────────── */
 
   var PAGES = [
