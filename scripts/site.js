@@ -1,16 +1,16 @@
 /* ============================================================
-   AVANZATO — shared behaviour (Liquid Glass build)
+   AVANZATO — shared behaviour (Editorial build)
    ============================================================ */
 (function () {
   'use strict';
 
-  /* ── Telegram Bot ─────────────────────────────────────────
-     Вставь свои значения перед публикацией:
-     TG_TOKEN — токен бота от @BotFather
-     TG_CHAT  — твой chat_id (узнать через @userinfobot)
+  /* ── Config ──────────────────────────────────────────────
+     Приём заявок через Google Apps Script (Web App).
+     SCRIPT_URL — адрес опубликованного скрипта (.../exec).
+     SECRET_KEY — должен совпадать с PHOTO_SECRET_KEY в Script Properties.
   ─────────────────────────────────────────────────────────── */
-  var TG_TOKEN = '8503433014:AAHSVknQgkq7yR8ZM5NoN4Wf9B0OTS0uYqY';
-  var TG_CHAT  = '8503433014';
+  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwG3MRzQR7NA-J4oMZgpyqQ6LQ8tiPJkER_JSH-q-OV_N6zBPabop8bbnPg1S4hVklGoA/exec';
+  var SECRET_KEY = '222897Avanzato!';
   /* ────────────────────────────────────────────────────────── */
 
   var PAGES = [
@@ -50,8 +50,9 @@
     var links = PAGES.map(function (p) {
       return '<a class="link' + (p.id === current ? ' active' : '') + '" href="' + p.href + '">' + p.label + '</a>';
     }).join('');
-    navwrap.innerHTML = '<nav class="nav glass" aria-label="Навигация">' +
-      '<a class="brand" href="index.html" translate="no">AVANZATO</a>' + links + '</nav>';
+    navwrap.innerHTML = '<nav class="nav" aria-label="Навигация">' +
+      '<a class="brand" href="index.html" translate="no">Avanzato</a>' +
+      '<div class="nav-links">' + links + '</div></nav>';
     document.body.appendChild(navwrap);
     return bar;
   }
@@ -73,23 +74,8 @@
       var rect = host.getBoundingClientRect();
       var delta = (rect.top + rect.height / 2 - vh / 2);
       var speed = parseFloat(el.getAttribute('data-parallax')) || 0.5;
-      var base = el.getAttribute('data-base-scale') || '1.18';
-      el.style.transform = 'translate3d(0,' + (-delta * speed * 0.18).toFixed(2) + 'px,0) scale(' + base + ')';
-    }
-  }
-
-  /* ---------- lift ---------- */
-  var liftEls = [];
-  function applyLift() {
-    var vh = window.innerHeight;
-    for (var i = 0; i < liftEls.length; i++) {
-      var el = liftEls[i], r = el.getBoundingClientRect();
-      if (r.bottom < -200 || r.top > vh + 200) continue;
-      var dist = Math.abs(r.top + r.height / 2 - vh / 2) / (vh / 2);
-      var k = Math.max(0, 1 - dist);
-      el.style.transform = 'scale(' + (1 + 0.02 * k).toFixed(4) + ')';
-      el.style.boxShadow = '0 ' + (8 + 26 * k).toFixed(1) + 'px ' + (32 + 30 * k).toFixed(0) +
-        'px rgba(0,0,0,' + (0.08 + 0.09 * k).toFixed(3) + '), var(--glass-inner)';
+      var base = el.getAttribute('data-base-scale') || '1.12';
+      el.style.transform = 'translate3d(0,' + (-delta * speed * 0.12).toFixed(2) + 'px,0) scale(' + base + ')';
     }
   }
 
@@ -97,7 +83,7 @@
   function onScroll() {
     if (ticking) return;
     ticking = true;
-    requestAnimationFrame(function () { onScrollProgress(); applyParallax(); applyLift(); ticking = false; });
+    requestAnimationFrame(function () { onScrollProgress(); applyParallax(); ticking = false; });
   }
 
   /* ---------- reveal ---------- */
@@ -106,7 +92,7 @@
     if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
-    }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+    }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
     els.forEach(function (e) { io.observe(e); });
   }
 
@@ -118,7 +104,7 @@
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
         io.unobserve(en.target);
-        var el = en.target, to = parseFloat(el.getAttribute('data-count')), dur = 1300, start = null;
+        var el = en.target, to = parseFloat(el.getAttribute('data-count')), dur = 1400, start = null;
         var prefix = el.getAttribute('data-prefix') || '', suffix = el.getAttribute('data-suffix') || '';
         function step(ts) {
           if (!start) start = ts;
@@ -130,17 +116,6 @@
       });
     }, { threshold: 0.5 });
     els.forEach(function (e) { io.observe(e); });
-  }
-
-  /* ---------- shimmer ---------- */
-  function setupShimmer() {
-    document.querySelectorAll('[data-shimmer]').forEach(function (card) {
-      card.addEventListener('pointermove', function (e) {
-        var r = card.getBoundingClientRect();
-        card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
-        card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
-      });
-    });
   }
 
   /* ---------- accordion ---------- */
@@ -168,138 +143,82 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      /* Валидация */
       var ok = true;
       ['#f-name', '#f-contact'].forEach(function (sel) {
         var f = form.querySelector(sel);
         if (!f || !f.value.trim()) {
-          if (f) { f.style.borderColor = '#e0584e'; f.style.boxShadow = '0 0 0 4px rgba(224,88,78,0.12)'; }
+          if (f) { f.classList.add('invalid'); }
           ok = false;
-        } else {
-          f.style.borderColor = ''; f.style.boxShadow = '';
-        }
+        } else { f.classList.remove('invalid'); }
       });
       if (!ok) return;
 
-      /* Loading state */
       var btn = form.querySelector('.c-submit');
       var lbl = btn && btn.querySelector('.lbl');
       if (lbl) lbl.textContent = 'Отправляю…';
       if (btn) btn.disabled = true;
 
-      /* Сборка данных */
-      var get = function (id) { var el = form.querySelector(id); return el ? el.value.trim() || '—' : '—'; };
-      var text =
-        '🌐 *Новая заявка — AVANZATO Веб*\n\n' +
-        '👤 *Имя:* '          + get('#f-name')    + '\n' +
-        '📱 *Контакт:* '       + get('#f-contact') + '\n' +
-        '📋 *Формат сайта:* '  + get('#f-pkg')     + '\n' +
-        '🔗 *Домен:* '         + get('#f-domain')  + '\n' +
-        '💬 *Сообщение:* '     + get('#f-msg')     + '\n\n' +
-        '🕐 ' + new Date().toLocaleString('ru-RU');
+      var get = function (id) { var el = form.querySelector(id); return el ? el.value.trim() : ''; };
 
-      /* Отправка в Telegram */
-      fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: TG_CHAT, text: text, parse_mode: 'Markdown' })
-      }).then(function (r) {
-        if (r.ok) {
+      /* Поле «Идея домена» отдельного слота в скрипте не имеет —
+         дописываем его в текст сообщения. */
+      var msg = get('#f-msg');
+      var domain = get('#f-domain');
+      if (domain) msg = (msg ? msg + '\n' : '') + 'Домен: ' + domain;
+
+      /* Схема под doPost: key + name/phone/tg/date/city/type/msg.
+         Контакт целиком кладём в tg. */
+      var payload = {
+        key:   SECRET_KEY,
+        name:  get('#f-name'),
+        phone: '',
+        tg:    get('#f-contact'),
+        date:  new Date().toLocaleString('ru-RU'),
+        city:  'Казань',
+        type:  get('#f-pkg') || '—',
+        msg:   msg || '—'
+      };
+
+      /* mode:no-cors → тело отправляется как text/plain (без CORS-preflight),
+         но e.postData.contents в скрипте получит сырую JSON-строку и распарсит её.
+         Ответ непрозрачный, поэтому успехом считаем факт доставки запроса. */
+      fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) })
+        .then(function () {
           form.classList.add('sent');
-        } else {
+        })
+        .catch(function () {
           if (lbl) lbl.textContent = 'Ошибка — напишите в Telegram';
           if (btn) btn.disabled = false;
-        }
-      }).catch(function () {
-        if (lbl) lbl.textContent = 'Ошибка — напишите в Telegram';
-        if (btn) btn.disabled = false;
-      });
+        });
     });
   }
-
-  /* ============================================================
-     TWEAKS
-  ============================================================ */
-  var TK_KEY = 'avw_glass_tweaks_v2';
-  var tk = { blur: 20, alpha: 40, sat: 180, mood: 'airy' };
-  try { Object.assign(tk, JSON.parse(localStorage.getItem(TK_KEY) || '{}')); } catch (e) {}
-
-  function applyTweaks() {
-    var s = document.documentElement.style;
-    s.setProperty('--glass-blur', tk.blur + 'px');
-    s.setProperty('--glass-alpha', (tk.alpha / 100).toFixed(2));
-    s.setProperty('--glass-sat', tk.sat + '%');
-    document.body.setAttribute('data-mood', tk.mood);
-  }
-  function saveTweaks() { try { localStorage.setItem(TK_KEY, JSON.stringify(tk)); } catch (e) {} }
-
-  var panelBuilt = false;
-  function buildTweaks() {
-    if (panelBuilt) return document.getElementById('tweaks');
-    panelBuilt = true;
-    var el = document.createElement('div');
-    el.id = 'tweaks';
-    el.innerHTML =
-      '<div class="tk-card glass">' +
-        '<div class="tk-hd"><b>Стекло · Tweaks</b><button class="tk-x" title="Закрыть">✕</button></div>' +
-        '<div class="tk-row"><div class="tk-lbl"><span>Размытие</span><span class="v" id="tkBlurV"></span></div><input type="range" id="tkBlur" min="4" max="40" step="1"></div>' +
-        '<div class="tk-row"><div class="tk-lbl"><span>Прозрачность</span><span class="v" id="tkAlphaV"></span></div><input type="range" id="tkAlpha" min="15" max="75" step="1"></div>' +
-        '<div class="tk-row"><div class="tk-lbl"><span>Насыщенность</span><span class="v" id="tkSatV"></span></div><input type="range" id="tkSat" min="100" max="220" step="5"></div>' +
-        '<div class="tk-row"><div class="tk-lbl"><span>Атмосфера</span></div><div class="tk-seg" id="tkMood">' +
-          '<button data-m="airy">Светлая</button><button data-m="frost">Морозная</button><button data-m="warm">Тёплая</button></div></div>' +
-        '<div class="tk-note">Настройки живого стекла сохраняются на всех страницах.</div>' +
-      '</div>';
-    document.body.appendChild(el);
-    var blur = el.querySelector('#tkBlur'), alpha = el.querySelector('#tkAlpha'), sat = el.querySelector('#tkSat');
-    function sync() {
-      blur.value = tk.blur; alpha.value = tk.alpha; sat.value = tk.sat;
-      el.querySelector('#tkBlurV').textContent = tk.blur + 'px';
-      el.querySelector('#tkAlphaV').textContent = tk.alpha + '%';
-      el.querySelector('#tkSatV').textContent = tk.sat + '%';
-      el.querySelectorAll('#tkMood button').forEach(function (b) { b.classList.toggle('sel', b.getAttribute('data-m') === tk.mood); });
-    }
-    blur.addEventListener('input', function () { tk.blur = +blur.value; applyTweaks(); saveTweaks(); sync(); });
-    alpha.addEventListener('input', function () { tk.alpha = +alpha.value; applyTweaks(); saveTweaks(); sync(); });
-    sat.addEventListener('input', function () { tk.sat = +sat.value; applyTweaks(); saveTweaks(); sync(); });
-    el.querySelectorAll('#tkMood button').forEach(function (b) {
-      b.addEventListener('click', function () { tk.mood = b.getAttribute('data-m'); applyTweaks(); saveTweaks(); sync(); });
-    });
-    el.querySelector('.tk-x').addEventListener('click', function () { window.parent.postMessage({ type: '__deactivate_edit_mode' }, '*'); el.classList.remove('on'); });
-    sync();
-    return el;
-  }
-  function setTweaksVisible(on) { (document.getElementById('tweaks') || buildTweaks()).classList.toggle('on', !!on); }
-  window.addEventListener('message', function (e) {
-    var d = e.data || {};
-    if (d.type === '__activate_edit_mode') setTweaksVisible(true);
-    else if (d.type === '__deactivate_edit_mode') setTweaksVisible(false);
-  });
 
   /* ---------- portfolio render ---------- */
   function renderPortfolio() {
     var grid = document.getElementById('portfolio-grid');
     if (!grid) return;
     grid.innerHTML = PORTFOLIO.map(function (p, i) {
-      return '<a class="m-item ' + (p.size || '') + ' reveal lift" data-shimmer data-d="' + (i % 3) + '" ' +
+      var n = (i + 1 < 10 ? '0' : '') + (i + 1);
+      return '<a class="m-item ' + (p.size || '') + ' reveal" data-d="' + (i % 3) + '" ' +
         'href="' + p.href + '" target="_blank" rel="noopener noreferrer">' +
-        '<img src="' + p.src + '" alt="Сайт ' + p.title + ' — разработка сайтов в Казани, Антон Аванзато" loading="lazy" decoding="async">' +
-        '<span class="m-arr glass"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
-        '<span class="m-cap"><b>' + p.title + '</b><i>' + p.desc + '</i></span></a>';
+        '<span class="m-frame"><img src="' + p.src + '" alt="Сайт ' + p.title + ' — разработка сайтов в Казани, Антон Аванзато" loading="lazy" decoding="async"></span>' +
+        '<span class="m-meta"><span class="m-num">' + n + '</span>' +
+        '<span class="m-txt"><b>' + p.title + '</b><i>' + p.desc + '</i></span>' +
+        '<span class="m-arr"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a>';
     }).join('');
+    // re-observe newly injected reveals
+    setupReveal();
   }
 
   /* ---------- init ---------- */
   function init() {
-    applyTweaks();
     renderPortfolio();
     parallaxEls = [].slice.call(document.querySelectorAll('[data-parallax]'));
-    liftEls = [].slice.call(document.querySelectorAll('.lift'));
-    setupReveal(); setupCounters(); setupShimmer(); setupAccordion(); setupForm();
-    onScrollProgress(); applyParallax(); applyLift();
+    setupReveal(); setupCounters(); setupAccordion(); setupForm();
+    onScrollProgress(); applyParallax();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', function () {
       parallaxEls = [].slice.call(document.querySelectorAll('[data-parallax]'));
-      liftEls = [].slice.call(document.querySelectorAll('.lift'));
       onScroll();
     }, { passive: true });
   }
