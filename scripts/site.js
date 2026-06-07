@@ -10,7 +10,7 @@
      SECRET_KEY — должен совпадать с PHOTO_SECRET_KEY в Script Properties.
   ─────────────────────────────────────────────────────────── */
   var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwG3MRzQR7NA-J4oMZgpyqQ6LQ8tiPJkER_JSH-q-OV_N6zBPabop8bbnPg1S4hVklGoA/exec';
-  var SECRET_KEY = '222897Avanzato!';
+  var SECRET_KEY = 'ВСТАВЬ_СЮДА_PHOTO_SECRET_KEY';
   /* ────────────────────────────────────────────────────────── */
 
   var PAGES = [
@@ -50,11 +50,37 @@
     var links = PAGES.map(function (p) {
       return '<a class="link' + (p.id === current ? ' active' : '') + '" href="' + p.href + '">' + p.label + '</a>';
     }).join('');
+    var mlinks = PAGES.map(function (p, i) {
+      return '<a class="mlink' + (p.id === current ? ' active' : '') + '" style="--i:' + i + '" href="' + p.href + '">' + p.label + '</a>';
+    }).join('');
     navwrap.innerHTML = '<nav class="nav" aria-label="Навигация">' +
       '<a class="brand" href="index.html" aria-label="AVANZATO — на главную">' +
       '<img src="images/logo avanzato (clear).png" alt="AVANZATO" translate="no"></a>' +
-      '<div class="nav-links">' + links + '</div></nav>';
+      '<div class="nav-links">' + links + '</div>' +
+      '<button class="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobnav">' +
+      '<span></span><span></span><span></span></button>' +
+      '</nav>';
     document.body.appendChild(navwrap);
+
+    /* mobile overlay menu */
+    var mob = document.createElement('div');
+    mob.className = 'mobnav';
+    mob.id = 'mobnav';
+    mob.innerHTML = '<div class="mobnav-inner">' + mlinks +
+      '<a class="mlink mlink-cta" style="--i:' + PAGES.length + '" href="contacts.html">Обсудить проект →</a></div>';
+    document.body.appendChild(mob);
+
+    var burger = navwrap.querySelector('.burger');
+    function setNav(open) {
+      document.body.classList.toggle('nav-open', open);
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.documentElement.style.overflow = open ? 'hidden' : '';
+    }
+    burger.addEventListener('click', function () { setNav(!document.body.classList.contains('nav-open')); });
+    mob.addEventListener('click', function (e) { if (e.target.classList.contains('mlink')) setNav(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setNav(false); });
+    window.addEventListener('resize', function () { if (window.innerWidth > 720) setNav(false); });
+
     return bar;
   }
   var scrollbar = buildChrome();
