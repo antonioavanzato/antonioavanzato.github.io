@@ -5,7 +5,61 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Стоимость разработки сайта в Казани — Антон Аванзато</title>
 <meta name="description" content="Цены на разработку сайтов под ключ: лендинг от 55 000 ₽, многостраничный сайт от 75 000 ₽. Что входит в стоимость и ответы на частые вопросы.">
+<link rel="canonical" href="https://avanzato.ru/pricing.html">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#ffffe5">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="AVANZATO">
+<meta property="og:title" content="Стоимость разработки сайта в Казани — Антон Аванзато">
+<meta property="og:description" content="Лендинг от 55 000 ₽, многостраничный сайт от 75 000 ₽. Что входит в стоимость и частые вопросы.">
+<meta property="og:url" content="https://avanzato.ru/pricing.html">
+<meta property="og:image" content="https://avanzato.ru/images/Cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="styles/main.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "serviceType": "Разработка сайтов под ключ",
+      "provider": { "@id": "https://avanzato.ru/#business" },
+      "areaServed": { "@type": "Country", "name": "Россия" },
+      "url": "https://avanzato.ru/pricing.html",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Форматы сайтов",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Лендинг — одна страница",
+            "description": "Продающая страница под один продукт или услугу. Дизайн, адаптив, SEO.",
+            "priceCurrency": "RUB",
+            "price": "55000",
+            "priceSpecification": { "@type": "PriceSpecification", "minPrice": "55000", "priceCurrency": "RUB" }
+          },
+          {
+            "@type": "Offer",
+            "name": "Многостраничный сайт",
+            "description": "Полноценный сайт с несколькими разделами, блогом, портфолио или каталогом.",
+            "priceCurrency": "RUB",
+            "price": "75000",
+            "priceSpecification": { "@type": "PriceSpecification", "minPrice": "75000", "priceCurrency": "RUB" }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://avanzato.ru/" },
+        { "@type": "ListItem", "position": 2, "name": "Цены", "item": "https://avanzato.ru/pricing.html" }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body data-page="pricing">
 <div class="ambient"></div>
@@ -182,6 +236,18 @@
       '<div class="acc-a"><div class="acc-a-inner">'+f[1]+'</div></div></div>';
   }).join('');
   document.getElementById('faq').innerHTML=html;
+
+  /* FAQPage Schema.org — из того же массива, теги вычищаем для чистого текста */
+  function plain(s){ return s.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim(); }
+  var faqLd={ "@context":"https://schema.org", "@type":"FAQPage",
+    "mainEntity": FAQ.map(function(f){
+      return { "@type":"Question", "name":f[0],
+        "acceptedAnswer":{ "@type":"Answer", "text":plain(f[1]) } };
+    }) };
+  var s=document.createElement('script');
+  s.type='application/ld+json';
+  s.textContent=JSON.stringify(faqLd);
+  document.head.appendChild(s);
 })();
 </script>
 </body>
