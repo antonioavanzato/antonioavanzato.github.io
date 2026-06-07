@@ -51,7 +51,8 @@
       return '<a class="link' + (p.id === current ? ' active' : '') + '" href="' + p.href + '">' + p.label + '</a>';
     }).join('');
     navwrap.innerHTML = '<nav class="nav" aria-label="Навигация">' +
-      '<a class="brand" href="index.html" translate="no">Avanzato</a>' +
+      '<a class="brand" href="index.html" aria-label="AVANZATO — на главную">' +
+      '<img src="images/logo avanzato (clear).png" alt="AVANZATO" translate="no"></a>' +
       '<div class="nav-links">' + links + '</div></nav>';
     document.body.appendChild(navwrap);
     return bar;
