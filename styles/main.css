@@ -97,7 +97,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; line-height: 1.02; }
 
 /* ---------- navigation ---------- */
 .navwrap {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 960;
   display: flex; justify-content: center; pointer-events: none;
   padding: 18px var(--gutter);
   transition: padding .4s var(--ease);
