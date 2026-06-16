@@ -96,7 +96,7 @@
     }).join('');
     navwrap.innerHTML = '<nav class="nav" aria-label="Навигация">' +
       '<a class="brand" href="index.html" aria-label="AVANZATO — на главную">' +
-      '<img src="images/logo avanzato (clear).png" alt="AVANZATO" translate="no"></a>' +
+      '<img src="images/logo avanzato (white).png" alt="AVANZATO" translate="no"></a>' +
       '<div class="nav-links">' + links + '</div>' +
       '<button class="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobnav">' +
       '<span></span><span></span><span></span></button>' +
