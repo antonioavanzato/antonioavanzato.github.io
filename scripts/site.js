@@ -218,6 +218,22 @@
       if (sel && map[pkgParam]) sel.value = map[pkgParam];
     }
 
+    /* Согласие на обработку персональных данных:
+       кнопка отправки заблокирована, пока галочка не проставлена. */
+    var consent = form.querySelector('#f-consent');
+    var submitBtn = form.querySelector('.c-submit');
+    function syncConsent() {
+      if (!submitBtn) return;
+      var ok = !consent || consent.checked;
+      submitBtn.disabled = !ok;
+      if (ok && consent) {
+        var lbl = consent.closest('.c-consent');
+        if (lbl) lbl.classList.remove('invalid');
+      }
+    }
+    if (consent) consent.addEventListener('change', syncConsent);
+    syncConsent();
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -229,11 +245,19 @@
           ok = false;
         } else { f.classList.remove('invalid'); }
       });
+
+      /* Без согласия с политикой отправка невозможна. */
+      if (consent && !consent.checked) {
+        var lbl = consent.closest('.c-consent');
+        if (lbl) lbl.classList.add('invalid');
+        ok = false;
+      }
+
       if (!ok) return;
 
       var btn = form.querySelector('.c-submit');
-      var lbl = btn && btn.querySelector('.lbl');
-      if (lbl) lbl.textContent = 'Отправляю';
+      var lbl2 = btn && btn.querySelector('.lbl');
+      if (lbl2) lbl2.textContent = 'Отправляю';
       if (btn) { btn.disabled = true; btn.classList.add('loading'); }
 
       var get = function (id) { var el = form.querySelector(id); return el ? el.value.trim() : ''; };
@@ -265,7 +289,7 @@
           form.classList.add('sent');
         })
         .catch(function () {
-          if (lbl) lbl.textContent = 'Ошибка — напишите в Telegram';
+          if (lbl2) lbl2.textContent = 'Ошибка — напишите в Telegram';
           if (btn) { btn.disabled = false; btn.classList.remove('loading'); }
         });
     });
