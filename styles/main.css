@@ -293,3 +293,68 @@ image-slot { --is-bg: rgba(243,241,228,0.05); background: var(--is-bg); }
   .reveal { opacity: 1 !important; transform: none !important; filter: none !important; clip-path: none !important; }
   .m-frame::after { display: none !important; }
 }
+/* ============================================================
+   Анимированный фон Aurora — для всех страниц
+   Красит существующий .ambient, поверх него идёт весь контент.
+   ============================================================ */
+.ambient{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  overflow:hidden;
+  background-color:var(--bg, #0c0c0a);
+  /* несколько мягких золотистых «облаков» света */
+  background-image:
+    radial-gradient(42% 52% at 18% 22%, rgba(200,169,106,.24), transparent 70%),
+    radial-gradient(38% 48% at 82% 26%, rgba(176,138,78,.20), transparent 70%),
+    radial-gradient(46% 56% at 68% 86%, rgba(200,169,106,.17), transparent 72%),
+    radial-gradient(52% 60% at 24% 82%, rgba(96,74,42,.22), transparent 72%);
+  background-size:200% 200%;
+  animation:auroraShift 34s ease-in-out infinite alternate;
+}
+
+/* плавающее световое пятно для глубины */
+.ambient::before{
+  content:"";
+  position:absolute;
+  top:-25vmax;
+  left:-10vmax;
+  width:75vmax;
+  height:75vmax;
+  border-radius:50%;
+  background:radial-gradient(circle at center,
+              rgba(200,169,106,.30), rgba(200,169,106,0) 62%);
+  filter:blur(60px);
+  mix-blend-mode:screen;
+  will-change:transform;
+  animation:auroraFloat 40s ease-in-out infinite alternate;
+}
+
+/* лёгкая виньетка + затемнение по краям, чтобы текст читался */
+.ambient::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(120% 120% at 50% 0%, transparent 55%, rgba(0,0,0,.55) 100%),
+    linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.35));
+}
+
+@keyframes auroraShift{
+  0%   {background-position:  0% 0%, 100% 0%, 50% 100%,  0% 100%;}
+  50%  {background-position: 28% 22%, 72% 30%, 42% 72%, 22% 78%;}
+  100% {background-position: 12% 34%, 90% 10%, 62% 88%, 10% 58%;}
+}
+
+@keyframes auroraFloat{
+  0%   {transform:translate(0,0)        scale(1);}
+  50%  {transform:translate(18vw,12vh)  scale(1.18);}
+  100% {transform:translate(6vw,26vh)   scale(1.05);}
+}
+
+/* уважение к пользователям с отключёнными анимациями */
+@media (prefers-reduced-motion: reduce){
+  .ambient,
+  .ambient::before{ animation:none; }
+}
