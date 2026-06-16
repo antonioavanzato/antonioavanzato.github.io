@@ -5,19 +5,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap');
 
 :root {
-  /* palette — 純白 (junpaku) ivory · pure · elegant · simple */
-  --bg:         #ffffe5;          /* #FFFFE5 — base ivory white */
-  --bg-2:       #f8f7da;
-  --surface:    #fcfbe6;
-  --ink:        #1c1b14;          /* warm near-black */
-  --ink-2:      rgba(28, 27, 20, 0.62);
-  --ink-3:      rgba(28, 27, 20, 0.40);
-  --hairline:   rgba(28, 27, 20, 0.13);
-  --hairline-2: rgba(28, 27, 20, 0.07);
-  --tint:       rgba(28, 27, 20, 0.035);
-  --accent:     #9c7c45;          /* refined bronze */
-  --accent-2:   #b08f54;
-  --accent-ink: #7c6132;
+  /* palette — 漆黒 (shikkoku) · deep warm black · refined · cinematic */
+  --bg:         #0c0c0a;          /* base near-black, warm */
+  --bg-2:       #131310;
+  --surface:    #15150f;
+  --ink:        #f3f1e4;          /* warm ivory text */
+  --ink-2:      rgba(243, 241, 228, 0.60);
+  --ink-3:      rgba(243, 241, 228, 0.38);
+  --hairline:   rgba(243, 241, 228, 0.13);
+  --hairline-2: rgba(243, 241, 228, 0.07);
+  --tint:       rgba(243, 241, 228, 0.045);
+  --accent:     #c79a52;          /* warm bronze, brightened for dark */
+  --accent-2:   #d8b069;
+  --accent-ink: #d9b066;
 
   --radius:    4px;
   --radius-lg: 8px;
@@ -54,7 +54,7 @@ body {
     var(--bg);
 }
 .ambient::after {
-  content: ""; position: absolute; inset: 0; opacity: 0.05; mix-blend-mode: multiply;
+  content: ""; position: absolute; inset: 0; opacity: 0.045; mix-blend-mode: screen;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -203,10 +203,10 @@ body.nav-open .mlink {
 .bg-photo::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(180deg,
-    rgba(255,255,229,0.55) 0%,
-    rgba(255,255,229,0.22) 32%,
-    rgba(255,255,229,0.55) 72%,
-    rgba(255,255,229,0.92) 90%,
+    rgba(12,12,10,0.55) 0%,
+    rgba(12,12,10,0.30) 32%,
+    rgba(12,12,10,0.62) 72%,
+    rgba(12,12,10,0.94) 90%,
     var(--bg) 100%);
 }
 
@@ -233,7 +233,7 @@ body.nav-open .mlink {
   border-radius: var(--radius-lg);
   transition: border-color .4s, background .4s, transform .5s var(--ease);
 }
-.card:hover { border-color: rgba(236,232,225,0.22); }
+.card:hover { border-color: rgba(243,241,228,0.22); }
 
 /* ---------- reveal ---------- */
 .reveal {
@@ -275,7 +275,7 @@ body.nav-open .mlink {
 .footer nav a { color: var(--ink-2); transition: color .3s; }
 .footer nav a:hover { color: var(--accent); }
 
-image-slot { --is-bg: rgba(28,27,20,0.04); background: var(--is-bg); }
+image-slot { --is-bg: rgba(243,241,228,0.05); background: var(--is-bg); }
 
 /* ---------- responsive ---------- */
 @media (max-width: 720px) {
