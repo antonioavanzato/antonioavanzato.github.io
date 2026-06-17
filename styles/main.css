@@ -5,17 +5,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap');
 
 :root {
-  /* palette — 漆黒 (shikkoku) · deep warm black · refined · cinematic */
-  --bg:         #0c0c0a;          /* base near-black, warm */
+  --bg:         #0c0c0a;
   --bg-2:       #131310;
   --surface:    #15150f;
-  --ink:        #f3f1e4;          /* warm ivory text */
+  --ink:        #f3f1e4;
   --ink-2:      rgba(243, 241, 228, 0.60);
   --ink-3:      rgba(243, 241, 228, 0.38);
   --hairline:   rgba(243, 241, 228, 0.13);
   --hairline-2: rgba(243, 241, 228, 0.07);
   --tint:       rgba(243, 241, 228, 0.045);
-  --accent:     #c79a52;          /* warm bronze, brightened for dark */
+  --accent:     #c79a52;
   --accent-2:   #d8b069;
   --accent-ink: #d9b066;
 
@@ -46,8 +45,7 @@ body {
 }
 
 /* ============================================================
-   Анимированный фон Aurora — для всех страниц
-   Красит существующий .ambient, поверх него идёт весь контент.
+   Анимированный фон Aurora — для всех страниц (форсированный)
    ============================================================ */
 .ambient {
   position: fixed;
@@ -56,55 +54,40 @@ body {
   pointer-events: none;
   overflow: hidden;
   background-color: var(--bg);
-  background-image:
-    radial-gradient(46% 56% at 16% 20%, rgba(214,176,105,.45), transparent 66%),
-    radial-gradient(42% 52% at 86% 24%, rgba(199,154,82,.38), transparent 66%),
-    radial-gradient(50% 60% at 72% 88%, rgba(214,176,105,.34), transparent 68%),
-    radial-gradient(58% 64% at 20% 86%, rgba(126,96,50,.40), transparent 70%);
-  background-size: 170% 170%;
-  animation: auroraShift 24s ease-in-out infinite alternate;
 }
-/* два плавающих световых пятна для живости и глубины */
-.ambient::before {
-  content: "";
-  position: absolute;
-  top: -22vmax; left: -12vmax;
-  width: 82vmax; height: 82vmax;
-  border-radius: 50%;
-  background: radial-gradient(circle at center,
-              rgba(214,176,105,.50), rgba(214,176,105,0) 60%);
-  filter: blur(55px);
-  mix-blend-mode: screen;
-  will-change: transform;
-  animation: auroraFloat 28s ease-in-out infinite alternate;
-}
+.ambient::before,
 .ambient::after {
   content: "";
   position: absolute;
-  bottom: -26vmax; right: -16vmax;
-  width: 78vmax; height: 78vmax;
   border-radius: 50%;
-  background: radial-gradient(circle at center,
-              rgba(150,120,70,.42), rgba(150,120,70,0) 62%);
-  filter: blur(60px);
   mix-blend-mode: screen;
   will-change: transform;
-  animation: auroraFloat2 34s ease-in-out infinite alternate;
 }
-@keyframes auroraShift {
-  0%   { background-position:  0% 0%, 100% 0%, 50% 100%,  0% 100%; }
-  50%  { background-position: 30% 24%, 70% 32%, 40% 70%, 24% 78%; }
-  100% { background-position: 12% 36%, 92% 8%, 64% 90%, 8% 56%; }
+.ambient::before {
+  top: -25vmax; left: -15vmax;
+  width: 85vmax; height: 85vmax;
+  background: radial-gradient(circle at center,
+              rgba(214,176,105,.55), rgba(214,176,105,0) 60%);
+  filter: blur(45px);
+  animation: auroraFloat 16s ease-in-out infinite alternate !important;
+}
+.ambient::after {
+  bottom: -28vmax; right: -18vmax;
+  width: 80vmax; height: 80vmax;
+  background: radial-gradient(circle at center,
+              rgba(150,120,70,.50), rgba(150,120,70,0) 62%);
+  filter: blur(55px);
+  animation: auroraFloat2 22s ease-in-out infinite alternate !important;
 }
 @keyframes auroraFloat {
   0%   { transform: translate(0,0)        scale(1); }
-  50%  { transform: translate(20vw,14vh)  scale(1.22); }
-  100% { transform: translate(8vw,28vh)   scale(1.06); }
+  50%  { transform: translate(45vw,30vh)  scale(1.35); }
+  100% { transform: translate(20vw,55vh)  scale(1.1); }
 }
 @keyframes auroraFloat2 {
-  0%   { transform: translate(0,0)         scale(1.05); }
-  50%  { transform: translate(-18vw,-12vh) scale(1.25); }
-  100% { transform: translate(-6vw,-24vh)  scale(1.1); }
+  0%   { transform: translate(0,0)          scale(1.1); }
+  50%  { transform: translate(-40vw,-28vh)  scale(1.4); }
+  100% { transform: translate(-15vw,-50vh)  scale(1.15); }
 }
 
 img { display: block; max-width: 100%; }
@@ -338,8 +321,6 @@ image-slot { --is-bg: rgba(243,241,228,0.05); background: var(--is-bg); }
   .mobnav { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   .reveal { opacity: 1 !important; transform: none !important; filter: none !important; clip-path: none !important; }
   .m-frame::after { display: none !important; }
-  .ambient, .ambient::before, .ambient::after { animation: none !important; }
 }
