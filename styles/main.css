@@ -44,15 +44,13 @@ body {
   line-height: 1.5;
 }
 
-/* ---------- page transition curtain ---------- */
-body::before {
-  content: ""; position: fixed; inset: 0; z-index: 3000; pointer-events: none;
-  background: var(--bg); transform: translateY(-100%);
-  animation: ptReveal .7s var(--ease);
+/* ---------- page transition curtain (mobile-safe) ---------- */
+.page-curtain {
+  position: fixed; inset: 0; z-index: 3000; pointer-events: none;
+  background: var(--bg); opacity: 0; visibility: hidden;
+  transition: opacity .5s var(--ease), visibility 0s linear .5s;
 }
-@keyframes ptReveal { from { transform: translateY(0); } to { transform: translateY(-100%); } }
-body.pt-leaving::before { animation: ptCover .5s var(--ease) forwards; }
-@keyframes ptCover { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+.page-curtain.show { opacity: 1; visibility: visible; transition: opacity .5s var(--ease); }
 
 /* ============================================================
    Анимированный фон Aurora — для всех страниц (форсированный)
@@ -345,7 +343,7 @@ image-slot { --is-bg: rgba(243,241,228,0.05); background: var(--is-bg); }
   .mobnav { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  body::before { display: none; }
+  .page-curtain { display: none; }
   [data-anim="words"] .w > span { transform: none; }
   .reveal { opacity: 1 !important; transform: none !important; filter: none !important; clip-path: none !important; }
   .m-frame::after { display: none !important; }
