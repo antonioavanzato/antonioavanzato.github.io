@@ -73,6 +73,31 @@
     });
   }
 
+  /* ---------- sliding nav indicator ---------- */
+  function setupNavIndicator(navwrap) {
+    var navLinks = navwrap.querySelector('.nav-links');
+    if (!navLinks) return;
+    var ind = document.createElement('span');
+    ind.className = 'nav-ind';
+    navLinks.insertBefore(ind, navLinks.firstChild);
+    var linkEls = [].slice.call(navLinks.querySelectorAll('.link'));
+    function activeEl() { return navLinks.querySelector('.link.active'); }
+    function moveTo(el) {
+      if (!el) { navLinks.classList.remove('ind-on'); return; }
+      navLinks.classList.add('ind-on');
+      ind.style.transform = 'translateX(' + el.offsetLeft + 'px)';
+      ind.style.width = el.offsetWidth + 'px';
+    }
+    linkEls.forEach(function (el) {
+      el.addEventListener('mouseenter', function () { moveTo(el); });
+    });
+    navLinks.addEventListener('mouseleave', function () { moveTo(activeEl()); });
+    requestAnimationFrame(function () { moveTo(activeEl()); });
+    window.addEventListener('resize', function () {
+      moveTo(navLinks.matches(':hover') ? null : activeEl());
+    });
+  }
+
   /* ---------- chrome ---------- */
   function buildChrome() {
     var bar = document.createElement('div');
@@ -114,6 +139,7 @@
     window.addEventListener('resize', function () { if (window.innerWidth > 720) setNav(false); });
 
     setupScramble(navwrap);
+    setupNavIndicator(navwrap);
 
     return bar;
   }
@@ -210,8 +236,6 @@
       if (sel && map[pkgParam]) sel.value = map[pkgParam];
     }
 
-    /* Согласие на обработку персональных данных:
-       кнопка отправки заблокирована, пока галочка не проставлена. */
     var consent = form.querySelector('#f-consent');
     var submitBtn = form.querySelector('.c-submit');
     function syncConsent() {
@@ -335,6 +359,7 @@
         '<span class="m-txt"><b>' + p.title + '</b><i>' + p.desc + '</i></span></span></a>';
     }).join('');
     setupReveal();
+    setupTilt();
   }
 
   /* ---------- init ---------- */
@@ -342,7 +367,7 @@
     renderPortfolio();
     parallaxEls = [].slice.call(document.querySelectorAll('[data-parallax]'));
     setupReveal(); setupCounters(); setupAccordion(); setupForm();
-    setupMagnetic(); setupTilt();
+    setupMagnetic();
     onScrollProgress(); applyParallax();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', function () {
