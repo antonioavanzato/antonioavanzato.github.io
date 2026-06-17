@@ -218,9 +218,12 @@
     els.forEach(function (e) { io.observe(e); });
   }
 
-  /* ---------- page transition ---------- */
+    /* ---------- page transition ---------- */
   function setupPageTransition() {
     if (reduceMotion) return;
+    var curtain = document.createElement('div');
+    curtain.className = 'page-curtain';
+    document.body.appendChild(curtain);
     document.addEventListener('click', function (e) {
       var a = e.target.closest('a'); if (!a) return;
       var href = a.getAttribute('href'); if (!href) return;
@@ -229,7 +232,7 @@
       if (/^(https?:|mailto:|tel:)/i.test(href)) return;
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
       e.preventDefault();
-      document.body.classList.add('pt-leaving');
+      curtain.classList.add('show');
       setTimeout(function () { window.location.href = href; }, 470);
     });
   }
