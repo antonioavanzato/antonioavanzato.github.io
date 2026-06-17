@@ -185,6 +185,55 @@
     els.forEach(function (e) { io.observe(e); });
   }
 
+  /* ---------- word-by-word reveal ---------- */
+  function wrapWords(root) {
+    var idx = { n: 0 };
+    (function walk(node) {
+      [].slice.call(node.childNodes).forEach(function (ch) {
+        if (ch.nodeType === 3) {
+          var parts = ch.textContent.split(/(\s+)/), frag = document.createDocumentFragment();
+          parts.forEach(function (p) {
+            if (p === '') return;
+            if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(p)); return; }
+            var w = document.createElement('span'); w.className = 'w';
+            var inner = document.createElement('span'); inner.textContent = p;
+            inner.style.transitionDelay = (idx.n * 0.045).toFixed(3) + 's';
+            idx.n++; w.appendChild(inner); frag.appendChild(w);
+          });
+          node.replaceChild(frag, ch);
+        } else if (ch.nodeType === 1 && ch.tagName !== 'BR') {
+          walk(ch);
+        }
+      });
+    })(root);
+  }
+  function setupWordReveal() {
+    var els = [].slice.call(document.querySelectorAll('[data-anim="words"]'));
+    if (!els.length) return;
+    els.forEach(function (el) { if (!el._wr) { el._wr = true; wrapWords(el); } });
+    if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold: 0.2 });
+    els.forEach(function (e) { io.observe(e); });
+  }
+
+  /* ---------- page transition ---------- */
+  function setupPageTransition() {
+    if (reduceMotion) return;
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a'); if (!a) return;
+      var href = a.getAttribute('href'); if (!href) return;
+      if (a.target === '_blank') return;
+      if (href.charAt(0) === '#') return;
+      if (/^(https?:|mailto:|tel:)/i.test(href)) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+      e.preventDefault();
+      document.body.classList.add('pt-leaving');
+      setTimeout(function () { window.location.href = href; }, 470);
+    });
+  }
+
   /* ---------- counters ---------- */
   function setupCounters() {
     var els = [].slice.call(document.querySelectorAll('[data-count]'));
@@ -366,8 +415,8 @@
   function init() {
     renderPortfolio();
     parallaxEls = [].slice.call(document.querySelectorAll('[data-parallax]'));
-    setupReveal(); setupCounters(); setupAccordion(); setupForm();
-    setupMagnetic();
+    setupReveal(); setupWordReveal(); setupCounters(); setupAccordion(); setupForm();
+    setupMagnetic(); setupPageTransition();
     onScrollProgress(); applyParallax();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', function () {
