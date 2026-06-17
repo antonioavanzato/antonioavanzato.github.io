@@ -4,14 +4,8 @@
 (function () {
   'use strict';
 
-  /* ── Config ──────────────────────────────────────────────
-     Приём заявок через Google Apps Script (Web App).
-     SCRIPT_URL — адрес опубликованного скрипта (.../exec).
-     SECRET_KEY — должен совпадать с PHOTO_SECRET_KEY в Script Properties.
-  ─────────────────────────────────────────────────────────── */
   var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwG3MRzQR7NA-J4oMZgpyqQ6LQ8tiPJkER_JSH-q-OV_N6zBPabop8bbnPg1S4hVklGoA/exec';
   var SECRET_KEY = '222897Avanzato!';
-  /* ────────────────────────────────────────────────────────── */
 
   var PAGES = [
     { id: 'home',     label: 'Главная',  href: 'index.html' },
@@ -69,8 +63,6 @@
     root.querySelectorAll('.nav .link').forEach(function (el) {
       el.setAttribute('data-text', el.textContent);
       el.addEventListener('mouseenter', function () {
-        /* фиксируем ширину, чтобы перебор символов не двигал ссылку
-           и по ней можно было кликнуть сразу, не дожидаясь анимации */
         if (!el.style.minWidth) {
           el.style.display = 'inline-block';
           el.style.textAlign = 'center';
@@ -103,7 +95,6 @@
       '</nav>';
     document.body.appendChild(navwrap);
 
-    /* mobile overlay menu */
     var mob = document.createElement('div');
     mob.className = 'mobnav';
     mob.id = 'mobnav';
@@ -127,11 +118,13 @@
     return bar;
   }
   var scrollbar = buildChrome();
+  var navwrapEl = document.querySelector('.navwrap');
 
   function onScrollProgress() {
     var h = document.documentElement;
     var max = h.scrollHeight - h.clientHeight;
     scrollbar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    if (navwrapEl) navwrapEl.classList.toggle('scrolled', h.scrollTop > 24);
   }
 
   /* ---------- parallax ---------- */
@@ -210,7 +203,6 @@
     var form = document.getElementById('leadForm');
     if (!form) return;
 
-    /* Предвыбор формата по ?pkg= (из кнопок тарифов на странице цен) */
     var pkgParam = (location.search.match(/[?&]pkg=([^&]+)/) || [])[1];
     if (pkgParam) {
       var sel = form.querySelector('#f-pkg');
@@ -246,7 +238,6 @@
         } else { f.classList.remove('invalid'); }
       });
 
-      /* Без согласия с политикой отправка невозможна. */
       if (consent && !consent.checked) {
         var lbl = consent.closest('.c-consent');
         if (lbl) lbl.classList.add('invalid');
@@ -262,14 +253,10 @@
 
       var get = function (id) { var el = form.querySelector(id); return el ? el.value.trim() : ''; };
 
-      /* Поле «Идея домена» отдельного слота в скрипте не имеет —
-         дописываем его в текст сообщения. */
       var msg = get('#f-msg');
       var domain = get('#f-domain');
       if (domain) msg = (msg ? msg + '\n' : '') + 'Домен: ' + domain;
 
-      /* Схема под doPost: key + name/phone/tg/date/city/type/msg.
-         Контакт целиком кладём в tg. */
       var payload = {
         key:   SECRET_KEY,
         name:  get('#f-name'),
@@ -281,9 +268,6 @@
         msg:   msg || '—'
       };
 
-      /* mode:no-cors → тело отправляется как text/plain (без CORS-preflight),
-         но e.postData.contents в скрипте получит сырую JSON-строку и распарсит её.
-         Ответ непрозрачный, поэтому успехом считаем факт доставки запроса. */
       fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) })
         .then(function () {
           form.classList.add('sent');
@@ -292,6 +276,48 @@
           if (lbl2) lbl2.textContent = 'Ошибка — напишите в Telegram';
           if (btn) { btn.disabled = false; btn.classList.remove('loading'); }
         });
+    });
+  }
+
+  /* ---------- magnetic buttons ---------- */
+  function setupMagnetic() {
+    if (reduceMotion) return;
+    if (window.matchMedia && window.matchMedia('(hover: none)').matches) return;
+    document.querySelectorAll('.btn').forEach(function (btn) {
+      var strength = 16;
+      btn.addEventListener('mousemove', function (e) {
+        var r = btn.getBoundingClientRect();
+        var mx = e.clientX - r.left - r.width / 2;
+        var my = e.clientY - r.top - r.height / 2;
+        btn.style.transition = 'transform .1s linear';
+        btn.style.transform = 'translate(' + (mx / r.width * strength).toFixed(1) + 'px,' + (my / r.height * strength).toFixed(1) + 'px)';
+      });
+      btn.addEventListener('mouseleave', function () {
+        btn.style.transition = 'transform .5s cubic-bezier(.22,1,.36,1)';
+        btn.style.transform = '';
+      });
+    });
+  }
+
+  /* ---------- 3D tilt on portfolio cards ---------- */
+  function setupTilt() {
+    if (reduceMotion) return;
+    if (window.matchMedia && window.matchMedia('(hover: none)').matches) return;
+    document.querySelectorAll('.m-item').forEach(function (card) {
+      var frame = card.querySelector('.m-frame');
+      if (!frame) return;
+      var max = 7;
+      card.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        frame.style.transition = 'transform .12s linear';
+        frame.style.transform = 'perspective(900px) rotateX(' + (-py * max).toFixed(2) + 'deg) rotateY(' + (px * max).toFixed(2) + 'deg)';
+      });
+      card.addEventListener('mouseleave', function () {
+        frame.style.transition = 'transform .55s cubic-bezier(.22,1,.36,1)';
+        frame.style.transform = '';
+      });
     });
   }
 
@@ -308,7 +334,6 @@
         '<span class="m-meta"><span class="m-num">' + n + '</span>' +
         '<span class="m-txt"><b>' + p.title + '</b><i>' + p.desc + '</i></span></span></a>';
     }).join('');
-    // re-observe newly injected reveals
     setupReveal();
   }
 
@@ -317,6 +342,7 @@
     renderPortfolio();
     parallaxEls = [].slice.call(document.querySelectorAll('[data-parallax]'));
     setupReveal(); setupCounters(); setupAccordion(); setupForm();
+    setupMagnetic(); setupTilt();
     onScrollProgress(); applyParallax();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', function () {
