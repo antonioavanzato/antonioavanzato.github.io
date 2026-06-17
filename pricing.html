@@ -160,7 +160,9 @@
 .tier{padding:clamp(32px,3.4vw,48px) clamp(28px,3vw,42px);display:flex;flex-direction:column;position:relative;border-right:1px solid var(--hairline)}
 .tier:last-child{border-right:0}
 .tier.featured{background:linear-gradient(180deg,var(--surface),var(--bg-2))}
-.tier-badge{position:absolute;top:clamp(28px,3vw,40px);right:clamp(28px,3vw,42px);background:var(--ink);color:var(--bg);font-size:11px;font-weight:600;letter-spacing:0.02em;padding:6px 13px;border-radius:999px}
+.tier-badge{position:absolute;top:clamp(28px,3vw,40px);right:clamp(28px,3vw,42px);background:var(--ink);color:var(--bg);font-size:11px;font-weight:600;letter-spacing:0.02em;padding:6px 13px;border-radius:999px;white-space:nowrap}
+/* резервируем место под бейдж, чтобы он не наезжал на заголовок */
+.tier.featured .tier-h{padding-right:150px}
 .tier-h h3{font-family:var(--font-display);font-size:clamp(24px,2.8vw,34px);margin:8px 0 12px;font-weight:380}
 .tier-h h3 .muted{font-weight:380}
 .tier-desc{font-size:14.5px;line-height:1.55;margin:0 0 30px}
@@ -205,8 +207,17 @@
 .cta .h-section{margin-bottom:16px}
 .cta .lede{margin:0 auto 28px}
 .hero-cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+@media(max-width:980px){.tier.featured .tier-h{padding-right:130px}}
 @media(max-width:860px){.incl-grid{grid-template-columns:1fr}}
-@media(max-width:680px){.tiers{grid-template-columns:1fr}.tier{border-right:0;border-bottom:1px solid var(--hairline)}.tier:last-child{border-bottom:0}.tier.featured{order:-1}}
+@media(max-width:680px){
+  .tiers{grid-template-columns:1fr}
+  .tier{border-right:0;border-bottom:1px solid var(--hairline)}
+  .tier:last-child{border-bottom:0}
+  .tier.featured{order:-1}
+  /* на мобильных бейдж в потоке, над текстом — без наезда */
+  .tier.featured .tier-badge{position:static;display:inline-block;margin-bottom:16px}
+  .tier.featured .tier-h{padding-right:0}
+}
 </style>
 
 <script src="image-slot.js"></script>
@@ -237,7 +248,6 @@
   }).join('');
   document.getElementById('faq').innerHTML=html;
 
-  /* FAQPage Schema.org — из того же массива, теги вычищаем для чистого текста */
   function plain(s){ return s.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim(); }
   var faqLd={ "@context":"https://schema.org", "@type":"FAQPage",
     "mainEntity": FAQ.map(function(f){
