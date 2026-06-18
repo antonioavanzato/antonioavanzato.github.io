@@ -642,3 +642,12 @@ image-slot { --is-bg: rgba(243,241,228,0.05); background: var(--is-bg); }
     to   { transform: translate(46px,-22px) scale(1.18); opacity: 1; }
   }
 }
+
+/* Fix: мерцание через background-clip:text ломает курсив внутри пословной
+   анимации (текст в дочерних span). Там оставляем сплошное золото. */
+[data-anim="words"] em {
+  background: none;
+  -webkit-text-fill-color: var(--accent-ink);
+  color: var(--accent-ink);
+  animation: none;
+}
