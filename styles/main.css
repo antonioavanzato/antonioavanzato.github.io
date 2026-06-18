@@ -566,3 +566,30 @@ image-slot { --is-bg: rgba(243,241,228,0.05); background: var(--is-bg); }
 .legal b{color:var(--ink);font-weight:500}
 .legal a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
 .legal-back{margin-top:44px;padding-top:24px;border-top:1px solid var(--hairline)}
+
+/* ============================================================
+   Микро-анимации и hover-полировка (только transform/opacity/цвет)
+   Скоупим под устройства с настоящим ховером, чтобы не «залипало» на тач
+   ============================================================ */
+.do-card { position:relative; transition:background .5s var(--ease); }
+.do-card::before {
+  content:""; position:absolute; left:0; top:-1px; height:2px; width:100%;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  transform:scaleX(0); transform-origin:0 50%; transition:transform .55s var(--ease);
+}
+.do-card h3, .do-n { transition:color .4s var(--ease), transform .5s var(--ease); }
+
+.tier { transition:transform .55s var(--ease), box-shadow .55s var(--ease), background .5s var(--ease); }
+
+@media (hover:hover) {
+  .do-card:hover { background:var(--tint); }
+  .do-card:hover::before { transform:scaleX(1); }
+  .do-card:hover .do-n { transform:translateY(-2px); color:var(--accent-2); }
+
+  .tier:hover { transform:translateY(-6px); box-shadow:0 24px 60px -28px rgba(0,0,0,.7); }
+  .tier:not(.featured):hover { background:linear-gradient(180deg,var(--tint),transparent); }
+
+  .btn-primary:hover { box-shadow:0 10px 30px -10px rgba(199,154,82,.5); }
+  .c-card:hover .c-ic { border-color:var(--accent); transform:scale(1.06); }
+}
+.c-ic { transition:border-color .35s var(--ease), transform .45s var(--ease); }
