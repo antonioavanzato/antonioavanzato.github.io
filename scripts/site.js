@@ -112,7 +112,7 @@
     }).join('');
     navwrap.innerHTML = '<nav class="nav" aria-label="Навигация">' +
       '<a class="brand" href="index.html" aria-label="AVANZATO — на главную">' +
-      '<img src="images/logo avanzato (clear white).png" alt="AVANZATO" translate="no"></a>' +
+      '<img src="images/logo avanzato (clear white).png" alt="AVANZATO" width="30" height="30" translate="no"></a>' +
       '<div class="nav-links">' + links + '</div>' +
       '<button class="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobnav">' +
       '<span></span><span></span><span></span></button>' +
@@ -131,6 +131,12 @@
       document.body.classList.toggle('nav-open', open);
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
       document.documentElement.style.overflow = open ? 'hidden' : '';
+      if (open) {
+        var first = mob.querySelector('.mlink');
+        if (first) first.focus();
+      } else if (document.activeElement && mob.contains(document.activeElement)) {
+        burger.focus();
+      }
     }
     burger.addEventListener('click', function () { setNav(!document.body.classList.contains('nav-open')); });
     mob.addEventListener('click', function (e) { if (e.target.classList.contains('mlink')) setNav(false); });
@@ -413,7 +419,7 @@
       return '<a class="m-item ' + (p.size || '') + ' reveal" data-d="' + (i % 3) + '" ' +
         'href="' + p.href + '" target="_blank" rel="noopener noreferrer">' +
         '<span class="m-frame"><img src="' + p.src + '" alt="Сайт ' + p.title + ' — разработка сайтов в Казани, Антон Аванзато" loading="lazy" decoding="async">' +
-        '<span class="m-arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>' +
+        '<span class="m-arr" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>' +
         '<span class="m-meta"><span class="m-num">' + n + '</span>' +
         '<span class="m-txt"><b>' + p.title + '</b><i>' + p.desc + '</i></span></span></a>';
     }).join('');
