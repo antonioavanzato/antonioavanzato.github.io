@@ -416,15 +416,18 @@
   function renderPortfolio() {
     var grid = document.getElementById('portfolio-grid');
     if (!grid) return;
-    grid.innerHTML = PORTFOLIO.map(function (p, i) {
-      var n = (i + 1 < 10 ? '0' : '') + (i + 1);
-      return '<a class="m-item ' + (p.size || '') + ' reveal" data-d="' + (i % 3) + '" ' +
-        'href="' + p.href + '" target="_blank" rel="noopener noreferrer">' +
-        '<span class="m-frame"><img src="' + p.src + '" alt="Сайт ' + p.title + ' — разработка сайтов в Казани, Антон Аванзато" loading="lazy" decoding="async">' +
-        '<span class="m-arr" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>' +
-        '<span class="m-meta"><span class="m-num">' + n + '</span>' +
-        '<span class="m-txt"><b>' + p.title + '</b><i>' + p.desc + '</i></span></span></a>';
-    }).join('');
+    // если работы уже есть в разметке (SEO / no-JS) — не перерисовываем, только оживляем
+    if (!grid.querySelector('.m-item')) {
+      grid.innerHTML = PORTFOLIO.map(function (p, i) {
+        var n = (i + 1 < 10 ? '0' : '') + (i + 1);
+        return '<a class="m-item ' + (p.size || '') + ' reveal" data-d="' + (i % 3) + '" ' +
+          'href="' + p.href + '" target="_blank" rel="noopener noreferrer">' +
+          '<span class="m-frame"><img src="' + p.src + '" alt="Сайт ' + p.title + ' — разработка сайтов в Казани, Антон Аванзато" loading="lazy" decoding="async">' +
+          '<span class="m-arr" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>' +
+          '<span class="m-meta"><span class="m-num">' + n + '</span>' +
+          '<span class="m-txt"><b>' + p.title + '</b><i>' + p.desc + '</i></span></span></a>';
+      }).join('');
+    }
     setupReveal();
     setupTilt();
   }
