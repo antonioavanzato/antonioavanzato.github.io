@@ -651,3 +651,28 @@ image-slot { --is-bg: rgba(243,241,228,0.05); background: var(--is-bg); }
   color: var(--accent-ink);
   animation: none;
 }
+
+/* ============================================================
+   Мобильная полировка (основной трафик — телефоны)
+   ============================================================ */
+@media (max-width: 640px) {
+  /* CTA-кнопки на всю ширину — удобные крупные тап-зоны */
+  .hero-cta { width: 100%; gap: 10px; }
+  .hero-cta .btn { width: 100%; justify-content: center; padding-top: 16px; padding-bottom: 16px; }
+
+  /* карточки услуг: золотой акцент слева виден без наведения */
+  .do-card { padding: 24px 6px 26px 20px; }
+  .do-card::before {
+    left: 0; top: 16px; bottom: 16px; height: auto; width: 2px;
+    transform: none; border-radius: 2px;
+    background: linear-gradient(var(--accent), var(--accent-2));
+  }
+  .do-n { font-size: 15px; }
+  .do-card h3 { margin-top: 14px; }
+
+  /* портфолио: аккуратный отступ снизу у подписи */
+  .m-meta { padding-top: 16px; }
+
+  /* секции чуть компактнее, но с воздухом */
+  .section-label { margin-bottom: 26px; }
+}
