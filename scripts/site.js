@@ -428,7 +428,13 @@
   }
 
   /* ---------- init ---------- */
+  function setYear() {
+    var y = String(new Date().getFullYear());
+    document.querySelectorAll('.js-year').forEach(function (el) { el.textContent = y; });
+  }
+
   function init() {
+    setYear();
     renderPortfolio();
     parallaxEls = [].slice.call(document.querySelectorAll('[data-parallax]'));
     setupReveal(); setupWordReveal(); setupCounters(); setupAccordion(); setupForm();

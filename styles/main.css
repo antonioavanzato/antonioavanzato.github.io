@@ -349,8 +349,15 @@ image-slot { --is-bg: rgba(243,241,228,0.05); background: var(--is-bg); }
 @media (min-width: 721px) {
   .mobnav { display: none; }
 }
+/* фон Aurora тяжёл для слабых мобильных GPU — на узких экранах гасим анимацию */
+@media (max-width: 720px) {
+  .ambient::before, .ambient::after { animation: none !important; }
+  .ambient::before { filter: blur(60px); }
+  .ambient::after  { filter: blur(70px); }
+}
 @media (prefers-reduced-motion: reduce) {
   .page-curtain { display: none; }
+  .ambient::before, .ambient::after { animation: none !important; }
   [data-anim="words"] .w > span { transform: none; }
   .reveal { opacity: 1 !important; transform: none !important; filter: none !important; clip-path: none !important; }
   .m-frame::after { display: none !important; }
