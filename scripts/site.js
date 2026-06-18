@@ -113,7 +113,7 @@
     }).join('');
     navwrap.innerHTML = '<nav class="nav" aria-label="Навигация">' +
       '<a class="brand" href="index.html" aria-label="AVANZATO — на главную">' +
-      '<img src="images/logo avanzato (clear white).png" alt="AVANZATO" translate="no"></a>' +
+      '<img src="images/logo avanzato (clear white).png" alt="AVANZATO" width="30" height="30" translate="no"></a>' +
       '<div class="nav-links">' + links + '</div>' +
       '<button class="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobnav">' +
       '<span></span><span></span><span></span></button>' +
@@ -132,6 +132,12 @@
       document.body.classList.toggle('nav-open', open);
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
       document.documentElement.style.overflow = open ? 'hidden' : '';
+      if (open) {
+        var first = mob.querySelector('.mlink');
+        if (first) first.focus();
+      } else if (document.activeElement && mob.contains(document.activeElement)) {
+        burger.focus();
+      }
     }
     burger.addEventListener('click', function () { setNav(!document.body.classList.contains('nav-open')); });
     mob.addEventListener('click', function (e) { if (e.target.classList.contains('mlink')) setNav(false); });
@@ -281,6 +287,9 @@
     var form = document.getElementById('leadForm');
     if (!form) return;
 
+    // момент загрузки формы — для отсечения мгновенных отправок ботами
+    var formReadyAt = Date.now();
+
     var pkgParam = (location.search.match(/[?&]pkg=([^&]+)/) || [])[1];
     if (pkgParam) {
       var sel = form.querySelector('#f-pkg');
@@ -304,6 +313,12 @@
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+
+      // honeypot: скрытое поле, которое заполняют только боты
+      var trap = form.querySelector('#f-website');
+      if (trap && trap.value) { form.classList.add('sent'); return; }
+      // слишком быстрая отправка (< 2 с) — почти наверняка бот
+      if (Date.now() - formReadyAt < 2000) { form.classList.add('sent'); return; }
 
       var ok = true;
       ['#f-name', '#f-contact'].forEach(function (sel) {
@@ -406,7 +421,7 @@
       return '<a class="m-item ' + (p.size || '') + ' reveal" data-d="' + (i % 3) + '" ' +
         'href="' + p.href + '" target="_blank" rel="noopener noreferrer">' +
         '<span class="m-frame"><img src="' + p.src + '" alt="Сайт ' + p.title + ' — разработка сайтов в Казани, Антон Аванзато" loading="lazy" decoding="async">' +
-        '<span class="m-arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>' +
+        '<span class="m-arr" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>' +
         '<span class="m-meta"><span class="m-num">' + n + '</span>' +
         '<span class="m-txt"><b>' + p.title + '</b><i>' + p.desc + '</i></span></span></a>';
     }).join('');
@@ -415,7 +430,13 @@
   }
 
   /* ---------- init ---------- */
+  function setYear() {
+    var y = String(new Date().getFullYear());
+    document.querySelectorAll('.js-year').forEach(function (el) { el.textContent = y; });
+  }
+
   function init() {
+    setYear();
     renderPortfolio();
     parallaxEls = [].slice.call(document.querySelectorAll('[data-parallax]'));
     setupReveal(); setupWordReveal(); setupCounters(); setupAccordion(); setupForm();

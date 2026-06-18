@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /legal-privacy.html
+
+Sitemap: https://antonioavanzato.github.io/website/sitemap.xml
