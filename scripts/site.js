@@ -5,6 +5,7 @@
   'use strict';
 
   var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwG3MRzQR7NA-J4oMZgpyqQ6LQ8tiPJkER_JSH-q-OV_N6zBPabop8bbnPg1S4hVklGoA/exec';
+  var SECRET_KEY = '222897Avanzato!';
 
   var PAGES = [
     { id: 'home',     label: 'Главная',  href: 'index.html' },
@@ -348,6 +349,7 @@
       if (domain) msg = (msg ? msg + '\n' : '') + 'Домен: ' + domain;
 
       var payload = {
+        key:   SECRET_KEY,
         name:  get('#f-name'),
         phone: '',
         tg:    get('#f-contact'),
