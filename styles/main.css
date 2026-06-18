@@ -625,3 +625,20 @@ image-slot { --is-bg: rgba(243,241,228,0.05); background: var(--is-bg); }
     50%      { box-shadow: 0 0 0 1px rgba(199,154,82,0.34), 0 0 40px -10px rgba(199,154,82,0.45); }
   }
 }
+
+/* ============================================================
+   Hero: мягкий золотой ореол за заголовком («дышит»)
+   ============================================================ */
+.hero::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  top: 16%; left: 4%; width: min(640px, 72%); height: 440px;
+  background: radial-gradient(closest-side, rgba(214,176,105,0.16), transparent 72%);
+  filter: blur(30px);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero::before { animation: heroGlow 10s ease-in-out infinite alternate; }
+  @keyframes heroGlow {
+    from { transform: translate(0,0) scale(1);        opacity: .65; }
+    to   { transform: translate(46px,-22px) scale(1.18); opacity: 1; }
+  }
+}

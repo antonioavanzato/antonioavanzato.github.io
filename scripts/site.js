@@ -151,12 +151,17 @@
   }
   var scrollbar = buildChrome();
   var navwrapEl = document.querySelector('.navwrap');
+  var ambientEl = document.querySelector('.ambient');
 
   function onScrollProgress() {
     var h = document.documentElement;
     var max = h.scrollHeight - h.clientHeight;
     scrollbar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
     if (navwrapEl) navwrapEl.classList.toggle('scrolled', h.scrollTop > 24);
+    // мягкий параллакс фона: золотистые пятна смещаются медленнее скролла → ощущение глубины
+    if (ambientEl && !reduceMotion) {
+      ambientEl.style.transform = 'translate3d(0,' + (h.scrollTop * 0.08).toFixed(1) + 'px,0)';
+    }
   }
 
   /* ---------- parallax ---------- */
