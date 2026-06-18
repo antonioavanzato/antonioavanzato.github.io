@@ -188,7 +188,19 @@
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
     }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
-    els.forEach(function (e) { io.observe(e); });
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    var firstScreen = [];
+    els.forEach(function (e) {
+      // контент первого экрана проявляем сразу, не дожидаясь IntersectionObserver,
+      // чтобы заголовки не «зависали» невидимыми; остальное — по скроллу
+      if (e.getBoundingClientRect().top < vh * 0.9) { firstScreen.push(e); }
+      else { io.observe(e); }
+    });
+    if (firstScreen.length) {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { firstScreen.forEach(function (e) { e.classList.add('in'); }); });
+      });
+    }
   }
 
   /* ---------- word-by-word reveal ---------- */
