@@ -593,3 +593,35 @@ image-slot { --is-bg: rgba(243,241,228,0.05); background: var(--is-bg); }
   .c-card:hover .c-ic { border-color:var(--accent); transform:scale(1.06); }
 }
 .c-ic { transition:border-color .35s var(--ease), transform .45s var(--ease); }
+
+/* ============================================================
+   Премиальные акценты: золотое мерцание на курсивных словах
+   + мягкое свечение выделенной карточки цены
+   Только при разрешённой анимации (reduced-motion отключает)
+   ============================================================ */
+@media (prefers-reduced-motion: no-preference) {
+  .display em, .h-section em {
+    background: linear-gradient(100deg,
+      var(--accent-ink) 0%, var(--accent-ink) 30%,
+      #f3e0b4 48%, #fff4d6 52%, var(--accent-ink) 70%, var(--accent-ink) 100%);
+    background-size: 220% auto;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+    animation: goldShimmer 7s ease-in-out infinite;
+  }
+  @keyframes goldShimmer {
+    0%   { background-position: 180% center; }
+    100% { background-position: -40% center; }
+  }
+
+  .tier.featured { position: relative; }
+  .tier.featured::after {
+    content: ""; position: absolute; inset: 0; border-radius: inherit;
+    pointer-events: none; box-shadow: 0 0 0 1px rgba(199,154,82,0.18);
+    animation: tierGlow 5s ease-in-out infinite;
+  }
+  @keyframes tierGlow {
+    0%, 100% { box-shadow: 0 0 0 1px rgba(199,154,82,0.16), 0 0 24px -12px rgba(199,154,82,0.25); }
+    50%      { box-shadow: 0 0 0 1px rgba(199,154,82,0.34), 0 0 40px -10px rgba(199,154,82,0.45); }
+  }
+}
