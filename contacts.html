@@ -6,7 +6,7 @@
 <title>Контакты — Антон Аванзато · разработка сайтов</title>
 <meta name="description" content="Связаться по разработке сайта под ключ в Казани. Telegram, почта. Антон Аванзато.">
 <link rel="canonical" href="https://antonioavanzato.github.io/website/contacts.html">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:site_name" content="AVANZATO">
@@ -101,6 +101,10 @@
       <form class="c-form reveal" data-d="2" id="leadForm" novalidate>
         <h2>Заявка на сайт</h2>
         <p class="c-form-sub muted">Заполните — и я вернусь с предложением по задаче.</p>
+        <div class="hp-field" aria-hidden="true">
+          <label for="f-website">Не заполняйте это поле</label>
+          <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
         <div class="field">
           <input id="f-name" type="text" required placeholder=" ">
           <label for="f-name">Как вас зовут</label>
@@ -177,6 +181,7 @@
 .c-form{padding:clamp(28px,3.4vw,42px);border:1px solid var(--hairline);border-radius:var(--radius-lg);background:linear-gradient(180deg,var(--surface),var(--bg-2))}
 .c-form h2{font-family:var(--font-display);font-size:26px;font-weight:380}
 .c-form-sub{font-size:14px;margin:8px 0 28px}
+.hp-field{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden}
 .field{position:relative;margin-bottom:14px}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .field input,.field select,.field textarea{width:100%;font:inherit;font-size:15px;color:var(--ink);background:var(--tint);border:1px solid var(--hairline);border-radius:var(--radius);padding:20px 16px 8px;outline:none;transition:border-color .25s,background .25s;resize:none}

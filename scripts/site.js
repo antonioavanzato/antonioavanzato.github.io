@@ -5,7 +5,6 @@
   'use strict';
 
   var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwG3MRzQR7NA-J4oMZgpyqQ6LQ8tiPJkER_JSH-q-OV_N6zBPabop8bbnPg1S4hVklGoA/exec';
-  var SECRET_KEY = '222897Avanzato!';
 
   var PAGES = [
     { id: 'home',     label: 'Главная',  href: 'index.html' },
@@ -281,6 +280,9 @@
     var form = document.getElementById('leadForm');
     if (!form) return;
 
+    // момент загрузки формы — для отсечения мгновенных отправок ботами
+    var formReadyAt = Date.now();
+
     var pkgParam = (location.search.match(/[?&]pkg=([^&]+)/) || [])[1];
     if (pkgParam) {
       var sel = form.querySelector('#f-pkg');
@@ -304,6 +306,12 @@
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+
+      // honeypot: скрытое поле, которое заполняют только боты
+      var trap = form.querySelector('#f-website');
+      if (trap && trap.value) { form.classList.add('sent'); return; }
+      // слишком быстрая отправка (< 2 с) — почти наверняка бот
+      if (Date.now() - formReadyAt < 2000) { form.classList.add('sent'); return; }
 
       var ok = true;
       ['#f-name', '#f-contact'].forEach(function (sel) {
@@ -334,7 +342,6 @@
       if (domain) msg = (msg ? msg + '\n' : '') + 'Домен: ' + domain;
 
       var payload = {
-        key:   SECRET_KEY,
         name:  get('#f-name'),
         phone: '',
         tg:    get('#f-contact'),
