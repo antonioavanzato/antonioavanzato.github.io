@@ -16,6 +16,21 @@
 
   var PORTFOLIO = [
     { href:'https://velaatrips.com',     title:'Velaa Trips',      desc:'туристическое агентство на Мальдивах', size:'tall',
+      src:'images/velaa_trips.webp' },
+    { href:'https://darialukianova.com', title:'Дарья Лукьянова',  desc:'преподаватель из Казани',  size:'',
+      src:'images/darialukianova.webp' },
+    { href:'https://avanzato.ru',        title:'Avanzato',         desc:'фотограф из Казани',     size:'',
+      src:'images/avanzato.webp' },
+    { href:'https://portanobile.com',    title:'Porta Nobile',     desc:'люксовая фурнитура в Москве',      size:'tall',
+      src:'images/portanobile.webp' },
+    { href:'https://medfitclub.ru',      title:'Medical Fitness',  desc:'центр реабилитации в Москве',      size:'',
+      src:'images/medfit.webp' },
+    { href:'https://alga-tour.com',      title:'ALGA',             desc:'туристическое агентство на Мальдивах', size:'',
+      src:'images/alga_tour.webp' },
+    { href:'https://maldives-elite.ru',  title:'Maldives Elite',   desc:'туристическое агентство на Мальдивах', size:'tall',
+      src:'images/maldives_elite.webp' },
+    { href:'https://yanapro.ru',         title:'Яна Самойлова',    desc:'фитнес-тренер в Казани',           size:'',
+      src:'images/yanapro.webp' }
       src:'https://cdn.jsdelivr.net/gh/antonioavanzato/website@main/images/velaa_trips.webp' },
     { href:'https://darialukianova.com', title:'Дарья Лукьянова',  desc:'преподаватель из Казани',  size:'',
       src:'https://cdn.jsdelivr.net/gh/antonioavanzato/website@main/images/darialukianova.webp' },
