@@ -395,7 +395,7 @@ image-slot { --is-bg: rgba(243,241,228,0.05); background: var(--is-bg); }
 .work-head { display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:clamp(38px,4.5vw,58px); }
 .gallery { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(28px,3vw,46px) clamp(18px,1.8vw,26px); }
 .m-item { display:block; }
-.m-frame { position:relative; display:block; overflow:hidden; border-radius:var(--radius-lg); aspect-ratio:1/1; background:var(--bg-2); }
+.m-frame { position:relative; display:block; overflow:hidden; border-radius:var(--radius-lg); aspect-ratio:16/9; background:var(--bg-2); }
 .m-frame img { width:100%; height:100%; object-fit:cover; object-position:top center; filter:grayscale(100%) brightness(.92) contrast(1.02); transform:scale(1.16); transition:transform 1.6s var(--ease), filter .6s var(--ease-soft); }
 .m-item.in .m-frame img { transform:scale(1); }
 .m-item:hover .m-frame img { transform:scale(1.06); filter:grayscale(0%) saturate(106%) brightness(1.02); }
