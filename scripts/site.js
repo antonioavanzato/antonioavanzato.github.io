@@ -414,17 +414,22 @@
     document.querySelectorAll('.m-item').forEach(function (card) {
       var frame = card.querySelector('.m-frame');
       if (!frame) return;
-      var max = 7;
+      var max = 8;
       card.addEventListener('mousemove', function (e) {
         var r = card.getBoundingClientRect();
         var px = (e.clientX - r.left) / r.width - 0.5;
         var py = (e.clientY - r.top) / r.height - 0.5;
         frame.style.transition = 'transform .12s linear';
-        frame.style.transform = 'perspective(900px) rotateX(' + (-py * max).toFixed(2) + 'deg) rotateY(' + (px * max).toFixed(2) + 'deg)';
+        frame.style.transform = 'perspective(900px) rotateX(' + (-py * max).toFixed(2) + 'deg) rotateY(' + (px * max).toFixed(2) + 'deg) scale(1.03) translateZ(0)';
+        // блик следует за курсором
+        frame.style.setProperty('--gx', (px * 100 + 50).toFixed(1) + '%');
+        frame.style.setProperty('--gy', (py * 100 + 50).toFixed(1) + '%');
+        frame.classList.add('tilting');
       });
       card.addEventListener('mouseleave', function () {
         frame.style.transition = 'transform .55s cubic-bezier(.22,1,.36,1)';
         frame.style.transform = '';
+        frame.classList.remove('tilting');
       });
     });
   }
@@ -449,6 +454,34 @@
     setupTilt();
   }
 
+  /* ---------- preloader ---------- */
+  function setupPreloader() {
+    var pre = document.getElementById('preloader');
+    if (!pre) return;
+    // показываем заставку только при первом заходе в сессии
+    if (sessionStorage.getItem('avw_seen')) { pre.parentNode.removeChild(pre); return; }
+    sessionStorage.setItem('avw_seen', '1');
+    document.documentElement.style.overflow = 'hidden';
+    var done = false;
+    function finish() {
+      if (done) return; done = true;
+      pre.classList.add('done');
+      document.documentElement.style.overflow = '';
+      setTimeout(function () { if (pre.parentNode) pre.parentNode.removeChild(pre); }, 750);
+    }
+    // минимум показа — чтобы анимация прогресса успела; затем по факту загрузки
+    var minTime = reduceMotion ? 250 : 1350;
+    var started = Date.now();
+    function tryFinish() {
+      var wait = Math.max(0, minTime - (Date.now() - started));
+      setTimeout(finish, wait);
+    }
+    if (document.readyState === 'complete') tryFinish();
+    else window.addEventListener('load', tryFinish);
+    // страховка: не залипаем дольше 4 с
+    setTimeout(finish, 4000);
+  }
+
   /* ---------- init ---------- */
   function setYear() {
     var y = String(new Date().getFullYear());
@@ -456,6 +489,7 @@
   }
 
   function init() {
+    setupPreloader();
     setYear();
     renderPortfolio();
     parallaxEls = [].slice.call(document.querySelectorAll('[data-parallax]'));
