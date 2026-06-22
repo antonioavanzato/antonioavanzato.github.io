@@ -633,7 +633,7 @@ image-slot { --is-bg: rgba(243,241,228,0.05); background: var(--is-bg); }
   position: absolute; left: 0; right: 0; bottom: 0; height: 70%;
   z-index: -1; pointer-events: none; overflow: hidden;
   perspective: 360px; perspective-origin: 50% 0%;
-    -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 32%, #000 60%, transparent 94%);
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 32%, #000 60%, transparent 94%);
           mask-image: linear-gradient(to top, transparent 0%, #000 32%, #000 60%, transparent 94%);
 }
 .hero-grid-plane {
