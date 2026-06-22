@@ -470,7 +470,7 @@
       setTimeout(function () { if (pre.parentNode) pre.parentNode.removeChild(pre); }, 750);
     }
     // минимум показа — чтобы анимация прогресса успела; затем по факту загрузки
-    var minTime = reduceMotion ? 250 : 1350;
+    var minTime = reduceMotion ? 250 : 2200;
     var started = Date.now();
     function tryFinish() {
       var wait = Math.max(0, minTime - (Date.now() - started));
