@@ -454,6 +454,32 @@
     setupTilt();
   }
 
+  /* ---------- hero grid: реакция на курсор / наклон ---------- */
+  function setupHeroGrid() {
+    if (reduceMotion) return;
+    var grid = document.querySelector('.hero-grid');
+    var hero = document.querySelector('.hero');
+    if (!grid || !hero) return;
+    function setOrigin(px, py) {
+      // px,py в диапазоне -1..1 → лёгкий сдвиг точки схода
+      var x = 50 + Math.max(-1, Math.min(1, px)) * 12;
+      var y = Math.max(-1, Math.min(1, py)) * 6;
+      grid.style.perspectiveOrigin = x + '% ' + y + '%';
+    }
+    if (window.matchMedia && window.matchMedia('(hover: hover)').matches) {
+      hero.addEventListener('mousemove', function (e) {
+        var r = hero.getBoundingClientRect();
+        setOrigin((e.clientX - r.left) / r.width - 0.5, (e.clientY - r.top) / r.height - 0.5);
+      });
+      hero.addEventListener('mouseleave', function () { grid.style.perspectiveOrigin = '50% 0%'; });
+    } else if (window.DeviceOrientationEvent) {
+      window.addEventListener('deviceorientation', function (e) {
+        if (e.gamma == null) return;
+        setOrigin(e.gamma / 45, 0); // наклон влево/вправо
+      });
+    }
+  }
+
   /* ---------- preloader ---------- */
   function setupPreloader() {
     var pre = document.getElementById('preloader');
@@ -490,6 +516,7 @@
 
   function init() {
     setupPreloader();
+    setupHeroGrid();
     setYear();
     renderPortfolio();
     parallaxEls = [].slice.call(document.querySelectorAll('[data-parallax]'));
