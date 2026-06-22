@@ -672,7 +672,49 @@ image-slot { --is-bg: rgba(243,241,228,0.05); background: var(--is-bg); }
     0%, 100% { box-shadow: 0 0 0 1px rgba(199,154,82,0.16), 0 0 24px -12px rgba(199,154,82,0.25); }
     50%      { box-shadow: 0 0 0 1px rgba(199,154,82,0.34), 0 0 40px -10px rgba(199,154,82,0.45); }
   }
+
+  /* блик, пробегающий по бейджу «Полноценный сайт» */
+  .tier-badge { position: relative; overflow: hidden; }
+  .tier-badge::after {
+    content: ""; position: absolute; top: 0; bottom: 0; left: -140%; width: 55%;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,0.6), transparent);
+    transform: skewX(-18deg); animation: badgeShine 5s ease-in-out infinite;
+  }
+  @keyframes badgeShine { 0% { left: -140%; } 22%, 100% { left: 180%; } }
+
+  /* мягкое золотое мерцание на цифрах цены */
+  .price b {
+    background: linear-gradient(100deg, var(--ink) 0%, var(--ink) 34%, #fff4d6 50%, var(--ink) 66%, var(--ink) 100%);
+    background-size: 220% auto;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+    animation: goldShimmer 7.5s ease-in-out 1s infinite;
+  }
 }
+
+/* ============================================================
+   Цены: интерактивный чек-лист «Что входит» + микро-делайт
+   ============================================================ */
+.check-list li {
+  border-radius: 8px;
+  transition: background .4s var(--ease), padding-left .4s var(--ease),
+              opacity 1s var(--ease-soft), transform 1.2s var(--ease), filter .9s var(--ease-soft);
+}
+.check-list .ck { transition: transform .4s var(--ease), border-color .35s var(--ease), box-shadow .4s var(--ease); }
+.price b { display: inline-block; transition: transform .55s var(--ease); transform-origin: left center; }
+
+@media (hover: hover) {
+  .check-list li:hover { background: var(--tint); padding-left: 14px; }
+  .check-list li:hover .ck {
+    transform: scale(1.15); border-color: var(--accent-2);
+    box-shadow: 0 0 0 5px rgba(199,154,82,0.12);
+  }
+  .check-list li:hover b { color: var(--accent-ink); }
+  .tier:hover .price b { transform: scale(1.05); }
+  .tier-btn { transition: transform .5s var(--ease); }
+  .tier:hover .tier-btn { transform: translateY(-2px); }
+}
+.check-list b { transition: color .35s var(--ease); }
 
 /* ============================================================
    Hero: 3D перспективная золотая сетка (ощущение глубины)
