@@ -125,6 +125,7 @@
     var mob = document.createElement('div');
     mob.className = 'mobnav';
     mob.id = 'mobnav';
+    mob.setAttribute('tabindex', '-1');
     mob.innerHTML = '<div class="mobnav-inner">' +
       '<span class="mobnav-eyebrow">Навигация</span>' +
       '<nav class="mobnav-links" aria-label="Мобильное меню">' + mlinks + '</nav>' +
@@ -141,8 +142,9 @@
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
       document.documentElement.style.overflow = open ? 'hidden' : '';
       if (open) {
-        var first = mob.querySelector('.mlink');
-        if (first) first.focus();
+        // фокус на контейнер, а не на первый пункт — иначе мобильные браузеры
+        // рисуют свою рамку выделения поверх ссылки
+        mob.focus({ preventScroll: true });
       } else if (document.activeElement && mob.contains(document.activeElement)) {
         burger.focus();
       }
