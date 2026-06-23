@@ -317,6 +317,11 @@ body.nav-open .mlink-t {
 }
 .mlink.active .mlink-t { color: var(--accent-ink); }
 .mlink.active::before { color: var(--accent); }
+/* убираем синюю системную рамку при программном/тач-фокусе,
+   аккуратный золотой контур оставляем только для навигации с клавиатуры */
+.mlink:focus, .mobnav-cta:focus, .mobnav-soc a:focus, .burger:focus { outline: none; }
+.mlink:focus-visible { outline: 2px solid var(--accent); outline-offset: 8px; border-radius: 4px; }
+.mobnav-cta:focus-visible, .mobnav-soc a:focus-visible, .burger:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 @media (hover: hover) {
   .mlink:hover { transform: translateX(14px); }
   .mlink:hover .mlink-t { color: var(--accent-ink); }
