@@ -135,7 +135,41 @@
 
 <section class="block">
   <div class="wrap">
-    <div class="section-label reveal"><span class="num">02</span><span class="eyebrow">Что входит</span><span class="line"></span></div>
+    <div class="section-label reveal"><span class="num">02</span><span class="eyebrow">Калькулятор сметы</span><span class="line"></span></div>
+    <div class="calc reveal" id="calc">
+      <div class="calc-controls">
+        <div class="calc-field">
+          <span class="calc-label">Формат сайта</span>
+          <div class="calc-seg" role="group" aria-label="Формат">
+            <button type="button" class="calc-opt active" data-base="55000" data-pkg="landing" data-name="Лендинг">Лендинг<small>от 55 000 ₽</small></button>
+            <button type="button" class="calc-opt" data-base="75000" data-pkg="multi" data-name="Многостраничный">Многостраничный<small>от 75 000 ₽</small></button>
+          </div>
+        </div>
+        <div class="calc-field">
+          <span class="calc-label">Ретушь фотографий <em>1 000 ₽ / шт</em></span>
+          <div class="calc-step">
+            <button type="button" class="calc-mn" data-step="-1" aria-label="Уменьшить">−</button>
+            <span class="calc-val" id="calc-photos">0</span>
+            <button type="button" class="calc-pl" data-step="1" aria-label="Увеличить">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="calc-result" id="calc-result">
+        <span class="calc-spot" aria-hidden="true"></span>
+        <p class="calc-rlabel">Предварительно от</p>
+        <div class="calc-total"><b id="calc-total">55 000</b><span class="cur">₽</span></div>
+        <ul class="calc-break" id="calc-break"></ul>
+        <a class="btn btn-primary calc-cta" id="calc-cta" href="contacts.html?pkg=landing">Зафиксировать смету
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <p class="calc-note">Это ориентир. Точная стоимость — после брифинга. Домен и хостинг оплачиваются отдельно.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="section-label reveal"><span class="num">03</span><span class="eyebrow">Что входит</span><span class="line"></span></div>
     <div class="incl-grid">
       <div class="incl-lead reveal">
         <h2 class="h-section">Комплексный подход —<br>от&nbsp;<em>брифа</em> до&nbsp;<em>запуска.</em></h2>
@@ -158,7 +192,7 @@
 
 <section class="block">
   <div class="wrap narrow">
-    <div class="section-label reveal"><span class="num">03</span><span class="eyebrow">Частые вопросы</span><span class="line"></span></div>
+    <div class="section-label reveal"><span class="num">04</span><span class="eyebrow">Частые вопросы</span><span class="line"></span></div>
     <h2 class="h-section reveal" style="margin-bottom:clamp(30px,4vw,46px)">Коротко <em>о важном</em></h2>
     <div class="faq" id="faq"></div>
   </div>
