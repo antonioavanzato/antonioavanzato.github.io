@@ -8,9 +8,10 @@
   var SECRET_KEY = '222897Avanzato!';
 
   var PAGES = [
-    { id: 'home',     label: 'Главная',  href: 'index.html' },
-    { id: 'pricing',  label: 'Цены',     href: 'pricing.html' },
-    { id: 'contacts', label: 'Контакты', href: 'contacts.html' }
+    { id: 'home',      label: 'Главная',   href: 'index.html' },
+    { id: 'portfolio', label: 'Портфолио', href: 'portfolio.html' },
+    { id: 'pricing',   label: 'Цены',      href: 'pricing.html' },
+    { id: 'contacts',  label: 'Контакты',  href: 'contacts.html' }
   ];
   var current = document.body.getAttribute('data-page') || 'home';
 

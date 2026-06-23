@@ -460,6 +460,42 @@ image-slot { --is-bg: rgba(243,241,228,0.05); background: var(--is-bg); }
 .m-item:hover .m-txt b::after { transform:scaleX(1); }
 .m-txt i { font-size:13.5px; color:var(--ink-2); font-style:normal; margin-top:5px; }
 
+/* приглашающий блок «Смотреть все работы» на главной */
+.work-more {
+  margin-top: clamp(28px,3vw,46px);
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  padding: clamp(24px,3vw,38px) clamp(26px,3vw,44px);
+  border: 1px solid var(--hairline); border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, var(--surface), var(--bg-2));
+  position: relative; overflow: hidden;
+  transition: border-color .4s var(--ease), transform .5s var(--ease);
+}
+.work-more-t { display: flex; flex-direction: column; gap: 6px; position: relative; z-index: 1; }
+.work-more-t b { font-family: var(--font-display); font-weight: 400; font-size: clamp(22px,3vw,34px); }
+.work-more-t i { font-style: normal; color: var(--ink-2); font-size: 14.5px; }
+.work-more-arr {
+  position: relative; z-index: 1; flex: 0 0 auto;
+  width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center;
+  border: 1px solid var(--hairline); color: var(--accent);
+  transition: transform .5s var(--ease), background .4s var(--ease), color .4s var(--ease);
+}
+@media (hover: hover) {
+  .work-more:hover { border-color: rgba(199,154,82,.4); transform: translateY(-3px); }
+  .work-more:hover .work-more-arr { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--bg); transform: translateX(4px); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .work-more::after {
+    content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%;
+    background: linear-gradient(100deg, transparent, rgba(214,176,105,.10), transparent);
+    transform: skewX(-18deg); animation: workSheen 5s ease-in-out infinite;
+  }
+  @keyframes workSheen { 0% { left: -60%; } 45%, 100% { left: 170%; } }
+}
+@media (max-width: 480px) {
+  .work-more { padding: 22px; gap: 16px; }
+  .work-more-arr { width: 46px; height: 46px; }
+}
+
 .cta { border:1px solid var(--hairline); border-radius:var(--radius-lg); padding:clamp(48px,7vw,90px) var(--gutter); text-align:center; background:linear-gradient(180deg,var(--surface),var(--bg-2)); }
 .cta-inner { max-width:640px; margin:0 auto; }
 .cta .eyebrow { margin-bottom:20px; }
