@@ -1,0 +1,245 @@
+/* ============================================================
+   AVANZATO — Portfolio 3D experience (scoped to portfolio.html)
+   Pure-CSS 3D: perspective decks, tilt cards, floating shapes.
+   Everything heavy is gated behind hover + reduced-motion.
+   ============================================================ */
+
+/* ---------- floating 3D background shapes ---------- */
+.p3-bg {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  overflow: hidden; perspective: 1000px;
+}
+.p3-shape {
+  position: absolute; transform-style: preserve-3d;
+  opacity: .5; will-change: transform;
+}
+.p3-shape i {
+  position: absolute; inset: 0; display: block;
+  border: 1px solid rgba(215,176,105,.22);
+  background: linear-gradient(135deg, rgba(199,154,82,.05), rgba(199,154,82,0));
+  backface-visibility: hidden;
+}
+/* cube built from 6 faces */
+.p3-cube { width: 120px; height: 120px; }
+.p3-cube i:nth-child(1){ transform: translateZ(60px); }
+.p3-cube i:nth-child(2){ transform: rotateY(180deg) translateZ(60px); }
+.p3-cube i:nth-child(3){ transform: rotateY(90deg)  translateZ(60px); }
+.p3-cube i:nth-child(4){ transform: rotateY(-90deg) translateZ(60px); }
+.p3-cube i:nth-child(5){ transform: rotateX(90deg)  translateZ(60px); }
+.p3-cube i:nth-child(6){ transform: rotateX(-90deg) translateZ(60px); }
+/* ring / torus-ish: a thin rotating disc */
+.p3-ring { width: 200px; height: 200px; border-radius: 50%; }
+.p3-ring i { border-radius: 50%; border-width: 1.5px; }
+
+.p3-s1 { top: 14%; left: 6%;  --sc: .9; }
+.p3-s2 { top: 62%; left: 80%; --sc: 1.25; }
+.p3-s3 { top: 78%; left: 12%; --sc: .7; }
+.p3-s4 { top: 26%; left: 86%; --sc: .8; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .p3-s1 i, .p3-cube.p3-s4 { } /* placeholder */
+  .p3-cube { animation: p3spin 26s linear infinite; }
+  .p3-s2.p3-cube { animation-duration: 34s; animation-direction: reverse; }
+  .p3-s4.p3-cube { animation-duration: 30s; }
+  .p3-ring { animation: p3tilt 22s ease-in-out infinite; }
+}
+@keyframes p3spin {
+  from { transform: scale(var(--sc,1)) rotateX(0deg) rotateY(0deg); }
+  to   { transform: scale(var(--sc,1)) rotateX(360deg) rotateY(360deg); }
+}
+@keyframes p3tilt {
+  0%,100% { transform: scale(var(--sc,1)) rotateX(62deg) rotateZ(0deg); }
+  50%     { transform: scale(var(--sc,1)) rotateX(62deg) rotateZ(180deg); }
+}
+@media (max-width: 720px) { .p3-bg { opacity: .55; } .p3-s2, .p3-s4 { display: none; } }
+
+/* keep page content above the shapes; clip stray 3D overflow */
+html:has(body[data-page="portfolio"]) { overflow-x: hidden; }
+body[data-page="portfolio"] { overflow-x: hidden; }
+body[data-page="portfolio"] .p-hero,
+body[data-page="portfolio"] .block { position: relative; z-index: 1; }
+
+/* ---------- HERO: split layout + 3D floating deck ---------- */
+body[data-page="portfolio"] .p-hero { min-height: 88vh; align-items: center; padding-top: 132px; padding-bottom: 40px; }
+.p3-hero-grid {
+  display: grid; grid-template-columns: 1.05fr .95fr;
+  gap: clamp(30px, 5vw, 80px); align-items: center; width: 100%;
+}
+.p3-hero-copy { max-width: 620px; }
+.p3-hero-copy .display { white-space: nowrap; }
+.p3-hero-copy .lede { max-width: 560px; }
+.p3-hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+.p3-tag {
+  font-family: var(--font-sans); font-size: 12.5px; letter-spacing: .02em;
+  color: var(--ink-2); padding: 8px 15px; border: 1px solid var(--hairline);
+  border-radius: 100px; background: rgba(243,241,228,.02);
+  transition: color .35s var(--ease), border-color .35s var(--ease), transform .35s var(--ease);
+}
+.p3-tag:hover { color: var(--ink); border-color: rgba(215,176,105,.45); transform: translateY(-2px); }
+
+/* the floating deck stage */
+.p3-stage {
+  position: relative; height: clamp(360px, 46vw, 540px);
+  perspective: 1400px; perspective-origin: 50% 45%;
+}
+.p3-deck { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .3s var(--ease-soft); }
+.p3-deck-card {
+  position: absolute; top: 50%; left: 50%;
+  width: clamp(190px, 22vw, 270px); aspect-ratio: 16/11;
+  margin: 0; border-radius: 12px; overflow: hidden;
+  transform-style: preserve-3d; backface-visibility: hidden;
+  border: 1px solid rgba(243,241,228,.12);
+  box-shadow: 0 40px 80px -30px rgba(0,0,0,.85), 0 0 0 1px rgba(0,0,0,.3);
+  background: var(--surface);
+}
+.p3-deck-card img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(1.05) contrast(1.02); }
+.p3-deck-card::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(160deg, rgba(215,176,105,.14), transparent 55%);
+  mix-blend-mode: screen;
+}
+.p3-deck-card span {
+  position: absolute; left: 12px; bottom: 10px; z-index: 2;
+  font-family: var(--font-display); font-size: 13px; color: #fff;
+  text-shadow: 0 2px 12px rgba(0,0,0,.9); letter-spacing: .01em;
+}
+/* fanned positions (set via transform; JS bobs them) */
+.p3-deck-card.d1 { transform: translate(-50%,-50%) translate3d(-118px,-58px,40px) rotateY(20deg) rotateX(6deg) rotateZ(-7deg); }
+.p3-deck-card.d2 { transform: translate(-50%,-50%) translate3d(64px,-92px,140px)  rotateY(-14deg) rotateX(7deg) rotateZ(5deg); z-index: 4; }
+.p3-deck-card.d3 { transform: translate(-50%,-50%) translate3d(-44px,86px,90px)  rotateY(12deg) rotateX(-8deg) rotateZ(4deg); z-index: 3; }
+.p3-deck-card.d4 { transform: translate(-50%,-50%) translate3d(132px,52px,-30px) rotateY(-22deg) rotateX(-5deg) rotateZ(8deg); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .p3-deck-card { animation: p3bob 7s ease-in-out infinite; }
+  .p3-deck-card.d2 { animation-delay: -1.6s; animation-duration: 8s; }
+  .p3-deck-card.d3 { animation-delay: -3.2s; animation-duration: 7.6s; }
+  .p3-deck-card.d4 { animation-delay: -4.6s; animation-duration: 8.4s; }
+}
+@keyframes p3bob {
+  0%,100% { translate: 0 0; }
+  50%     { translate: 0 -16px; }
+}
+
+/* glow puck behind the deck */
+.p3-stage::before {
+  content: ""; position: absolute; left: 50%; top: 54%; width: 60%; height: 46%;
+  transform: translate(-50%,-50%);
+  background: radial-gradient(closest-side, rgba(215,176,105,.22), transparent 75%);
+  filter: blur(20px); z-index: -1;
+}
+
+/* ---------- 3D scene gallery ---------- */
+.p3-scene {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: clamp(22px, 3vw, 42px);
+  perspective: 1500px; margin-top: 14px;
+}
+.p3-card { perspective: 1200px; transform-style: preserve-3d; }
+.p3-link {
+  display: block; position: relative; text-decoration: none; color: inherit;
+  border-radius: var(--radius-lg); transform-style: preserve-3d;
+  transition: transform .6s var(--ease);
+}
+.p3-card-inner {
+  position: relative; border-radius: 16px; overflow: hidden;
+  transform-style: preserve-3d; aspect-ratio: 16/10.5;
+  border: 1px solid rgba(243,241,228,.10);
+  background: var(--bg-2);
+  box-shadow: 0 30px 60px -34px rgba(0,0,0,.8);
+  transition: transform .5s var(--ease), box-shadow .5s var(--ease), border-color .5s var(--ease);
+  will-change: transform;
+}
+.p3-img { position: absolute; inset: 0; transform: translateZ(0); }
+.p3-img img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: grayscale(.35) brightness(.82) saturate(1.05);
+  transition: filter .6s var(--ease), transform .8s var(--ease);
+  transform: scale(1.06);
+}
+.p3-card-inner::before {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to top, rgba(8,8,6,.92) 4%, rgba(8,8,6,.35) 42%, rgba(8,8,6,0) 70%);
+  transition: opacity .5s var(--ease);
+}
+/* holographic glare following cursor */
+.p3-glare {
+  position: absolute; inset: 0; z-index: 4; pointer-events: none; opacity: 0;
+  background:
+    radial-gradient(420px circle at var(--gx,50%) var(--gy,50%), rgba(255,255,255,.22), transparent 42%),
+    conic-gradient(from 210deg at var(--gx,50%) var(--gy,50%), rgba(120,180,255,.10), rgba(215,176,105,.16), rgba(255,120,200,.10), rgba(120,180,255,.10));
+  mix-blend-mode: screen; transition: opacity .4s var(--ease);
+}
+/* floating depth layers */
+.p3-num {
+  position: absolute; top: 20px; left: 22px; z-index: 5;
+  font-family: var(--font-display); font-weight: 500;
+  font-size: clamp(34px, 4.4vw, 58px); line-height: 1;
+  color: transparent; -webkit-text-stroke: 1px rgba(243,241,228,.55);
+  letter-spacing: -.01em; transform: translateZ(55px);
+  transition: -webkit-text-stroke-color .5s var(--ease);
+}
+.p3-go {
+  position: absolute; top: 18px; right: 18px; z-index: 6;
+  width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center;
+  color: var(--bg); background: linear-gradient(135deg, var(--accent-2), var(--accent));
+  box-shadow: 0 14px 30px -10px rgba(199,154,82,.7);
+  transform: translateZ(80px) scale(.82); opacity: 0;
+  transition: transform .45s var(--ease), opacity .4s var(--ease);
+}
+.p3-info {
+  position: absolute; left: 24px; right: 24px; bottom: 22px; z-index: 5;
+  transform: translateZ(38px);
+}
+.p3-info h3 {
+  font-family: var(--font-display); font-weight: 500;
+  font-size: clamp(19px, 2.2vw, 27px); margin: 0 0 4px; color: var(--ink);
+  letter-spacing: -.01em;
+}
+.p3-info p { margin: 0; font-size: 14px; color: var(--ink-2); line-height: 1.4; }
+.p3-info .p3-meta {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 12px;
+  font-family: var(--font-sans); font-size: 12px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--accent);
+  opacity: 0; transform: translateY(8px);
+  transition: opacity .45s var(--ease) .05s, transform .45s var(--ease) .05s;
+}
+.p3-info .p3-meta::before { content: ""; width: 22px; height: 1px; background: var(--accent); display: inline-block; }
+
+/* hover state */
+@media (hover: hover) and (pointer: fine) {
+  .p3-card-inner:hover { border-color: rgba(215,176,105,.4); box-shadow: 0 50px 90px -40px rgba(0,0,0,.9), 0 0 50px -20px rgba(199,154,82,.35); }
+  .p3-card-inner:hover .p3-img img { filter: grayscale(0) brightness(.94) saturate(1.12); transform: scale(1.12); }
+  .p3-card-inner:hover .p3-glare { opacity: 1; }
+  .p3-card-inner:hover .p3-go { transform: translateZ(80px) scale(1); opacity: 1; }
+  .p3-card-inner:hover .p3-num { -webkit-text-stroke-color: var(--accent); }
+  .p3-card-inner:hover .p3-info .p3-meta { opacity: 1; transform: none; }
+}
+/* touch / no-hover: show affordances by default */
+@media (hover: none) {
+  .p3-go { opacity: 1; transform: translateZ(80px) scale(1); }
+  .p3-info .p3-meta { opacity: 1; transform: none; }
+  .p3-img img { filter: grayscale(.12) brightness(.9); }
+}
+
+/* make every 3rd card span full width for editorial rhythm */
+.p3-card.wide { grid-column: 1 / -1; }
+.p3-card.wide .p3-card-inner { aspect-ratio: 21/8.5; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 940px) {
+  .p3-hero-grid { grid-template-columns: 1fr; gap: 24px; }
+  .p3-stage { order: -1; height: clamp(300px, 64vw, 420px); }
+  body[data-page="portfolio"] .p-hero { min-height: auto; padding-top: 120px; }
+}
+@media (max-width: 640px) {
+  .p3-scene { grid-template-columns: 1fr; }
+  .p3-card.wide .p3-card-inner { aspect-ratio: 16/11; }
+  .p3-deck-card { width: clamp(150px, 46vw, 200px); }
+  .p3-deck { transform: scale(.8); }
+  .p3-stage { overflow: hidden; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .p3-deck-card, .p3-cube, .p3-ring { animation: none !important; }
+  .p3-card-inner { transition: none; }
+}
