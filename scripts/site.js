@@ -110,7 +110,8 @@
       return '<a class="link' + (p.id === current ? ' active' : '') + '" href="' + p.href + '">' + p.label + '</a>';
     }).join('');
     var mlinks = PAGES.map(function (p, i) {
-      return '<a class="mlink' + (p.id === current ? ' active' : '') + '" style="--i:' + i + '" href="' + p.href + '">' + p.label + '</a>';
+      return '<a class="mlink' + (p.id === current ? ' active' : '') + '" style="--i:' + i + '" href="' + p.href + '">' +
+        '<span class="mlink-t">' + p.label + '</span></a>';
     }).join('');
     navwrap.innerHTML = '<nav class="nav" aria-label="Навигация">' +
       '<a class="brand" href="index.html" aria-label="AVANZATO — на главную">' +
@@ -124,8 +125,14 @@
     var mob = document.createElement('div');
     mob.className = 'mobnav';
     mob.id = 'mobnav';
-    mob.innerHTML = '<div class="mobnav-inner">' + mlinks +
-      '<a class="mlink mlink-cta" style="--i:' + PAGES.length + '" href="contacts.html">Обсудить проект →</a></div>';
+    mob.innerHTML = '<div class="mobnav-inner">' +
+      '<span class="mobnav-eyebrow">Навигация</span>' +
+      '<nav class="mobnav-links" aria-label="Мобильное меню">' + mlinks + '</nav>' +
+      '<div class="mobnav-foot" style="--i:' + PAGES.length + '">' +
+      '<a class="mobnav-cta" href="contacts.html">Обсудить проект' +
+      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>' +
+      '<div class="mobnav-soc"><a href="https://t.me/avanzato" target="_blank" rel="noopener">Telegram</a></div>' +
+      '</div></div>';
     document.body.appendChild(mob);
 
     var burger = navwrap.querySelector('.burger');
@@ -141,7 +148,7 @@
       }
     }
     burger.addEventListener('click', function () { setNav(!document.body.classList.contains('nav-open')); });
-    mob.addEventListener('click', function (e) { if (e.target.classList.contains('mlink')) setNav(false); });
+    mob.addEventListener('click', function (e) { if (e.target.closest('a')) setNav(false); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setNav(false); });
     window.addEventListener('resize', function () { if (window.innerWidth > 720) setNav(false); });
 
