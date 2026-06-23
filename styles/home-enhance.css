@@ -44,3 +44,78 @@
 @media (prefers-reduced-motion: reduce) {
   .hero-title em { background-position: 50% 0; animation: none; }
 }
+
+/* ============================================================
+   Premium-слой главной — сдержанный люкс, всё на главной
+   ============================================================ */
+
+/* ---- Hero: тонкий золотой маркер перед надзаголовком ---- */
+.hero-eb { display: inline-flex; align-items: center; gap: 0; }
+.hero-eb::before {
+  content: ""; height: 1px; width: 0;
+  background: linear-gradient(90deg, var(--accent-2), transparent);
+  margin-right: 0; opacity: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-eb::before { animation: ebLine .9s var(--ease) .35s forwards; }
+  @keyframes ebLine {
+    to { width: 32px; margin-right: 16px; opacity: 1; }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-eb::before { width: 32px; margin-right: 16px; opacity: 1; }
+}
+
+/* ---- Секционные номера: золотой градиент вместо плоского ---- */
+.section-label .num {
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+
+/* ---- Карточки услуг: крупные «призрачные» номера (счётчик CSS) ---- */
+.do-grid { counter-reset: doNum; }
+.do-card { counter-increment: doNum; overflow: hidden; }
+.do-card > * { position: relative; z-index: 1; }
+.do-card::after {
+  content: counter(doNum, decimal-leading-zero);
+  position: absolute; right: 14px; bottom: -18px; z-index: 0;
+  font-family: var(--font-display); font-style: italic; font-weight: 350;
+  font-size: clamp(78px, 9vw, 122px); line-height: 1; letter-spacing: -0.03em;
+  color: transparent; -webkit-text-stroke: 1px rgba(243, 241, 228, 0.09);
+  pointer-events: none;
+  transition: -webkit-text-stroke-color .55s var(--ease), transform .6s var(--ease);
+}
+@media (hover: hover) {
+  .do-card:hover::after {
+    -webkit-text-stroke-color: rgba(199, 154, 82, 0.42);
+    transform: translateY(-8px);
+  }
+  /* мягкая золотая подсветка заголовка карточки на ховере */
+  .do-card:hover h3 { color: var(--accent-2); }
+}
+
+/* ---- Чипы SEO: лёгкая золотая заливка на ховере ---- */
+.seo-tags li { transition: color .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease); }
+.seo-tags li:hover { background: rgba(199, 154, 82, 0.08); }
+
+/* ---- CTA-блок: золотое свечение + акцентная линия сверху ---- */
+.cta { position: relative; overflow: hidden; isolation: isolate; }
+.cta::before {
+  content: ""; position: absolute; z-index: 0; left: 50%; top: -45%;
+  width: 75%; height: 165%; transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(199, 154, 82, 0.14), transparent 62%);
+  pointer-events: none;
+}
+.cta::after {
+  content: ""; position: absolute; z-index: 0; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(199, 154, 82, 0.65), transparent);
+}
+.cta-inner { position: relative; z-index: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .cta::before { animation: ctaGlow 7s var(--ease-soft) infinite alternate; }
+  @keyframes ctaGlow {
+    from { opacity: .7; }
+    to   { opacity: 1; }
+  }
+}
