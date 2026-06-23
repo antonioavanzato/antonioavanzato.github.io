@@ -27,6 +27,7 @@
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 <link rel="preload" as="image" href="images/logo avanzato (clear white).png">
 <link rel="stylesheet" href="styles/main.css">
+<link rel="stylesheet" href="styles/pricing3d.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -74,6 +75,13 @@
 <body data-page="pricing">
 <div class="ambient"></div>
 
+<!-- floating 3D background shapes -->
+<div class="pr-bg" aria-hidden="true">
+  <div class="pr-shape pr-cube pr-s1"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="pr-shape pr-cube pr-s2"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="pr-shape pr-ring pr-s3"><i></i></div>
+</div>
+
 <header class="p-hero">
   <div class="wrap p-hero-inner">
     <p class="eyebrow reveal">Тарифы и состав работ</p>
@@ -87,22 +95,34 @@
     <div class="section-label reveal"><span class="num">01</span><span class="eyebrow">Два формата</span><span class="line"></span></div>
     <div class="tiers">
       <article class="tier reveal">
+        <span class="tier-glare" aria-hidden="true"></span>
         <header class="tier-h">
           <p class="eyebrow">Формат 01</p>
           <h3>Лендинг <span class="muted">— одна страница</span></h3>
           <p class="tier-desc muted">Продающая страница под один продукт или услугу. Современный дизайн, адаптив, SEO.</p>
         </header>
+        <ul class="tier-points">
+          <li><span class="pk"></span><span>Одна продающая страница<i>под конкретный оффер</i></span></li>
+          <li><span class="pk"></span><span>Адаптив под все устройства<i>телефон, планшет, ПК</i></span></li>
+          <li><span class="pk"></span><span>Настройка SEO<i>для индексации в поиске</i></span></li>
+        </ul>
         <div class="price"><span class="from">от</span><b data-count="55000">0</b><span class="cur">₽</span></div>
         <p class="price-note"><span class="dot-ic"></span>5–10 дней</p>
         <a class="btn btn-ghost tier-btn" href="contacts.html?pkg=landing">Выбрать лендинг</a>
       </article>
       <article class="tier featured reveal" data-d="1">
-        <span class="tier-badge">Полноценный сайт</span>
+        <span class="tier-glare" aria-hidden="true"></span>
+        <span class="tier-badge">Популярный выбор</span>
         <header class="tier-h">
           <p class="eyebrow">Формат 02</p>
           <h3>Многостраничный <span class="muted">— сайт</span></h3>
           <p class="tier-desc muted">Полноценный сайт с несколькими разделами, блогом, портфолио или каталогом.</p>
         </header>
+        <ul class="tier-points">
+          <li><span class="pk"></span><span>Несколько разделов и страниц<i>гибкая структура под задачи</i></span></li>
+          <li><span class="pk"></span><span>Блог, портфолио или каталог<i>под ваш тип бизнеса</i></span></li>
+          <li><span class="pk"></span><span>Настройка SEO<i>для индексации в поиске</i></span></li>
+        </ul>
         <div class="price"><span class="from">от</span><b data-count="75000">0</b><span class="cur">₽</span></div>
         <p class="price-note"><span class="dot-ic"></span>2–4 недели</p>
         <a class="btn btn-primary tier-btn" href="contacts.html?pkg=multi">Выбрать сайт
@@ -165,6 +185,7 @@
 
 
 <script src="scripts/site.js"></script>
+<script src="scripts/pricing3d.js" defer></script>
 <script>
 (function(){
   var FAQ=[
