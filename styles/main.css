@@ -499,6 +499,11 @@ image-slot { --is-bg: rgba(243,241,228,0.05); background: var(--is-bg); }
 @keyframes hintMove { 0%{transform:translateY(-12px)} 100%{transform:translateY(42px)} }
 
 .intro-grid { display:grid; grid-template-columns:1.1fr 1fr; gap:clamp(28px,6vw,90px); align-items:start; }
+.intro-grid a { color:var(--accent-ink); text-decoration:none; border-bottom:1px solid rgba(215,176,105,.35); transition:border-color .3s var(--ease), color .3s var(--ease); }
+.intro-grid a:hover { color:var(--accent); border-color:var(--accent); }
+.seo-tags { list-style:none; margin:clamp(40px,5vw,64px) 0 0; padding:0; display:flex; flex-wrap:wrap; gap:10px; }
+.seo-tags li { font-family:var(--font-sans); font-size:13px; color:var(--ink-2); padding:9px 16px; border:1px solid var(--hairline); border-radius:100px; transition:color .3s var(--ease), border-color .3s var(--ease); }
+.seo-tags li:hover { color:var(--ink); border-color:rgba(215,176,105,.4); }
 .do-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:clamp(48px,7vw,90px); border-top:1px solid var(--hairline); }
 .do-card { padding:34px 30px 38px; border-right:1px solid var(--hairline); }
 .do-card:last-child { border-right:0; }
