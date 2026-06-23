@@ -1,0 +1,46 @@
+/* ============================================================
+   AVANZATO — Home enhancement: «живое золото» на акцентном слове
+   Сдержанный люкс: медленный благородный блик по слову hero.
+   Изолировано от main.css, подключается только на главной.
+   ============================================================ */
+
+/* Золотой градиент с тёплым бликом, вписан в палитру (--accent / --accent-2). */
+.hero-title em {
+  /* мягкое золото -> светлый блик -> золото; блик уезжает анимацией */
+  background-image: linear-gradient(
+    100deg,
+    var(--accent)      0%,
+    var(--accent-2)    34%,
+    #f4e2b4            50%,   /* тёплый световой блик */
+    var(--accent-2)    66%,
+    var(--accent)     100%
+  );
+  background-size: 220% 100%;
+  background-position: 150% 0;            /* блик стартует за пределами слова */
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;                      /* перекрывает --accent-ink из main.css */
+  /* deci-edge: лёгкое золотое свечение, очень сдержанное */
+  filter: drop-shadow(0 1px 10px rgba(199, 154, 82, 0.16));
+  will-change: background-position;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-title em {
+    /* задержка ~ совпадает с появлением третьей строки заголовка (lineUp .49s) */
+    animation: heroGold 6.5s var(--ease-soft) 1.2s infinite;
+  }
+  @keyframes heroGold {
+    0%   { background-position: 150% 0; }
+    /* блик проходит по слову и снова уходит; большую часть времени — покой */
+    45%  { background-position: -50% 0; }
+    100% { background-position: -50% 0; }
+  }
+}
+
+/* Без анимации (reduced-motion / старые движки): просто красивый статичный
+   золотой градиент с бликом по центру — всё равно «дороже» плоского цвета. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-title em { background-position: 50% 0; animation: none; }
+}
