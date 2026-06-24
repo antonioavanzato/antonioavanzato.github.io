@@ -884,7 +884,7 @@ image-slot { --is-bg: rgba(35,33,24,0.05); background: var(--is-bg); }
    ============================================================ */
 @media (max-width: 640px) {
   /* ── Hero ──────────────────────────────────────────── */
-  .hero { padding-top: 96px; padding-bottom: 52px; }
+  .hero { padding-top: 116px; padding-bottom: 52px; }
   .hero-meta { flex-wrap: wrap; gap: 22px 40px; }
   .scroll-hint { display: none; }
 
