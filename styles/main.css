@@ -925,7 +925,64 @@ image-slot { --is-bg: rgba(35,33,24,0.05); background: var(--is-bg); }
 body::after {
   content: "";
   position: fixed; inset: 0; z-index: 900; pointer-events: none;
-  opacity: 0.05; mix-blend-mode: soft-light;
+  opacity: 0.06; mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.86' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 140px 140px;
+}
+
+/* ============================================================
+   Японская философия — Ma (間), Fukinsei (不均整), Seijaku (静寂),
+   Wabi-sabi и одна киноварь 朱 (печать-hanko, эхо кружка логотипа)
+   ============================================================ */
+:root { --seal: #b7352d; }   /* 朱 — единственный цветовой акцент на всём сайте */
+
+/* ---- Ma: больше воздуха между секциями и вокруг текста ----
+   (только от планшета и выше — мобильные отступы уже выверены) */
+@media (min-width: 641px) {
+  .block { padding: clamp(84px, 12vw, 176px) 0 0; }
+  .section-label { margin-bottom: clamp(44px, 5.5vw, 72px); }
+  .intro-grid { gap: clamp(40px, 8vw, 132px); }
+  .hero-lede { margin-top: clamp(30px, 4vw, 46px); }
+  .do-grid { margin-top: clamp(56px, 8vw, 104px); }
+}
+
+/* ---- Seijaku / тишина в типографике: легче и просторнее ---- */
+.display   { font-weight: 300; letter-spacing: -0.02em; }
+.h-section { font-weight: 300; letter-spacing: -0.008em; line-height: 1.12; }
+.lede      { line-height: 1.8; font-weight: 300; }
+.muted     { line-height: 1.7; }
+.eyebrow   { letter-spacing: 0.28em; }
+
+/* ---- Fukinsei: намеренная асимметрия композиции ---- */
+/* ступенчатый сдвиг средней строки заголовка hero */
+.hero-title .line:nth-child(2) { padding-left: clamp(26px, 7vw, 116px); }
+/* правая колонка вступления чуть опущена — живое равновесие */
+@media (min-width: 901px) {
+  .intro-grid { grid-template-columns: 1.25fr 1fr; }
+  .intro-grid > div:last-child { margin-top: clamp(10px, 3.5vw, 54px); }
+}
+
+/* ---- Tate-gaki: вертикальные номера секций (朱-тик сверху) ---- */
+.section-label .num {
+  writing-mode: vertical-rl; text-orientation: upright;
+  font-style: normal; font-size: 15px; line-height: 1;
+  letter-spacing: 0.12em; padding: 8px 0 0;
+  position: relative;
+}
+.section-label .num::before {
+  content: ""; position: absolute; top: 0; left: 50%;
+  width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%;
+  background: var(--seal);   /* киноварная точка-печать над номером */
+}
+
+/* ---- Hanko: киноварное «эхо логотипа» — подпись в подвале ---- */
+.footer .brand { position: relative; }
+.footer .brand::after {
+  content: ""; display: inline-block; vertical-align: middle;
+  width: 9px; height: 9px; margin-left: 11px; border-radius: 50%;
+  border: 1.5px solid var(--seal);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after { opacity: 0.045; }
 }

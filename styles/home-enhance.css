@@ -10,21 +10,21 @@
   font-style: italic;
 }
 
-/* ---- Hero: тонкий чернильный маркер перед надзаголовком ---- */
+/* ---- Hero: киноварный кружок ○ — эхо логотипа AVANZAT○ (朱) ---- */
 .hero-eb { display: inline-flex; align-items: center; gap: 0; }
 .hero-eb::before {
-  content: ""; height: 1px; width: 0;
-  background: var(--ink-3);
-  margin-right: 0; opacity: 0;
+  content: ""; width: 9px; height: 9px; border-radius: 50%;
+  border: 1.5px solid var(--seal); background: transparent;
+  margin-right: 0; opacity: 0; transform: scale(.4);
 }
 @media (prefers-reduced-motion: no-preference) {
-  .hero-eb::before { animation: ebLine .9s var(--ease) .35s forwards; }
-  @keyframes ebLine {
-    to { width: 32px; margin-right: 16px; opacity: 1; }
+  .hero-eb::before { animation: ebSeal .8s var(--ease) .35s forwards; }
+  @keyframes ebSeal {
+    to { margin-right: 14px; opacity: 1; transform: none; }
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-eb::before { width: 32px; margin-right: 16px; opacity: 1; }
+  .hero-eb::before { margin-right: 14px; opacity: 1; transform: none; }
 }
 
 /* ---- Секционные номера: спокойный акцентный тон ---- */
