@@ -112,10 +112,3 @@
   background: linear-gradient(90deg, transparent, rgba(199, 154, 82, 0.65), transparent);
 }
 .cta-inner { position: relative; z-index: 1; }
-@media (prefers-reduced-motion: no-preference) {
-  .cta::before { animation: ctaGlow 7s var(--ease-soft) infinite alternate; }
-  @keyframes ctaGlow {
-    from { opacity: .7; }
-    to   { opacity: 1; }
-  }
-}
