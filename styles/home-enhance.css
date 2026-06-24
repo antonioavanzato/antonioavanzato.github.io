@@ -1,59 +1,20 @@
 /* ============================================================
-   AVANZATO — Home enhancement: «живое золото» на акцентном слове
-   Сдержанный люкс: медленный благородный блик по слову hero.
-   Изолировано от main.css, подключается только на главной.
+   AVANZATO — Home enhancement (японский сдержанный минимализм)
+   Монохром: без золота, мерцания и свечений. Только спокойные
+   акценты, воздух и тонкая типографика.
    ============================================================ */
 
-/* Золотой градиент с тёплым бликом, вписан в палитру (--accent / --accent-2). */
+/* Акцентное слово в hero — спокойный сплошной тон, без блика. */
 .hero-title em {
-  /* мягкое золото -> светлый блик -> золото; блик уезжает анимацией */
-  background-image: linear-gradient(
-    100deg,
-    var(--accent)      0%,
-    var(--accent-2)    34%,
-    #f4e2b4            50%,   /* тёплый световой блик */
-    var(--accent-2)    66%,
-    var(--accent)     100%
-  );
-  background-size: 220% 100%;
-  background-position: 150% 0;            /* блик стартует за пределами слова */
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;                      /* перекрывает --accent-ink из main.css */
-  /* deci-edge: лёгкое золотое свечение, очень сдержанное */
-  filter: drop-shadow(0 1px 10px rgba(199, 154, 82, 0.16));
-  will-change: background-position;
+  color: var(--accent-ink);
+  font-style: italic;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .hero-title em {
-    /* задержка ~ совпадает с появлением третьей строки заголовка (lineUp .49s) */
-    animation: heroGold 6.5s var(--ease-soft) 1.2s infinite;
-  }
-  @keyframes heroGold {
-    0%   { background-position: 150% 0; }
-    /* блик проходит по слову и снова уходит; большую часть времени — покой */
-    45%  { background-position: -50% 0; }
-    100% { background-position: -50% 0; }
-  }
-}
-
-/* Без анимации (reduced-motion / старые движки): просто красивый статичный
-   золотой градиент с бликом по центру — всё равно «дороже» плоского цвета. */
-@media (prefers-reduced-motion: reduce) {
-  .hero-title em { background-position: 50% 0; animation: none; }
-}
-
-/* ============================================================
-   Premium-слой главной — сдержанный люкс, всё на главной
-   ============================================================ */
-
-/* ---- Hero: тонкий золотой маркер перед надзаголовком ---- */
+/* ---- Hero: тонкий чернильный маркер перед надзаголовком ---- */
 .hero-eb { display: inline-flex; align-items: center; gap: 0; }
 .hero-eb::before {
   content: ""; height: 1px; width: 0;
-  background: linear-gradient(90deg, var(--accent-2), transparent);
+  background: var(--ink-3);
   margin-right: 0; opacity: 0;
 }
 @media (prefers-reduced-motion: no-preference) {
@@ -66,12 +27,8 @@
   .hero-eb::before { width: 32px; margin-right: 16px; opacity: 1; }
 }
 
-/* ---- Секционные номера: золотой градиент вместо плоского ---- */
-.section-label .num {
-  background: linear-gradient(120deg, var(--accent), var(--accent-2));
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent; color: transparent;
-}
+/* ---- Секционные номера: спокойный акцентный тон ---- */
+.section-label .num { color: var(--accent); }
 
 /* ---- Карточки услуг: крупные «призрачные» номера (счётчик CSS) ---- */
 .do-grid { counter-reset: doNum; }
@@ -82,33 +39,26 @@
   position: absolute; right: 14px; bottom: -18px; z-index: 0;
   font-family: var(--font-display); font-style: italic; font-weight: 350;
   font-size: clamp(78px, 9vw, 122px); line-height: 1; letter-spacing: -0.03em;
-  color: transparent; -webkit-text-stroke: 1px rgba(243, 241, 228, 0.09);
+  color: transparent; -webkit-text-stroke: 1px rgba(35, 33, 24, 0.08);
   pointer-events: none;
   transition: -webkit-text-stroke-color .55s var(--ease), transform .6s var(--ease);
 }
 @media (hover: hover) {
   .do-card:hover::after {
-    -webkit-text-stroke-color: rgba(199, 154, 82, 0.42);
+    -webkit-text-stroke-color: rgba(35, 33, 24, 0.20);
     transform: translateY(-8px);
   }
-  /* мягкая золотая подсветка заголовка карточки на ховере */
-  .do-card:hover h3 { color: var(--accent-2); }
+  .do-card:hover h3 { color: var(--accent); }
 }
 
-/* ---- Чипы SEO: лёгкая золотая заливка на ховере ---- */
+/* ---- Чипы SEO: лёгкая чернильная заливка на ховере ---- */
 .seo-tags li { transition: color .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease); }
-.seo-tags li:hover { background: rgba(199, 154, 82, 0.08); }
+.seo-tags li:hover { background: var(--tint); }
 
-/* ---- CTA-блок: золотое свечение + акцентная линия сверху ---- */
+/* ---- CTA-блок: тонкая акцентная линия сверху, без свечения ---- */
 .cta { position: relative; overflow: hidden; isolation: isolate; }
-.cta::before {
-  content: ""; position: absolute; z-index: 0; left: 50%; top: -45%;
-  width: 75%; height: 165%; transform: translateX(-50%);
-  background: radial-gradient(ellipse at center, rgba(199, 154, 82, 0.14), transparent 62%);
-  pointer-events: none;
-}
 .cta::after {
   content: ""; position: absolute; z-index: 0; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(199, 154, 82, 0.65), transparent);
+  background: linear-gradient(90deg, transparent, var(--hairline), transparent);
 }
 .cta-inner { position: relative; z-index: 1; }
