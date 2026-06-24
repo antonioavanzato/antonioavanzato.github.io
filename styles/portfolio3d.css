@@ -60,7 +60,7 @@ body[data-page="portfolio"] .p-hero,
 body[data-page="portfolio"] .block { position: relative; z-index: 1; }
 
 /* ---------- HERO: split layout + 3D floating deck ---------- */
-body[data-page="portfolio"] .p-hero { min-height: 88vh; align-items: center; padding-top: 132px; padding-bottom: 40px; }
+body[data-page="portfolio"] .p-hero { min-height: 88vh; align-items: center; padding-top: clamp(120px,14vh,168px); padding-bottom: 40px; }
 .p3-hero-grid {
   display: grid; grid-template-columns: 1.05fr .95fr;
   gap: clamp(30px, 5vw, 80px); align-items: center; width: 100%;
