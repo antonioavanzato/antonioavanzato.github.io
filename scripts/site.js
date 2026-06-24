@@ -125,13 +125,8 @@
     mob.id = 'mobnav';
     mob.setAttribute('tabindex', '-1');
     mob.innerHTML = '<div class="mobnav-inner">' +
-      '<span class="mobnav-eyebrow">Навигация</span>' +
       '<nav class="mobnav-links" aria-label="Мобильное меню">' + mlinks + '</nav>' +
-      '<div class="mobnav-foot" style="--i:' + PAGES.length + '">' +
-      '<a class="mobnav-cta" href="contacts.html">Обсудить проект' +
-      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>' +
-      '<div class="mobnav-soc"><a href="https://t.me/avanzato" target="_blank" rel="noopener">Telegram</a></div>' +
-      '</div></div>';
+      '</div>';
     document.body.appendChild(mob);
 
     var burger = navwrap.querySelector('.burger');
