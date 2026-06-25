@@ -264,24 +264,19 @@ body.nav-open .mobnav {
 .mobnav-eyebrow::after { content: ""; width: 46px; height: 1px; background: linear-gradient(90deg, var(--accent), transparent); }
 body.nav-open .mobnav-eyebrow { opacity: 1; transform: none; transition-delay: .15s; }
 
-.mobnav-links { display: flex; flex-direction: column; counter-reset: mnav; }
+.mobnav-links { display: flex; flex-direction: column; }
 .mlink {
-  position: relative; display: flex; align-items: baseline; gap: 18px;
+  position: relative; display: flex; align-items: center; gap: 16px;
   width: fit-content; padding: 7px 0; text-decoration: none;
   transition: transform .45s var(--ease);
 }
+/* 朱 — тихая печать-точка у активного раздела (как в десктоп-меню) */
 .mlink::before {
-  counter-increment: mnav; content: counter(mnav, decimal-leading-zero);
-  font-family: var(--font-sans); font-weight: 400; font-size: 14px; letter-spacing: .05em;
-  color: var(--ink-3); transform: translateY(-.55em);
-  opacity: 0; transition: opacity .5s ease, color .4s var(--ease);
+  content: ""; flex: 0 0 auto; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--seal); transform: scale(0); transform-origin: center;
+  transition: transform .5s var(--ease);
 }
-body.nav-open .mlink::before { opacity: 1; transition-delay: calc(.24s + var(--i) * .07s); }
-.mlink::after {
-  content: "→"; font-family: var(--font-sans); align-self: center;
-  color: var(--accent); font-size: clamp(22px, 6vw, 32px);
-  opacity: 0; transform: translateX(-12px); transition: opacity .4s var(--ease), transform .4s var(--ease);
-}
+.mlink.active::before { transform: scale(1); }
 .mlink-t {
   display: inline-block; font-family: var(--font-display); font-weight: 500;
   font-size: clamp(36px, 12.5vw, 58px); line-height: 1.08; letter-spacing: -0.02em;
@@ -293,18 +288,14 @@ body.nav-open .mlink-t {
   opacity: 1; transform: none; filter: blur(0);
   transition-delay: calc(.24s + var(--i) * .07s);
 }
-.mlink.active .mlink-t { color: var(--accent-ink); }
-.mlink.active::before { color: var(--accent); }
 /* убираем синюю системную рамку при программном/тач-фокусе,
    аккуратный золотой контур оставляем только для навигации с клавиатуры */
 .mobnav:focus, .mlink:focus, .mobnav-cta:focus, .mobnav-soc a:focus, .burger:focus { outline: none; }
 .mlink:focus-visible { outline: 2px solid var(--accent); outline-offset: 8px; border-radius: 4px; }
 .mobnav-cta:focus-visible, .mobnav-soc a:focus-visible, .burger:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 @media (hover: hover) {
-  .mlink:hover { transform: translateX(14px); }
-  .mlink:hover .mlink-t { color: var(--accent-ink); }
-  .mlink:hover::before { color: var(--accent); }
-  .mlink:hover::after { opacity: 1; transform: translateX(0); }
+  .mlink:hover { transform: translateX(12px); }
+  .mlink:hover::before { transform: scale(1); }
 }
 
 .mobnav-foot {
