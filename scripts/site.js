@@ -147,9 +147,6 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setNav(false); });
     window.addEventListener('resize', function () { if (window.innerWidth > 720) setNav(false); });
 
-    setupScramble(navwrap);
-    setupNavIndicator(navwrap);
-
     return bar;
   }
   var scrollbar = buildChrome();
