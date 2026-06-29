@@ -182,12 +182,15 @@ body .hero-title {
   letter-spacing: -0.04em;
   margin: clamp(18px, 2.4vw, 34px) 0 0;
 }
-body .hero-title em {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
+/* акцентные слова — тот же минималистичный шрифт, только оранжевым */
+body .display em,
+body .hero-title em,
+body .h-section em {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: inherit;
   color: var(--accent);
-  letter-spacing: -0.02em;
+  letter-spacing: inherit;
 }
 
 body .hero-lede {
@@ -220,12 +223,6 @@ body .h-section {
   font-size: clamp(30px, 4.6vw, 64px);
   line-height: 1.0;
   letter-spacing: -0.035em;
-}
-body .h-section em {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-  color: var(--accent);
 }
 
 body .lede { color: var(--ink-2); }
