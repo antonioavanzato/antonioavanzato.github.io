@@ -182,7 +182,6 @@
       <div class="stat"><b>SEO</b><span>в каждом запуске</span></div>
     </div>
   </div>
-  <div class="scroll-hint" aria-hidden="true"><span>Листайте</span><i></i></div>
 </header>
 
 <section class="block" id="about">
@@ -313,7 +312,9 @@
 /* Правая «лента» из точек — мини-карта, едет при скролле (только десктоп) */
 (function () {
   if (document.body.getAttribute('data-page') !== 'home') return;
-  if (!window.matchMedia || window.matchMedia('(max-width:820px)').matches) return;
+
+  var isMobile = window.matchMedia && window.matchMedia('(max-width:820px)').matches;
+  var COLS = isMobile ? 3 : 5;
 
   // приглушённая палитра с редкими цветными акцентами (как палитры сайтов на httpster)
   var COLORS = [
@@ -329,7 +330,7 @@
   var track = document.createElement('div');
   track.className = 'dot-rail-track';
 
-  var ROWS = 120, COLS = 5, frag = document.createDocumentFragment();
+  var ROWS = 120, frag = document.createDocumentFragment();
   for (var i = 0; i < ROWS * COLS; i++) {
     var d = document.createElement('span');
     d.className = 'dot-rail-dot';
@@ -343,6 +344,10 @@
   }
   track.appendChild(frag);
   rail.appendChild(track);
+  // оранжевый курсор-индикатор, едет по ленте за скроллом
+  var cursor = document.createElement('div');
+  cursor.className = 'dot-rail-cursor';
+  rail.appendChild(cursor);
   var glass = document.createElement('div');
   glass.className = 'dot-rail-glass';
   rail.appendChild(glass);
@@ -355,6 +360,8 @@
     var p = max > 0 ? h.scrollTop / max : 0;
     var range = Math.max(0, track.scrollHeight - rail.clientHeight);
     track.style.transform = 'translate3d(0,' + (-p * range).toFixed(1) + 'px,0)';
+    var cur = Math.max(0, rail.clientHeight - cursor.offsetHeight);
+    cursor.style.transform = 'translate3d(0,' + (p * cur).toFixed(1) + 'px,0)';
     ticking = false;
   }
   function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(place); } }
