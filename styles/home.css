@@ -144,10 +144,22 @@ body[data-page="home"].nav-open .burger span:nth-child(3) { background: var(--ac
 /* ============================================================
    HERO — гигантский гротеск во весь экран, как на httpster
    ============================================================ */
+/* единый вертикальный ритм: одинаковый «воздух» между всеми секциями */
+body[data-page="home"] {
+  --gap: clamp(78px, 10vw, 132px);
+}
 body[data-page="home"] .hero {
   min-height: auto;
-  padding: clamp(150px, 22vh, 240px) 0 clamp(60px, 9vh, 110px);
+  padding: clamp(128px, 17vh, 188px) 0 0;
   display: block;
+}
+/* секции получают только верхний отступ = --gap → расстояния симметричны */
+body[data-page="home"] .block {
+  padding: var(--gap) 0 0;
+}
+/* последняя секция (CTA + футер) — симметричный отступ снизу */
+body[data-page="home"] .block:last-of-type {
+  padding-bottom: var(--gap);
 }
 
 /* оранжевый акцент-надзаголовок («40+ проектов в эфире») */
