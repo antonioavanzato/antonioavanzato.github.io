@@ -532,3 +532,91 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
+
+/* ============================================================
+   AVANZATO — глобальный дизайн-ключ (на всех страницах):
+   пилюля-навигация с брендом, лента точек, маркиза ключевиков
+   ============================================================ */
+(function () {
+  'use strict';
+
+  /* бренд слева внутри пилюли */
+  (function () {
+    var nav = document.querySelector('.navwrap .nav');
+    if (!nav || nav.querySelector('.nav-brand')) return;
+    var brand = document.createElement('a');
+    brand.className = 'nav-brand';
+    brand.href = 'index.html';
+    brand.setAttribute('translate', 'no');
+    brand.textContent = 'Avanzato';
+    nav.insertBefore(brand, nav.firstChild);
+  })();
+
+  /* SEO-ключевики: дублируем для бесшовной бегущей ленты */
+  (function () {
+    var list = document.querySelector('.seo-marquee .seo-tags');
+    if (!list) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    [].slice.call(list.children).forEach(function (li) {
+      var c = li.cloneNode(true);
+      c.setAttribute('aria-hidden', 'true');
+      c.className = 'clone';
+      list.appendChild(c);
+    });
+  })();
+
+  /* правая «лента» из точек — мини-карта, едет при скролле */
+  (function () {
+    if (document.querySelector('.dot-rail')) return;
+    var isMobile = window.matchMedia && window.matchMedia('(max-width:820px)').matches;
+    var COLS = isMobile ? 3 : 5;
+    var COLORS = [
+      '#d8d3c6', '#c4bdac', '#b0a890', '#9a9176', '#807862', '#cfcabd',
+      '#e3ded2', '#a8a294', '#736d5c', '#5a5446', '#bdb6a4', '#cac3b2',
+      '#3b3a34', '#1f1e1a', '#8c8472', '#d2ccbe', '#9d9683', '#b8b1a0'
+    ];
+    var ACCENTS = ['#ff4d00', '#e0b341', '#5b7a8c', '#7d6f9c', '#9c5a4a', '#5f7a5a'];
+
+    var rail = document.createElement('div');
+    rail.className = 'dot-rail';
+    rail.setAttribute('aria-hidden', 'true');
+    var track = document.createElement('div');
+    track.className = 'dot-rail-track';
+    var ROWS = 120, frag = document.createDocumentFragment();
+    for (var i = 0; i < ROWS * COLS; i++) {
+      var d = document.createElement('span');
+      d.className = 'dot-rail-dot';
+      var c = Math.random() < 0.15
+        ? ACCENTS[(Math.random() * ACCENTS.length) | 0]
+        : COLORS[(Math.random() * COLORS.length) | 0];
+      d.style.background = c;
+      if (Math.random() < 0.18) d.style.opacity = '0.45';
+      frag.appendChild(d);
+    }
+    track.appendChild(frag);
+    rail.appendChild(track);
+    var cursor = document.createElement('div');
+    cursor.className = 'dot-rail-cursor';
+    rail.appendChild(cursor);
+    var glass = document.createElement('div');
+    glass.className = 'dot-rail-glass';
+    rail.appendChild(glass);
+    document.body.appendChild(rail);
+
+    var ticking = false;
+    function place() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      var p = max > 0 ? h.scrollTop / max : 0;
+      var range = Math.max(0, track.scrollHeight - rail.clientHeight);
+      track.style.transform = 'translate3d(0,' + (-p * range).toFixed(1) + 'px,0)';
+      var cur = Math.max(0, rail.clientHeight - cursor.offsetHeight);
+      cursor.style.transform = 'translate3d(0,' + (p * cur).toFixed(1) + 'px,0)';
+      ticking = false;
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(place); } }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    place();
+  })();
+})();
