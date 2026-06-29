@@ -263,18 +263,20 @@
           <a href="contacts.html">опишите задачу</a> — отвечу в течение дня.</p>
       </div>
     </div>
-    <ul class="seo-tags reveal" data-d="1">
-      <li>Создание сайта под ключ</li>
-      <li>Разработка лендинга</li>
-      <li>Многостраничные сайты</li>
-      <li>Веб-дизайн</li>
-      <li>SEO-продвижение</li>
-      <li>Создание логотипа</li>
-      <li>Адаптивная вёрстка</li>
-      <li>Сайт для бизнеса в Казани</li>
-      <li>Разработка сайтов удалённо</li>
-      <li>Сайт под ключ по России и миру</li>
-    </ul>
+    <div class="seo-marquee reveal" data-d="1">
+      <ul class="seo-tags">
+        <li>Создание сайта под ключ</li>
+        <li>Разработка лендинга</li>
+        <li>Многостраничные сайты</li>
+        <li>Веб-дизайн</li>
+        <li>SEO-продвижение</li>
+        <li>Создание логотипа</li>
+        <li>Адаптивная вёрстка</li>
+        <li>Сайт для бизнеса в Казани</li>
+        <li>Разработка сайтов удалённо</li>
+        <li>Сайт под ключ по России и миру</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -319,6 +321,23 @@
   brand.setAttribute('translate', 'no');
   brand.textContent = 'Avanzato';
   nav.insertBefore(brand, nav.firstChild);
+})();
+</script>
+<script>
+/* SEO-ключевики: дублируем для бесшовной бегущей ленты */
+(function () {
+  if (document.body.getAttribute('data-page') !== 'home') return;
+  var list = document.querySelector('.seo-marquee .seo-tags');
+  if (!list) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  var originals = [].slice.call(list.children);
+  originals.forEach(function (li) {
+    var c = li.cloneNode(true);
+    c.setAttribute('aria-hidden', 'true');
+    c.className = 'clone';
+    list.appendChild(c);
+  });
 })();
 </script>
 <script>
