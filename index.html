@@ -329,12 +329,12 @@
   var track = document.createElement('div');
   track.className = 'dot-rail-track';
 
-  var ROWS = 80, COLS = 4, frag = document.createDocumentFragment();
+  var ROWS = 120, COLS = 5, frag = document.createDocumentFragment();
   for (var i = 0; i < ROWS * COLS; i++) {
     var d = document.createElement('span');
     d.className = 'dot-rail-dot';
-    // ~12% точек — цветной акцент, остальное — нейтраль
-    var c = Math.random() < 0.12
+    // ~15% точек — цветной акцент, остальное — нейтраль
+    var c = Math.random() < 0.15
       ? ACCENTS[(Math.random() * ACCENTS.length) | 0]
       : COLORS[(Math.random() * COLORS.length) | 0];
     d.style.background = c;
