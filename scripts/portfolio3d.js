@@ -12,38 +12,11 @@
   var fine = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
 
-  /* ---------- 1. card tilt ---------- */
-  function setupCardTilt() {
-    if (reduce || !fine) return;
-    var cards = [].slice.call(document.querySelectorAll('.p3-card'));
-    cards.forEach(function (card) {
-      var inner = card.querySelector('.p3-card-inner');
-      if (!inner) return;
-      var max = card.classList.contains('wide') ? 6 : 10;
-      var raf = null, tx = 0, ty = 0, gx = 50, gy = 50;
-      function paint() {
-        raf = null;
-        inner.style.transform = 'rotateX(' + ty.toFixed(2) + 'deg) rotateY(' + tx.toFixed(2) + 'deg) translateZ(0)';
-        inner.style.setProperty('--gx', gx.toFixed(1) + '%');
-        inner.style.setProperty('--gy', gy.toFixed(1) + '%');
-      }
-      card.addEventListener('mousemove', function (e) {
-        var r = inner.getBoundingClientRect();
-        var px = (e.clientX - r.left) / r.width - 0.5;
-        var py = (e.clientY - r.top) / r.height - 0.5;
-        tx = clamp(px, -0.5, 0.5) * max;
-        ty = clamp(-py, -0.5, 0.5) * max;
-        gx = px * 100 + 50; gy = py * 100 + 50;
-        inner.style.transition = 'transform .12s linear, box-shadow .5s var(--ease), border-color .5s var(--ease)';
-        if (!raf) raf = requestAnimationFrame(paint);
-      });
-      card.addEventListener('mouseleave', function () {
-        if (raf) { cancelAnimationFrame(raf); raf = null; }
-        inner.style.transition = 'transform .6s cubic-bezier(.22,1,.36,1), box-shadow .5s var(--ease), border-color .5s var(--ease)';
-        inner.style.transform = '';
-      });
-    });
-  }
+  /* ---------- 1. card tilt ----------
+     Убрано намеренно: карточки в сетке теперь с чистым редакторским
+     hover (zoom + ч/б→цвет, акцентная рамка) — всё на CSS.
+     Парящая колода в шапке и фон-параллакс сохранены. */
+  function setupCardTilt() { /* no-op */ }
 
   /* ---------- 2. hero floating deck ---------- */
   function setupHeroDeck() {
