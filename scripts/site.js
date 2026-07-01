@@ -187,11 +187,26 @@
   }
 
   /* ---------- reveal ---------- */
+  // короткий акцентный импульс правой полоски с точками — как будто
+  // она «выпускает» блок, который влетает на место
+  var _railTimer = null;
+  function pulseRail() {
+    if (reduceMotion) return;
+    var rail = document.querySelector('.dot-rail');
+    if (!rail) return;
+    rail.classList.remove('emit');
+    // reflow, чтобы анимация перезапускалась при частых появлениях
+    void rail.offsetWidth;
+    rail.classList.add('emit');
+    clearTimeout(_railTimer);
+    _railTimer = setTimeout(function () { rail.classList.remove('emit'); }, 620);
+  }
+
   function setupReveal() {
     var els = [].slice.call(document.querySelectorAll('.reveal'));
     if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); pulseRail(); io.unobserve(en.target); } });
     }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
     var vh = window.innerHeight || document.documentElement.clientHeight;
     var firstScreen = [];
