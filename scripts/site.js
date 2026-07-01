@@ -407,32 +407,10 @@
     });
   }
 
-  /* ---------- 3D tilt on portfolio cards ---------- */
-  function setupTilt() {
-    if (reduceMotion) return;
-    if (window.matchMedia && window.matchMedia('(hover: none)').matches) return;
-    document.querySelectorAll('.m-item').forEach(function (card) {
-      var frame = card.querySelector('.m-frame');
-      if (!frame) return;
-      var max = 8;
-      card.addEventListener('mousemove', function (e) {
-        var r = card.getBoundingClientRect();
-        var px = (e.clientX - r.left) / r.width - 0.5;
-        var py = (e.clientY - r.top) / r.height - 0.5;
-        frame.style.transition = 'transform .12s linear';
-        frame.style.transform = 'perspective(900px) rotateX(' + (-py * max).toFixed(2) + 'deg) rotateY(' + (px * max).toFixed(2) + 'deg) scale(1.03) translateZ(0)';
-        // блик следует за курсором
-        frame.style.setProperty('--gx', (px * 100 + 50).toFixed(1) + '%');
-        frame.style.setProperty('--gy', (py * 100 + 50).toFixed(1) + '%');
-        frame.classList.add('tilting');
-      });
-      card.addEventListener('mouseleave', function () {
-        frame.style.transition = 'transform .55s cubic-bezier(.22,1,.36,1)';
-        frame.style.transform = '';
-        frame.classList.remove('tilting');
-      });
-    });
-  }
+  /* ---------- portfolio cards hover ----------
+     Чистый редакторский hover — плавный zoom и переход ч/б→цвет,
+     тонкая рамка-линия; всё на CSS. 3D-наклон убран намеренно. */
+  function setupTilt() { /* no-op: hover полностью на CSS */ }
 
   /* ---------- portfolio render ---------- */
   function renderPortfolio() {
