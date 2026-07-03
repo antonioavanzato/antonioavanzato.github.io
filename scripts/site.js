@@ -613,3 +613,27 @@
     place();
   })();
 })();
+
+/* ---------- Cookie notice ---------- */
+(function () {
+  var KEY = 'cookie-notice-ack';
+  try { if (localStorage.getItem(KEY)) return; } catch (e) { return; }
+  var note = document.createElement('div');
+  note.className = 'cookie-note';
+  note.setAttribute('role', 'region');
+  note.setAttribute('aria-label', 'Уведомление об использовании cookie');
+  note.innerHTML =
+    '<p>Сайт использует файлы cookie и сервисы аналитики (Яндекс.Метрика, Google Analytics) ' +
+    'для улучшения работы сайта. Оставаясь здесь, вы соглашаетесь с ' +
+    '<a href="legal-privacy.html">политикой конфиденциальности</a>.</p>' +
+    '<button type="button">Хорошо</button>';
+  note.querySelector('button').addEventListener('click', function () {
+    try { localStorage.setItem(KEY, '1'); } catch (e) {}
+    note.classList.remove('is-in');
+    setTimeout(function () { note.remove(); }, 500);
+  });
+  document.body.appendChild(note);
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () { note.classList.add('is-in'); });
+  });
+})();
