@@ -429,9 +429,9 @@ body .scrollbar { background: var(--accent); }
   animation: railEmit .6s var(--ease-soft, cubic-bezier(.22,1,.36,1));
 }
 @keyframes railEmit {
-  0%   { box-shadow: 0 0 14px 2px rgba(255, 77, 0, 0.55); transform: scaleX(1); }
-  30%  { box-shadow: 0 0 26px 6px rgba(255, 77, 0, 0.85); transform: scaleX(1); }
-  100% { box-shadow: 0 0 14px 2px rgba(255, 77, 0, 0.55); transform: scaleX(1); }
+  0%   { box-shadow: 0 0 14px 2px rgba(255, 77, 0, 0.55); }
+  30%  { box-shadow: 0 0 26px 6px rgba(255, 77, 0, 0.85); }
+  100% { box-shadow: 0 0 14px 2px rgba(255, 77, 0, 0.55); }
 }
 
 @media (prefers-reduced-motion: reduce) {
