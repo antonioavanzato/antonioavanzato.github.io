@@ -1049,6 +1049,12 @@ body::after {
   margin: 0 0 20px; font-size: 14px; line-height: 1.6;
   color: var(--ink-2); font-weight: 300; letter-spacing: 0;
 }
+.cookie-note .cookie-link {
+  color: var(--ink); text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  transition: color .3s, border-color .3s;
+}
+.cookie-note .cookie-link:hover { color: var(--accent); border-color: var(--ink); }
 .cookie-note .cookie-actions { display: flex; align-items: center; gap: 20px; }
 .cookie-note .btn { padding: 12px 24px; font-size: 13.5px; }
 .cookie-note .cookie-more {
