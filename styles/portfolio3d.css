@@ -134,91 +134,72 @@ body[data-page="portfolio"] .p-hero { min-height: 88vh; align-items: center; pad
   gap: clamp(22px, 3vw, 42px);
   perspective: 1500px; margin-top: 14px;
 }
-.p3-card { perspective: 1200px; transform-style: preserve-3d; }
+.p3-card { position: relative; }
 .p3-link {
   display: block; position: relative; text-decoration: none; color: inherit;
-  border-radius: var(--radius-lg); transform-style: preserve-3d;
-  transition: transform .6s var(--ease);
 }
+/* окно браузера: рамка Safari уже в самом скриншоте, поэтому просто
+   аккуратная карточка-окно + подпись снизу */
 .p3-card-inner {
-  position: relative; border-radius: 16px; overflow: hidden;
-  transform-style: preserve-3d; aspect-ratio: 16/10.5;
-  border: 1px solid rgba(10, 10, 10,.10);
+  position: relative; border-radius: 12px; overflow: hidden;
+  aspect-ratio: 4336 / 2804;
+  border: 1px solid var(--hairline);
   background: var(--bg-2);
-  box-shadow: 0 30px 60px -34px rgba(0,0,0,.8);
+  box-shadow: 0 30px 60px -42px rgba(10, 10, 10, .55);
   transition: transform .5s var(--ease), box-shadow .5s var(--ease), border-color .5s var(--ease);
   will-change: transform;
 }
-.p3-img { position: absolute; inset: 0; transform: translateZ(0); }
+.p3-img { position: absolute; inset: 0; }
 .p3-img img {
   width: 100%; height: 100%; object-fit: cover; display: block;
-  filter: grayscale(.35) brightness(.82) saturate(1.05);
+  filter: grayscale(.22) brightness(.97);
   transition: filter .6s var(--ease), transform .8s var(--ease);
-  transform: scale(1.05);
+  transform: scale(1.005);
 }
-.p3-card-inner::before {
-  content: ""; position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(to top, rgba(8,8,6,.92) 4%, rgba(8,8,6,.35) 42%, rgba(8,8,6,0) 70%);
-  transition: opacity .5s var(--ease);
-}
-/* блик убран — оставляем чистый редакторский hover */
 .p3-glare { display: none; }
-/* подписи поверх фото (на тёмном градиенте — поэтому светлые, читаемые) */
+
+/* подпись под окном — редакционный вид */
+.p3-cap { display: flex; align-items: baseline; gap: 18px; margin-top: 20px; padding: 0 2px; }
 .p3-num {
-  position: absolute; top: 20px; left: 22px; z-index: 5;
   font-family: var(--font-display); font-weight: 500;
-  font-size: clamp(34px, 4.4vw, 58px); line-height: 1;
-  color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, .7);
-  letter-spacing: -.01em;
-  transition: -webkit-text-stroke-color .5s var(--ease);
+  font-size: 15px; line-height: 1; flex: none; letter-spacing: .02em;
+  color: transparent; -webkit-text-stroke: 1px var(--ink-3);
+  transition: -webkit-text-stroke-color .4s var(--ease);
 }
-.p3-go {
-  position: absolute; top: 18px; right: 18px; z-index: 6;
-  width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center;
-  color: #fff; background: linear-gradient(135deg, var(--accent-2), var(--accent));
-  box-shadow: 0 14px 30px -10px rgba(10, 10, 10,.7);
-  transform: scale(.82); opacity: 0;
-  transition: transform .45s var(--ease), opacity .4s var(--ease);
-}
-.p3-info {
-  position: absolute; left: 24px; right: 24px; bottom: 22px; z-index: 5;
-}
+.p3-info { flex: 1; min-width: 0; }
 .p3-info h3 {
   font-family: var(--font-display); font-weight: 500;
-  font-size: clamp(19px, 2.2vw, 27px); margin: 0 0 4px; color: #fff;
-  letter-spacing: -.01em; text-shadow: 0 1px 18px rgba(0, 0, 0, .35);
+  font-size: clamp(18px, 2vw, 23px); margin: 0 0 3px; color: var(--ink);
+  letter-spacing: -.01em;
 }
-.p3-info p { margin: 0; font-size: 14px; color: rgba(255, 255, 255, .78); line-height: 1.4; text-shadow: 0 1px 14px rgba(0, 0, 0, .3); }
-.p3-info .p3-meta {
-  display: inline-flex; align-items: center; gap: 8px; margin-top: 12px;
-  font-family: var(--font-sans); font-size: 12px; letter-spacing: .12em;
-  text-transform: uppercase; color: var(--accent);
-  opacity: 0; transform: translateY(8px);
-  transition: opacity .45s var(--ease) .05s, transform .45s var(--ease) .05s;
+.p3-info p { margin: 0; font-size: 13.5px; color: var(--ink-2); line-height: 1.4; }
+.p3-meta {
+  flex: none; align-self: center;
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-sans); font-size: 11px; letter-spacing: .13em;
+  text-transform: uppercase; color: var(--ink-3);
+  transition: color .4s var(--ease), gap .4s var(--ease);
 }
-.p3-info .p3-meta::before { content: ""; width: 22px; height: 1px; background: var(--accent); display: inline-block; }
+.p3-meta::after { content: ""; width: 18px; height: 1px; background: currentColor; transition: width .4s var(--ease); }
 
-/* hover state — чистый zoom + проявление цвета + акцентная рамка */
+/* hover — окно приподнимается, скрин наливается цветом, акценты */
 @media (hover: hover) and (pointer: fine) {
-  .p3-card-inner:hover {
-    border-color: color-mix(in srgb, var(--accent) 55%, transparent);
-    box-shadow: 0 40px 80px -44px rgba(10, 10, 10,.4);
+  .p3-link:hover .p3-card-inner {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--accent) 40%, var(--hairline));
+    box-shadow: 0 46px 84px -46px rgba(10, 10, 10, .5);
   }
-  .p3-card-inner:hover .p3-img img { filter: grayscale(0) brightness(1) saturate(1.06); transform: scale(1.08); }
-  .p3-card-inner:hover .p3-go { transform: scale(1); opacity: 1; }
-  .p3-card-inner:hover .p3-num { -webkit-text-stroke-color: var(--accent); }
-  .p3-card-inner:hover .p3-info .p3-meta { opacity: 1; transform: none; }
+  .p3-link:hover .p3-img img { filter: grayscale(0) brightness(1); transform: scale(1.03); }
+  .p3-link:hover .p3-num { -webkit-text-stroke-color: var(--accent); }
+  .p3-link:hover .p3-meta { color: var(--accent); gap: 12px; }
 }
-/* touch / no-hover: show affordances by default */
+/* touch / no-hover: показываем в цвете */
 @media (hover: none) {
-  .p3-go { opacity: 1; transform: scale(1); }
-  .p3-info .p3-meta { opacity: 1; transform: none; }
-  .p3-img img { filter: grayscale(.12) brightness(.9); }
+  .p3-img img { filter: grayscale(0) brightness(1); }
 }
 
-/* make every 3rd card span full width for editorial rhythm */
+/* широкие карточки — во всю ширину, та же пропорция окна */
 .p3-card.wide { grid-column: 1 / -1; }
-.p3-card.wide .p3-card-inner { aspect-ratio: 21/8.5; }
 
 /* ---------- responsive ---------- */
 @media (max-width: 940px) {
@@ -228,7 +209,6 @@ body[data-page="portfolio"] .p-hero { min-height: 88vh; align-items: center; pad
 }
 @media (max-width: 640px) {
   .p3-scene { grid-template-columns: 1fr; }
-  .p3-card.wide .p3-card-inner { aspect-ratio: 16/11; }
   .p3-deck-card { width: clamp(150px, 46vw, 200px); }
   .p3-deck { transform: scale(.8); }
   .p3-stage { overflow: hidden; }
