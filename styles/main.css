@@ -29,7 +29,14 @@
 }
 
 * { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; overflow-x: clip; }
+html {
+  -webkit-text-size-adjust: 100%; scroll-behavior: smooth; overflow-x: clip;
+  /* скрываем штатный скроллбар — навигацию заменяет dot-rail справа;
+     прокрутка колёсиком, тачпадом, клавишами и тач-жестами сохраняется */
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* старый Edge / IE */
+}
+html::-webkit-scrollbar { width: 0; height: 0; display: none; } /* Chrome, Safari */
 body {
   margin: 0;
   font-family: var(--font-sans);
