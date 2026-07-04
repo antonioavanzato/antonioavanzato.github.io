@@ -582,6 +582,9 @@ image-slot { --is-bg: rgba(10, 10, 10,0.05); background: var(--is-bg); }
 .tiers-foot{text-align:center;margin-top:30px;color:var(--ink-2);font-size:15px}
 .tiers-foot a{color:var(--accent);font-weight:500}
 .tiers-foot a:hover{text-decoration:underline}
+.tiers-rev{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:14px;color:var(--ink-2);font-size:14px;line-height:1.5;text-align:center}
+.tiers-rev b{color:var(--ink);font-weight:500;white-space:nowrap}
+.tiers-rev .dot-ic{width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none}
 
 .incl-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(32px,5vw,80px);align-items:start}
 .incl-note{font-size:13px;line-height:1.5;font-style:italic;margin-top:24px;padding-top:20px;border-top:1px solid var(--hairline)}
