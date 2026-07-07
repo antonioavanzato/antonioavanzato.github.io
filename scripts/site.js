@@ -4,7 +4,7 @@
 (function () {
   'use strict';
 
-  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwG3MRzQR7NA-J4oMZgpyqQ6LQ8tiPJkER_JSH-q-OV_N6zBPabop8bbnPg1S4hVklGoA/exec';
+  var SCRIPT_URL = 'https://functions.yandexcloud.net/d4e2uuvutkn0qcqevb9j?r=orders&source=github';
   var SECRET_KEY = '222897Avanzato!';
 
   var PAGES = [
