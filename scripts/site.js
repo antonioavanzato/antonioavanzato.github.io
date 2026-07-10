@@ -391,14 +391,37 @@
         msg:   msg || '—'
       };
 
-      fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) })
-        .then(function () {
-          form.classList.add('sent');
-        })
-        .catch(function () {
-          if (lbl2) lbl2.textContent = 'Ошибка — напишите в Telegram';
-          if (btn) { btn.disabled = false; btn.classList.remove('loading'); }
-        });
+            (function () {
+        var attempt = 0, maxAttempts = 3;
+        function tryOnce() {
+          attempt++;
+          var controller = ('AbortController' in window) ? new AbortController() : null;
+          var timer = setTimeout(function () { if (controller) controller.abort(); }, 20000);
+          fetch(SCRIPT_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+            body: JSON.stringify(payload),
+            signal: controller ? controller.signal : undefined
+          }).then(function (res) {
+            return res.text().then(function (t) {
+              clearTimeout(timer);
+              if (res.ok && t.trim() === 'ok') { form.classList.add('sent'); }
+              else { retryOrFail(); }
+            });
+          }).catch(function () {
+            clearTimeout(timer);
+            retryOrFail();
+          });
+        }
+        function retryOrFail() {
+          if (attempt < maxAttempts) { setTimeout(tryOnce, 1500); }
+          else {
+            if (lbl2) lbl2.textContent = 'Ошибка — напишите в Telegram';
+            if (btn) { btn.disabled = false; btn.classList.remove('loading'); }
+          }
+        }
+        tryOnce();
+      })();
     });
   }
 
