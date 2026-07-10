@@ -1,5 +1,32 @@
+# AVANZATO — разработка сайтов под ключ, Казань
+# Сайт открыт для поисковых систем и ИИ-ассистентов.
+
 User-agent: *
 Allow: /
-Disallow: /legal-privacy.html
+
+# ИИ-краулеры (Google AI, Яндекс Нейро, ChatGPT, Claude, Perplexity) — доступ разрешён
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: YandexBot
+Allow: /
 
 Sitemap: https://antonioavanzato.github.io/sitemap.xml
