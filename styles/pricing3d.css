@@ -6,36 +6,6 @@
 
 @property --tier-ang { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
 
-/* ---------- floating 3D background shapes ---------- */
-.pr-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; perspective: 1000px; }
-.pr-shape { position: absolute; transform-style: preserve-3d; opacity: .42; will-change: transform; }
-.pr-shape i {
-  position: absolute; inset: 0; display: block;
-  border: 1px solid rgba(10, 10, 10,.2);
-  background: linear-gradient(135deg, rgba(10, 10, 10,.05), rgba(10, 10, 10,0));
-  backface-visibility: hidden;
-}
-.pr-cube { width: 110px; height: 110px; }
-.pr-cube i:nth-child(1){ transform: translateZ(55px); }
-.pr-cube i:nth-child(2){ transform: rotateY(180deg) translateZ(55px); }
-.pr-cube i:nth-child(3){ transform: rotateY(90deg)  translateZ(55px); }
-.pr-cube i:nth-child(4){ transform: rotateY(-90deg) translateZ(55px); }
-.pr-cube i:nth-child(5){ transform: rotateX(90deg)  translateZ(55px); }
-.pr-cube i:nth-child(6){ transform: rotateX(-90deg) translateZ(55px); }
-.pr-ring { width: 190px; height: 190px; border-radius: 50%; }
-.pr-ring i { border-radius: 50%; border-width: 1.5px; }
-.pr-s1 { top: 18%; left: 84%; --sc: 1.1; }
-.pr-s2 { top: 70%; left: 8%;  --sc: .8; }
-.pr-s3 { top: 84%; left: 78%; --sc: .7; }
-@media (prefers-reduced-motion: no-preference) {
-  .pr-cube { animation: prspin 28s linear infinite; }
-  .pr-s2.pr-cube { animation-duration: 34s; animation-direction: reverse; }
-  .pr-ring { animation: prtilt 24s ease-in-out infinite; }
-}
-@keyframes prspin { from { transform: scale(var(--sc,1)) rotateX(0) rotateY(0); } to { transform: scale(var(--sc,1)) rotateX(360deg) rotateY(360deg); } }
-@keyframes prtilt { 0%,100% { transform: scale(var(--sc,1)) rotateX(62deg) rotateZ(0); } 50% { transform: scale(var(--sc,1)) rotateX(62deg) rotateZ(180deg); } }
-@media (max-width: 720px) { .pr-bg { opacity: .5; } .pr-s3 { display: none; } }
-
 body[data-page="pricing"] { overflow-x: hidden; }
 body[data-page="pricing"] .p-hero,
 body[data-page="pricing"] .block { position: relative; z-index: 1; }
