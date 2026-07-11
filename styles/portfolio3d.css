@@ -4,55 +4,6 @@
    Everything heavy is gated behind hover + reduced-motion.
    ============================================================ */
 
-/* ---------- floating 3D background shapes ---------- */
-.p3-bg {
-  position: fixed; inset: 0; z-index: 0; pointer-events: none;
-  overflow: hidden; perspective: 1000px;
-}
-.p3-shape {
-  position: absolute; transform-style: preserve-3d;
-  opacity: .5; will-change: transform;
-}
-.p3-shape i {
-  position: absolute; inset: 0; display: block;
-  border: 1px solid rgba(10, 10, 10,.22);
-  background: linear-gradient(135deg, rgba(10, 10, 10,.05), rgba(10, 10, 10,0));
-  backface-visibility: hidden;
-}
-/* cube built from 6 faces */
-.p3-cube { width: 120px; height: 120px; }
-.p3-cube i:nth-child(1){ transform: translateZ(60px); }
-.p3-cube i:nth-child(2){ transform: rotateY(180deg) translateZ(60px); }
-.p3-cube i:nth-child(3){ transform: rotateY(90deg)  translateZ(60px); }
-.p3-cube i:nth-child(4){ transform: rotateY(-90deg) translateZ(60px); }
-.p3-cube i:nth-child(5){ transform: rotateX(90deg)  translateZ(60px); }
-.p3-cube i:nth-child(6){ transform: rotateX(-90deg) translateZ(60px); }
-/* ring / torus-ish: a thin rotating disc */
-.p3-ring { width: 200px; height: 200px; border-radius: 50%; }
-.p3-ring i { border-radius: 50%; border-width: 1.5px; }
-
-.p3-s1 { top: 14%; left: 6%;  --sc: .9; }
-.p3-s2 { top: 62%; left: 80%; --sc: 1.25; }
-.p3-s3 { top: 78%; left: 12%; --sc: .7; }
-.p3-s4 { top: 26%; left: 86%; --sc: .8; }
-
-@media (prefers-reduced-motion: no-preference) {
-  .p3-s1 i, .p3-cube.p3-s4 { } /* placeholder */
-  .p3-cube { animation: p3spin 26s linear infinite; }
-  .p3-s2.p3-cube { animation-duration: 34s; animation-direction: reverse; }
-  .p3-s4.p3-cube { animation-duration: 30s; }
-  .p3-ring { animation: p3tilt 22s ease-in-out infinite; }
-}
-@keyframes p3spin {
-  from { transform: scale(var(--sc,1)) rotateX(0deg) rotateY(0deg); }
-  to   { transform: scale(var(--sc,1)) rotateX(360deg) rotateY(360deg); }
-}
-@keyframes p3tilt {
-  0%,100% { transform: scale(var(--sc,1)) rotateX(62deg) rotateZ(0deg); }
-  50%     { transform: scale(var(--sc,1)) rotateX(62deg) rotateZ(180deg); }
-}
-@media (max-width: 720px) { .p3-bg { opacity: .55; } .p3-s2, .p3-s4 { display: none; } }
-
 /* keep page content above the shapes; clip stray 3D overflow */
 html:has(body[data-page="portfolio"]) { overflow-x: hidden; }
 body[data-page="portfolio"] { overflow-x: hidden; }
@@ -215,6 +166,6 @@ body[data-page="portfolio"] .p-hero { min-height: 88vh; align-items: center; pad
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .p3-deck-card, .p3-cube, .p3-ring { animation: none !important; }
+  .p3-deck-card { animation: none !important; }
   .p3-card-inner { transition: none; }
 }
