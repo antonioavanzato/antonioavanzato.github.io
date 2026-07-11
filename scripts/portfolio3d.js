@@ -46,31 +46,9 @@
     }
   }
 
-  /* ---------- 3. background shape parallax ---------- */
-  function setupBgParallax() {
-    if (reduce || !fine) return;
-    var shapes = [].slice.call(document.querySelectorAll('.p3-shape'));
-    if (!shapes.length) return;
-    var raf = null, mx = 0, my = 0;
-    function paint() {
-      raf = null;
-      shapes.forEach(function (s, i) {
-        var depth = (i + 1) * 8;
-        s.style.marginLeft = (mx * depth).toFixed(1) + 'px';
-        s.style.marginTop = (my * depth).toFixed(1) + 'px';
-      });
-    }
-    window.addEventListener('mousemove', function (e) {
-      mx = e.clientX / window.innerWidth - 0.5;
-      my = e.clientY / window.innerHeight - 0.5;
-      if (!raf) raf = requestAnimationFrame(paint);
-    }, { passive: true });
-  }
-
   function init() {
     setupCardTilt();
     setupHeroDeck();
-    setupBgParallax();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
