@@ -259,6 +259,9 @@
     /* ---------- page transition ---------- */
   function setupPageTransition() {
     if (reduceMotion) return;
+    // браузер умеет нативные переходы между страницами (@view-transition в CSS) —
+    // JS-шторка не нужна, иначе получится двойная анимация
+    if (window.PageRevealEvent) return;
     var curtain = document.createElement('div');
     curtain.className = 'page-curtain';
     document.body.appendChild(curtain);
