@@ -567,7 +567,12 @@
     brand.className = 'nav-brand';
     brand.href = 'index.html';
     brand.setAttribute('translate', 'no');
-    brand.textContent = 'Avanzato';
+    brand.setAttribute('aria-label', 'Avanzato — на главную');
+    var logo = document.createElement('img');
+    logo.src = 'images/avanzato-logo-nav.png';
+    logo.alt = 'Avanzato';
+    logo.width = 1401; logo.height = 161;
+    brand.appendChild(logo);
     nav.insertBefore(brand, nav.firstChild);
   })();
 

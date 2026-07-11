@@ -74,6 +74,7 @@ body .nav-brand {
   transition: opacity .3s var(--ease);
 }
 body .nav-brand:hover { opacity: 0.6; }
+body .nav-brand img { display: block; height: 15px; width: auto; }
 
 body .nav .nav-links { gap: clamp(4px, 1.4vw, 20px); }
 body .nav a.link {
