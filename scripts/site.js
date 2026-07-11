@@ -259,6 +259,9 @@
     /* ---------- page transition ---------- */
   function setupPageTransition() {
     if (reduceMotion) return;
+    // браузер умеет нативные переходы между страницами (@view-transition в CSS) —
+    // JS-шторка не нужна, иначе получится двойная анимация
+    if (window.PageRevealEvent) return;
     var curtain = document.createElement('div');
     curtain.className = 'page-curtain';
     document.body.appendChild(curtain);
@@ -564,7 +567,12 @@
     brand.className = 'nav-brand';
     brand.href = 'index.html';
     brand.setAttribute('translate', 'no');
-    brand.textContent = 'Avanzato';
+    brand.setAttribute('aria-label', 'Avanzato — на главную');
+    var logo = document.createElement('img');
+    logo.src = 'images/avanzato-logo-nav.png';
+    logo.alt = 'Avanzato';
+    logo.width = 1401; logo.height = 161;
+    brand.appendChild(logo);
     nav.insertBefore(brand, nav.firstChild);
   })();
 
