@@ -35,7 +35,7 @@ body[data-page="pricing"] .tier.featured::before {
   pointer-events: none; z-index: 6;
 }
 @media (prefers-reduced-motion: no-preference) {
-  body[data-page="pricing"] .tier.featured::before { animation: tierGlow 6s linear infinite; }
+  body[data-page="pricing"] .tier.featured:hover::before { animation: tierGlow 6s linear infinite; }
 }
 @keyframes tierGlow { to { --tier-ang: 360deg; } }
 
@@ -75,7 +75,7 @@ body[data-page="pricing"] .tier.featured .price b {
   background-image: linear-gradient(100deg, var(--accent) 28%, #ffd9c2 50%, var(--accent-2) 72%);
 }
 @media (prefers-reduced-motion: no-preference) {
-  body[data-page="pricing"] .price b { animation: priceShine 5s ease-in-out infinite; }
+  body[data-page="pricing"] .price b { animation: priceShine 9s ease-in-out infinite; }
 }
 @keyframes priceShine { 0%,100% { background-position: 130% 0; } 50% { background-position: -30% 0; } }
 
@@ -151,7 +151,7 @@ body[data-page="pricing"] .tier.featured .tier-points .pk { background-color: rg
 @keyframes calcRow { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
 .calc-cta { position: relative; width: 100%; justify-content: center; }
 .calc-note { position: relative; font-size: 12.5px; line-height: 1.5; color: var(--ink-3); margin: 16px 0 0; font-style: italic; }
-@media (prefers-reduced-motion: no-preference) { .calc-total b { animation: priceShine 5s ease-in-out infinite; } }
+@media (prefers-reduced-motion: no-preference) { .calc-total b { animation: priceShine 9s ease-in-out infinite; } }
 .calc-opt { min-width: 0; }
 .calc-opt small { white-space: nowrap; }
 @media (max-width: 860px) { .calc { grid-template-columns: 1fr; } }
