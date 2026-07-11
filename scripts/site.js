@@ -680,7 +680,7 @@
     setTimeout(function () { note.remove(); }, 500);
   });
   document.body.appendChild(note);
-  requestAnimationFrame(function () {
-    requestAnimationFrame(function () { note.classList.add('is-in'); });
-  });
+  // ждём, пока отыграет вступительная анимация первого экрана,
+  // чтобы баннер не добавлял движения в момент загрузки
+  setTimeout(function () { note.classList.add('is-in'); }, 1800);
 })();
