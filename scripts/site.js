@@ -248,7 +248,7 @@
   function setupWordReveal() {
     var els = [].slice.call(document.querySelectorAll('[data-anim="words"]'));
     if (!els.length) return;
-    els.forEach(function (el) { if (!el._wr) { el._wr = true; wrapWords(el); } });
+    els.forEach(function (el) { if (!el._wr) { el._wr = true; wrapWords(el); } el.classList.add('words-ready'); });
     if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });

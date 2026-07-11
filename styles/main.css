@@ -161,6 +161,12 @@ h1, h2, h3 { margin: 0; font-weight: 400; line-height: 1.02; }
 .muted { color: var(--ink-2); }
 
 /* ---------- word-by-word reveal ---------- */
+/* до пословной обёртки заголовок скрыт с первого кадра — убирает мигание
+   на первой загрузке (класс js ставит инлайн-скрипт в <head>);
+   предохранитель проявляет текст, если скрипт не отработал */
+html.js [data-anim="words"]:not(.words-ready) { opacity: 0; animation: wordsSafety .3s ease 2.5s forwards; }
+@keyframes wordsSafety { to { opacity: 1; } }
+
 [data-anim="words"] .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; }
 [data-anim="words"] .w > span { display: inline-block; transform: translateY(115%); transition: transform .85s var(--ease); }
 [data-anim="words"].in .w > span { transform: translateY(0); }
