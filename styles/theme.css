@@ -441,67 +441,59 @@ body .scrollbar { background: var(--accent); }
 }
 
 /* ============================================================
-   Шоурил — полноэкранная авторская фотография между секциями:
+   Шоурил — авторский портрет целиком (3:4) + подпись рядом:
    визуальное доказательство «эстетика фото + веб-технологии»
    ============================================================ */
-body .showreel { margin: clamp(56px, 9vw, 130px) 0 0; }
+body .showreel { margin: var(--gap) 0 0; }
+body .showreel-grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(300px, 440px);
+  gap: clamp(30px, 6vw, 96px);
+  align-items: center;
+}
 body .showreel-media {
-  position: relative; margin: 0;
-  height: min(86vh, 740px);
+  margin: 0;
+  aspect-ratio: 3 / 4;
   overflow: hidden;
+  border-radius: var(--radius-lg);
 }
-body .showreel-media picture { position: absolute; inset: 0; display: block; }
+body .showreel-media picture { display: block; width: 100%; height: 100%; }
 body .showreel-media img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: 50% 30%; /* держим лицо в кадре на любой ширине экрана */
-}
-body .showreel-media::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(10,10,10,0) 42%, rgba(10,10,10,0.55) 100%);
-}
-body .showreel-caption {
-  position: absolute; left: 0; right: 0;
-  bottom: clamp(26px, 5vw, 58px);
-  z-index: 1; color: #fff;
+  display: block; width: 100%; height: 100%;
+  object-fit: cover; /* соотношение блока = соотношению фото, кадр целиком */
 }
 body .showreel-line {
   font-family: var(--font-display); font-weight: 700;
-  font-size: clamp(30px, 5.2vw, 62px);
-  line-height: 1.05; letter-spacing: -0.02em;
+  font-size: clamp(30px, 4.6vw, 64px);
+  line-height: 1.02; letter-spacing: -0.035em;
+  color: var(--ink);
 }
 body .showreel-line em {
   font-family: var(--font-display);
   font-style: normal; font-weight: inherit;
-  color: var(--accent-2);
-  -webkit-text-fill-color: var(--accent-2); /* перебивает общий фикс [data-anim="words"] em из main.css */
+  color: var(--accent);
+  -webkit-text-fill-color: var(--accent); /* перебивает общий фикс [data-anim="words"] em из main.css */
 }
 body .showreel-sub {
-  margin-top: 14px;
+  margin-top: 18px;
   font-size: clamp(15px, 1.6vw, 18px);
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--ink-2);
   max-width: 46ch;
 }
-@media (max-width: 700px) {
-  body .showreel-media { height: min(68vh, 540px); }
-}
-/* на широких экранах даём кадру больше высоты — меньше зум портрета */
-@media (min-width: 1600px) {
-  body .showreel-media { height: min(94vh, 880px); }
-}
-
-/* ссылка на фотопортфолио под подписью шоурила */
 body .showreel-link {
   display: inline-flex; align-items: center; gap: 8px;
-  margin-top: 22px;
+  margin-top: 26px;
   font-family: var(--font-display); font-size: 14px; font-weight: 500;
   letter-spacing: 0.02em;
-  color: #fff; text-decoration: none;
+  color: var(--ink); text-decoration: none;
   padding-bottom: 4px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  border-bottom: 1px solid var(--hairline);
   transition: border-color .3s var(--ease), gap .3s var(--ease);
 }
-body .showreel-link svg { color: var(--accent-2); transition: transform .3s var(--ease); }
-body .showreel-link:hover { border-color: var(--accent-2); gap: 12px; }
+body .showreel-link svg { color: var(--accent); transition: transform .3s var(--ease); }
+body .showreel-link:hover { border-color: var(--accent); gap: 12px; }
 body .showreel-link:hover svg { transform: translate(2px, -2px); }
+@media (max-width: 860px) {
+  body .showreel-grid { grid-template-columns: 1fr; gap: 28px; }
+  body .showreel-media { order: -1; max-width: 440px; }
+}
