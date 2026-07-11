@@ -1,7 +1,6 @@
 /* ============================================================
    AVANZATO — Pricing 3D interactions (pricing.html only)
    - cursor-driven tilt on tier cards (+ glare, depth layers)
-   - subtle background-shape parallax
    Gated behind reduced-motion + pointer capability.
    ============================================================ */
 (function () {
@@ -40,27 +39,7 @@
     });
   }
 
-  function setupBgParallax() {
-    if (reduce || !fine) return;
-    var shapes = [].slice.call(document.querySelectorAll('.pr-shape'));
-    if (!shapes.length) return;
-    var raf = null, mx = 0, my = 0;
-    function paint() {
-      raf = null;
-      shapes.forEach(function (s, i) {
-        var d = (i + 1) * 9;
-        s.style.marginLeft = (mx * d).toFixed(1) + 'px';
-        s.style.marginTop = (my * d).toFixed(1) + 'px';
-      });
-    }
-    window.addEventListener('mousemove', function (e) {
-      mx = e.clientX / window.innerWidth - 0.5;
-      my = e.clientY / window.innerHeight - 0.5;
-      if (!raf) raf = requestAnimationFrame(paint);
-    }, { passive: true });
-  }
-
-  function init() { setupTierTilt(); setupBgParallax(); }
+  function init() { setupTierTilt(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
