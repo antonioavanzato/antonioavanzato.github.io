@@ -428,21 +428,21 @@ body.nav-open .mobnav-foot { opacity: 1; transform: none; transition-delay: calc
    с первого кадра, без ожидания скрипта и без больших сдвигов —
    убирает «дёрганый выезд» при первой незакешированной загрузке.
    Эффектные выезды остаются для контента, появляющегося при скролле. */
-.hero .reveal, .p-hero .reveal, .c-wrap .reveal {
+.hero .reveal, .p-hero .reveal, .c-wrap .reveal, .tiers .reveal {
   transform: none;
   animation: fsIn .6s var(--ease-soft) both;
 }
-.hero .reveal[data-d="1"], .p-hero .reveal[data-d="1"], .c-wrap .reveal[data-d="1"] { animation-delay: .08s; }
-.hero .reveal[data-d="2"], .p-hero .reveal[data-d="2"], .c-wrap .reveal[data-d="2"] { animation-delay: .16s; }
-.hero .reveal[data-d="3"], .p-hero .reveal[data-d="3"], .c-wrap .reveal[data-d="3"] { animation-delay: .24s; }
-.hero .reveal[data-d="4"], .p-hero .reveal[data-d="4"], .c-wrap .reveal[data-d="4"] { animation-delay: .32s; }
+.hero .reveal[data-d="1"], .p-hero .reveal[data-d="1"], .c-wrap .reveal[data-d="1"], .tiers .reveal[data-d="1"] { animation-delay: .08s; }
+.hero .reveal[data-d="2"], .p-hero .reveal[data-d="2"], .c-wrap .reveal[data-d="2"], .tiers .reveal[data-d="2"] { animation-delay: .16s; }
+.hero .reveal[data-d="3"], .p-hero .reveal[data-d="3"], .c-wrap .reveal[data-d="3"], .tiers .reveal[data-d="3"] { animation-delay: .24s; }
+.hero .reveal[data-d="4"], .p-hero .reveal[data-d="4"], .c-wrap .reveal[data-d="4"], .tiers .reveal[data-d="4"] { animation-delay: .32s; }
 .hero .reveal[data-anim="mask"], .p-hero .reveal[data-anim="mask"], .c-wrap .reveal[data-anim="mask"] { clip-path: none !important; }
 @keyframes fsIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 
 /* вступительные анимации ждут готовности шрифта (класс fonts-in ставит
    инлайн-скрипт в <head>, страховка 900мс) — на первой загрузке текст
    не «вскакивает», когда шрифт доезжает посреди анимации */
-html.js:not(.fonts-in) :is(.hero, .p-hero, .c-wrap) .reveal,
+html.js:not(.fonts-in) :is(.hero, .p-hero, .c-wrap, .tiers) .reveal,
 html.js:not(.fonts-in) .hero-title .line > span,
 html.js:not(.fonts-in) .hero-lede,
 html.js:not(.fonts-in) .hero-cta,
