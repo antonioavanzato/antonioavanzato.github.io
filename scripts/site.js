@@ -273,6 +273,7 @@
       if (/^(https?:|mailto:|tel:)/i.test(href)) return;
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
       e.preventDefault();
+      try { sessionStorage.setItem('nav-veil', '1'); } catch (err) {}
       curtain.classList.add('show');
       setTimeout(function () { window.location.href = href; }, 470);
     });
@@ -534,6 +535,16 @@
   }
 
   function init() {
+    // встречная шторка (класс ставится инлайн-скриптом в <head>):
+    // ждём первую отрисовку и мягко её растворяем
+    if (document.documentElement.classList.contains('arriving')) {
+      requestAnimationFrame(function () { requestAnimationFrame(function () {
+        document.documentElement.classList.add('arrived');
+        setTimeout(function () {
+          document.documentElement.classList.remove('arriving', 'arrived');
+        }, 600);
+      }); });
+    }
     setupPreloader();
     setupHeroGrid();
     setYear();
