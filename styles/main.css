@@ -57,6 +57,14 @@ body {
 }
 .page-curtain.show { opacity: 1; visibility: visible; transition: opacity .5s var(--ease); }
 
+/* встречная шторка: страница, открытая по внутренней ссылке, стартует
+   под фоном-занавесом и мягко проявляется — без белой вспышки */
+html.arriving body::before {
+  content: ""; position: fixed; inset: 0; z-index: 3000;
+  background: var(--bg); pointer-events: none;
+}
+html.arriving.arrived body::before { opacity: 0; transition: opacity .45s ease; }
+
 /* ============================================================
    Preloader — логотип «наливается» золотом снизу вверх волной
    ============================================================ */

@@ -2,6 +2,8 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
+<script>/* встречная шторка: если пришли по внутренней ссылке, страница проявляется из фона, без вспышки */
+try{if(sessionStorage.getItem('nav-veil')){document.documentElement.classList.add('arriving');sessionStorage.removeItem('nav-veil')}}catch(e){}</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0PPJBJFKL2"></script>
 <script>
@@ -62,9 +64,9 @@
 <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 <link rel="preload" as="image" href="images/avanzato-logo-ink.png">
-<link rel="stylesheet" href="styles/main.css?v=20260711a">
-<link rel="stylesheet" href="styles/theme.css?v=20260711a">
-<link rel="stylesheet" href="styles/pricing3d.css?v=20260711a">
+<link rel="stylesheet" href="styles/main.css?v=20260711b">
+<link rel="stylesheet" href="styles/theme.css?v=20260711b">
+<link rel="stylesheet" href="styles/pricing3d.css?v=20260711b">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -154,6 +156,9 @@
     }
   ]
 }
+</script>
+<script type="speculationrules">
+{"prerender":[{"source":"list","urls":["index.html", "portfolio.html", "contacts.html"],"eagerness":"moderate"}]}
 </script>
 </head>
 <body data-page="pricing">
@@ -323,8 +328,8 @@
 </section>
 
 
-<script src="scripts/site.js?v=20260711a"></script>
-<script src="scripts/pricing3d.js?v=20260711a" defer></script>
+<script src="scripts/site.js?v=20260711b"></script>
+<script src="scripts/pricing3d.js?v=20260711b" defer></script>
 <script>
 (function(){
   var FAQ=[
