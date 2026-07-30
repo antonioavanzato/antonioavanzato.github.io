@@ -24,8 +24,11 @@
   --ease:      cubic-bezier(.22, 1, .36, 1);
   --ease-soft: cubic-bezier(.4, 0, .2, 1);
 
-  --font-display: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --font-sans:    "Jost", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  /* Rubik и Jost здесь оставались от прежней темы и никогда не подключались —
+     до браузера доходил системный фолбэк. theme.css всё равно переопределяет
+     оба токена на Onest; выравниваем, чтобы значения не расходились. */
+  --font-display: "Onest", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-sans:    "Onest", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
 }
 
 * { box-sizing: border-box; }
