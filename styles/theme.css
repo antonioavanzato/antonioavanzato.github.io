@@ -33,7 +33,8 @@ body {
 
   --font-display: "Onest", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
   --font-sans:    "Onest", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --font-serif:   "Playfair Display", Georgia, "Times New Roman", serif;
+  /* --font-serif убран: ссылался на Playfair Display, который нигде не
+     подключён, и сам токен не использовался ни в одном правиле. */
 
   background: var(--bg);
   color: var(--ink);
@@ -584,6 +585,23 @@ body .footer nav a {
   min-height: 44px;
 }
 body .footer nav { row-gap: 0; }
+
+/* --- 5. Переносы в заголовках --- */
+/* «что-то» в CTA главной ломалось по дефису: «что-» / «то выдающееся?» */
+.nowrap { white-space: nowrap; }
+
+/* --- 6. Страница контактов: пустота перед футером --- */
+/* Контент заканчивался, дальше шли 150px отступа футера и ещё 84px нижнего
+   паддинга секции — футер повисал в середине экрана, страница выглядела
+   недовёрстанной. Сжимаем оба отступа: страница закрывается сразу за
+   формой. min-height секции больше не нужен — контент выше экрана. */
+body[data-page="contacts"] .c-wrap {
+  min-height: auto;
+  padding-bottom: clamp(28px, 4vh, 44px);
+}
+body[data-page="contacts"] .footer {
+  margin-top: clamp(52px, 7vw, 84px);
+}
 
 /* ============================================================
    Cookie-уведомление — полоса внизу экрана
