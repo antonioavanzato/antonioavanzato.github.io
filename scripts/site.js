@@ -69,6 +69,15 @@
     var bar = document.createElement('div');
     bar.className = 'scrollbar';
     document.body.appendChild(bar);
+
+    // Ссылка «к содержимому»: не видна, пока на неё не встанут табом.
+    // Идёт первой в DOM, чтобы быть самым первым интерактивным элементом.
+    var skip = document.createElement('a');
+    skip.className = 'skip-link';
+    skip.href = '#main';
+    skip.textContent = 'Перейти к содержимому';
+    document.body.insertBefore(skip, document.body.firstChild);
+
     var navwrap = document.createElement('div');
     navwrap.className = 'navwrap';
     var links = PAGES.map(function (p) {
@@ -83,7 +92,10 @@
       '<button class="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobnav">' +
       '<span></span><span></span><span></span></button>' +
       '</nav>';
-    document.body.appendChild(navwrap);
+    // Шапка визуально сверху, поэтому и в DOM она должна идти сверху:
+    // раньше она добавлялась в конец body и порядок обхода табом расходился
+    // с тем, что человек видит на экране.
+    document.body.insertBefore(navwrap, skip.nextSibling);
 
     var mob = document.createElement('div');
     mob.className = 'mobnav';
@@ -321,12 +333,13 @@
       if (Date.now() - formReadyAt < 2000) { form.classList.add('sent'); return; }
 
       var ok = true;
+      var firstBad = null;
       ['#f-name', '#f-contact'].forEach(function (sel) {
         var f = form.querySelector(sel);
         if (!f || !f.value.trim()) {
-          if (f) { f.classList.add('invalid'); }
+          if (f) { f.classList.add('invalid'); f.setAttribute('aria-invalid', 'true'); firstBad = firstBad || f; }
           ok = false;
-        } else { f.classList.remove('invalid'); }
+        } else { f.classList.remove('invalid'); f.removeAttribute('aria-invalid'); }
       });
 
       if (consent && !consent.checked) {
@@ -335,7 +348,9 @@
         ok = false;
       }
 
-      if (!ok) return;
+      // переводим фокус на первое незаполненное поле — иначе на скринридере
+      // и с клавиатуры непонятно, почему форма не отправилась
+      if (!ok) { if (firstBad) firstBad.focus(); return; }
 
       var btn = form.querySelector('.c-submit');
       var lbl2 = btn && btn.querySelector('.lbl');
@@ -349,6 +364,11 @@
       if (domain) msg = (msg ? msg + '\n' : '') + 'Домен: ' + domain;
 
       var payload = {
+        // honeypot: функция уже проверяет поле company и молча отбрасывает
+        // заявку, если оно заполнено, — но сайт его до сих пор не отправлял,
+        // и серверная проверка не срабатывала ни разу. Живой человек это поле
+        // не видит, заполняют его только боты.
+        company: (form.querySelector('#f-website') || {}).value || '',
         name:  get('#f-name'),
         phone: '',
         tg:    get('#f-contact'),

@@ -54,7 +54,7 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
 <meta name="twitter:image:alt" content="AVANZATO — разработка сайтов под ключ в Казани">
 <link rel="preload" as="font" type="font/woff2" href="fonts/onest-700-cyrillic.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="fonts/onest-400-cyrillic.woff2" crossorigin>
-<link rel="stylesheet" href="styles/fonts.css?v=20260730a">
+<link rel="stylesheet" href="styles/fonts.css?v=20260730b">
 <meta name="yandex-verification" content="699203dd35feea7b">
 <meta name="theme-color" content="#f4f1ea">
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -62,8 +62,8 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
 <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 <link rel="preload" as="image" href="images/avanzato-logo-ink.png">
-<link rel="stylesheet" href="styles/main.css?v=20260730a">
-<link rel="stylesheet" href="styles/theme.css?v=20260730a">
+<link rel="stylesheet" href="styles/main.css?v=20260730b">
+<link rel="stylesheet" href="styles/theme.css?v=20260730b">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -92,6 +92,7 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
 </head>
 <body data-page="contacts">
 <div class="ambient"></div>
+<main id="main">
 
 <section class="c-wrap">
   <div class="wrap">
@@ -169,7 +170,7 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
           <svg class="ic" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <span class="spin" aria-hidden="true"></span>
         </button>
-        <div class="c-ok" id="okMsg">
+        <div class="c-ok" id="okMsg" role="status" aria-live="polite">
           <span class="ok-plane" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 4L3 11l6 2 2 6 3-4 4 3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>
           </span>
@@ -180,7 +181,7 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
 
     </div>
 
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
       <span class="brand" translate="no">Avanzato</span>
       <nav><a href="index.html">Главная</a><a href="portfolio.html">Портфолио</a><a href="pricing.html">Цены</a><a href="contacts.html">Контакты</a><a href="legal-privacy.html">Политика конфиденциальности</a></nav>
       <span>© <span class="js-year">2026</span> · Казань · по миру</span>
@@ -188,7 +189,8 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
   </div>
 </section>
 
+</main>
 
-<script src="scripts/site.js?v=20260730a"></script>
+<script src="scripts/site.js?v=20260730b"></script>
 </body>
 </html>

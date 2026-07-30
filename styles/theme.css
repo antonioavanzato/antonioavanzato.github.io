@@ -586,22 +586,65 @@ body .footer nav a {
 }
 body .footer nav { row-gap: 0; }
 
-/* --- 5. Переносы в заголовках --- */
+/* --- 5. Утилиты доступности --- */
+/* Заголовок есть в структуре страницы, но не показывается: нужен, чтобы
+   иерархия не прыгала с h1 сразу на h3. clip-path вместо display:none —
+   скринридер такой текст читает, а display:none пропустил бы. */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Ссылка «к содержимому»: спрятана за верхним краем экрана и выезжает
+   только когда на неё встают клавишей Tab. Мышью её не увидеть. */
+.skip-link {
+  position: fixed;
+  top: 0; left: 50%;
+  transform: translate(-50%, -120%);
+  z-index: 1000;
+  padding: 13px 24px;
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 14px; font-weight: 500;
+  text-decoration: none;
+  border-radius: 0 0 10px 10px;
+  transition: transform .25s var(--ease);
+}
+.skip-link:focus-visible {
+  transform: translate(-50%, 0);
+  outline: 2px solid var(--accent);
+  outline-offset: -4px;
+}
+/* main получает фокус программно после перехода по ссылке — рамка тут лишняя */
+main:focus { outline: none; }
+
+/* --- 6. Переносы в заголовках --- */
 /* «что-то» в CTA главной ломалось по дефису: «что-» / «то выдающееся?» */
 .nowrap { white-space: nowrap; }
 
-/* --- 6. Страница контактов: пустота перед футером --- */
+/* --- 7. Страница контактов: пустота перед футером --- */
 /* Контент заканчивался, дальше шли 150px отступа футера и ещё 84px нижнего
    паддинга секции — футер повисал в середине экрана, страница выглядела
    недовёрстанной. Сжимаем оба отступа: страница закрывается сразу за
    формой. min-height секции больше не нужен — контент выше экрана. */
-body[data-page="contacts"] .c-wrap {
+body[data-page="contacts"] .c-wrap,
+body[data-page="404"] .c-wrap {
   min-height: auto;
   padding-bottom: clamp(28px, 4vh, 44px);
 }
-body[data-page="contacts"] .footer {
+body[data-page="contacts"] .footer,
+body[data-page="404"] .footer {
   margin-top: clamp(52px, 7vw, 84px);
 }
+/* на 404 контента мало — оставляем секции высоту экрана, чтобы футер
+   не уезжал под самый верх, но без прежнего провала перед ним */
+body[data-page="404"] .c-wrap { min-height: 78svh; }
 
 /* ============================================================
    Cookie-уведомление — полоса внизу экрана
