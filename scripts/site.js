@@ -599,11 +599,12 @@
   note.setAttribute('role', 'region');
   note.setAttribute('aria-label', 'Уведомление об использовании cookie');
   note.innerHTML =
-    '<span class="cookie-eyebrow">Файлы cookie</span>' +
-    '<p class="cookie-title">Немного заботы <em>о качестве.</em></p>' +
-    '<p>Сайт использует cookie и сервисы аналитики — Яндекс.Метрику и Google Analytics, ' +
-    'чтобы становиться удобнее. Оставаясь здесь, вы соглашаетесь с ' +
-    '<a class="cookie-link" href="legal-privacy.html">политикой конфиденциальности</a>.</p>' +
+    '<div class="cookie-text">' +
+      '<span class="cookie-eyebrow">Файлы cookie</span>' +
+      '<p class="cookie-title">Немного заботы <em>о качестве.</em></p>' +
+      '<p>Сайт использует cookie и аналитику, чтобы становиться удобнее. Оставаясь здесь, ' +
+      'вы соглашаетесь с <a class="cookie-link" href="legal-privacy.html">политикой конфиденциальности</a>.</p>' +
+    '</div>' +
     '<div class="cookie-actions">' +
       '<button type="button" class="btn btn-primary">Хорошо</button>' +
       '<a class="cookie-more" href="legal-privacy.html">Подробнее</a>' +
