@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<script>/* встречная шторка: если пришли по внутренней ссылке, страница проявляется из фона, без вспышки */
+document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-veil')){document.documentElement.classList.add('arriving');sessionStorage.removeItem('nav-veil')}}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Страница не найдена — Антон Аванзато</title>
+<meta name="description" content="Такой страницы на сайте нет. Вернитесь на главную или посмотрите портфолио и цены.">
+<meta name="robots" content="noindex, follow">
+<link rel="preload" as="font" type="font/woff2" href="fonts/onest-700-cyrillic.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/onest-400-cyrillic.woff2" crossorigin>
+<link rel="stylesheet" href="styles/fonts.css?v=20260730b">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="preload" as="image" href="images/avanzato-logo-ink.png">
+<link rel="stylesheet" href="styles/main.css?v=20260730b">
+<link rel="stylesheet" href="styles/theme.css?v=20260730b">
+</head>
+<body data-page="404">
+<div class="ambient"></div>
+<main id="main">
+
+<section class="c-wrap">
+  <div class="wrap">
+    <div class="c-left" style="max-width:640px">
+      <p class="eyebrow">Ошибка 404</p>
+      <h1 class="display" style="margin-top:16px">Такой страницы<br><em>здесь нет.</em></h1>
+      <p class="lede" style="margin-top:26px;max-width:480px">
+        Возможно, в адресе опечатка или страница переехала.
+        Ниже — всё, что есть на сайте.</p>
+
+      <div class="c-cards" style="margin-top:38px">
+        <a class="c-card" href="index.html">
+          <span class="c-meta"><b>Главная</b><i>С чего всё начинается</i></span>
+          <svg class="c-arr" width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="c-card" href="portfolio.html">
+          <span class="c-meta"><b>Портфолио</b><i>Восемь работ в эфире</i></span>
+          <svg class="c-arr" width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="c-card" href="pricing.html">
+          <span class="c-meta"><b>Цены</b><i>Форматы и состав работ</i></span>
+          <svg class="c-arr" width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="c-card" href="contacts.html">
+          <span class="c-meta"><b>Контакты</b><i>Обсудить проект</i></span>
+          <svg class="c-arr" width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <footer class="footer" role="contentinfo">
+      <span class="brand" translate="no">Avanzato</span>
+      <nav><a href="index.html">Главная</a><a href="portfolio.html">Портфолио</a><a href="pricing.html">Цены</a><a href="contacts.html">Контакты</a><a href="legal-privacy.html">Политика конфиденциальности</a></nav>
+      <span>© <span class="js-year">2026</span> · Казань · по миру</span>
+    </footer>
+  </div>
+</section>
+
+</main>
+
+<script src="scripts/site.js?v=20260730b"></script>
+</body>
+</html>
