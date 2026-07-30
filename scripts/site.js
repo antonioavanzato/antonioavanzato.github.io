@@ -4,8 +4,10 @@
 (function () {
   'use strict';
 
+  // Публичный эндпоинт приёма заявок. Секрета здесь быть не может: весь этот файл
+  // доступен любому посетителю. Защита от спама живёт на стороне функции —
+  // rate-limit по IP и honeypot-поле.
   var SCRIPT_URL = 'https://functions.yandexcloud.net/d4e2uuvutkn0qcqevb9j?r=orders&source=github';
-  var SECRET_KEY = '222897Avanzato!';
 
   var PAGES = [
     { id: 'home',      label: 'Главная',   href: 'index.html' },
@@ -347,7 +349,6 @@
       if (domain) msg = (msg ? msg + '\n' : '') + 'Домен: ' + domain;
 
       var payload = {
-        key:   SECRET_KEY,
         name:  get('#f-name'),
         phone: '',
         tg:    get('#f-contact'),
@@ -598,11 +599,12 @@
   note.setAttribute('role', 'region');
   note.setAttribute('aria-label', 'Уведомление об использовании cookie');
   note.innerHTML =
-    '<span class="cookie-eyebrow">Файлы cookie</span>' +
-    '<p class="cookie-title">Немного заботы <em>о качестве.</em></p>' +
-    '<p>Сайт использует cookie и сервисы аналитики — Яндекс.Метрику и Google Analytics, ' +
-    'чтобы становиться удобнее. Оставаясь здесь, вы соглашаетесь с ' +
-    '<a class="cookie-link" href="legal-privacy.html">политикой конфиденциальности</a>.</p>' +
+    '<div class="cookie-text">' +
+      '<span class="cookie-eyebrow">Файлы cookie</span>' +
+      '<p class="cookie-title">Немного заботы <em>о качестве.</em></p>' +
+      '<p>Сайт использует cookie и аналитику, чтобы становиться удобнее. Оставаясь здесь, ' +
+      'вы соглашаетесь с <a class="cookie-link" href="legal-privacy.html">политикой конфиденциальности</a>.</p>' +
+    '</div>' +
     '<div class="cookie-actions">' +
       '<button type="button" class="btn btn-primary">Хорошо</button>' +
       '<a class="cookie-more" href="legal-privacy.html">Подробнее</a>' +

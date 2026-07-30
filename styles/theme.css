@@ -12,13 +12,19 @@ body {
   --bg-2:       #f6f5f2;
   --surface:    #f6f5f2;
   --ink:        #0a0a0a;
-  --ink-2:      rgba(10, 10, 10, 0.55);
+  /* 0.55 давал 4.4:1 — на волос ниже нормы WCAG AA (4.5). 0.60 → 5.25:1 */
+  --ink-2:      rgba(10, 10, 10, 0.60);
   --ink-3:      rgba(10, 10, 10, 0.38);
   --hairline:   rgba(10, 10, 10, 0.12);
   --hairline-2: rgba(10, 10, 10, 0.06);
   --tint:       rgba(10, 10, 10, 0.04);
   --accent:     #ff4d00;
   --accent-2:   #ff6a2b;
+  /* Фирменный #ff4d00 на белом даёт 3.33:1 — этого хватает крупному тексту
+     (норма 3:1), но не мелкому (норма 4.5:1). Затемнённый вариант — 5.3:1
+     на белом и 4.9:1 на бежевой подложке --surface, то есть проходит на обеих.
+     Используется только там, где акцентом набран текст мельче 24px. */
+  --accent-text: #c73600;
   --accent-ink: #0a0a0a;
   --seal:       #ff4d00;
 
@@ -496,4 +502,143 @@ body .showreel-link:hover svg { transform: translate(2px, -2px); }
 @media (max-width: 860px) {
   body .showreel-grid { grid-template-columns: 1fr; gap: 28px; }
   body .showreel-media { order: -1; max-width: 440px; }
+}
+
+/* ============================================================
+   Доступность и читаемость (аудит 2026-07)
+   Загружается последним, поэтому перекрывает main.css без правок в нём.
+   ============================================================ */
+
+/* --- 1. Мелкий акцентный текст: фирменный оранжевый → затемнённый --- */
+/* Крупные заголовки с <em> сюда НЕ входят: там оранжевый остаётся прежним. */
+body .eyebrow,
+body .mobnav-eyebrow,
+body .cta .eyebrow,
+body .section-label .num,
+body .do-card .do-n,
+body .m-num,
+body .acc-num,
+body .tiers-foot a,
+body .c-consent-txt a,
+body .legal a,
+body .cookie-note .cookie-eyebrow,
+body .calc-label em,
+body .p3-eyebrow,
+body .proc-num {
+  color: var(--accent-text);
+}
+
+/* Подписи сроков в блоке «по шагам» были на --ink-3 (2.56:1) */
+body .proc-time { color: var(--ink-2); }
+
+/* Бейдж «Популярный выбор»: белый текст 11px на оранжевой заливке давал 3.33:1.
+   Затемняем заливку целиком — на обоих концах градиента белый теперь от 5.3:1. */
+body[data-page="pricing"] .tier.featured .tier-badge {
+  background: linear-gradient(135deg, var(--accent-text), #a82d00);
+}
+
+/* Подпись «Открыть сайт» на карточках портфолио была на --ink-3 (2.56:1) */
+body .p3-meta { color: var(--ink-2); }
+/* «плавающая» подпись поля, всплывающая при фокусе */
+body .field label.lbl-static,
+body .field input:focus + label,
+body .field input:not(:placeholder-shown) + label,
+body .field textarea:focus + label,
+body .field textarea:not(:placeholder-shown) + label,
+body .field select:focus + label,
+body .field select:valid + label {
+  color: var(--accent-text);
+}
+
+/* --- 2. Подписи полей формы --- */
+/* Здесь floating label: до фокуса <label> лежит внутри поля и служит
+   единственной подписью. На --ink-3 он давал 2.56:1 — фактически нечитаемо.
+   Переводим на --ink-2 (5.25:1); всплывающее состояние описано выше. */
+body .field label { color: var(--ink-2); }
+
+/* --- 3. Неактивная кнопка отправки --- */
+/* Была залита чёрным с opacity .5 и читалась как сломанная. Теперь это
+   явно «ещё не активна»: контур вместо заливки, текст остаётся разборчивым. */
+body .c-submit[disabled] {
+  opacity: 1;
+  background: transparent;
+  color: var(--ink-2);
+  border: 1px solid var(--hairline);
+  box-shadow: none;
+}
+body .c-submit[disabled] svg { opacity: .5; }
+@media (max-width: 860px) {
+  body .c-submit[disabled] { opacity: 1; }
+}
+
+/* --- 4. Тап-таргеты --- */
+/* Ссылки в шапке и футере были высотой 19–25px при рекомендованных 44px.
+   Растим область нажатия вертикальными отступами, визуально ничего не двигая. */
+body .nav a.link {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+body .footer nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+body .footer nav { row-gap: 0; }
+
+/* ============================================================
+   Cookie-уведомление — полоса внизу экрана
+   Прежняя карточка висела в левом нижнем углу и на всех четырёх страницах
+   перекрывала контент: карточки контактов, тариф «Лендинг», кнопки первого
+   экрана. Полоса прижата к низу и не закрывает ничего, кроме своей высоты.
+   ============================================================ */
+body .cookie-note {
+  left: 0; right: 0; bottom: 0;
+  max-width: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 3vw, 40px);
+  flex-wrap: wrap;
+  padding: 16px clamp(20px, 5vw, 56px);
+  border: 0;
+  border-top: 1px solid var(--hairline);
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.92);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+          backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow: 0 -10px 40px -22px rgba(10, 10, 10, 0.35);
+  transform: translateY(100%);
+}
+body .cookie-note.is-in { transform: none; }
+body .cookie-note::before { left: 0; right: 0; }
+body .cookie-note .cookie-eyebrow { display: none; }
+body .cookie-note .cookie-title {
+  display: inline;
+  margin: 0 6px 0 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+body .cookie-note p {
+  display: inline;
+  margin: 0;
+  font-size: 14px;
+}
+body .cookie-note .cookie-text { flex: 1 1 420px; max-width: 760px; }
+body .cookie-note .cookie-actions { flex: 0 0 auto; gap: 18px; }
+body .cookie-note .btn { padding: 11px 22px; font-size: 13.5px; white-space: nowrap; }
+
+@media (max-width: 700px) {
+  body .cookie-note {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    padding: 18px 20px calc(18px + env(safe-area-inset-bottom, 0px));
+  }
+  /* в колоночном flex базис 420px считается по вертикали и растягивает
+     полосу на пол-экрана — сбрасываем рост на мобильном */
+  body .cookie-note .cookie-text { flex: 0 0 auto; max-width: none; }
+  body .cookie-note .cookie-title { display: block; margin: 0 0 4px; }
+  body .cookie-note p { display: block; }
+  body .cookie-note .cookie-actions { justify-content: space-between; }
+  body .cookie-note .btn { flex: 1 1 auto; justify-content: center; }
 }
