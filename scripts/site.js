@@ -4,8 +4,10 @@
 (function () {
   'use strict';
 
+  // Публичный эндпоинт приёма заявок. Секрета здесь быть не может: весь этот файл
+  // доступен любому посетителю. Защита от спама живёт на стороне функции —
+  // rate-limit по IP и honeypot-поле.
   var SCRIPT_URL = 'https://functions.yandexcloud.net/d4e2uuvutkn0qcqevb9j?r=orders&source=github';
-  var SECRET_KEY = '222897Avanzato!';
 
   var PAGES = [
     { id: 'home',      label: 'Главная',   href: 'index.html' },
@@ -347,7 +349,6 @@
       if (domain) msg = (msg ? msg + '\n' : '') + 'Домен: ' + domain;
 
       var payload = {
-        key:   SECRET_KEY,
         name:  get('#f-name'),
         phone: '',
         tg:    get('#f-contact'),
