@@ -17,12 +17,15 @@
   ];
   var current = document.body.getAttribute('data-page') || 'home';
 
+  // caseUrl — если у работы есть страница-разбор, карточка ведёт на неё
+  // (внутренний переход со шторкой), а живой сайт открывается уже с кейса.
+  // Работы без caseUrl по-прежнему открывают сайт в новой вкладке.
   var PORTFOLIO = [
-    { href:'https://velaatrips.com',     title:'Velaa Trips',      desc:'туристическое агентство на Мальдивах', size:'tall',
+    { href:'https://velaatrips.com',     caseUrl:'case-velaa-trips.html',    title:'Velaa Trips',      desc:'туристическое агентство на Мальдивах', size:'tall',
       src:'images/velaa_trips.webp' },
-    { href:'https://darialukianova.com', title:'Дарья Лукьянова',  desc:'преподаватель из Казани',  size:'',
+    { href:'https://darialukianova.com', caseUrl:'case-daria-lukianova.html', title:'Дарья Лукьянова',  desc:'преподаватель из Казани',  size:'',
       src:'images/darialukianova.webp' },
-    { href:'https://avanzato.ru',        title:'Avanzato',         desc:'фотограф из Казани',     size:'',
+    { href:'https://avanzato.ru',        caseUrl:'case-avanzato.html',        title:'Avanzato',         desc:'фотограф из Казани',     size:'',
       src:'images/avanzato.webp' },
     { href:'https://portanobile.com',    title:'Porta Nobile',     desc:'люксовая фурнитура в Москве',      size:'tall',
       src:'images/portanobile.webp' },
@@ -445,10 +448,19 @@
     if (!grid.querySelector('.m-item')) {
       grid.innerHTML = PORTFOLIO.map(function (p, i) {
         var n = (i + 1 < 10 ? '0' : '') + (i + 1);
+        // есть разбор → внутренняя ссылка (та же вкладка, стрелка «вперёд»);
+        // нет → живой сайт в новой вкладке (диагональная стрелка «наружу»)
+        var toCase = !!p.caseUrl;
+        var href = toCase ? p.caseUrl : p.href;
+        var attrs = toCase ? '' : ' target="_blank" rel="noopener noreferrer"';
+        var aria = toCase ? p.title + ' — смотреть разбор проекта' : p.title + ' — открыть сайт';
+        var arrow = toCase
+          ? '<path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>'
+          : '<path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>';
         return '<a class="m-item ' + (p.size || '') + ' reveal" data-d="' + (i % 3) + '" ' +
-          'href="' + p.href + '" target="_blank" rel="noopener noreferrer">' +
-          '<span class="m-frame"><img src="' + p.src + '" alt="Сайт ' + p.title + ' — разработка сайтов в Казани, Антон Аванзато" loading="lazy" decoding="async">' +
-          '<span class="m-arr" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>' +
+          'href="' + href + '"' + attrs + ' aria-label="' + aria + '">' +
+          '<span class="m-frame"><img src="' + p.src + '" alt="Сайт ' + p.title + ' — работа Антона Аванзато" loading="lazy" decoding="async">' +
+          '<span class="m-arr" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none">' + arrow + '</svg></span></span>' +
           '<span class="m-meta"><span class="m-num">' + n + '</span>' +
           '<span class="m-txt"><b>' + p.title + '</b><i>' + p.desc + '</i></span></span></a>';
       }).join('');
