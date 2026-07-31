@@ -31,7 +31,7 @@
       src:'images/portanobile.webp' },
     { href:'https://medfitclub.ru',      caseUrl:'case-medical-fitness.html', title:'Medical Fitness',  desc:'центр реабилитации в Москве',      size:'',
       src:'images/medfit.webp' },
-    { href:'https://alga-tour.com',      title:'ALGA',             desc:'туристическое агентство на Мальдивах', size:'',
+    { href:'https://alga-tour.com',      caseUrl:'case-alga.html', title:'ALGA',             desc:'туристическое агентство на Мальдивах', size:'',
       src:'images/alga_tour.webp' },
     { href:'https://maldives-elite.ru',  title:'Maldives Elite',   desc:'туристическое агентство на Мальдивах', size:'tall',
       src:'images/maldives_elite.webp' },

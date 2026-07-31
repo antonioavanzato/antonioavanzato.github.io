@@ -114,9 +114,10 @@
   border-top: 1px solid var(--hairline-2);
 }
 .case-list li {
-  display: flex;
-  gap: 14px;
-  padding: 14px 0;
+  /* маркер абсолютным позиционированием, а не flex: иначе вложенный <strong>
+     становится отдельным flex-элементом и текст разъезжается по словам */
+  position: relative;
+  padding: 14px 0 14px 22px;
   border-bottom: 1px solid var(--hairline-2);
   font-size: clamp(14px, 1.35vw, 16px);
   line-height: 1.5;
@@ -124,9 +125,9 @@
 }
 .case-list li::before {
   content: "";
-  flex: 0 0 auto;
+  position: absolute;
+  left: 0; top: 22px;
   width: 6px; height: 6px;
-  margin-top: 8px;
   border-radius: 50%;
   background: var(--accent);
 }
