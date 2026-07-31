@@ -29,7 +29,7 @@
       src:'images/avanzato.webp' },
     { href:'https://portanobile.com',    caseUrl:'case-porta-nobile.html', title:'Porta Nobile',     desc:'люксовая фурнитура в Москве',      size:'tall',
       src:'images/portanobile.webp' },
-    { href:'https://medfitclub.ru',      title:'Medical Fitness',  desc:'центр реабилитации в Москве',      size:'',
+    { href:'https://medfitclub.ru',      caseUrl:'case-medical-fitness.html', title:'Medical Fitness',  desc:'центр реабилитации в Москве',      size:'',
       src:'images/medfit.webp' },
     { href:'https://alga-tour.com',      title:'ALGA',             desc:'туристическое агентство на Мальдивах', size:'',
       src:'images/alga_tour.webp' },
