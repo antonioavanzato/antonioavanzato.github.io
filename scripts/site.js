@@ -27,7 +27,7 @@
       src:'images/darialukianova.webp' },
     { href:'https://avanzato.ru',        caseUrl:'case-avanzato.html',        title:'Avanzato',         desc:'фотограф из Казани',     size:'',
       src:'images/avanzato.webp' },
-    { href:'https://portanobile.com',    title:'Porta Nobile',     desc:'люксовая фурнитура в Москве',      size:'tall',
+    { href:'https://portanobile.com',    caseUrl:'case-porta-nobile.html', title:'Porta Nobile',     desc:'люксовая фурнитура в Москве',      size:'tall',
       src:'images/portanobile.webp' },
     { href:'https://medfitclub.ru',      title:'Medical Fitness',  desc:'центр реабилитации в Москве',      size:'',
       src:'images/medfit.webp' },
