@@ -14,6 +14,17 @@
 Реальные проекты в эфире: сайты турагентств (Velaa Trips, Maldives Elite, ALGA), фотографов (Avanzato, Дарья Лукьянова, Яна Самойлова), фитнеса (Medical Fitness) и люкс-брендов (Porta Nobile).
 - https://antonioavanzato.github.io/portfolio.html
 
+## Разборы проектов (кейсы)
+
+Детальные разборы выполненных работ по схеме «задача → как решали → результат»:
+
+- [Velaa Trips](https://antonioavanzato.github.io/case-velaa-trips.html): сайт для русскоговорящего турагентства на Мальдивах, две языковые версии, 7-я строка Google по запросу «экскурсии на Мальдивах» без вложений в SEO.
+- [Дарья Лукьянова](https://antonioavanzato.github.io/case-daria-lukianova.html): сайт частному преподавателю вокала и фортепиано в Казани, вместе с фотосессией; 14-я строка Google без вложений в рекламу.
+- [Avanzato](https://antonioavanzato.github.io/case-avanzato.html): собственный сайт фотографа с записью на съёмку, модульным обучением и заявками в Telegram и админку на iOS; 4-я строка Google по запросу «портретный фотограф казань».
+- [Porta Nobile](https://antonioavanzato.github.io/case-porta-nobile.html): сайт для люксового бренда итальянской дверной фурнитуры в Москве, тёмная премиальная витрина, обработка фото и логотип.
+- [Medical Fitness](https://antonioavanzato.github.io/case-medical-fitness.html): сайт центра реабилитации после травм в Москве, ставка на скорость и спокойный минимализм, медицинские лицензии.
+- [ALGA](https://antonioavanzato.github.io/case-alga.html): сайт турагентства авторских туров на Мальдивах с CRM — заявки уходят в собственную PWA-админку с push и в Telegram; 8-я строка Google, органика.
+
 ## Контакты
 
 - Страница контактов: https://antonioavanzato.github.io/contacts.html
@@ -22,6 +33,6 @@
 ## Страницы
 
 - [Главная](https://antonioavanzato.github.io/): услуги по разработке сайтов под ключ
-- [Портфолио](https://antonioavanzato.github.io/portfolio.html): выполненные проекты
+- [Портфолио](https://antonioavanzato.github.io/portfolio.html): выполненные проекты с ссылками на разборы
 - [Стоимость](https://antonioavanzato.github.io/pricing.html): цены, состав услуг, FAQ
 - [Контакты](https://antonioavanzato.github.io/contacts.html): как связаться
