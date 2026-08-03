@@ -35,7 +35,7 @@
       src:'images/alga_tour.webp' },
     { href:'https://maldives-elite.ru',  caseUrl:'case-maldives-elite.html', title:'Maldives Elite',   desc:'туристическое агентство на Мальдивах', size:'tall',
       src:'images/maldives_elite.webp' },
-    { href:'https://yanapro.ru',         title:'Яна Самойлова',    desc:'фитнес-тренер в Казани',           size:'',
+    { href:'https://yanapro.ru',         caseUrl:'case-yana-samoylova.html', title:'Яна Самойлова',    desc:'фитнес-тренер в Казани',           size:'',
       src:'images/yanapro.webp' }
   ];
   window.AVW_PORTFOLIO = PORTFOLIO;
