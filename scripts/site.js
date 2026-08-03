@@ -47,8 +47,15 @@
   // жесты масштабирования вручную: пинч и двойной тап.
   (function () {
     ['gesturestart', 'gesturechange', 'gestureend'].forEach(function (t) {
+      // и на window, и на document: Safari доставляет жест по-разному
+      // в зависимости от того, на каком элементе он начался
+      window.addEventListener(t, function (e) { e.preventDefault(); }, { passive: false });
       document.addEventListener(t, function (e) { e.preventDefault(); }, { passive: false });
+      document.documentElement.addEventListener(t, function (e) { e.preventDefault(); }, { passive: false });
     });
+    document.addEventListener('touchstart', function (e) {
+      if (e.touches.length > 1) e.preventDefault();
+    }, { passive: false });
     // двойной тап: гасим только повторное касание в ту же точку —
     // быстрые тапы по разным кнопкам продолжают работать
     var lastTime = 0, lastX = 0, lastY = 0;
@@ -638,31 +645,47 @@
       cursorRange = Math.max(0, rail.clientHeight - cursor.offsetHeight);
     }
 
-    var shown = 0, target = 0, raf = 0;
-    // На мобильных события скролла приходят редкими пачками (особенно во время
-    // инерции), поэтому позицию догоняем плавно в rAF, а не прыжком по событию.
-    var smooth = !reduceMotion;
+    var shown = 0, raf = 0, idleFrames = 0;
+    // Событий scroll на iOS во время инерции приходит мало и неравномерно, поэтому
+    // позицию не ждём от события, а сами читаем pageYOffset каждый кадр —
+    // это дешёвое чтение без пересчёта layout — и плавно подтягиваем ленту.
+    var smooth = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
-    function draw() {
-      raf = 0;
-      var diff = target - shown;
-      if (!smooth || Math.abs(diff) < 0.0004) {
-        shown = target;
-      } else {
-        shown += diff * 0.18;
-        raf = requestAnimationFrame(draw);
-      }
+    function progress() {
+      if (maxScroll <= 0) return 0;
+      var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+      return Math.min(1, Math.max(0, y / maxScroll));
+    }
+
+    function apply() {
       track.style.transform = 'translate3d(0,' + (-shown * trackRange).toFixed(2) + 'px,0)';
       cursor.style.transform = 'translate3d(0,' + (shown * cursorRange).toFixed(2) + 'px,0)';
     }
 
+    function frame() {
+      var target = progress();
+      var diff = target - shown;
+      if (!smooth || Math.abs(diff) < 0.0002) {
+        shown = target;
+        // не гасим цикл сразу: после остановки пальца ещё идёт инерция
+        if (++idleFrames > 40) { raf = 0; apply(); return; }
+      } else {
+        shown += diff * 0.22;
+        idleFrames = 0;
+      }
+      apply();
+      raf = requestAnimationFrame(frame);
+    }
+
     function onScroll() {
-      target = maxScroll > 0 ? Math.min(1, Math.max(0, (window.pageYOffset || document.documentElement.scrollTop) / maxScroll)) : 0;
-      if (!raf) raf = requestAnimationFrame(draw);
+      idleFrames = 0;
+      if (!raf) raf = requestAnimationFrame(frame);
     }
     function onResize() { measure(); onScroll(); }
 
     window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('touchstart', onScroll, { passive: true });
+    window.addEventListener('touchmove', onScroll, { passive: true });
     window.addEventListener('resize', onResize, { passive: true });
     window.addEventListener('orientationchange', onResize, { passive: true });
     // высота документа меняется по мере загрузки картинок и появления секций
@@ -672,9 +695,8 @@
     }
     window.addEventListener('load', onResize);
     measure();
-    target = maxScroll > 0 ? (window.pageYOffset || 0) / maxScroll : 0;
-    shown = target;
-    draw();
+    shown = progress();
+    apply();
   })();
 })();
 

@@ -426,10 +426,18 @@ body .scrollbar { background: var(--accent); }
 }
 /* мобильная версия: тонкая лента у края, 3 колонки, тоже с курсором */
 @media (max-width: 820px) {
-  .dot-rail { width: 34px; }
-  .dot-rail-track { grid-template-columns: repeat(3, 1fr); gap: 7px 7px; padding: 12px 8px; }
+  .dot-rail { width: 34px; contain: layout paint; }
+  .dot-rail-track { grid-template-columns: repeat(3, 1fr); gap: 7px 7px; padding: 12px 8px; transform: translateZ(0); }
   .dot-rail-dot { width: 6px; height: 6px; }
-  .dot-rail-glass { height: 70px; }
+  /* backdrop-filter на fixed-слое заставляет мобильный Safari перерисовывать
+     всю ленту в каждом кадре — при быстром скролле она из-за этого «залипает».
+     На телефоне заменяем блюр обычной заливкой: визуально почти то же самое. */
+  .dot-rail-glass {
+    height: 70px;
+    -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+    background: linear-gradient(180deg, var(--bg, #fff), rgba(255, 255, 255, 0));
+  }
   body .wrap { padding-right: calc(var(--gutter) + 30px); }
 }
 /* короткий импульс полоски, когда из неё «вылетает» блок */
