@@ -42,6 +42,30 @@
 
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---------- запрет зума на мобильных ---------- */
+  // Safari на iOS игнорирует user-scalable=no в meta viewport, поэтому гасим
+  // жесты масштабирования вручную: пинч и двойной тап.
+  (function () {
+    ['gesturestart', 'gesturechange', 'gestureend'].forEach(function (t) {
+      document.addEventListener(t, function (e) { e.preventDefault(); }, { passive: false });
+    });
+    // двойной тап: гасим только повторное касание в ту же точку —
+    // быстрые тапы по разным кнопкам продолжают работать
+    var lastTime = 0, lastX = 0, lastY = 0;
+    document.addEventListener('touchend', function (e) {
+      var t = e.changedTouches && e.changedTouches[0];
+      if (!t) return;
+      var now = Date.now();
+      if (now - lastTime <= 350 && Math.abs(t.clientX - lastX) < 30 && Math.abs(t.clientY - lastY) < 30) {
+        e.preventDefault();
+      }
+      lastTime = now; lastX = t.clientX; lastY = t.clientY;
+    }, { passive: false });
+    document.addEventListener('touchmove', function (e) {
+      if (e.touches.length > 1) e.preventDefault();
+    }, { passive: false });
+  })();
+
   /* ---------- sliding nav indicator ---------- */
   function setupNavIndicator(navwrap) {
     var navLinks = navwrap.querySelector('.nav-links');
@@ -604,21 +628,53 @@
     rail.appendChild(glass);
     document.body.appendChild(rail);
 
-    var ticking = false;
-    function place() {
+    // Размеры кэшируем: чтение scrollHeight/offsetHeight в каждом кадре
+    // заставляет браузер пересчитывать layout — на телефоне это и давало рывки.
+    var maxScroll = 0, trackRange = 0, cursorRange = 0;
+    function measure() {
       var h = document.documentElement;
-      var max = h.scrollHeight - h.clientHeight;
-      var p = max > 0 ? h.scrollTop / max : 0;
-      var range = Math.max(0, track.scrollHeight - rail.clientHeight);
-      track.style.transform = 'translate3d(0,' + (-p * range).toFixed(1) + 'px,0)';
-      var cur = Math.max(0, rail.clientHeight - cursor.offsetHeight);
-      cursor.style.transform = 'translate3d(0,' + (p * cur).toFixed(1) + 'px,0)';
-      ticking = false;
+      maxScroll = h.scrollHeight - h.clientHeight;
+      trackRange = Math.max(0, track.scrollHeight - rail.clientHeight);
+      cursorRange = Math.max(0, rail.clientHeight - cursor.offsetHeight);
     }
-    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(place); } }
+
+    var shown = 0, target = 0, raf = 0;
+    // На мобильных события скролла приходят редкими пачками (особенно во время
+    // инерции), поэтому позицию догоняем плавно в rAF, а не прыжком по событию.
+    var smooth = !reduceMotion;
+
+    function draw() {
+      raf = 0;
+      var diff = target - shown;
+      if (!smooth || Math.abs(diff) < 0.0004) {
+        shown = target;
+      } else {
+        shown += diff * 0.18;
+        raf = requestAnimationFrame(draw);
+      }
+      track.style.transform = 'translate3d(0,' + (-shown * trackRange).toFixed(2) + 'px,0)';
+      cursor.style.transform = 'translate3d(0,' + (shown * cursorRange).toFixed(2) + 'px,0)';
+    }
+
+    function onScroll() {
+      target = maxScroll > 0 ? Math.min(1, Math.max(0, (window.pageYOffset || document.documentElement.scrollTop) / maxScroll)) : 0;
+      if (!raf) raf = requestAnimationFrame(draw);
+    }
+    function onResize() { measure(); onScroll(); }
+
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
-    place();
+    window.addEventListener('resize', onResize, { passive: true });
+    window.addEventListener('orientationchange', onResize, { passive: true });
+    // высота документа меняется по мере загрузки картинок и появления секций
+    if (window.ResizeObserver) {
+      var ro = new ResizeObserver(function () { measure(); onScroll(); });
+      ro.observe(document.body);
+    }
+    window.addEventListener('load', onResize);
+    measure();
+    target = maxScroll > 0 ? (window.pageYOffset || 0) / maxScroll : 0;
+    shown = target;
+    draw();
   })();
 })();
 
