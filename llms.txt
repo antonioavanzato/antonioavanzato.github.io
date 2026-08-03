@@ -24,6 +24,7 @@
 - [Porta Nobile](https://antonioavanzato.github.io/case-porta-nobile.html): сайт для люксового бренда итальянской дверной фурнитуры в Москве, тёмная премиальная витрина, обработка фото и логотип.
 - [Medical Fitness](https://antonioavanzato.github.io/case-medical-fitness.html): сайт центра реабилитации после травм в Москве, ставка на скорость и спокойный минимализм, медицинские лицензии.
 - [ALGA](https://antonioavanzato.github.io/case-alga.html): сайт турагентства авторских туров на Мальдивах с CRM — заявки уходят в собственную PWA-админку с push и в Telegram; 8-я строка Google, органика.
+- [Maldives Elite](https://antonioavanzato.github.io/case-maldives-elite.html): первый сайт турагенту по элитным направлениям (Мальдивы, Маврикий) как имиджевая визитка, с формой заявок в закрытый Telegram-канал и модулем бронирования TourVisor.
 
 ## Контакты
 
