@@ -269,3 +269,77 @@
 }
 .p3-case:hover { gap: 13px; color: var(--ink); }
 @media (prefers-reduced-motion: reduce) { .p3-case { transition: none; } }
+
+/* ============================================================
+   Блок «Другие разборы» — перелинковка между кейсами
+   Каждый кейс ведёт на два соседних по кольцу: обход роботом
+   проходит через все восемь, читатель не упирается в тупик.
+   ============================================================ */
+.case-more { margin-top: var(--gap, clamp(78px, 10vw, 132px)); }
+.case-more-h {
+  margin: 0 0 clamp(22px, 3vw, 34px);
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.6vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.case-more-h em { font-style: normal; color: var(--accent); }
+.case-more-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(16px, 2vw, 26px);
+}
+.case-more-card {
+  display: block;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg);
+  text-decoration: none;
+  transition: border-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.case-more-card:hover {
+  border-color: rgba(10,10,10,0.22);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px -22px rgba(10,10,10,0.3);
+}
+/* пропорция на контейнере, картинка заполняет его через cover: так превью
+   всегда одинаковой компактной высоты, а height:auto на img не ломает обрезку */
+.case-more-card .m2-img {
+  display: block; /* aspect-ratio не действует на inline <span> */
+  line-height: 0;
+  background: var(--surface);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+.case-more-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+.case-more-card .m2-body {
+  display: flex; align-items: baseline; gap: 10px;
+  padding: 16px 18px 18px;
+}
+.case-more-card .m2-body b {
+  font-family: var(--font-display);
+  font-size: clamp(15px, 1.5vw, 17px);
+  font-weight: 600;
+  color: var(--ink);
+}
+.case-more-card .m2-body span {
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.case-more-card .m2-arr {
+  margin-left: auto;
+  flex: 0 0 auto;
+  color: var(--accent-text);
+  transition: transform .3s var(--ease);
+}
+.case-more-card:hover .m2-arr { transform: translate(2px, -2px); }
+@media (prefers-reduced-motion: reduce) {
+  .case-more-card, .case-more-card .m2-arr { transition: none; }
+}
