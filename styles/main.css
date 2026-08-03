@@ -1079,3 +1079,14 @@ body::after {
   ::view-transition-old(*),
   ::view-transition-new(*) { animation: none !important; }
 }
+
+/* ---------- «как приложение» на мобильных ---------- */
+@media (max-width: 820px) {
+  /* Safari на iOS сам зумит страницу при фокусе на поле, если шрифт мельче 16px —
+     именно отсюда брался «то появляющийся, то пропадающий» зум. */
+  .field input, .field select, .field textarea { font-size: 16px; }
+  /* серая вспышка по тапу выдаёт веб-страницу */
+  a, button, .btn, [role="button"] { -webkit-tap-highlight-color: transparent; }
+  /* длинное нажатие по картинке не должно вызывать меню копирования */
+  img { -webkit-touch-callout: none; }
+}
