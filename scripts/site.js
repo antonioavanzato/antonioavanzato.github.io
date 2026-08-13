@@ -9,6 +9,21 @@
   // rate-limit по IP и honeypot-поле.
   var SCRIPT_URL = 'https://functions.yandexcloud.net/d4e2uuvutkn0qcqevb9j?r=orders&source=github';
 
+  var GAS_NOTIFY_URL = 'https://script.google.com/macros/s/AKfycbzfgLUTnQCVwIBflp8pacjSe2obRnGNoIkRybxVd-Yu0jKGib0DQ98yiGQHXtYVbX4Kow/exec';
+
+  // Обезличенный пуш в Telegram: только тип заявки и источник.
+  // Персональные данные остаются в Yandex Cloud (152-ФЗ).
+  function notifyGAS(type, source) {
+    try {
+      fetch(GAS_NOTIFY_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+        body: JSON.stringify({ type: type, source: source })
+      });
+    } catch (e) {}
+  }
+
   var PAGES = [
     { id: 'home',      label: 'Главная',   href: 'index.html' },
     { id: 'portfolio', label: 'Портфолио', href: 'portfolio.html' },
@@ -426,7 +441,12 @@
           }).then(function (res) {
             return res.text().then(function (t) {
               clearTimeout(timer);
-              if (res.ok && t.trim() === 'ok') { form.classList.add('sent'); }
+              if (res.ok && t.trim() === 'ok') {
+                form.classList.add('sent');
+                // honeypot: сервер отвечает 'ok' и ботам, но заявку не пишет —
+                // пуш в этом случае будить не надо
+                if (!payload.company) notifyGAS(payload.type, 'github');
+              }
               else { retryOrFail(); }
             });
           }).catch(function () {
