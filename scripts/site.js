@@ -593,6 +593,9 @@
       var c = li.cloneNode(true);
       c.setAttribute('aria-hidden', 'true');
       c.className = 'clone';
+      // клон — визуальный дубль: убираем его ссылки из фокуса, чтобы не было
+      // двойного таб-порядка и дублей во внутренней перелинковке
+      [].slice.call(c.querySelectorAll('a')).forEach(function (a) { a.setAttribute('tabindex', '-1'); });
       list.appendChild(c);
     });
   })();

@@ -166,6 +166,7 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
     {
       "@type": "WebPage",
       "@id": "https://antonioavanzato.github.io/#webpage",
+      "isPartOf": { "@id": "https://antonioavanzato.github.io/#website" },
       "url": "https://antonioavanzato.github.io/",
       "name": "Разработка сайтов под ключ в Казани — Антон Аванзато",
       "isPartOf": { "@id": "https://antonioavanzato.github.io/#website" },
@@ -173,7 +174,75 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
       "inLanguage": "ru-RU"
     },
     {
+      "@type": "Service",
+      "@id": "https://antonioavanzato.github.io/#service-landing",
+      "name": "Разработка лендинга под ключ",
+      "serviceType": "Разработка одностраничного сайта (лендинга)",
+      "description": "Одностраничный продающий сайт под ключ: структура, дизайн, адаптивная вёрстка, базовое SEO, логотип и наполнение контентом. Срок — 5–10 дней.",
+      "url": "https://antonioavanzato.github.io/pricing.html",
+      "provider": { "@id": "https://antonioavanzato.github.io/#business" },
+      "areaServed": [
+        { "@type": "City", "name": "Казань" },
+        { "@type": "Country", "name": "Россия" }
+      ],
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "RUB",
+        "price": "55000",
+        "priceSpecification": { "@type": "PriceSpecification", "minPrice": "55000", "priceCurrency": "RUB" },
+        "url": "https://antonioavanzato.github.io/pricing.html"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://antonioavanzato.github.io/#service-multipage",
+      "name": "Разработка многостраничного сайта под ключ",
+      "serviceType": "Разработка многостраничного сайта",
+      "description": "Многостраничный сайт под ключ: несколько разделов, блог, портфолио или каталог, дизайн, адаптивная вёрстка, SEO, логотип и наполнение контентом.",
+      "url": "https://antonioavanzato.github.io/pricing.html",
+      "provider": { "@id": "https://antonioavanzato.github.io/#business" },
+      "areaServed": [
+        { "@type": "City", "name": "Казань" },
+        { "@type": "Country", "name": "Россия" }
+      ],
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "RUB",
+        "price": "75000",
+        "priceSpecification": { "@type": "PriceSpecification", "minPrice": "75000", "priceCurrency": "RUB" },
+        "url": "https://antonioavanzato.github.io/pricing.html"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://antonioavanzato.github.io/#service-seo",
+      "name": "SEO-настройка и аналитика при запуске сайта",
+      "serviceType": "Поисковая оптимизация (SEO) и подключение аналитики",
+      "description": "Настройка индексации в Яндексе и Google: мета-теги, заголовки, robots.txt и sitemap.xml, микроразметка Schema.org, подключение Яндекс.Вебмастера, Google Search Console, Яндекс.Метрики и Google Analytics. Входит в стоимость сайта.",
+      "url": "https://antonioavanzato.github.io/pricing.html",
+      "provider": { "@id": "https://antonioavanzato.github.io/#business" },
+      "areaServed": [
+        { "@type": "City", "name": "Казань" },
+        { "@type": "Country", "name": "Россия" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://antonioavanzato.github.io/#faq",
+      "mainEntity": [
+        { "@type": "Question", "name": "Сколько стоит сайт под ключ в Казани?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Лендинг под ключ стоит от 55 000 ₽, многостраничный сайт — от 75 000 ₽. В цену уже входят дизайн, адаптивная вёрстка, базовая SEO-настройка, логотип и наполнение контентом. Домен и хостинг оплачиваются отдельно и остаются вашей собственностью." } },
+        { "@type": "Question", "name": "Сколько времени занимает разработка сайта?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Лендинг занимает 5–10 дней от брифа до запуска, многостраничный сайт — от двух недель. Работа идёт по шести этапам: бриф, дизайн, вёрстка, наполнение, SEO и запуск с передачей доступов." } },
+        { "@type": "Question", "name": "Кто делает сайты и где вы находитесь?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Сайты делает Антон Аванзато — веб-разработчик и дизайнер из Казани, Республика Татарстан. Работа идёт напрямую с исполнителем, без агентства и посредников. Клиенты — по всей России и за рубежом, весь процесс идёт удалённо." } },
+        { "@type": "Question", "name": "Что входит в SEO-настройку при запуске сайта?",
+          "acceptedAnswer": { "@type": "Answer", "text": "При запуске настраивается индексация в Яндексе и Google: мета-теги и заголовки на каждой странице, robots.txt и sitemap.xml, микроразметка Schema.org, подключение Яндекс.Вебмастера, Google Search Console, Яндекс.Метрики и Google Analytics. Это входит в стоимость сайта." } }
+      ]
+    },
+    {
       "@type": "BreadcrumbList",
+      "@id": "https://antonioavanzato.github.io/#breadcrumb",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://antonioavanzato.github.io/" }
       ]
@@ -194,17 +263,20 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
       <span class="line"><span>Сайты,</span></span>
       <span class="line"><span>сделанные</span></span>
       <span class="line"><span><em>со вкусом.</em></span></span>
+      <span class="h1-kw">Разработка сайтов под ключ в Казани</span>
     </h1>
     <p class="lede hero-lede">Объединяю эстетику профессиональной фотографии с передовыми
-      веб-технологиями. Лендинги и многостраничные сайты — от брифа до запуска под ключ.</p>
+      веб-технологиями. Лендинги и многостраничные сайты — от брифа до запуска под ключ:
+      дизайн, вёрстка, SEO, логотип и наполнение контентом. Лендинг — от 55 000 ₽ и 5–10 дней,
+      многостраничный сайт — от 75 000 ₽. База в Казани, работаю удалённо по всей России и миру.</p>
     <div class="hero-cta">
       <a class="btn btn-primary" href="contacts.html">Обсудить проект
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <a class="btn btn-ghost" href="pricing.html">Смотреть цены</a>
     </div>
     <div class="hero-meta">
-      <div class="stat"><b><span data-count="9">0</span></b><span>проектов в эфире</span></div>
-      <div class="stat"><b><span data-count="5" data-suffix="–10">0</span></b><span>дней на лендинг</span></div>
+      <div class="stat"><b><span data-count="9">9</span></b><span>проектов в эфире</span></div>
+      <div class="stat"><b><span data-count="5" data-suffix="–10">5–10</span></b><span>дней на лендинг</span></div>
       <div class="stat"><b>SEO</b><span>в каждом запуске</span></div>
     </div>
   </div>
@@ -307,18 +379,53 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
           <a href="contacts.html">опишите задачу</a> — отвечу в течение дня.</p>
       </div>
     </div>
+
+    <div class="answers reveal" data-d="1">
+      <article class="answer">
+        <h3>Сколько стоит сайт под ключ в Казани?</h3>
+        <p>Лендинг под ключ стоит от 55 000 ₽, многостраничный сайт — от 75 000 ₽. В цену уже входят
+          дизайн, адаптивная вёрстка, базовая SEO-настройка, логотип и наполнение контентом. Домен
+          и хостинг оплачиваются отдельно и остаются вашей собственностью.
+          <a href="pricing.html">Полный состав работ и цены</a>.</p>
+      </article>
+      <article class="answer">
+        <h3>Сколько времени занимает разработка сайта?</h3>
+        <p>Лендинг занимает 5–10 дней от брифа до запуска, многостраничный сайт — от двух недель.
+          Работа идёт по шести этапам: бриф, дизайн, вёрстка, наполнение, SEO и запуск с передачей
+          доступов. <a href="pricing.html">Посмотреть этапы по дням</a>.</p>
+      </article>
+      <article class="answer">
+        <h3>Кто делает сайты и где вы находитесь?</h3>
+        <p>Сайты делает Антон Аванзато — веб-разработчик и дизайнер из Казани, Республика Татарстан.
+          Работаю один, без агентства и посредников: вы общаетесь напрямую с исполнителем. Клиенты —
+          по всей России и за рубежом, весь процесс идёт удалённо.
+          <a href="contacts.html">Связаться</a>.</p>
+      </article>
+      <article class="answer">
+        <h3>Что входит в SEO-настройку при запуске?</h3>
+        <p>При запуске я настраиваю индексацию в Яндексе и Google: мета-теги и заголовки на каждой
+          странице, robots.txt и sitemap.xml, микроразметку Schema.org, подключение Яндекс.Вебмастера,
+          Google Search Console, Яндекс.Метрики и Google Analytics. Это входит в стоимость сайта.</p>
+      </article>
+      <article class="answer">
+        <h3>Как происходит оплата?</h3>
+        <p>Оплата делится пополам: 50% предоплата до старта работы, оставшиеся 50% — после полной
+          готовности сайта. Стоимость домена и хостинга в цену разработки не входит.
+          <a href="pricing.html#faq">Другие частые вопросы</a>.</p>
+      </article>
+    </div>
     <div class="seo-marquee reveal" data-d="1">
       <ul class="seo-tags">
-        <li>Создание сайта под ключ</li>
-        <li>Разработка лендинга</li>
-        <li>Многостраничные сайты</li>
-        <li>Веб-дизайн</li>
-        <li>SEO-продвижение</li>
-        <li>Создание логотипа</li>
-        <li>Адаптивная вёрстка</li>
-        <li>Сайт для бизнеса в Казани</li>
-        <li>Разработка сайтов удалённо</li>
-        <li>Сайт под ключ по России и миру</li>
+        <li><a href="pricing.html">Создание сайта под ключ</a></li>
+        <li><a href="pricing.html#faq">Разработка лендинга</a></li>
+        <li><a href="pricing.html">Многостраничные сайты</a></li>
+        <li><a href="portfolio.html">Веб-дизайн</a></li>
+        <li><a href="pricing.html#faq">SEO-продвижение</a></li>
+        <li><a href="case-alga.html">Создание логотипа</a></li>
+        <li><a href="portfolio.html">Адаптивная вёрстка</a></li>
+        <li><a href="case-daria-lukianova.html">Сайт для бизнеса в Казани</a></li>
+        <li><a href="contacts.html">Разработка сайтов удалённо</a></li>
+        <li><a href="case-velaa-trips.html">Сайт под ключ по России и миру</a></li>
       </ul>
     </div>
   </div>

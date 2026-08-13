@@ -29,4 +29,6 @@ Allow: /
 User-agent: YandexBot
 Allow: /
 
+# Краткое описание сайта для LLM: https://antonioavanzato.github.io/llms.txt
+
 Sitemap: https://antonioavanzato.github.io/sitemap.xml
