@@ -401,8 +401,6 @@ body.nav-open .mobnav-foot { opacity: 1; transform: none; transition-delay: calc
   align-items: center; justify-content: space-between;
   color: var(--ink-2); font-size: 13.5px;
 }
-.footer .brand { display: inline-flex; align-items: center; }
-.footer .brand img { height: 26px; width: auto; display: block; }
 .footer nav { display: flex; gap: 26px; flex-wrap: wrap; }
 .footer nav a { color: var(--ink-2); transition: color .3s; }
 .footer nav a:hover { color: var(--accent); }
@@ -958,14 +956,6 @@ body::after {
   content: ""; position: absolute; top: 0; left: 50%;
   width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%;
   background: var(--seal);   /* киноварная точка-печать над номером */
-}
-
-/* ---- Hanko: киноварное «эхо логотипа» — подпись в подвале ---- */
-.footer .brand { position: relative; }
-.footer .brand::after {
-  content: ""; display: inline-block; vertical-align: middle;
-  width: 22px; height: 22px; margin-left: 13px;
-  background: var(--enso) center / contain no-repeat; opacity: .7;
 }
 
 /* 円相 Ensō — тихий круг над подсказкой скролла (эхо подписи) */

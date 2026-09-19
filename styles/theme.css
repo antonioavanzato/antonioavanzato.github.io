@@ -329,7 +329,6 @@ body .cta {
 body .cta::after { background: var(--accent); }
 body .cta .eyebrow { color: var(--accent); }
 
-body .footer .brand { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em; }
 body .footer nav a:hover { color: var(--accent); }
 
 /* ============================================================
