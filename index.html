@@ -38,8 +38,8 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
 <link rel="canonical" href="https://antonioavanzato.github.io/">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="Антон Аванзато">
-<meta name="geo.region" content="RU-TA">
-<meta name="geo.placename" content="Казань">
+<meta name="geo.region" content="RU">
+<meta name="geo.placename" content="Россия">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:site_name" content="AVANZATO">
@@ -85,25 +85,22 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
       "url": "https://antonioavanzato.github.io/",
       "image": "https://antonioavanzato.github.io/images/Cover.jpg",
       "logo": "https://antonioavanzato.github.io/images/logo%20avanzato%20%28clear%29.png",
-      "description": "Разработка лендингов и многостраничных сайтов под ключ: дизайн, вёрстка, SEO, логотип, наполнение контентом. База в Казани, работаю удалённо по всей России и миру.",
+      "description": "Разработка лендингов и многостраничных сайтов под ключ: дизайн, вёрстка, SEO, логотип, наполнение контентом. Работаю удалённо по всей России и миру.",
       "priceRange": "от 55 000 ₽",
       "currenciesAccepted": "RUB",
       "paymentAccepted": "Наличные, банковский перевод, перевод по реквизитам",
       "slogan": "Сайты под ключ, которые работают, а не просто красивы",
       "knowsLanguage": "ru",
       "areaServed": [
-        { "@type": "City", "name": "Казань" },
-        { "@type": "City", "name": "Иннополис" },
-        { "@type": "City", "name": "Зеленодольск" },
-        { "@type": "AdministrativeArea", "name": "Республика Татарстан" },
-        { "@type": "Country", "name": "Россия" },
-        { "@type": "Place", "name": "Весь мир (работа удалённо)" }
+        {
+          "@type": "Country",
+          "name": "Россия"
+        },
+        {
+          "@type": "Place",
+          "name": "Весь мир — работа удалённо"
+        }
       ],
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 55.7963,
-        "longitude": 49.1088
-      },
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Казань",
@@ -111,7 +108,9 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
         "addressCountry": "RU"
       },
       "email": "antonioavanzato@gmail.com",
-      "founder": { "@id": "https://antonioavanzato.github.io/#person" },
+      "founder": {
+        "@id": "https://antonioavanzato.github.io/#person"
+      },
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "sales",
@@ -120,15 +119,31 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
         "availableLanguage": "Russian",
         "areaServed": "RU"
       },
-      "sameAs": [ "https://t.me/avanzato" ]
+      "sameAs": [
+        "https://t.me/avanzato"
+      ]
     },
     {
       "@type": "Person",
       "@id": "https://antonioavanzato.github.io/#person",
       "name": "Антон Аванзато",
       "jobTitle": "Веб-разработчик, дизайнер",
-      "worksFor": { "@id": "https://antonioavanzato.github.io/#business" },
-      "sameAs": [ "https://t.me/avanzato" ]
+      "worksFor": {
+        "@id": "https://antonioavanzato.github.io/#business",
+        "areaServed": [
+          {
+            "@type": "Country",
+            "name": "Россия"
+          },
+          {
+            "@type": "Place",
+            "name": "Весь мир — работа удалённо"
+          }
+        ]
+      },
+      "sameAs": [
+        "https://t.me/avanzato"
+      ]
     },
     {
       "@type": "WebSite",
@@ -136,15 +151,41 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
       "url": "https://antonioavanzato.github.io/",
       "name": "AVANZATO",
       "inLanguage": "ru-RU",
-      "publisher": { "@id": "https://antonioavanzato.github.io/#business" }
+      "publisher": {
+        "@id": "https://antonioavanzato.github.io/#business",
+        "areaServed": [
+          {
+            "@type": "Country",
+            "name": "Россия"
+          },
+          {
+            "@type": "Place",
+            "name": "Весь мир — работа удалённо"
+          }
+        ]
+      }
     },
     {
       "@type": "WebPage",
       "@id": "https://antonioavanzato.github.io/#webpage",
-      "isPartOf": { "@id": "https://antonioavanzato.github.io/#website" },
+      "isPartOf": {
+        "@id": "https://antonioavanzato.github.io/#website"
+      },
       "url": "https://antonioavanzato.github.io/",
       "name": "Разработка сайтов под ключ в Казани — Антон Аванзато",
-      "about": { "@id": "https://antonioavanzato.github.io/#business" },
+      "about": {
+        "@id": "https://antonioavanzato.github.io/#business",
+        "areaServed": [
+          {
+            "@type": "Country",
+            "name": "Россия"
+          },
+          {
+            "@type": "Place",
+            "name": "Весь мир — работа удалённо"
+          }
+        ]
+      },
       "inLanguage": "ru-RU"
     },
     {
@@ -154,16 +195,38 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
       "serviceType": "Разработка одностраничного сайта (лендинга)",
       "description": "Одностраничный продающий сайт под ключ: структура, дизайн, адаптивная вёрстка, базовое SEO, логотип и наполнение контентом. Срок — 5–10 дней.",
       "url": "https://antonioavanzato.github.io/pricing.html",
-      "provider": { "@id": "https://antonioavanzato.github.io/#business" },
+      "provider": {
+        "@id": "https://antonioavanzato.github.io/#business",
+        "areaServed": [
+          {
+            "@type": "Country",
+            "name": "Россия"
+          },
+          {
+            "@type": "Place",
+            "name": "Весь мир — работа удалённо"
+          }
+        ]
+      },
       "areaServed": [
-        { "@type": "City", "name": "Казань" },
-        { "@type": "Country", "name": "Россия" }
+        {
+          "@type": "Country",
+          "name": "Россия"
+        },
+        {
+          "@type": "Place",
+          "name": "Весь мир — работа удалённо"
+        }
       ],
       "offers": {
         "@type": "Offer",
         "priceCurrency": "RUB",
         "price": "55000",
-        "priceSpecification": { "@type": "PriceSpecification", "minPrice": "55000", "priceCurrency": "RUB" },
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "minPrice": "55000",
+          "priceCurrency": "RUB"
+        },
         "url": "https://antonioavanzato.github.io/pricing.html"
       }
     },
@@ -174,16 +237,38 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
       "serviceType": "Разработка многостраничного сайта",
       "description": "Многостраничный сайт под ключ: несколько разделов, блог, портфолио или каталог, дизайн, адаптивная вёрстка, SEO, логотип и наполнение контентом.",
       "url": "https://antonioavanzato.github.io/pricing.html",
-      "provider": { "@id": "https://antonioavanzato.github.io/#business" },
+      "provider": {
+        "@id": "https://antonioavanzato.github.io/#business",
+        "areaServed": [
+          {
+            "@type": "Country",
+            "name": "Россия"
+          },
+          {
+            "@type": "Place",
+            "name": "Весь мир — работа удалённо"
+          }
+        ]
+      },
       "areaServed": [
-        { "@type": "City", "name": "Казань" },
-        { "@type": "Country", "name": "Россия" }
+        {
+          "@type": "Country",
+          "name": "Россия"
+        },
+        {
+          "@type": "Place",
+          "name": "Весь мир — работа удалённо"
+        }
       ],
       "offers": {
         "@type": "Offer",
         "priceCurrency": "RUB",
         "price": "75000",
-        "priceSpecification": { "@type": "PriceSpecification", "minPrice": "75000", "priceCurrency": "RUB" },
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "minPrice": "75000",
+          "priceCurrency": "RUB"
+        },
         "url": "https://antonioavanzato.github.io/pricing.html"
       }
     },
@@ -194,17 +279,40 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
       "serviceType": "Поисковая оптимизация (SEO) и подключение аналитики",
       "description": "Настройка индексации в Яндексе и Google: мета-теги, заголовки, robots.txt и sitemap.xml, микроразметка Schema.org, подключение Яндекс.Вебмастера, Google Search Console, Яндекс.Метрики и Google Analytics. Входит в стоимость сайта.",
       "url": "https://antonioavanzato.github.io/pricing.html",
-      "provider": { "@id": "https://antonioavanzato.github.io/#business" },
+      "provider": {
+        "@id": "https://antonioavanzato.github.io/#business",
+        "areaServed": [
+          {
+            "@type": "Country",
+            "name": "Россия"
+          },
+          {
+            "@type": "Place",
+            "name": "Весь мир — работа удалённо"
+          }
+        ]
+      },
       "areaServed": [
-        { "@type": "City", "name": "Казань" },
-        { "@type": "Country", "name": "Россия" }
+        {
+          "@type": "Country",
+          "name": "Россия"
+        },
+        {
+          "@type": "Place",
+          "name": "Весь мир — работа удалённо"
+        }
       ]
     },
     {
       "@type": "BreadcrumbList",
       "@id": "https://antonioavanzato.github.io/#breadcrumb-home",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://antonioavanzato.github.io/" }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://antonioavanzato.github.io/"
+        }
       ]
     }
   ]
