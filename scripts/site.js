@@ -607,22 +607,6 @@
     nav.insertBefore(brand, nav.firstChild);
   })();
 
-  /* SEO-ключевики: дублируем для бесшовной бегущей ленты */
-  (function () {
-    var list = document.querySelector('.seo-marquee .seo-tags');
-    if (!list) return;
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    [].slice.call(list.children).forEach(function (li) {
-      var c = li.cloneNode(true);
-      c.setAttribute('aria-hidden', 'true');
-      c.className = 'clone';
-      // клон — визуальный дубль: убираем его ссылки из фокуса, чтобы не было
-      // двойного таб-порядка и дублей во внутренней перелинковке
-      [].slice.call(c.querySelectorAll('a')).forEach(function (a) { a.setAttribute('tabindex', '-1'); });
-      list.appendChild(c);
-    });
-  })();
-
   /* правая «лента» из точек — мини-карта, едет при скролле */
   (function () {
     if (document.querySelector('.dot-rail')) return;
