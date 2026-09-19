@@ -293,23 +293,18 @@ body .work-more:hover .work-more-t b { color: var(--accent); }
 /* ============================================================
    SEO-чипы
    ============================================================ */
-/* бесконечная бегущая лента ключевиков (пауза по наведению) */
-body .seo-marquee {
+/* спокойный статичный ряд ключевиков — без движения */
+body .seo-row {
   position: relative;
-  overflow: hidden;
   margin-top: clamp(40px, 5vw, 64px);
   padding: 4px 0;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
-          mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
 }
 body .seo-tags {
   margin: 0;
-  flex-wrap: nowrap;
-  width: max-content;
+  flex-wrap: wrap;
+  width: auto;
   gap: 12px;
-  animation: seoMarquee 46s linear infinite;
 }
-body .seo-marquee:hover .seo-tags { animation-play-state: paused; }
 body .seo-tags li {
   flex: 0 0 auto;
   font-size: 14px;
@@ -323,12 +318,6 @@ body .seo-tags li:hover {
   border-color: var(--ink);
   color: #fff;
 }
-@keyframes seoMarquee { to { transform: translateX(-50%); } }
-@media (prefers-reduced-motion: reduce) {
-  body .seo-tags { animation: none; flex-wrap: wrap; width: auto; }
-  body .seo-marquee { -webkit-mask-image: none; mask-image: none; }
-}
-
 /* ============================================================
    CTA + футер
    ============================================================ */

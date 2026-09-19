@@ -25,7 +25,7 @@
   }
 
   var PAGES = [
-    { id: 'home',      label: 'Главная',   href: 'index.html' },
+    { id: 'home',      label: 'Главная',   href: '/' },
     { id: 'portfolio', label: 'Портфолио', href: 'portfolio.html' },
     { id: 'pricing',   label: 'Цены',      href: 'pricing.html' },
     { id: 'contacts',  label: 'Контакты',  href: 'contacts.html' }
@@ -596,7 +596,7 @@
     if (!nav || nav.querySelector('.nav-brand')) return;
     var brand = document.createElement('a');
     brand.className = 'nav-brand';
-    brand.href = 'index.html';
+    brand.href = '/';
     brand.setAttribute('translate', 'no');
     brand.setAttribute('aria-label', 'Avanzato — на главную');
     var logo = document.createElement('img');
@@ -605,22 +605,6 @@
     logo.width = 1401; logo.height = 161;
     brand.appendChild(logo);
     nav.insertBefore(brand, nav.firstChild);
-  })();
-
-  /* SEO-ключевики: дублируем для бесшовной бегущей ленты */
-  (function () {
-    var list = document.querySelector('.seo-marquee .seo-tags');
-    if (!list) return;
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    [].slice.call(list.children).forEach(function (li) {
-      var c = li.cloneNode(true);
-      c.setAttribute('aria-hidden', 'true');
-      c.className = 'clone';
-      // клон — визуальный дубль: убираем его ссылки из фокуса, чтобы не было
-      // двойного таб-порядка и дублей во внутренней перелинковке
-      [].slice.call(c.querySelectorAll('a')).forEach(function (a) { a.setAttribute('tabindex', '-1'); });
-      list.appendChild(c);
-    });
   })();
 
   /* правая «лента» из точек — мини-карта, едет при скролле */
