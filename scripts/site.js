@@ -25,7 +25,7 @@
   }
 
   var PAGES = [
-    { id: 'home',      label: 'Главная',   href: 'index.html' },
+    { id: 'home',      label: 'Главная',   href: '/' },
     { id: 'portfolio', label: 'Портфолио', href: 'portfolio.html' },
     { id: 'pricing',   label: 'Цены',      href: 'pricing.html' },
     { id: 'contacts',  label: 'Контакты',  href: 'contacts.html' }
@@ -596,7 +596,7 @@
     if (!nav || nav.querySelector('.nav-brand')) return;
     var brand = document.createElement('a');
     brand.className = 'nav-brand';
-    brand.href = 'index.html';
+    brand.href = '/';
     brand.setAttribute('translate', 'no');
     brand.setAttribute('aria-label', 'Avanzato — на главную');
     var logo = document.createElement('img');
