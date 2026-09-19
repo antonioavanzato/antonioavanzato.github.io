@@ -165,11 +165,6 @@ body .hero {
 body .block {
   padding: var(--gap) 0 0;
 }
-/* последняя секция (CTA + футер) — симметричный отступ снизу */
-body .block:last-of-type {
-  padding-bottom: var(--gap);
-}
-
 /* оранжевый акцент-надзаголовок («40+ проектов в эфире») */
 body .hero-eb {
   color: var(--accent);

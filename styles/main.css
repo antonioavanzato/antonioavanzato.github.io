@@ -396,7 +396,7 @@ body.nav-open .mobnav-foot { opacity: 1; transform: none; transition-delay: calc
 /* ---------- footer ---------- */
 .footer {
   margin-top: clamp(90px, 12vw, 150px);
-  padding: 44px 0 50px; border-top: 1px solid var(--hairline);
+  padding: 44px 0 30px; border-top: 1px solid var(--hairline);
   display: flex; flex-wrap: wrap; gap: 20px 40px;
   align-items: center; justify-content: space-between;
   color: var(--ink-2); font-size: 13.5px;
@@ -985,7 +985,7 @@ body::after {
 
   /* CTA-блок и подвал — просторнее */
   .cta { padding: clamp(64px, 9vw, 124px) var(--gutter); }
-  .footer { margin-top: clamp(120px, 16vw, 208px); padding: clamp(48px, 6vw, 68px) 0 clamp(54px, 6vw, 76px); }
+  .footer { margin-top: clamp(120px, 16vw, 208px); padding: clamp(48px, 6vw, 68px) 0 clamp(30px, 3.5vw, 44px); }
 }
 
 /* на больших экранах — заметно больше воздуха по бокам */
