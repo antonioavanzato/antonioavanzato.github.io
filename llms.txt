@@ -27,6 +27,7 @@
 - Этапы: бриф (≈1 день) → дизайн (3–5 дней) → вёрстка (3–7 дней) → наполнение (2–3 дня) → SEO (1–2 дня) → запуск (≈1 день)
 - SEO при запуске: мета-теги и заголовки, robots.txt и sitemap.xml, микроразметка Schema.org,
   подключение Яндекс.Вебмастера, Google Search Console, Яндекс.Метрики и Google Analytics
+- Система заявок для сайта (форма + админка + уведомления в Telegram, хранение в Yandex Cloud на аккаунте клиента по 152-ФЗ) — от 20 000 ₽ отдельно, +12 000 / +25 000 ₽ при заказе сайта: https://antonioavanzato.github.io/leads-system.html
 - Подробнее и полный FAQ: https://antonioavanzato.github.io/pricing.html
 
 ## Коротко (прямые ответы)
@@ -70,4 +71,5 @@
 - [Главная](https://antonioavanzato.github.io/): услуги по разработке сайтов под ключ
 - [Портфолио](https://antonioavanzato.github.io/portfolio.html): выполненные проекты с ссылками на разборы
 - [Стоимость](https://antonioavanzato.github.io/pricing.html): цены, состав услуг, FAQ
+- [Система заявок](https://antonioavanzato.github.io/leads-system.html): форма, админка и Telegram по 152-ФЗ, живое демо
 - [Контакты](https://antonioavanzato.github.io/contacts.html): как связаться

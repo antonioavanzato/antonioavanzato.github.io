@@ -354,7 +354,7 @@
     var pkgParam = (location.search.match(/[?&]pkg=([^&]+)/) || [])[1];
     if (pkgParam) {
       var sel = form.querySelector('#f-pkg');
-      var map = { landing: 'Лендинг — одна страница', multi: 'Многостраничный сайт' };
+      var map = { landing: 'Лендинг — одна страница', multi: 'Многостраничный сайт', 'leads-form': 'Система заявок', 'leads-crm': 'Система заявок' };
       if (sel && map[pkgParam]) sel.value = map[pkgParam];
     }
 
