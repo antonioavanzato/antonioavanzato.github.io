@@ -33,7 +33,7 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Система заявок для сайта по 152-ФЗ — Антон Аванзато</title>
-<meta name="description" content="Форма заявок в стиле вашего сайта, админка и уведомления в Telegram. Данные хранятся в Yandex Cloud на вашем аккаунте — в России, по 152-ФЗ. От 20 000 ₽.">
+<meta name="description" content="Форма в стиле вашего сайта, своя админка и мгновенное уведомление в Telegram. Данные клиентов остаются в России — на вашем аккаунте Yandex Cloud, по 152-ФЗ.">
 <link rel="canonical" href="https://antonioavanzato.github.io/leads-system.html">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta property="og:type" content="website">
@@ -102,7 +102,7 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
           {
             "@type": "Offer",
             "name": "Форма + Telegram",
-            "description": "Кастомная форма в стиле сайта, защита от спама и дублей, хранение в Yandex Cloud, уведомления в Telegram.",
+            "description": "Кастомная форма в стиле сайта, защита от спама и дублей, хранение в Yandex Cloud, уведомления в Telegram, по желанию — дублирование на почту.",
             "priceCurrency": "RUB",
             "price": "20000",
             "priceValidUntil": "2026-12-31",
@@ -134,8 +134,10 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
       "mainEntity": [
         { "@type": "Question", "name": "Где хранятся заявки и кто имеет к ним доступ?",
           "acceptedAnswer": { "@type": "Answer", "text": "В Yandex Cloud на вашем собственном аккаунте — серверы находятся в России. Доступ есть только у вас: после сдачи проекта я не храню ключи и не вижу заявки." } },
-        { "@type": "Question", "name": "Почему в Telegram не приходят имя и телефон клиента?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Telegram — зарубежный сервис, и передача туда персональных данных считается трансграничной. Поэтому в уведомлении только суть заявки — услуга, город, дата — и ссылка на админку, где видны контакты." } },
+        { "@type": "Question", "name": "Почему в уведомлении нет имени и телефона?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Telegram и многие почтовые сервисы работают через зарубежные серверы, а передача туда персональных данных считается трансграничной. Поэтому в уведомлении только суть заявки — услуга, город, дата — и ссылка на админку, где видны контакты." } },
+        { "@type": "Question", "name": "Что если Telegram не работает?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Заявка в любом случае сохраняется в админке — она не потеряется. А чтобы не пропустить её, уведомление можно дублировать на почту." } },
         { "@type": "Question", "name": "Сколько стоит обслуживание Yandex Cloud?",
           "acceptedAnswer": { "@type": "Answer", "text": "Для сайта с сотнями заявок в месяц — как правило, в пределах бесплатного лимита или несколько десятков рублей в месяц. Оплачиваете напрямую Яндексу." } },
         { "@type": "Question", "name": "Работает ли это на Wfolio, Тильде и других платформах?",
@@ -155,13 +157,13 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
 
 <header class="p-hero">
   <div class="wrap p-hero-inner">
-    <p class="eyebrow reveal">Услуга · система заявок</p>
-    <h1 class="display reveal" data-anim="mask" data-d="1">Заявки не теряются<br><em>в почте.</em></h1>
-    <p class="lede reveal" data-d="2" style="max-width:600px;margin-top:26px">Форма в стиле вашего сайта, админка со статусами и мгновенное уведомление в Telegram. Данные клиентов хранятся на <b>вашем</b> аккаунте Yandex Cloud — в России, по&nbsp;152-ФЗ.</p>
+    <p class="eyebrow reveal">Система заявок</p>
+    <h1 class="display reveal" data-anim="mask" data-d="1">Заявка — это чей&#8209;то<br><em>первый шаг к вам.</em></h1>
+    <p class="lede reveal" data-d="2" style="max-width:600px;margin-top:26px">Я делаю так, чтобы этот шаг не потерялся: форма в стиле сайта, своя админка и мгновенное уведомление в Telegram. Данные остаются в России — на вашем аккаунте.</p>
     <div class="hero-cta reveal" data-d="3" style="margin-top:30px">
-      <a class="btn btn-primary" href="#demo">Попробовать демо
+      <a class="btn btn-primary" href="#demo">Посмотреть, как это работает
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      <a class="btn btn-ghost" href="#tiers">Цены</a>
+      <a class="btn btn-ghost" href="#tiers">Стоимость</a>
     </div>
   </div>
 </header>
@@ -195,7 +197,7 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
           <button type="button" class="ls-chip" aria-pressed="false">Москва</button>
           <button type="button" class="ls-chip" aria-pressed="false">Другой</button>
         </div>
-        <p class="ls-custom muted">Услуги, города и поля — любые, под ваш бизнес.</p>
+        <p class="ls-custom muted">Поля, услуги и города — под ваш бизнес. Здесь — пример с моего сайта.</p>
         <button class="btn btn-primary ls-submit" type="submit">Отправить заявку
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </form>
@@ -206,7 +208,7 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
           <div class="ls-tg-screen" id="lsTg">
             <p class="ls-empty muted">Здесь появится уведомление</p>
           </div>
-          <p class="ls-hint muted">Без имени и телефона — персональные данные не уходят за рубеж.</p>
+          <p class="ls-hint muted">В уведомлении — только суть. Имя и телефон видны в админке.</p>
         </div>
         <div class="ls-admin">
           <p class="eyebrow">Админка · Yandex Cloud, Россия</p>
@@ -234,28 +236,47 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
 
 <section class="block">
   <div class="wrap">
-    <div class="section-label reveal"><span class="num">02</span><span class="eyebrow">Как это устроено</span><span class="line"></span></div>
-    <h2 class="h-section reveal" style="margin-bottom:clamp(28px,4vw,44px)">Три звена — <em>и все ваши</em></h2>
-    <div class="proc ls-flow">
-      <div class="proc-step reveal"><span class="proc-num">01</span><h3>Форма на сайте</h3><span class="proc-time">Wfolio, Тильда, свой код</span><p>Выглядит как часть сайта. Маска телефона, выбор услуги и города, защита от спама и повторных отправок.</p></div>
-      <div class="proc-step reveal" data-d="1"><span class="proc-num">02</span><h3>Yandex Cloud</h3><span class="proc-time">ваш аккаунт · Россия</span><p>Принимает заявку и сохраняет в базу. Это требование 152-ФЗ о локализации: первичная запись — на серверах в РФ.</p></div>
-      <div class="proc-step reveal" data-d="2"><span class="proc-num">03</span><h3>Админка и Telegram</h3><span class="proc-time">мгновенно</span><p>В Telegram — сигнал о новой заявке. В админке — контакты, история и статусы: новая, в работе, назначено, оплачено.</p></div>
+    <div class="section-label reveal"><span class="num">02</span><span class="eyebrow">Почему это важно</span><span class="line"></span></div>
+    <div class="incl-grid">
+      <div class="incl-lead reveal">
+        <h2 class="h-section">Сайт снова —<br><em>главная дверь.</em></h2>
+        <p class="lede" style="margin-top:22px">Всё чаще исполнителя ищут не в ленте, а спрашивают у Алисы, Gemini или поиска. Ответ ведёт на сайт. А на сайте — форма: самое тихое место, о котором думают в последнюю очередь.</p>
+        <p class="lede" style="margin-top:18px">Человек решился и написал. Дальше всё зависит от того, как быстро вы об этом узнаете.</p>
+      </div>
+      <ul class="check-list">
+        <li class="reveal"><span class="ck"></span><div><b>Форма</b><i>В стиле сайта. Маска телефона, защита от спама и повторных отправок</i></div></li>
+        <li class="reveal" data-d="1"><span class="ck"></span><div><b>Админка</b><i>Все заявки в одном месте — с историей и статусами</i></div></li>
+        <li class="reveal" data-d="2"><span class="ck"></span><div><b>Telegram</b><i>Мгновенное уведомление о каждой новой заявке</i></div></li>
+        <li class="reveal" data-d="3"><span class="ck"></span><div><b>Почта — по желанию</b><i>Дополнительный канал: связь бывает капризной, а заявка не должна ждать</i></div></li>
+      </ul>
     </div>
   </div>
 </section>
 
 <section class="block">
   <div class="wrap">
-    <div class="section-label reveal"><span class="num">03</span><span class="eyebrow">152-ФЗ</span><span class="line"></span></div>
+    <div class="section-label reveal"><span class="num">03</span><span class="eyebrow">Под ваш бизнес</span><span class="line"></span></div>
+    <h2 class="h-section reveal" style="margin-bottom:clamp(28px,4vw,44px)">Основа одна — <em>задачи у всех разные</em></h2>
+    <div class="proc ls-flow">
+      <div class="proc-step reveal"><span class="proc-num">01</span><h3>Что спрашивать</h3><span class="proc-time">поля формы</span><p>Услуги, города, даты, бюджет, ссылки на референсы — только то, что действительно нужно вам для ответа.</p></div>
+      <div class="proc-step reveal" data-d="1"><span class="proc-num">02</span><h3>Кому сообщать</h3><span class="proc-time">уведомления</span><p>В Telegram — вам или нескольким сотрудникам, по-разному для разных услуг. По желанию — дублирование на почту.</p></div>
+      <div class="proc-step reveal" data-d="2"><span class="proc-num">03</span><h3>Как вести</h3><span class="proc-time">статусы в админке</span><p>Этапы под ваш процесс: для фотографа — «съёмка назначена», для студии — «замер», для школы — «пробный урок».</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="section-label reveal"><span class="num">04</span><span class="eyebrow">Бережно</span><span class="line"></span></div>
     <div class="incl-grid">
       <div class="incl-lead reveal">
-        <h2 class="h-section">Данные клиентов —<br><em>только у вас.</em></h2>
-        <p class="lede" style="margin-top:22px">Всё разворачивается на ваших аккаунтах. После сдачи я не храню ключи и не вижу заявки. Вы — оператор данных и полный владелец системы.</p>
+        <h2 class="h-section">Чужие имена и телефоны —<br><em>это ответственность.</em></h2>
+        <p class="lede" style="margin-top:22px">Всё разворачивается на ваших аккаунтах. После запуска у меня нет доступа к вашим заявкам. Так и должно быть.</p>
         <p class="incl-note muted">* Шаблоны документов — отправная точка. Для вашего бизнеса их стоит сверить с юристом.</p>
       </div>
       <ul class="check-list">
-        <li class="reveal"><span class="ck"></span><div><b>Хранение в России</b><i>Yandex Cloud, ваш аккаунт</i></div></li>
-        <li class="reveal" data-d="1"><span class="ck"></span><div><b>Без трансграничной передачи</b><i>В Telegram не уходят имя и телефон</i></div></li>
+        <li class="reveal"><span class="ck"></span><div><b>Хранение в России</b><i>Yandex Cloud, ваш аккаунт — по 152-ФЗ</i></div></li>
+        <li class="reveal" data-d="1"><span class="ck"></span><div><b>Контакты не уходят за рубеж</b><i>В уведомлениях — только суть заявки</i></div></li>
         <li class="reveal" data-d="2"><span class="ck"></span><div><b>Отдельное согласие</b><i>Чекбокс и ссылка на политику в форме</i></div></li>
         <li class="reveal" data-d="3"><span class="ck"></span><div><b>Шаблоны документов</b><i>Политика обработки и согласие — в пакете с админкой</i></div></li>
         <li class="reveal"><span class="ck"></span><div><b>Никакой зависимости от меня</b><i>Доступы и код — ваши</i></div></li>
@@ -266,7 +287,7 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
 
 <section class="block" id="tiers">
   <div class="wrap">
-    <div class="section-label reveal"><span class="num">04</span><span class="eyebrow">Стоимость</span><span class="line"></span></div>
+    <div class="section-label reveal"><span class="num">05</span><span class="eyebrow">Стоимость</span><span class="line"></span></div>
     <h2 class="visually-hidden">Пакеты и стоимость</h2>
     <div class="tiers">
       <article class="tier reveal">
@@ -274,59 +295,59 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
         <header class="tier-h">
           <p class="eyebrow">Пакет 01</p>
           <h3>Форма <span class="muted">+ Telegram</span></h3>
-          <p class="tier-desc muted">Чтобы заявки приходили сразу, а не терялись в почте.</p>
+          <p class="tier-desc muted">Чтобы о каждой заявке вы узнавали сразу.</p>
         </header>
         <ul class="tier-points">
-          <li><span class="pk"></span><span>Форма в стиле сайта<i>до 6 полей под ваши услуги</i></span></li>
+          <li><span class="pk"></span><span>Форма в стиле сайта<i>до 6 полей под ваши задачи</i></span></li>
           <li><span class="pk"></span><span>Хранение в Yandex Cloud<i>на вашем аккаунте, в России</i></span></li>
-          <li><span class="pk"></span><span>Уведомления в Telegram<i>без персональных данных</i></span></li>
+          <li><span class="pk"></span><span>Уведомления в Telegram<i>без персональных данных · почта по желанию</i></span></li>
           <li><span class="pk"></span><span>Защита от спама и дублей<i>ловушка для ботов, повторы</i></span></li>
         </ul>
         <div class="price"><span class="from">от</span><b data-count="20000">20 000</b><span class="cur">₽</span></div>
         <p class="price-note"><span class="dot-ic"></span>2–3 дня · <b>+12 000 ₽</b> при заказе сайта</p>
-        <a class="btn btn-ghost tier-btn" href="contacts.html?pkg=leads-form">Выбрать форму</a>
+        <a class="btn btn-ghost tier-btn" href="contacts.html?pkg=leads-form">Обсудить форму</a>
       </article>
       <article class="tier featured reveal" data-d="1">
         <span class="tier-glare" aria-hidden="true"></span>
-        <span class="tier-badge">Популярный выбор</span>
+        <span class="tier-badge">Как у меня</span>
         <header class="tier-h">
           <p class="eyebrow">Пакет 02</p>
           <h3>Система <span class="muted">заявок</span></h3>
-          <p class="tier-desc muted">Мини-CRM: все обращения в одном месте, со статусами и историей.</p>
+          <p class="tier-desc muted">Все обращения в одном месте — с историей и статусами.</p>
         </header>
         <ul class="tier-points">
-          <li><span class="pk"></span><span>Всё из пакета «Форма»<i>до 10 полей</i></span></li>
-          <li><span class="pk"></span><span>Админка со статусами<i>новая → в работе → оплачено</i></span></li>
+          <li><span class="pk"></span><span>Всё из первого пакета<i>до 10 полей</i></span></li>
+          <li><span class="pk"></span><span>Админка со статусами<i>этапы под ваш процесс</i></span></li>
           <li><span class="pk"></span><span>Документы по 152-ФЗ<i>политика и согласие — шаблоны</i></span></li>
           <li><span class="pk"></span><span>Видеоинструкция<i>как пользоваться админкой</i></span></li>
         </ul>
         <div class="price"><span class="from">от</span><b data-count="35000">35 000</b><span class="cur">₽</span></div>
         <p class="price-note"><span class="dot-ic"></span>5–7 дней · <b>+25 000 ₽</b> при заказе сайта</p>
-        <a class="btn btn-primary tier-btn" href="contacts.html?pkg=leads-crm">Выбрать систему
+        <a class="btn btn-primary tier-btn" href="contacts.html?pkg=leads-crm">Обсудить систему
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </article>
     </div>
-    <p class="tiers-foot reveal">Несколько форм, UTM-метки, несколько получателей, интеграции — обсуждаем на брифинге. <a href="contacts.html?pkg=leads-crm">Обсудить →</a></p>
+    <p class="tiers-foot reveal">Несколько форм, несколько получателей, свои этапы и интеграции — обсуждаем на брифинге. <a href="contacts.html?pkg=leads-crm">Рассказать о задаче →</a></p>
     <p class="tiers-rev reveal">Yandex Cloud оплачивается напрямую Яндексу — обычно это <b>0–100 ₽/мес</b>. Поддержка после сдачи — по желанию, <b>1 500 ₽/мес</b>.</p>
   </div>
 </section>
 
 <section class="block">
   <div class="wrap">
-    <div class="section-label reveal"><span class="num">05</span><span class="eyebrow">Как проходит внедрение</span><span class="line"></span></div>
-    <h2 class="h-section reveal" style="margin-bottom:clamp(28px,4vw,44px)">От брифа <em>до первой заявки</em></h2>
+    <div class="section-label reveal"><span class="num">06</span><span class="eyebrow">Как проходит работа</span><span class="line"></span></div>
+    <h2 class="h-section reveal" style="margin-bottom:clamp(28px,4vw,44px)">От разговора <em>до первой заявки</em></h2>
     <div class="proc">
-      <div class="proc-step reveal"><span class="proc-num">01</span><h3>Бриф</h3><span class="proc-time">≈ 1 день</span><p>Какие поля, услуги и города нужны, куда слать уведомления, кто будет работать с заявками.</p></div>
-      <div class="proc-step reveal" data-d="1"><span class="proc-num">02</span><h3>Аккаунты</h3><span class="proc-time">≈ 30 минут</span><p>Вы регистрируете Yandex Cloud и Telegram-бота по моей инструкции или вместе со мной на созвоне.</p></div>
-      <div class="proc-step reveal" data-d="2"><span class="proc-num">03</span><h3>Настройка</h3><span class="proc-time">1–4 дня</span><p>Разворачиваю бэкенд, собираю форму в стиле сайта, встраиваю и тестирую каждое поле.</p></div>
-      <div class="proc-step reveal"><span class="proc-num">04</span><h3>Сдача</h3><span class="proc-time">≈ 1 день</span><p>Передаю доступы и видеоинструкцию, отзываю свои ключи. Система полностью ваша.</p></div>
+      <div class="proc-step reveal"><span class="proc-num">01</span><h3>Разговор</h3><span class="proc-time">≈ 1 день</span><p>Как вы работаете с заявками сейчас, что спрашивать у клиента, кто и где должен узнавать о новых обращениях.</p></div>
+      <div class="proc-step reveal" data-d="1"><span class="proc-num">02</span><h3>Аккаунты</h3><span class="proc-time">≈ 30 минут</span><p>Вы регистрируете Yandex Cloud и Telegram-бота по моей инструкции — или вместе со мной на созвоне.</p></div>
+      <div class="proc-step reveal" data-d="2"><span class="proc-num">03</span><h3>Настройка</h3><span class="proc-time">1–4 дня</span><p>Разворачиваю систему, собираю форму в стиле сайта, встраиваю и проверяю каждое поле.</p></div>
+      <div class="proc-step reveal"><span class="proc-num">04</span><h3>Передача</h3><span class="proc-time">≈ 1 день</span><p>Передаю доступы и видеоинструкцию, отзываю свои ключи. Система полностью ваша.</p></div>
     </div>
   </div>
 </section>
 
 <section class="block">
   <div class="wrap narrow">
-    <div class="section-label reveal"><span class="num">06</span><span class="eyebrow">Частые вопросы</span><span class="line"></span></div>
+    <div class="section-label reveal"><span class="num">07</span><span class="eyebrow">Частые вопросы</span><span class="line"></span></div>
     <h2 class="h-section reveal" style="margin-bottom:clamp(30px,4vw,46px)">Коротко <em>о важном</em></h2>
     <div class="faq">
       <div class="acc reveal" data-acc>
@@ -334,12 +355,12 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
         <div class="acc-a"><div class="acc-a-inner">В Yandex Cloud на вашем собственном аккаунте — серверы находятся в России. Доступ есть только у вас: после сдачи проекта я не храню ключи и не вижу заявки.</div></div>
       </div>
       <div class="acc reveal" data-acc>
-        <button class="acc-q" aria-expanded="false"><span><span class="acc-num">02</span>Почему в Telegram не приходят имя и телефон клиента?</span><span class="acc-ic"></span></button>
-        <div class="acc-a"><div class="acc-a-inner">Telegram — зарубежный сервис, и передача туда персональных данных считается трансграничной. Поэтому в уведомлении только суть заявки — услуга, город, дата — и ссылка на админку, где видны контакты.</div></div>
+        <button class="acc-q" aria-expanded="false"><span><span class="acc-num">02</span>Что если Telegram не работает?</span><span class="acc-ic"></span></button>
+        <div class="acc-a"><div class="acc-a-inner">Заявка в любом случае сохраняется в админке — она не потеряется. А чтобы не пропустить её, уведомление можно дублировать на почту.</div></div>
       </div>
       <div class="acc reveal" data-acc>
-        <button class="acc-q" aria-expanded="false"><span><span class="acc-num">03</span>Сколько стоит обслуживание Yandex Cloud?</span><span class="acc-ic"></span></button>
-        <div class="acc-a"><div class="acc-a-inner">Для сайта с сотнями заявок в месяц — как правило, в пределах бесплатного лимита или несколько десятков рублей в месяц. Оплачиваете напрямую Яндексу.</div></div>
+        <button class="acc-q" aria-expanded="false"><span><span class="acc-num">03</span>Почему в уведомлении нет имени и телефона?</span><span class="acc-ic"></span></button>
+        <div class="acc-a"><div class="acc-a-inner">Telegram и многие почтовые сервисы работают через зарубежные серверы, а передача туда персональных данных считается трансграничной. Поэтому в уведомлении только суть — услуга, город, дата — и ссылка на админку, где видны контакты.</div></div>
       </div>
       <div class="acc reveal" data-acc>
         <button class="acc-q" aria-expanded="false"><span><span class="acc-num">04</span>Работает ли это на Wfolio, Тильде и других платформах?</span><span class="acc-ic"></span></button>
@@ -347,7 +368,11 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
       </div>
       <div class="acc reveal" data-acc>
         <button class="acc-q" aria-expanded="false"><span><span class="acc-num">05</span>Можно ли потом поменять поля, услуги или города?</span><span class="acc-ic"></span></button>
-        <div class="acc-a"><div class="acc-a-inner">Да. Все значения вынесены в один блок настроек в начале кода — поменять название услуги или добавить город можно за минуту. Если не хочется разбираться — сделаю в рамках поддержки.</div></div>
+        <div class="acc-a"><div class="acc-a-inner">Да. Все значения вынесены в один блок настроек — поменять название услуги или добавить город можно за минуту. Если не хочется разбираться — сделаю в рамках поддержки.</div></div>
+      </div>
+      <div class="acc reveal" data-acc>
+        <button class="acc-q" aria-expanded="false"><span><span class="acc-num">06</span>Сколько стоит обслуживание Yandex Cloud?</span><span class="acc-ic"></span></button>
+        <div class="acc-a"><div class="acc-a-inner">Для сайта с сотнями заявок в месяц — как правило, в пределах бесплатного лимита или несколько десятков рублей в месяц. Оплачиваете напрямую Яндексу.</div></div>
       </div>
     </div>
   </div>
@@ -357,10 +382,10 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
   <div class="wrap">
     <div class="cta reveal">
       <div class="cta-inner">
-        <p class="eyebrow">Готовы начать</p>
-        <h2 class="h-section">Пусть заявки <em>работают на вас</em></h2>
-        <p class="lede">Расскажите, какие заявки вы принимаете сейчас, — предложу схему под ваш бизнес.</p>
-        <div class="hero-cta"><a class="btn btn-primary" href="contacts.html?pkg=leads-crm">Обсудить систему заявок
+        <p class="eyebrow">Если откликается</p>
+        <h2 class="h-section">Расскажите, <em>как вы работаете с&nbsp;заявками сейчас</em></h2>
+        <p class="lede">Предложу схему под ваш бизнес — без шаблонов.</p>
+        <div class="hero-cta"><a class="btn btn-primary" href="contacts.html?pkg=leads-crm">Обсудить
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
       </div>
     </div>
