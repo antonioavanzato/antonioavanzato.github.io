@@ -722,11 +722,11 @@
     '<div class="cookie-text">' +
       '<span class="cookie-eyebrow">Файлы cookie</span>' +
       '<p class="cookie-title">Немного заботы <em>о качестве.</em></p>' +
-      '<p>Сайт использует cookie и аналитику, чтобы становиться удобнее. Оставаясь здесь, ' +
-      'вы соглашаетесь с <a class="cookie-link" href="legal-privacy.html">политикой конфиденциальности</a>.</p>' +
+      '<p>Сайт использует cookie, Яндекс.Метрику и Google Analytics. Нажимая «Принять», вы соглашаетесь ' +
+      'с этим на условиях <a class="cookie-link" href="legal-privacy.html">политики</a>.</p>' +
     '</div>' +
     '<div class="cookie-actions">' +
-      '<button type="button" class="btn btn-primary">Хорошо</button>' +
+      '<button type="button" class="btn btn-primary">Принять</button>' +
       '<a class="cookie-more" href="legal-privacy.html">Подробнее</a>' +
     '</div>';
   note.querySelector('button').addEventListener('click', function () {
