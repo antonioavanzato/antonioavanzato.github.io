@@ -78,15 +78,19 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
       "@type": "Article",
       "@id": "https://antonioavanzato.github.io/case-daria-lukianova.html#article",
       "headline": "Сайт для преподавателя вокала — кейс Дарьи Лукьяновой",
-      "description": "Разбор проекта: сайт частному преподавателю вокала и фортепиано в Казани. Прайс, адрес занятий, видео с учениками, биография. Сайт и фотосессия под ключ.",
+      "description": "Разбор проекта: сайт частному преподавателю вокала и фортепиано в Казани с собственной системой онлайн-записи — форма с выбором времени, PWA-админка, календарь окон, уведомления в Telegram и Instagram-бот. Данные в Яндекс Облаке по 152-ФЗ.",
       "inLanguage": "ru-RU",
       "datePublished": "2026-07-30",
-      "dateModified": "2026-09-19",
+      "dateModified": "2026-10-02",
       "url": "https://antonioavanzato.github.io/case-daria-lukianova.html",
       "mainEntity": {
         "@id": "https://antonioavanzato.github.io/case-daria-lukianova.html#project"
       },
-      "image": "https://antonioavanzato.github.io/images/darialukianova.webp",
+      "image": [
+        "https://antonioavanzato.github.io/images/darialukianova.webp",
+        "https://antonioavanzato.github.io/images/daria-admin-1.webp",
+        "https://antonioavanzato.github.io/images/daria-admin-2.webp"
+      ],
       "author": {
         "@id": "https://antonioavanzato.github.io/#person"
       },
@@ -135,7 +139,7 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
       "@type": "CreativeWork",
       "@id": "https://antonioavanzato.github.io/case-daria-lukianova.html#project",
       "name": "Сайт Дарья Лукьянова",
-      "description": "Сайт частного преподавателя вокала и фортепиано в Казани: структура под запись на занятия и фотосессия для наполнения.",
+      "description": "Сайт частного преподавателя вокала и фортепиано в Казани: структура под запись на занятия, фотосессия и собственная система онлайн-записи с PWA-админкой.",
       "url": "https://darialukianova.com",
       "genre": "Веб-сайт",
       "inLanguage": "ru-RU",
@@ -157,6 +161,60 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
       },
       "subjectOf": {
         "@id": "https://antonioavanzato.github.io/case-daria-lukianova.html#article"
+      },
+      "hasPart": {
+        "@id": "https://antonioavanzato.github.io/case-daria-lukianova.html#booking-app"
+      }
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://antonioavanzato.github.io/case-daria-lukianova.html#booking-app",
+      "name": "Система онлайн-записи Дарьи Лукьяновой",
+      "description": "Онлайн-запись на занятия вокалом: клиент выбирает занятие и свободное время на сайте, преподаватель подтверждает заявку в PWA-админке на телефоне. Instagram-бот отвечает на комментарии с ключевым словом.",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "Онлайн-запись и CRM для частного преподавателя",
+      "operatingSystem": "iOS, Android, любой современный браузер (PWA)",
+      "inLanguage": "ru-RU",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "RUB",
+        "description": "Индивидуальная разработка для клиента, не продаётся отдельно"
+      },
+      "featureList": [
+        "Запись с сайта на пробное занятие, разовые занятия и абонементы с выбором длительности",
+        "Свободное время считается автоматически из открытых окон минус занятые записи",
+        "Защита от двойного бронирования: время удерживается до подтверждения",
+        "PWA-админка: заявки, подтверждение и отмена, связь с клиентом через звонок, iMessage, Telegram и WhatsApp",
+        "Календарь с открытием окон на дату или на несколько недель вперёд",
+        "Уведомления о новых заявках в Telegram",
+        "Instagram-бот: ответ в личные сообщения и публичный ответ на комментарий с ключевым словом",
+        "Хранение персональных данных в России — Яндекс Облако (152-ФЗ)"
+      ],
+      "screenshot": [
+        {
+          "@type": "ImageObject",
+          "url": "https://antonioavanzato.github.io/images/daria-admin-1.webp",
+          "width": 1600,
+          "height": 1035,
+          "caption": "Заявки, карточка заявки с кнопками связи и календарь открытого времени"
+        },
+        {
+          "@type": "ImageObject",
+          "url": "https://antonioavanzato.github.io/images/daria-admin-2.webp",
+          "width": 1600,
+          "height": 1035,
+          "caption": "Вход в админку и настройка Instagram-бота с ключевыми словами"
+        }
+      ],
+      "creator": {
+        "@id": "https://antonioavanzato.github.io/#person"
+      },
+      "provider": {
+        "@id": "https://antonioavanzato.github.io/#business"
+      },
+      "isPartOf": {
+        "@id": "https://antonioavanzato.github.io/case-daria-lukianova.html#project"
       }
     },
     {
@@ -349,6 +407,60 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
         </ul>
       </div>
     </div>
+
+    <div class="case-block reveal">
+      <h2>Своя система <em>онлайн-записи</em></h2>
+      <div class="case-body">
+        <p>Сайт убрал повторы в переписке, но запись всё равно шла вручную:
+          «а когда у вас свободно?» — и снова десяток сообщений. Поэтому следующим
+          шагом я сделал Дарье <strong>собственную систему записи</strong>.</p>
+        <p>Ученик сам выбирает на сайте пробное занятие, разовый урок или абонемент,
+          видит только реально свободное время и оставляет заявку. Дарья получает
+          уведомление в Telegram и подтверждает её в <strong>своём приложении на
+          телефоне</strong> — это PWA, оно ставится с сайта без App Store.</p>
+        <ul class="case-list">
+          <li>Дарья открывает «окна» на дату или сразу на несколько недель вперёд, а ученик выбирает время внутри окна под длительность своего занятия — 50 минут, 1 ч 15 или 1 ч 40</li>
+          <li>Свободное время считается само: открытые окна минус уже занятые записи</li>
+          <li>Защита от двойной записи: выбранное время удерживается, пока Дарья не ответит</li>
+          <li>Заявки со статусами «ждёт ответа», «подтверждено», «отменено» и календарь с цветными отметками</li>
+          <li>Связь с учеником в одно касание: звонок, iMessage, Telegram или WhatsApp</li>
+        </ul>
+        <p>Изначально система работала на Firebase, а затем я <strong>перенёс её
+          в Яндекс Облако</strong>: персональные данные учеников теперь хранятся
+          в России, как требует 152-ФЗ. Бэкенд — серверная функция с базой данных,
+          которая при такой нагрузке укладывается в бесплатные лимиты.</p>
+      </div>
+    </div>
+
+    <figure class="case-shot reveal">
+      <img src="images/daria-admin-1.webp"
+           alt="PWA-админка онлайн-записи Дарьи Лукьяновой на трёх iPhone: список заявок, карточка заявки с кнопками связи, календарь с открытым временем"
+           width="1600" height="1035" loading="lazy" decoding="async">
+      <figcaption>Заявки со статусами, карточка ученика с кнопками связи и календарь, где Дарья открывает свободное время. Данные на скриншотах демонстрационные.</figcaption>
+    </figure>
+
+    <div class="case-block reveal">
+      <h2>Instagram-бот <em>для учеников</em></h2>
+      <div class="case-body">
+        <p>Дарья ведёт Instagram и делится материалами: нотами, распевками. Раньше
+          на каждый комментарий «пришлите ноты» приходилось отвечать вручную.</p>
+        <p>Теперь это делает <strong>бот</strong>: человек пишет под постом ключевое
+          слово — и сразу получает материал в личные сообщения, а под комментарием
+          появляется публичный ответ, каждый раз в новой формулировке. Ключевые слова
+          и тексты Дарья настраивает сама во вкладке «Instagram» той же админки,
+          там же видно, сколько раз сработало каждое слово.</p>
+        <p>Бот сделан <strong>отдельным сервисом</strong>: свой адрес, свои таблицы,
+          свой деплой. Даже если с ним что-то случится, запись на занятия это никак
+          не затронет. Доступ к Instagram продлевается автоматически.</p>
+      </div>
+    </div>
+
+    <figure class="case-shot reveal">
+      <img src="images/daria-admin-2.webp"
+           alt="Админка Дарьи Лукьяновой: экран входа и вкладка Instagram-бота с ключевыми словами, текстами ответов и статусом подключения"
+           width="1600" height="1035" loading="lazy" decoding="async">
+      <figcaption>Вход в админку и настройка Instagram-бота: ключевые слова, ответ в личные сообщения, варианты публичных ответов и счётчик срабатываний.</figcaption>
+    </figure>
 
     <div class="case-block reveal">
       <h2>Фотосессия <em>тем же человеком</em></h2>

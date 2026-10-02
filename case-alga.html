@@ -159,6 +159,51 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
       },
       "subjectOf": {
         "@id": "https://antonioavanzato.github.io/case-alga.html#article"
+      },
+      "hasPart": {
+        "@id": "https://antonioavanzato.github.io/case-alga.html#admin-app"
+      }
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://antonioavanzato.github.io/case-alga.html#admin-app",
+      "name": "ALGA — панель заявок",
+      "description": "PWA-админка турагентства: заявки на экскурсии, дайвинг, отели и авторские туры с сайта в одном приложении на телефоне, со статусами, поиском и связью с туристом в одно касание.",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "CRM для заявок турагентства",
+      "operatingSystem": "iOS, Android, любой современный браузер (PWA)",
+      "inLanguage": "ru-RU",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "RUB",
+        "description": "Индивидуальная разработка для клиента, не продаётся отдельно"
+      },
+      "featureList": [
+        "Вход по почте и паролю с токеном сессии",
+        "Сводка: всего, новые, в работе, подтверждённые",
+        "Поиск по имени и телефону, фильтры по услуге и статусу",
+        "Смена статуса заявки прямо в списке",
+        "Карточка заявки с датами, количеством гостей, островом выезда и трансфером",
+        "Связь с туристом: WhatsApp, Telegram, звонок, копирование номера",
+        "Push-уведомления и звук о новой заявке, дублирование в Telegram-канал",
+        "Бэкенд на Яндекс Облаке: приём заявок с защитой от спама, рассылка уведомлений с повторами"
+      ],
+      "screenshot": {
+        "@type": "ImageObject",
+        "url": "https://antonioavanzato.github.io/images/alga-admin.webp",
+        "width": 1600,
+        "height": 1035,
+        "caption": "Вход, список заявок со статусами и фильтрами, карточка заявки с кнопками связи"
+      },
+      "creator": {
+        "@id": "https://antonioavanzato.github.io/#person"
+      },
+      "provider": {
+        "@id": "https://antonioavanzato.github.io/#business"
+      },
+      "isPartOf": {
+        "@id": "https://antonioavanzato.github.io/case-alga.html#project"
       }
     },
     {
