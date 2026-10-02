@@ -12,7 +12,7 @@
   var GAS_NOTIFY_URL = 'https://script.google.com/macros/s/AKfycbzfgLUTnQCVwIBflp8pacjSe2obRnGNoIkRybxVd-Yu0jKGib0DQ98yiGQHXtYVbX4Kow/exec';
 
   // Обезличенный пуш в Telegram: только тип заявки и источник.
-  // Персональные данные остаются в Yandex Cloud (152-ФЗ).
+  // Персональные данные остаются в Yandex Cloud.
   function notifyGAS(type, source) {
     try {
       fetch(GAS_NOTIFY_URL, {
