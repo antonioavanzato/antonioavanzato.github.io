@@ -81,12 +81,15 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
       "description": "Разбор проекта ALGA: сайт авторских туров на Мальдивах с нуля. Кастомный код, свои пресеты и логотип, две языковые версии, CRM с заявками в PWA-админку и Telegram.",
       "inLanguage": "ru-RU",
       "datePublished": "2026-07-30",
-      "dateModified": "2026-09-19",
+      "dateModified": "2026-10-02",
       "url": "https://antonioavanzato.github.io/case-alga.html",
       "mainEntity": {
         "@id": "https://antonioavanzato.github.io/case-alga.html#project"
       },
-      "image": "https://antonioavanzato.github.io/images/alga_tour.webp",
+      "image": [
+        "https://antonioavanzato.github.io/images/alga_tour.webp",
+        "https://antonioavanzato.github.io/images/alga-admin.webp"
+      ],
       "author": {
         "@id": "https://antonioavanzato.github.io/#person"
       },
@@ -334,6 +337,38 @@ document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-
           в мессенджерах.</p>
       </div>
     </div>
+
+    <div class="case-block reveal">
+      <h2>Админка <em>в телефоне</em></h2>
+      <div class="case-body">
+        <p>Админку я сделал как <strong>PWA-приложение</strong>: администратор ставит её
+          на iPhone или Android прямо с сайта, без магазина приложений, и открывает
+          одним касанием, как обычное приложение.</p>
+        <ul class="case-list">
+          <li>Вход по почте и паролю, сессия хранится в защищённом токене</li>
+          <li>Сводка сверху: сколько заявок всего, новых, в работе и подтверждённых</li>
+          <li>Поиск по имени или телефону и фильтры по услуге и статусу</li>
+          <li>Карточка заявки: услуга, даты, число гостей, остров выезда, трансфер и пожелания туриста</li>
+          <li>Статус меняется прямо в списке: новая, в работе, подтверждена, отменена</li>
+          <li>Связь с туристом в одно касание: WhatsApp, Telegram, звонок или копирование номера</li>
+          <li>Звук и push-уведомление о новой заявке, обновление списка жестом «потянуть вниз»</li>
+        </ul>
+        <p>Под капотом — <strong>Яндекс Облако</strong>: три небольшие серверные функции
+          и база данных. Одна функция принимает заявку с формы сайта и сохраняет её
+          (со скрытой ловушкой от спам-ботов), вторая обслуживает админку, третья
+          по таймеру рассылает уведомления в Telegram и push с повторными попытками —
+          так ни одна заявка не теряется, даже если мессенджер на минуту недоступен.
+          Данные хранятся в России, а при нескольких заявках в день инфраструктура
+          почти ничего не стоит. Развёртывание сведено к одной команде.</p>
+      </div>
+    </div>
+
+    <figure class="case-shot reveal">
+      <img src="images/alga-admin.webp"
+           alt="PWA-админка ALGA на трёх iPhone: экран входа, список заявок со сводкой и фильтрами, карточка заявки с кнопками WhatsApp, Telegram и звонка"
+           width="1600" height="1035" loading="lazy" decoding="async">
+      <figcaption>Вход в панель, список заявок со статусами и фильтрами, карточка заявки с деталями тура и связью с туристом в одно касание. Данные на скриншотах демонстрационные.</figcaption>
+    </figure>
 
     <div class="case-block reveal">
       <h2>Свой цвет <em>на всём</em></h2>
