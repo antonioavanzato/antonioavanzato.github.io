@@ -13,10 +13,12 @@ ym(110095373,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
 function add(s){var e=document.createElement('script');e.async=true;e.src=s;document.head.appendChild(e)}
 function go(){if(done)return;done=true;ev.forEach(function(n){removeEventListener(n,go)});
 add('https://www.googletagmanager.com/gtag/js?id=G-0PPJBJFKL2');add('https://mc.yandex.ru/metrika/tag.js')}
-ev.forEach(function(n){addEventListener(n,go,{once:true,passive:true})});
-addEventListener('load',function(){setTimeout(go,3000)})})();
+function arm(){ev.forEach(function(n){addEventListener(n,go,{once:true,passive:true})});
+if(document.readyState==='complete')setTimeout(go,3000);else addEventListener('load',function(){setTimeout(go,3000)})}
+/* 152-ФЗ: счётчики подключаются только после согласия в cookie-баннере */
+window.avConsentGranted=arm;var c=null;try{c=localStorage.getItem('cookie-notice-ack')}catch(e){}
+if(c==='1')arm()})();
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/110095373" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -53,8 +55,8 @@ addEventListener('load',function(){setTimeout(go,3000)})})();
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Avanzato">
-<link rel="preload" as="image" href="images/avanzato-logo-ink.png">
-<link rel="stylesheet" href="styles/main.css?v=20260813a">
+<link rel="preload" as="image" href="images/avanzato-logo-nav.webp">
+<link rel="stylesheet" href="styles/main.css?v=20261005a">
 <link rel="stylesheet" href="styles/theme.css?v=20260813a">
 <link rel="stylesheet" href="styles/pricing3d.css?v=20260813a">
 <script type="application/ld+json">
@@ -287,7 +289,7 @@ addEventListener('load',function(){setTimeout(go,3000)})})();
       "alternateName": "Антон Аванзато",
       "url": "https://antonioavanzato.github.io/",
       "image": "https://antonioavanzato.github.io/images/Cover.jpg",
-      "logo": "https://antonioavanzato.github.io/images/logo%20avanzato%20%28clear%29.png",
+      "logo": "https://antonioavanzato.github.io/images/logo-avanzato.png",
       "description": "Разработка лендингов и многостраничных сайтов под ключ: дизайн, вёрстка, SEO, логотип, наполнение контентом. Работаю удалённо по всей России и миру.",
       "priceRange": "от 55 000 ₽",
       "currenciesAccepted": "RUB",
@@ -607,7 +609,7 @@ addEventListener('load',function(){setTimeout(go,3000)})})();
 
 </main>
 
-<script src="scripts/site.js?v=20261002a"></script>
+<script src="scripts/site.js?v=20261005a"></script>
 <script src="scripts/pricing3d.js?v=20260813a" defer></script>
 </body>
 </html>
