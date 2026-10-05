@@ -1048,6 +1048,8 @@ body::after {
   .cookie-note { left: 16px; right: 16px; bottom: 16px; max-width: none; padding: 22px 22px 20px; }
   .cookie-note .cookie-actions { flex-direction: column; align-items: stretch; gap: 14px; text-align: center; }
   .cookie-note .btn { justify-content: center; }
+  /* «Отклонить» — подчёркнуто только слово, а не вся ширина колонки */
+  .cookie-note .cookie-more { align-self: center; }
 }
 
 /* ---------- переходы между страницами (cross-document View Transitions) ----------
