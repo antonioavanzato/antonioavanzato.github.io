@@ -600,7 +600,7 @@
     brand.setAttribute('translate', 'no');
     brand.setAttribute('aria-label', 'Avanzato — на главную');
     var logo = document.createElement('img');
-    logo.src = 'images/avanzato-logo-nav.png';
+    logo.src = 'images/avanzato-logo-nav.webp';
     logo.alt = 'Avanzato';
     logo.width = 1401; logo.height = 161;
     brand.appendChild(logo);
@@ -722,17 +722,22 @@
     '<div class="cookie-text">' +
       '<span class="cookie-eyebrow">Файлы cookie</span>' +
       '<p class="cookie-title">Немного заботы <em>о качестве.</em></p>' +
-      '<p>Сайт использует cookie, Яндекс.Метрику и Google Analytics. Нажимая «Принять», вы соглашаетесь ' +
-      'с этим на условиях <a class="cookie-link" href="legal-privacy.html">политики</a>.</p>' +
+      '<p>Сайт использует cookie, Яндекс.Метрику и Google Analytics. Счётчики включатся, только если вы нажмёте «Принять» — ' +
+      'на условиях <a class="cookie-link" href="legal-privacy.html">политики</a>.</p>' +
     '</div>' +
     '<div class="cookie-actions">' +
-      '<button type="button" class="btn btn-primary">Принять</button>' +
-      '<a class="cookie-more" href="legal-privacy.html">Подробнее</a>' +
+      '<button type="button" class="btn btn-primary" data-consent="1">Принять</button>' +
+      '<button type="button" class="cookie-more" data-consent="0">Отклонить</button>' +
     '</div>';
-  note.querySelector('button').addEventListener('click', function () {
-    try { localStorage.setItem(KEY, '1'); } catch (e) {}
-    note.classList.remove('is-in');
-    setTimeout(function () { note.remove(); }, 500);
+  // '1' — согласие (счётчики грузятся), '0' — отказ (баннер больше не показываем)
+  Array.prototype.forEach.call(note.querySelectorAll('[data-consent]'), function (b) {
+    b.addEventListener('click', function () {
+      var v = b.getAttribute('data-consent');
+      try { localStorage.setItem(KEY, v); } catch (e) {}
+      if (v === '1' && typeof window.avConsentGranted === 'function') window.avConsentGranted();
+      note.classList.remove('is-in');
+      setTimeout(function () { note.remove(); }, 500);
+    });
   });
   document.body.appendChild(note);
   // ждём, пока отыграет вступительная анимация первого экрана,
