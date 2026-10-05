@@ -723,8 +723,8 @@
     '<div class="cookie-text">' +
       '<span class="cookie-eyebrow">Файлы cookie</span>' +
       '<p class="cookie-title">Немного заботы <em>о качестве.</em></p>' +
-      '<p>Сайт использует cookie, Яндекс.Метрику и Google Analytics. Счётчики включатся, только если вы нажмёте «Принять» — ' +
-      'на условиях <a class="cookie-link" href="legal-privacy.html">политики</a>.</p>' +
+      '<p>Сайт использует cookie, чтобы становиться удобнее. Счётчики включатся, только если вы нажмёте «Принять». ' +
+      'Подробнее — в <a class="cookie-link" href="legal-privacy.html">политике конфиденциальности</a>.</p>' +
     '</div>' +
     '<div class="cookie-actions">' +
       '<button type="button" class="btn btn-primary" data-consent="1">Принять</button>' +
