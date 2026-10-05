@@ -4,8 +4,15 @@
 <meta charset="UTF-8">
 <script>/* встречная шторка: если пришли по внутренней ссылке, страница проявляется из фона, без вспышки */
 document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-veil')){document.documentElement.classList.add('arriving');sessionStorage.removeItem('nav-veil')}}catch(e){}</script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0PPJBJFKL2"></script>
+<!-- Google Analytics: грузится после load или первого действия, чтобы не тормозить отрисовку -->
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-0PPJBJFKL2');
+(function(){var done=false,ev=['scroll','pointerdown','keydown','touchstart'];
+function go(){if(done)return;done=true;ev.forEach(function(n){removeEventListener(n,go)});
+var e=document.createElement('script');e.async=true;e.src='https://www.googletagmanager.com/gtag/js?id=G-0PPJBJFKL2';document.head.appendChild(e)}
+ev.forEach(function(n){addEventListener(n,go,{once:true,passive:true})});
+addEventListener('load',function(){setTimeout(go,3000)})})();
+</script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
