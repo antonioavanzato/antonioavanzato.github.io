@@ -446,6 +446,7 @@
               clearTimeout(timer);
               if (res.ok && t.trim() === 'ok') {
                 form.classList.add('sent');
+                if (window.avGoal) window.avGoal('form_submit', { pkg: payload.type });
                 // honeypot: сервер отвечает 'ok' и ботам, но заявку не пишет —
                 // пуш в этом случае будить не надо
                 if (!payload.company) notifyGAS(payload.type, 'github');
@@ -746,7 +747,7 @@
 })();
 
 /* ============================================================
-   Яндекс.Метрика — цели (события конверсии)
+   Яндекс.Метрика + Google Analytics — цели (события конверсии)
    Без reachGoal счётчик пишет только визиты, а раздел
    «Конверсии» остаётся пустым. Ниже — базовый набор целей.
    Идентификаторы должны совпадать с целями типа «JavaScript-
@@ -755,9 +756,15 @@
 (function () {
   var COUNTER = 110095373;
 
+  // одно событие уходит в оба счётчика: в Метрику целью, в GA4 — событием
+  // с тем же именем (в GA4 его отмечают ключевым в «Администратор → События»)
   function goal(id, params) {
-    if (typeof window.ym !== 'function') return;
-    try { window.ym(COUNTER, 'reachGoal', id, params || {}); } catch (e) {}
+    if (typeof window.ym === 'function') {
+      try { window.ym(COUNTER, 'reachGoal', id, params || {}); } catch (e) {}
+    }
+    if (typeof window.gtag === 'function') {
+      try { window.gtag('event', id, params || {}); } catch (e) {}
+    }
   }
   // доступ снаружи — на случай ручных вызовов из разметки
   window.avGoal = goal;
