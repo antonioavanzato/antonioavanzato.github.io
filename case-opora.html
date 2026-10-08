@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<script>/* встречная шторка: если пришли по внутренней ссылке, страница проявляется из фона, без вспышки */
+document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-veil')){document.documentElement.classList.add('arriving');sessionStorage.removeItem('nav-veil')}}catch(e){}</script>
+<!-- Аналитика (GA4 + Яндекс.Метрика): грузится после load или первого действия, чтобы не тормозить отрисовку -->
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-0PPJBJFKL2');
+window.ym=window.ym||function(){(ym.a=ym.a||[]).push(arguments)};ym.l=1*new Date();
+ym(110095373,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
+(function(){var done=false,ev=['scroll','pointerdown','keydown','touchstart'];
+function add(s){var e=document.createElement('script');e.async=true;e.src=s;document.head.appendChild(e)}
+function go(){if(done)return;done=true;ev.forEach(function(n){removeEventListener(n,go)});
+add('https://www.googletagmanager.com/gtag/js?id=G-0PPJBJFKL2');add('https://mc.yandex.ru/metrika/tag.js')}
+function arm(){ev.forEach(function(n){addEventListener(n,go,{once:true,passive:true})});
+if(document.readyState==='complete')setTimeout(go,3000);else addEventListener('load',function(){setTimeout(go,3000)})}
+/* 152-ФЗ: счётчики подключаются только после согласия в cookie-баннере */
+window.avConsentGranted=arm;var c=null;try{c=localStorage.getItem('cookie-notice-ack')}catch(e){}
+if(c==='1')arm()})();
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Сайт и CRM для бухгалтерской компании — кейс ОПОРА</title>
+<meta name="description" content="Аутсорс бухгалтерии ОПОРА, Казань: сайт на wfolio целиком на своём коде, квиз-заявка, Schema.org и бот-помощник. Заявки уходят в PWA-админку с push, бэкенд на Яндекс Облаке за 0 ₽ в месяц.">
+<link rel="canonical" href="https://antonioavanzato.github.io/case-opora.html">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="AVANZATO">
+<meta property="og:title" content="Сайт и CRM для бухгалтерской компании — кейс ОПОРА">
+<meta property="og:description" content="Сайт на своём коде внутри конструктора, квиз-заявка, PWA-админка с push и массовыми действиями, бэкенд на Яндекс Облаке за 0 ₽.">
+<meta property="og:url" content="https://antonioavanzato.github.io/case-opora.html">
+<meta property="og:image" content="https://antonioavanzato.github.io/images/opora.webp">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1035">
+<meta property="og:image:alt" content="Первый экран сайта ОПОРА — бухгалтерия и управленческий учёт для бизнеса в Казани">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Сайт и CRM для бухгалтерской компании — кейс ОПОРА">
+<meta name="twitter:description" content="Сайт на своём коде внутри конструктора, квиз-заявка, PWA-админка с push и массовыми действиями, бэкенд на Яндекс Облаке за 0 ₽.">
+<meta name="twitter:image" content="https://antonioavanzato.github.io/images/opora.webp">
+<meta name="twitter:image:alt" content="Первый экран сайта ОПОРА — бухгалтерия и управленческий учёт для бизнеса в Казани">
+<link rel="preload" as="font" type="font/woff2" href="fonts/onest-700-cyrillic.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/onest-400-cyrillic.woff2" crossorigin>
+<link rel="stylesheet" href="styles/fonts.css?v=20260813a">
+<meta name="yandex-verification" content="699203dd35feea7b">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Avanzato">
+<link rel="preload" as="image" href="images/avanzato-logo-nav.webp">
+<link rel="stylesheet" href="styles/main.css?v=20261005c">
+<link rel="stylesheet" href="styles/theme.css?v=20260813a">
+<link rel="stylesheet" href="styles/case.css?v=20260813a">
+<noscript><style>.reveal{opacity:1!important;transform:none!important;filter:none!important}</style></noscript>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://antonioavanzato.github.io/case-opora.html#article",
+      "headline": "Сайт и CRM для бухгалтерской компании — кейс ОПОРА",
+      "description": "Разбор проекта ОПОРА: сайт аутсорса бухгалтерии и управленческого учёта в Казани на собственном коде внутри wfolio, квиз-заявка, разметка Schema.org, PWA-админка заявок с push и массовыми действиями, бэкенд на Яндекс Облаке в бесплатных лимитах.",
+      "inLanguage": "ru-RU",
+      "datePublished": "2026-10-08",
+      "dateModified": "2026-10-08",
+      "url": "https://antonioavanzato.github.io/case-opora.html",
+      "mainEntity": {
+        "@id": "https://antonioavanzato.github.io/case-opora.html#project"
+      },
+      "image": [
+        "https://antonioavanzato.github.io/images/opora.webp",
+        "https://antonioavanzato.github.io/images/opora-admin.webp",
+        "https://antonioavanzato.github.io/images/opora-cases.webp",
+        "https://antonioavanzato.github.io/images/opora-quiz.webp"
+      ],
+      "author": {
+        "@id": "https://antonioavanzato.github.io/#person"
+      },
+      "publisher": {
+        "@id": "https://antonioavanzato.github.io/#business",
+        "areaServed": [
+          {
+            "@type": "Country",
+            "name": "Россия"
+          },
+          {
+            "@type": "Place",
+            "name": "Весь мир — работа удалённо"
+          }
+        ]
+      },
+      "about": {
+        "@type": "Service",
+        "name": "Разработка сайта и CRM для бухгалтерской компании",
+        "provider": {
+          "@id": "https://antonioavanzato.github.io/#business",
+          "areaServed": [
+            {
+              "@type": "Country",
+              "name": "Россия"
+            },
+            {
+              "@type": "Place",
+              "name": "Весь мир — работа удалённо"
+            }
+          ]
+        }
+      },
+      "mentions": {
+        "@type": "AccountingService",
+        "name": "ОПОРА",
+        "url": "https://oporasamitovva.ru",
+        "founder": {
+          "@type": "Person",
+          "name": "Арина Самитова",
+          "jobTitle": "Финансист и бухгалтер"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Казань",
+          "addressRegion": "Республика Татарстан",
+          "addressCountry": "RU"
+        },
+        "areaServed": {
+          "@type": "City",
+          "name": "Казань"
+        }
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://antonioavanzato.github.io/case-opora.html#project",
+      "name": "Сайт ОПОРА",
+      "description": "Лендинг аутсорса бухгалтерии и управленческого учёта ОПОРА (Казань): собственный код внутри конструктора wfolio, пакеты услуг с ценами и подбором, кейсы, FAQ, квиз-заявка из трёх шагов, разметка Schema.org и кнопка Telegram-бота «Нейла».",
+      "url": "https://oporasamitovva.ru",
+      "genre": "Веб-сайт",
+      "inLanguage": "ru-RU",
+      "creator": {
+        "@id": "https://antonioavanzato.github.io/#person"
+      },
+      "provider": {
+        "@id": "https://antonioavanzato.github.io/#business",
+        "areaServed": [
+          {
+            "@type": "Country",
+            "name": "Россия"
+          },
+          {
+            "@type": "Place",
+            "name": "Весь мир — работа удалённо"
+          }
+        ]
+      },
+      "subjectOf": {
+        "@id": "https://antonioavanzato.github.io/case-opora.html#article"
+      },
+      "hasPart": {
+        "@id": "https://antonioavanzato.github.io/case-opora.html#admin-app"
+      }
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://antonioavanzato.github.io/case-opora.html#admin-app",
+      "name": "ОПОРА — заявки",
+      "description": "PWA-админка бухгалтерской компании: заявки с квиза сайта на телефоне, статусы, заметки, подбор пакета по ответам клиента, сводка, выгрузка CSV, push-уведомления и массовые действия.",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "CRM для заявок бухгалтерской компании",
+      "operatingSystem": "iOS, Android, любой современный браузер (PWA)",
+      "inLanguage": "ru-RU",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "RUB",
+        "description": "Индивидуальная разработка для клиента, не продаётся отдельно"
+      },
+      "featureList": [
+        "Вход по почте и паролю с токеном сессии",
+        "Список заявок с фильтрами по статусу, запросу и периоду, поиск по имени и контакту",
+        "Статусы: новая, связалась, созвон назначен, клиент, отказ",
+        "Карточка заявки: ответы квиза, рекомендуемый пакет, заметки, связь в Telegram или звонок",
+        "Массовые действия: выбрать несколько заявок и сменить статус или удалить",
+        "Сводка по формам бизнеса, сферам, размеру команды и запросам, выгрузка в CSV",
+        "Push-уведомления о новой заявке на iPhone и Android, обновление жестом «потянуть вниз»",
+        "Бэкенд на Яндекс Облаке: API Gateway, Cloud Functions, YDB Serverless — в бесплатных лимитах"
+      ],
+      "screenshot": {
+        "@type": "ImageObject",
+        "url": "https://antonioavanzato.github.io/images/opora-admin.webp",
+        "width": 1600,
+        "height": 1035,
+        "caption": "Список заявок, карточка заявки с ответами квиза и заметками, массовый выбор заявок"
+      },
+      "creator": {
+        "@id": "https://antonioavanzato.github.io/#person"
+      },
+      "provider": {
+        "@id": "https://antonioavanzato.github.io/#business"
+      },
+      "isPartOf": {
+        "@id": "https://antonioavanzato.github.io/case-opora.html#project"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://antonioavanzato.github.io/#breadcrumb-case-opora",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://antonioavanzato.github.io/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Портфолио",
+          "item": "https://antonioavanzato.github.io/portfolio.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "ОПОРА",
+          "item": "https://antonioavanzato.github.io/case-opora.html"
+        }
+      ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://antonioavanzato.github.io/#business",
+      "name": "AVANZATO — разработка сайтов",
+      "alternateName": "Антон Аванзато",
+      "url": "https://antonioavanzato.github.io/",
+      "image": "https://antonioavanzato.github.io/images/Cover.jpg",
+      "logo": "https://antonioavanzato.github.io/images/logo-avanzato.png",
+      "description": "Разработка лендингов и многостраничных сайтов под ключ: дизайн, вёрстка, SEO, логотип, наполнение контентом. Работаю удалённо по всей России и миру.",
+      "priceRange": "от 55 000 ₽",
+      "currenciesAccepted": "RUB",
+      "paymentAccepted": "Наличные, банковский перевод, перевод по реквизитам",
+      "slogan": "Сайты под ключ, которые работают, а не просто красивы",
+      "knowsLanguage": "ru",
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "Россия"
+        },
+        {
+          "@type": "Place",
+          "name": "Весь мир — работа удалённо"
+        }
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Казань",
+        "addressRegion": "Республика Татарстан",
+        "addressCountry": "RU"
+      },
+      "email": "antonioavanzato@gmail.com",
+      "founder": {
+        "@id": "https://antonioavanzato.github.io/#person"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "email": "antonioavanzato@gmail.com",
+        "url": "https://t.me/avanzato",
+        "availableLanguage": "Russian",
+        "areaServed": "RU"
+      },
+      "sameAs": [
+        "https://t.me/avanzato"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://antonioavanzato.github.io/#person",
+      "name": "Антон Аванзато",
+      "jobTitle": "Веб-разработчик, дизайнер",
+      "worksFor": {
+        "@id": "https://antonioavanzato.github.io/#business",
+        "areaServed": [
+          {
+            "@type": "Country",
+            "name": "Россия"
+          },
+          {
+            "@type": "Place",
+            "name": "Весь мир — работа удалённо"
+          }
+        ]
+      },
+      "sameAs": [
+        "https://t.me/avanzato"
+      ]
+    }
+  ]
+}
+</script>
+<script type="speculationrules">
+{"prerender":[{"source":"list","urls":["portfolio.html", "contacts.html"],"eagerness":"moderate"}]}
+</script>
+</head>
+<body data-page="portfolio">
+<div class="ambient"></div>
+<main id="main">
+
+<header class="case-hero">
+  <div class="wrap">
+    <a class="case-back reveal" href="portfolio.html">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Все работы
+    </a>
+    <p class="eyebrow reveal" style="margin-top:18px">Кейс · бухгалтерия · CRM</p>
+    <h1 class="display reveal" data-anim="mask" data-d="1">Финансовая<br><em>опора.</em></h1>
+    <p class="case-lede reveal" data-d="2">
+      Арина Самитова — финансист и бухгалтер из Казани, основатель аутсорса ОПОРА.
+      Ей был нужен сайт, который объясняет непростую услугу человеческим языком
+      и приводит заявки, — и система, в которой ни одна заявка не теряется.
+      Я собрал и то и другое: сайт, квиз, облачный бэкенд и приложение для заявок.</p>
+
+    <dl class="case-facts reveal" data-d="3">
+      <div class="case-fact"><dt>Клиент</dt><dd>ОПОРА, Казань</dd></div>
+      <div class="case-fact"><dt>Платформа</dt><dd>wfolio + свой код</dd></div>
+      <div class="case-fact"><dt>Бэкенд</dt><dd>Яндекс Облако, 0 ₽/мес</dd></div>
+      <div class="case-fact"><dt>Срок</dt><dd>3 дня до рабочей CRM</dd></div>
+    </dl>
+
+    <figure class="case-shot reveal" data-d="2">
+      <img src="images/opora.webp"
+           alt="Первый экран сайта ОПОРА — бухгалтерия и управленческий учёт для бизнеса в Казани: крупный логотип, фото Арины, кнопки записи на аудит и бота-помощника"
+           width="1600" height="1035" loading="eager" decoding="async">
+      <figcaption>Первый экран: фирменная спираль, лавандовый логотип и янтарный акцент — цвета бренда ОПОРА перенесены на весь сайт.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<section class="block">
+  <div class="wrap">
+    <div class="case-block reveal">
+      <h2>Задача — <em>объяснить сложное просто</em></h2>
+      <div class="case-body">
+        <p>Бухгалтерия и управленческий учёт — услуга, которую предприниматель редко
+          понимает до конца. Он не знает, чем P&amp;L отличается от выписки по счёту,
+          и не видит, зачем платить за то, что «и так вроде работает». Поэтому сайт
+          должен был <strong>сначала показать проблему, а уже потом — решение.</strong></p>
+        <p>Сайт живёт на конструкторе wfolio, но шаблон хостинга навязывает свои шрифты,
+          цвета и отступы. Я пошёл другим путём: <strong>весь лендинг — один блок
+          с собственным кодом</strong>, который аккуратно перекрывает стили шаблона.
+          Так у Арины остался привычный конструктор, а у сайта — свой дизайн без компромиссов.</p>
+        <ul class="case-list">
+          <li>«3 признака, что бизнесу нужна ОПОРА» — клиент узнаёт свою ситуацию</li>
+          <li>Путь в четыре шага: учёт → полная картина → прогноз → правильные решения</li>
+          <li>Сферы: производство, продажа товаров, услуги</li>
+          <li>Пакеты Лайт, Про и Премиум с ценами, таблицей сравнения и подбором по запросу</li>
+          <li>Блок об основателе, три кейса клиентов с цифрами, отзывы и FAQ</li>
+          <li>Кнопка Telegram-бота «Нейла» — помощника по личным финансам</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="case-block reveal">
+      <h2>Квиз <em>вместо формы</em></h2>
+      <div class="case-body">
+        <p>Вместо скучной формы «имя — телефон» на сайте стоит <strong>квиз из трёх шагов</strong>:
+          что беспокоит, какой бизнес и как связаться. Клиент отвечает в пару касаний,
+          а Арина ещё до звонка знает форму бизнеса, сферу, размер команды и главную боль.</p>
+        <ul class="case-list">
+          <li>Контакт на выбор: ник в Telegram с проверкой или телефон с маской</li>
+          <li>Согласие на обработку данных по 152-ФЗ и скрытая ловушка для спам-ботов</li>
+          <li>Пока заявка уходит — индикатор отправки, чтобы клиент не закрыл страницу</li>
+          <li>Если связь подвела, заявка не теряется: клиент видит её текст
+            и кнопки «Написать в Telegram» и «Написать в MAX»</li>
+        </ul>
+      </div>
+    </div>
+
+    <figure class="case-shot reveal">
+      <img src="images/opora-quiz.webp"
+           alt="Квиз-заявка на сайте ОПОРА: первый шаг «Что сейчас беспокоит больше всего?» с четырьмя вариантами ответа"
+           width="1600" height="1035" loading="lazy" decoding="async">
+      <figcaption>Бесплатная экспресс-диагностика: квиз из трёх шагов вместо обычной формы.</figcaption>
+    </figure>
+
+    <div class="case-block reveal">
+      <h2>Админка <em>в телефоне</em></h2>
+      <div class="case-body">
+        <p>Заявки с квиза попадают в <strong>собственное PWA-приложение</strong>: Арина
+          поставила его на iPhone прямо из браузера, без магазина приложений,
+          и получает push-уведомление о каждой новой заявке.</p>
+        <ul class="case-list">
+          <li>Вход по почте и паролю, сессия в защищённом токене</li>
+          <li>Статусы: новая, связалась, созвон назначен, клиент, отказ</li>
+          <li>Карточка заявки: ответы квиза, <strong>рекомендуемый пакет</strong> по ответам клиента и заметки</li>
+          <li>Связь в одно касание: написать в Telegram или позвонить</li>
+          <li><strong>Массовые действия:</strong> выбрать несколько заявок и сменить статус или удалить разом</li>
+          <li>Сводка по формам бизнеса, сферам и запросам, выгрузка в CSV</li>
+          <li>Обновление жестом «потянуть вниз» и автоматически раз в минуту</li>
+        </ul>
+      </div>
+    </div>
+
+    <figure class="case-shot reveal">
+      <img src="images/opora-admin.webp"
+           alt="PWA-админка ОПОРА на трёх iPhone: список заявок со статусами, карточка заявки с ответами квиза и заметкой, массовый выбор заявок"
+           width="1600" height="1035" loading="lazy" decoding="async">
+      <figcaption>Список заявок, карточка с ответами квиза и рекомендуемым пакетом, массовый выбор. Данные на скриншотах демонстрационные.</figcaption>
+    </figure>
+
+    <div class="case-block reveal">
+      <h2>Облако <em>за 0 ₽</em></h2>
+      <div class="case-body">
+        <p>Под сайтом и админкой — бэкенд на Яндекс Облаке: API Gateway, Cloud Functions
+          и база YDB Serverless. Я уложил его <strong>в бесплатные лимиты</strong> —
+          при нагрузке небольшой компании это сотни тысяч запросов в запасе,
+          а платить за сервер не нужно вовсе.</p>
+        <ul class="case-list">
+          <li>Приём заявок с защитой от спама и лимитом запросов с одного адреса</li>
+          <li>Доступ к заявкам только после входа, запросы — только со своих доменов</li>
+          <li>Уведомления ограничены по времени: сайт отвечает клиенту быстро,
+            даже если сервис push задумался</li>
+          <li>Данные клиентов — на серверах в России</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="case-block reveal">
+      <h2>Видно <em>поиску и ИИ</em></h2>
+      <div class="case-body">
+        <p>Каждый факт о компании живёт на сайте дважды: в тексте для людей и в разметке
+          <strong>Schema.org</strong> для поисковиков и ИИ-ассистентов. Услуга, пакеты
+          с ценами, основатель, контакты, ИНН и ответы на частые вопросы размечены так,
+          что Яндекс, Google и нейросети понимают, кто такая ОПОРА и сколько стоит работа с ней.</p>
+        <p>Сайт переехал на собственный домен <strong>oporasamitovva.ru</strong>
+          без потери заявок: старый адрес перенаправляет на новый, а облако принимает
+          заявки с обоих.</p>
+      </div>
+    </div>
+
+    <figure class="case-shot reveal">
+      <img src="images/opora-cases.webp"
+           alt="Блок «Истории клиентов» на сайте ОПОРА: кейсы производства и маркетплейсов с результатами"
+           width="1600" height="1035" loading="lazy" decoding="async">
+      <figcaption>Кейсы клиентов Арины в формате «было — сделали — результат»: ошибка в 500 тыс. ₽, чистая прибыль на виду, восстановленный учёт.</figcaption>
+    </figure>
+
+    <div class="case-block reveal">
+      <h2>Что <em>получилось</em></h2>
+      <div class="case-body">
+        <p>Сайт, который говорит с предпринимателем на его языке, и система, в которой
+          заявка проходит путь от квиза до статуса «клиент» без переписки в мессенджерах.
+          Тексты, кейсы и пакеты Арина меняет вместе со мной за минуты — сайт растёт
+          вместе с её бизнесом.</p>
+
+        <div class="case-results case-results--4">
+          <div class="case-result">
+            <b>3 дня</b>
+            <span>от первой версии сайта до рабочей CRM с push</span>
+          </div>
+          <div class="case-result">
+            <b>0 ₽</b>
+            <span>в месяц за облако — бэкенд в бесплатных лимитах</span>
+          </div>
+          <div class="case-result">
+            <b>PWA</b>
+            <span>заявки, статусы и массовые действия на телефоне</span>
+          </div>
+          <div class="case-result">
+            <b>Schema</b>
+            <span>услуги, цены, эксперт и FAQ размечены для поиска и ИИ</span>
+          </div>
+        </div>
+
+        <a class="case-live" href="https://oporasamitovva.ru" target="_blank" rel="noopener noreferrer">
+          Открыть oporasamitovva.ru
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="case-more reveal">
+      <h2 class="case-more-h">Другие <em>разборы</em></h2>
+      <div class="case-more-grid">
+        <a class="case-more-card" href="case-velaa-trips.html">
+          <span class="m2-img"><img src="images/velaa_trips.webp" alt="Кейс Velaa Trips — сайт турагентства на Мальдивах" loading="lazy" decoding="async" width="1600" height="1000"></span>
+          <span class="m2-body"><b>Velaa Trips</b><span>турагентство на Мальдивах</span><svg class="m2-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="case-more-card" href="case-daria-lukianova.html">
+          <span class="m2-img"><img src="images/darialukianova.webp" alt="Кейс Дарья Лукьянова — сайт преподавателя из Казани" loading="lazy" decoding="async" width="1600" height="1000"></span>
+          <span class="m2-body"><b>Дарья Лукьянова</b><span>преподаватель, Казань</span><svg class="m2-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="cta reveal">
+      <div class="cta-inner">
+        <p class="eyebrow">Следующий проект — ваш</p>
+        <h2 class="h-section">Нужен сайт <em>под задачу?</em></h2>
+        <p class="lede">Расскажите об идее — обсудим структуру, формат и сроки за пару сообщений.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="contacts.html">Обсудить проект
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="btn btn-ghost" href="portfolio.html">Другие работы</a>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer" role="contentinfo">
+      <nav>
+        <a href="legal-privacy.html">Политика конфиденциальности</a>
+      </nav>
+      <span>© <span class="js-year">2026</span> · Антон Аванзато</span>
+    </footer>
+  </div>
+</section>
+
+</main>
+
+<script src="scripts/site.js?v=20261005c"></script>
+</body>
+</html>
