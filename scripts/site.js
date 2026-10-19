@@ -14,7 +14,7 @@
   // Обезличенный пуш в Telegram: только тип заявки и источник.
   // Персональные данные остаются в Yandex Cloud.
   // Пушер в дашборд (подстраховка к Telegram, см. dashboard/pusher). Пусто — не вызывается.
-  var PUSH_NOTIFY_URL = 'https://functions.yandexcloud.net/d4emg1g2v26ih8j43jaf';
+  var PUSH_NOTIFY_URL = '';
 
   function notifyPush(type, source) {
     if (!PUSH_NOTIFY_URL) return;
