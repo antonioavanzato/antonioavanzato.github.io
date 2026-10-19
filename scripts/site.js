@@ -13,21 +13,6 @@
 
   // Обезличенный пуш в Telegram: только тип заявки и источник.
   // Персональные данные остаются в Yandex Cloud.
-  // Пушер в дашборд (подстраховка к Telegram, см. dashboard/pusher). Пусто — не вызывается.
-  var PUSH_NOTIFY_URL = '';
-
-  function notifyPush(type, source) {
-    if (!PUSH_NOTIFY_URL) return;
-    try {
-      fetch(PUSH_NOTIFY_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
-        body: JSON.stringify({ type: type, source: source })
-      });
-    } catch (e) {}
-  }
-
   function notifyGAS(type, source) {
     try {
       fetch(GAS_NOTIFY_URL, {
@@ -466,10 +451,7 @@
                 if (window.avGoal) window.avGoal('form_submit', { pkg: payload.type });
                 // honeypot: сервер отвечает 'ok' и ботам, но заявку не пишет —
                 // пуш в этом случае будить не надо
-                if (!payload.company) {
-                  notifyGAS(payload.type, 'github');
-                  notifyPush(payload.type, 'github');
-                }
+                if (!payload.company) notifyGAS(payload.type, 'github');
               }
               else { retryOrFail(); }
             });
