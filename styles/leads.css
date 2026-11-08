@@ -98,3 +98,39 @@
 @media (prefers-reduced-motion: reduce) {
   .ls-msg, .ls-row.new { animation: none; }
 }
+
+/* демо в стиле калькулятора: единая панель, нумерованные шаги */
+.ls-demo {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(28px, 4vw, 56px);
+  padding: clamp(22px, 3vw, 40px); border: 1px solid var(--hairline); border-radius: 24px;
+  background: var(--bg); box-shadow: 0 24px 50px -34px rgba(10, 10, 10, .12);
+}
+.ls-form, .ls-tg, .ls-admin { padding: 0; border: 0; border-radius: 0; background: none; }
+.ls-out { align-content: start; gap: 26px; padding: clamp(20px, 2.4vw, 28px); border-radius: 18px; background: var(--bg-2); }
+.ls-admin { padding-top: 26px; border-top: 1px solid var(--hairline); }
+.ls-step {
+  display: flex; align-items: center; gap: 12px; margin: 0 0 18px;
+  font-family: var(--font-display); font-size: clamp(18px, 1.5vw, 21px); font-weight: 450; line-height: 1.25; letter-spacing: -.01em; color: var(--ink);
+}
+.ls-step i { flex: none; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--ink); color: #fff; font-style: normal; font-size: 14px; font-weight: 500; line-height: 1; }
+.ls-form .field input {
+  min-height: 62px; padding: 27px 18px 10px; border: 1.5px solid transparent; border-radius: 16px; background-color: #f5f4f1; box-shadow: none;
+}
+.ls-form .field input:hover { background-color: #efeeea; }
+.ls-form .field input:focus { border-color: var(--accent); background-color: var(--bg); }
+.ls-form .field input.invalid { border-color: #d8654f; }
+body .ls-form .field label { left: 19px; top: 20px; }
+body .ls-form .field input:focus + label,
+body .ls-form .field input:not(:placeholder-shown) + label { top: 11px; font-size: 12px; }
+.ls-lbl { margin: 20px 0 10px; font-size: 15px; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--ink); }
+.ls-chips { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.ls-chip { min-height: 48px; padding: 10px 8px; border-radius: 14px; font-size: 14.5px; color: var(--ink); }
+.ls-chip.active { border-color: var(--accent); background: rgba(255, 77, 0, .05); box-shadow: inset 0 0 0 1px var(--accent); color: var(--ink); }
+.ls-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.ls-custom { font-size: 13.5px; line-height: 1.4; }
+.ls-tg-screen { min-height: 104px; border: 0; border-radius: 14px; }
+.ls-msg { background: var(--bg-2); }
+.ls-hint { font-size: 13.5px; line-height: 1.4; }
+.ls-row { border-bottom-color: var(--hairline); }
+.ls-status { min-height: 34px; background: var(--bg); }
+@media (max-width: 900px) { .ls-demo { grid-template-columns: minmax(0, 1fr); } }
