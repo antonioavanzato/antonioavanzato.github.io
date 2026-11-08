@@ -356,4 +356,6 @@ body[data-page="pricing"] .tier.featured .tier-points .pk { background-color: rg
 @media (max-width: 640px) {
   .pc-tiles-2, .pc-tiles-3 { grid-template-columns: minmax(0, 1fr); }
   .pc-tile { padding: 14px 16px; }
+  .pc-step-row { flex-direction: column; align-items: flex-start; }
+  .pc-step-row .pc-stepper { margin-left: 40px; }
 }
