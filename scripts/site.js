@@ -41,7 +41,7 @@
     { href:'https://darialukianova.com', caseUrl:'case-daria-lukianova.html', title:'Дарья Лукьянова',  desc:'преподаватель из Казани',  size:'',
       src:'images/darialukianova.webp' },
     { href:'https://avanzato.ru',        caseUrl:'case-avanzato.html',        title:'Avanzato',         desc:'фотограф из Казани',     size:'',
-      src:'images/avanzato.webp' },
+      src:'images/avanzato.webp?v=5' },
     { href:'https://portanobile.com',    caseUrl:'case-porta-nobile.html', title:'Porta Nobile',     desc:'люксовая фурнитура в Москве',      size:'tall',
       src:'images/portanobile.webp' },
     { href:'https://medfitclub.ru',      caseUrl:'case-medical-fitness.html', title:'Medical Fitness',  desc:'центр реабилитации в Москве',      size:'',
