@@ -482,7 +482,7 @@ if(c==='1')arm()})();
   <div class="wrap">
     <div class="section-label reveal"><span class="num">02</span><span class="eyebrow">Прейскурант</span><span class="line"></span></div>
     <h2 class="h-section reveal" style="margin-bottom:clamp(28px,4vw,44px)">Что <em>сколько</em> стоит</h2>
-    <p class="tiers-foot reveal" style="margin:0 0 clamp(20px,3vw,32px)">Ответьте на три вопроса и сразу увидите сумму.</p>
+    <p class="tiers-foot reveal" style="margin:0 0 clamp(20px,3vw,32px)">Ответьте на четыре вопроса и сразу увидите сумму.</p>
     <form class="pc reveal" id="pc-calc" onsubmit="return false" aria-label="Калькулятор стоимости сайта">
       <div class="pc-steps">
         <fieldset class="pc-step">
@@ -500,8 +500,15 @@ if(c==='1')arm()})();
             <label class="pc-tile"><input type="radio" name="leads" value="crm"><span class="pc-tile-t">Система заявок</span><span class="pc-tile-p">+25 000 ₽</span><span class="pc-tile-h">Telegram и личный кабинет</span></label>
           </div>
         </fieldset>
+        <fieldset class="pc-step">
+          <legend><i>3</i>Нужна платформа для онлайн-обучения?</legend>
+          <div class="pc-tiles pc-tiles-2">
+            <label class="pc-tile"><input type="radio" name="edu" value="" checked><span class="pc-tile-t">Не нужна</span><span class="pc-tile-p">0 ₽</span><span class="pc-tile-h">Обычный сайт без курсов</span></label>
+            <label class="pc-tile"><input type="radio" name="edu" value="1"><span class="pc-tile-t">Платформа для обучения</span><span class="pc-tile-p">+150 000 ₽</span><span class="pc-tile-h">Курсы и уроки на вашем сайте</span></label>
+          </div>
+        </fieldset>
         <div class="pc-step pc-step-row">
-          <div><p class="pc-legend"><i>3</i>Нужна ретушь фото?</p><p class="pc-note">1 000 ₽ за фото. Если не нужна, оставьте 0.</p></div>
+          <div><p class="pc-legend"><i>4</i>Нужна ретушь фото?</p><p class="pc-note">1 000 ₽ за фото. Если не нужна, оставьте 0.</p></div>
           <div class="pc-qty"><button type="button" class="pc-reset" hidden>Убрать</button><div class="pc-stepper" role="group" aria-label="Количество фото"><button type="button" data-step="-1" aria-label="Меньше фото">−</button><output class="pc-count" aria-live="polite">0</output><button type="button" data-step="1" aria-label="Больше фото">+</button></div></div>
         </div>
       </div>
@@ -682,6 +689,6 @@ if(c==='1')arm()})();
 
 <script src="scripts/site.js?v=20261005c"></script>
 <script src="scripts/pricing3d.js?v=20260813a" defer></script>
-<script src="scripts/calc.js?v=20261108d" defer></script>
+<script src="scripts/calc.js?v=20261108e" defer></script>
 </body>
 </html>
