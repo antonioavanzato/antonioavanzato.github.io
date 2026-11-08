@@ -800,3 +800,8 @@ body[data-page="contacts"] .c-fine { margin-top: 16px; font-size: 12.5px; text-a
 }
 body[data-page="contacts"] .field-err { margin: 6px 4px 0; font-size: 12.5px; line-height: 1.35; color: #c73600; }
 body[data-page="contacts"] .field-err[hidden] { display: none; }
+body[data-page="contacts"] .c-method { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 12px; padding: 4px; border-radius: 999px; background: #f5f4f1; }
+body[data-page="contacts"] .c-method-btn { min-height: 44px; border: 0; border-radius: 999px; background: transparent; color: var(--ink-2); font: inherit; font-size: 14.5px; font-weight: 500; cursor: pointer; transition: background-color .2s var(--ease-soft), color .2s var(--ease-soft); }
+body[data-page="contacts"] .c-method-btn:hover { color: var(--ink); }
+body[data-page="contacts"] .c-method-btn[aria-pressed="true"] { background: var(--ink); color: #fff; }
+body[data-page="contacts"] .c-method-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }

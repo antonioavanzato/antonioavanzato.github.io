@@ -374,9 +374,13 @@
     if (consent) consent.addEventListener('change', syncConsent);
     syncConsent();
 
-    // Ник Telegram: 5–32 символа, латиница, цифры и _; начинается с буквы,
-    // не заканчивается на _ и не содержит __. Принимаем @nick и ссылку t.me/nick.
+    // Контакт: Telegram или телефон, поле одно, способ выбирается переключателем.
+    // Ник: 5–32 символа, латиница, цифры и _; начинается с буквы, не заканчивается
+    // на _ и без __; принимаем @nick и ссылку t.me/nick.
+    // Телефон: только Россия, +7 и 10 цифр; 8987…, 7987… и 987… приводятся к +7987….
     var tgField = form.querySelector('#f-contact');
+    var contactLabel = form.querySelector('label[for="f-contact"]');
+    var contactMode = 'tg';
     var tgErr = document.createElement('p');
     tgErr.className = 'field-err'; tgErr.id = 'f-contact-err'; tgErr.setAttribute('role', 'alert'); tgErr.hidden = true;
     if (tgField) { tgField.parentNode.appendChild(tgErr); }
@@ -384,23 +388,74 @@
       var n = String(v || '').trim().replace(/^(?:https?:\/\/)?(?:www\.)?(?:t|telegram)\.me\//i, '').replace(/^@/, '').replace(/\/$/, '');
       return /^[A-Za-z](?:[A-Za-z0-9]|_(?!_)){3,30}[A-Za-z0-9]$/.test(n) ? n : '';
     }
+    function ruNational(v) {
+      var raw = String(v || '').trim();
+      var d = raw.replace(/\D/g, '');
+      if (raw.charAt(0) === '+' && d.charAt(0) !== '7') return ''; // чужой код страны
+      if (raw.charAt(0) === '+' || (d.length !== 10 && (d.charAt(0) === '7' || d.charAt(0) === '8'))) d = d.slice(1);
+      return d.slice(0, 10);
+    }
+    function ruFormat(v) {
+      var n = ruNational(v);
+      if (!n && !/\d/.test(String(v || ''))) return '';
+      var s = '+7';
+      if (n) s += ' ' + n.slice(0, 3);
+      if (n.length > 3) s += ' ' + n.slice(3, 6);
+      if (n.length > 6) s += '-' + n.slice(6, 8);
+      if (n.length > 8) s += '-' + n.slice(8, 10);
+      return s;
+    }
+    function ruPhone(v) {
+      var n = ruNational(v);
+      return /^[3489]\d{9}$/.test(n) ? '+7' + n : '';
+    }
+    function contactValue(v) { return contactMode === 'phone' ? ruPhone(v) : tgNick(v); }
     function checkTg(showEmpty) {
       if (!tgField) return true;
       var v = tgField.value.trim();
-      var good = !!tgNick(v);
+      var good = !!contactValue(v);
       if (good || (!v && !showEmpty)) {
         tgField.classList.remove('invalid'); tgField.removeAttribute('aria-invalid'); tgField.removeAttribute('aria-describedby');
         tgErr.hidden = true;
         return good;
       }
-      tgErr.textContent = v ? 'Укажите ник латиницей: 5–32 символа, буквы, цифры и _. Например, @ivan_petrov' : 'Укажите ник в Telegram, например @ivan_petrov';
+      tgErr.textContent = contactMode === 'phone'
+        ? (v ? 'Нужен российский номер: +7 и 10 цифр' : 'Укажите номер, например +7 987 123-45-67')
+        : (v ? 'Укажите ник латиницей: 5–32 символа, буквы, цифры и _. Например, @ivan_petrov' : 'Укажите ник в Telegram, например @ivan_petrov');
       tgErr.hidden = false;
       tgField.classList.add('invalid'); tgField.setAttribute('aria-invalid', 'true'); tgField.setAttribute('aria-describedby', 'f-contact-err');
       return false;
     }
     if (tgField) {
       tgField.addEventListener('blur', function () { checkTg(false); });
-      tgField.addEventListener('input', function () { if (!tgErr.hidden) checkTg(false); });
+      tgField.addEventListener('input', function () {
+        if (contactMode === 'phone') {
+          var raw = tgField.value, atEnd = tgField.selectionStart === raw.length;
+          var before = raw.slice(0, tgField.selectionStart).replace(/\D/g, '').length;
+          var f = ruFormat(raw);
+          if (f !== raw) {
+            tgField.value = f;
+            var pos = f.length;
+            if (!atEnd) { pos = 0; for (var c = 0; pos < f.length && c < before; pos++) { if (/\d/.test(f.charAt(pos))) c++; } }
+            tgField.setSelectionRange(pos, pos);
+          }
+        }
+        if (!tgErr.hidden) checkTg(false);
+      });
+      Array.prototype.forEach.call(form.querySelectorAll('.c-method-btn'), function (b, _, all) {
+        b.addEventListener('click', function () {
+          if (b.getAttribute('data-mode') === contactMode) return;
+          contactMode = b.getAttribute('data-mode');
+          Array.prototype.forEach.call(all, function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+          var phone = contactMode === 'phone';
+          tgField.value = '';
+          tgField.setAttribute('inputmode', phone ? 'tel' : 'text');
+          tgField.setAttribute('autocomplete', phone ? 'tel' : 'off');
+          if (contactLabel) contactLabel.textContent = phone ? 'Номер телефона' : 'Telegram для связи';
+          checkTg(false);
+          tgField.focus();
+        });
+      });
     }
 
     form.addEventListener('submit', function (e) {
@@ -452,8 +507,9 @@
         // не видит, заполняют его только боты.
         company: (form.querySelector('#f-website') || {}).value || '',
         name:  get('#f-name'),
-        phone: '',
-        tg:    '@' + tgNick(get('#f-contact')),
+        // способ связи один: второе поле пустое по смыслу, шлём прочерк
+        phone: contactMode === 'phone' ? ruPhone(get('#f-contact')) : '',
+        tg:    contactMode === 'tg' ? '@' + tgNick(get('#f-contact')) : '—',
         // Поле date в HUB — это дата съёмки. У заявки на сайт её нет,
         // а момент отправки и так виден в карточке, поэтому шлём прочерк:
         // иначе заявка попадала в «Сегодня» и обещала несуществующий срок.
