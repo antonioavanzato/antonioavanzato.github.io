@@ -306,7 +306,8 @@ body[data-page="pricing"] .tier.featured .tier-points .pk { background-color: rg
 /* калькулятор: карточки прейскуранта как переключатели, итог в плавающей панели */
 #price-list { padding-bottom: 120px; }
 #price-list .pc-opt, #price-list .pc-qty { position: relative; }
-#price-list .pc-opt { cursor: pointer; padding-right: clamp(52px, 5vw, 64px); }
+#price-list .pc-opt { cursor: pointer; }
+#price-list .pc-opt b { padding-right: 34px; }
 #price-list .pc-opt button {
   all: unset; font: inherit; color: inherit; letter-spacing: inherit; cursor: pointer;
 }

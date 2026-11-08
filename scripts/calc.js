@@ -121,7 +121,10 @@
     if (msg) { msg.value = lines.join('\n').replace(/ /g, ' '); msg.rows = lines.length + 1; }
     if (sub) sub.textContent = 'Состав и сумма уже подставлены. Оставьте контакт, при желании поправьте текст и отправьте.';
     form.style.scrollMarginTop = '96px';
-    form.scrollIntoView({ block: 'start', behavior: 'auto' });
+    // на телефоне форма ниже первого экрана; браузер может сбросить прокрутку при загрузке
+    function toForm() { form.scrollIntoView({ block: 'start', behavior: 'instant' }); }
+    toForm();
+    window.addEventListener('load', function () { setTimeout(toForm, 60); }, { once: true });
     if (window.matchMedia('(hover: hover)').matches) {
       var name = form.querySelector('#f-name');
       if (name) name.focus({ preventScroll: true });
