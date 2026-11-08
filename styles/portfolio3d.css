@@ -58,7 +58,7 @@ body[data-page="portfolio"] .p-hero { min-height: 88vh; align-items: center; pad
 .p3-deck-card.d1 { transform: translate(-50%,-50%) translate3d(-118px,-58px,40px) rotateY(20deg) rotateX(6deg) rotateZ(-7deg); }
 .p3-deck-card.d2 { transform: translate(-50%,-50%) translate3d(64px,-92px,140px)  rotateY(-14deg) rotateX(7deg) rotateZ(5deg); z-index: 4; }
 .p3-deck-card.d3 { transform: translate(-50%,-50%) translate3d(-44px,86px,90px)  rotateY(12deg) rotateX(-8deg) rotateZ(4deg); z-index: 3; }
-.p3-deck-card.d4 { transform: translate(-50%,-50%) translate3d(132px,52px,-30px) rotateY(-22deg) rotateX(-5deg) rotateZ(8deg); }
+.p3-deck-card.d4 { transform: translate(-50%,-50%) translate3d(132px,52px,240px) rotateY(-22deg) rotateX(-5deg) rotateZ(8deg); z-index: 5; }
 
 @media (prefers-reduced-motion: no-preference) {
   .p3-deck-card { animation: p3bob 7s ease-in-out infinite; }
