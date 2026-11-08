@@ -636,6 +636,8 @@ body[data-page="404"] .footer {
 /* на 404 контента мало — оставляем секции высоту экрана, чтобы футер
    не уезжал под самый верх, но без прежнего провала перед ним */
 body[data-page="404"] .c-wrap { min-height: 78svh; }
+/* подвал не отрывается от блока контактов */
+body .footer { margin-top: clamp(56px, 6vw, 88px); }
 /* контакты: подвал рядом с формой, без большого отступа общего подвала */
 body[data-page="contacts"] .footer { margin-top: clamp(36px, 4vw, 56px); padding-top: clamp(20px, 2.4vw, 28px); }
 
