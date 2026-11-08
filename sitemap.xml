@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://antonioavanzato.github.io/</loc>
     <lastmod>2026-11-08</lastmod>
@@ -11,54 +11,98 @@
     <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/velaa_trips.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/Cover.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/case-daria-lukianova.html</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/darialukianova.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/daria-admin-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/daria-admin-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/Cover.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/case-avanzato.html</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/avanzato.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/avanzato-work.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/avanzato-awards.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/avanzato-portfolio.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/avanzato-price.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/avanzato-modules.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/Cover.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/case-porta-nobile.html</loc>
-    <lastmod>2026-10-05</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/portanobile.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/Cover.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/case-medical-fitness.html</loc>
-    <lastmod>2026-10-05</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/medfit.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/Cover.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/case-alga.html</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/alga_tour.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/alga-about.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/alga-founder.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/alga-directions.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/alga-finish.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/alga-admin.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/Cover.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/case-maldives-elite.html</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/maldives_elite.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/maldives-elite-about.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/maldives-elite-direction.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/maldives-elite-trust.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/maldives-elite-form.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/Cover.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/case-yana-samoylova.html</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/yanapro.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/yanapro-method.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/yanapro-reviews.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/yanapro-gym.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/yanapro-booking.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/yanapro-journal-1.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/yanapro-journal-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/yanapro-journal-3.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/Cover.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/case-opora.html</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/opora.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/opora-admin.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/opora-cases.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/opora-quiz.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/Cover.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/portfolio.html</loc>
