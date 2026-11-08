@@ -22,6 +22,7 @@
     var photos = 0;
     var count = root.querySelector('.pc-count'), lines = root.querySelector('.pc-lines');
     var sum = root.querySelector('.pc-total b'), go = root.querySelector('.pc-go');
+    var reset = root.querySelector('.pc-reset');
     var minus = root.querySelector('[data-step="-1"]'), plus = root.querySelector('[data-step="1"]');
 
     function picked(name) { return root.querySelector('input[name="' + name + '"]:checked').value; }
@@ -40,12 +41,14 @@
       count.textContent = photos;
       minus.disabled = photos <= 0;
       plus.disabled = photos >= PHOTO_MAX;
+      reset.hidden = photos === 0;
       var url = 'contacts.html?calc=1&pkg=' + s.pkg;
       if (s.leads) url += '&leads=' + s.leads;
       if (s.photos) url += '&photos=' + s.photos;
       go.setAttribute('href', url);
     }
     root.addEventListener('change', render);
+    reset.addEventListener('click', function () { photos = 0; render(); plus.focus(); });
     [minus, plus].forEach(function (b) {
       b.addEventListener('click', function () {
         photos = Math.min(PHOTO_MAX, Math.max(0, photos + Number(b.getAttribute('data-step'))));
