@@ -698,3 +698,103 @@ body .cookie-note .btn { padding: 11px 22px; font-size: 13.5px; white-space: now
   body .cookie-note .cookie-actions { justify-content: space-between; }
   body .cookie-note .btn { flex: 1 1 auto; justify-content: center; }
 }
+
+/* ============================================================
+   Форма на странице контактов: современный вид в стиле сайта
+   ============================================================ */
+body[data-page="contacts"] .c-form {
+  padding: clamp(24px, 3.4vw, 44px);
+  border: 0;
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(10, 10, 10, .07), 0 32px 80px -40px rgba(10, 10, 10, .28);
+}
+body[data-page="contacts"] .c-form::after { display: none; }
+body[data-page="contacts"] .c-form h2 {
+  font-size: clamp(28px, 2.6vw, 36px);
+  font-weight: 500;
+  letter-spacing: -.02em;
+  line-height: 1.1;
+}
+body[data-page="contacts"] .c-form-sub { font-size: 15px; margin: 10px 0 28px; }
+body[data-page="contacts"] .field { margin-bottom: 12px; }
+body[data-page="contacts"] .field-row { gap: 12px; }
+body[data-page="contacts"] .field input,
+body[data-page="contacts"] .field select,
+body[data-page="contacts"] .field textarea {
+  min-height: 62px;
+  padding: 27px 18px 10px;
+  border: 1.5px solid transparent;
+  border-radius: 16px;
+  background-color: #f5f4f1;
+  box-shadow: none;
+  transition: background-color .2s var(--ease-soft), border-color .2s var(--ease-soft), box-shadow .2s var(--ease-soft);
+}
+body[data-page="contacts"] .field textarea { min-height: 128px; padding-top: 30px; resize: vertical; display: block; }
+body[data-page="contacts"] .field select { padding-right: 44px; background-position: right 18px center; cursor: pointer; text-overflow: ellipsis; }
+body[data-page="contacts"] .field input:hover,
+body[data-page="contacts"] .field select:hover,
+body[data-page="contacts"] .field textarea:hover { background-color: #efeeea; }
+body[data-page="contacts"] .field input:focus,
+body[data-page="contacts"] .field select:focus,
+body[data-page="contacts"] .field textarea:focus {
+  border-color: var(--accent);
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(255, 77, 0, .12);
+}
+body[data-page="contacts"] .field input.invalid,
+body[data-page="contacts"] .field select.invalid,
+body[data-page="contacts"] .field textarea.invalid { border-color: #d8654f; }
+body[data-page="contacts"] .field input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 100px #f5f4f1 inset;
+  -webkit-text-fill-color: var(--ink);
+}
+body[data-page="contacts"] .field label {
+  left: 19px;
+  top: 21px;
+  font-size: 15px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+body[data-page="contacts"] .field label.lbl-static,
+body[data-page="contacts"] .field input:focus + label,
+body[data-page="contacts"] .field input:not(:placeholder-shown) + label,
+body[data-page="contacts"] .field textarea:focus + label,
+body[data-page="contacts"] .field textarea:not(:placeholder-shown) + label,
+body[data-page="contacts"] .field select:focus + label,
+body[data-page="contacts"] .field select:valid + label {
+  top: 11px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink-2);
+}
+body[data-page="contacts"] .field input:focus + label,
+body[data-page="contacts"] .field textarea:focus + label,
+body[data-page="contacts"] .field select:focus + label { color: var(--accent-text); }
+/* пока формат не выбран, подпись лежит внутри поля, как у остальных */
+body[data-page="contacts"] .field select:invalid:not(:focus) + label.lbl-static {
+  top: 21px;
+  font-size: 15px;
+  font-weight: 400;
+}
+body[data-page="contacts"] .c-consent { gap: 12px; margin: 16px 0 20px; font-size: 13.5px; }
+body[data-page="contacts"] .c-consent-box { width: 22px; height: 22px; margin-top: 0; border: 1.5px solid rgba(10, 10, 10, .22); border-radius: 8px; background: #fff; }
+body[data-page="contacts"] .c-submit {
+  min-height: 60px;
+  margin-top: 0;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 500;
+}
+body[data-page="contacts"] .c-submit[disabled] {
+  border: 0;
+  background: #f0efeb;
+  color: rgba(10, 10, 10, .55);
+}
+body[data-page="contacts"] .c-ok { border: 0; border-radius: 16px; background: rgba(255, 77, 0, .08); color: var(--ink); }
+body[data-page="contacts"] .c-fine { margin-top: 16px; font-size: 12.5px; text-align: center; }
+@media (max-width: 520px) {
+  body[data-page="contacts"] .c-form { border-radius: 24px; }
+}
