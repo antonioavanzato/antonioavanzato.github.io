@@ -374,6 +374,35 @@
     if (consent) consent.addEventListener('change', syncConsent);
     syncConsent();
 
+    // Ник Telegram: 5–32 символа, латиница, цифры и _; начинается с буквы,
+    // не заканчивается на _ и не содержит __. Принимаем @nick и ссылку t.me/nick.
+    var tgField = form.querySelector('#f-contact');
+    var tgErr = document.createElement('p');
+    tgErr.className = 'field-err'; tgErr.id = 'f-contact-err'; tgErr.setAttribute('role', 'alert'); tgErr.hidden = true;
+    if (tgField) { tgField.parentNode.appendChild(tgErr); }
+    function tgNick(v) {
+      var n = String(v || '').trim().replace(/^(?:https?:\/\/)?(?:www\.)?(?:t|telegram)\.me\//i, '').replace(/^@/, '').replace(/\/$/, '');
+      return /^[A-Za-z](?:[A-Za-z0-9]|_(?!_)){3,30}[A-Za-z0-9]$/.test(n) ? n : '';
+    }
+    function checkTg(showEmpty) {
+      if (!tgField) return true;
+      var v = tgField.value.trim();
+      var good = !!tgNick(v);
+      if (good || (!v && !showEmpty)) {
+        tgField.classList.remove('invalid'); tgField.removeAttribute('aria-invalid'); tgField.removeAttribute('aria-describedby');
+        tgErr.hidden = true;
+        return good;
+      }
+      tgErr.textContent = v ? 'Укажите ник латиницей: 5–32 символа, буквы, цифры и _. Например, @ivan_petrov' : 'Укажите ник в Telegram, например @ivan_petrov';
+      tgErr.hidden = false;
+      tgField.classList.add('invalid'); tgField.setAttribute('aria-invalid', 'true'); tgField.setAttribute('aria-describedby', 'f-contact-err');
+      return false;
+    }
+    if (tgField) {
+      tgField.addEventListener('blur', function () { checkTg(false); });
+      tgField.addEventListener('input', function () { if (!tgErr.hidden) checkTg(false); });
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -385,13 +414,15 @@
 
       var ok = true;
       var firstBad = null;
-      ['#f-name', '#f-contact'].forEach(function (sel) {
+      ['#f-name'].forEach(function (sel) {
         var f = form.querySelector(sel);
         if (!f || !f.value.trim()) {
           if (f) { f.classList.add('invalid'); f.setAttribute('aria-invalid', 'true'); firstBad = firstBad || f; }
           ok = false;
         } else { f.classList.remove('invalid'); f.removeAttribute('aria-invalid'); }
       });
+
+      if (!checkTg(true)) { ok = false; firstBad = firstBad || tgField; }
 
       if (consent && !consent.checked) {
         var lbl = consent.closest('.c-consent');
@@ -422,7 +453,7 @@
         company: (form.querySelector('#f-website') || {}).value || '',
         name:  get('#f-name'),
         phone: '',
-        tg:    get('#f-contact'),
+        tg:    '@' + tgNick(get('#f-contact')),
         // Поле date в HUB — это дата съёмки. У заявки на сайт её нет,
         // а момент отправки и так виден в карточке, поэтому шлём прочерк:
         // иначе заявка попадала в «Сегодня» и обещала несуществующий срок.

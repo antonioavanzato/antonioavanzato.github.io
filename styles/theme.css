@@ -798,3 +798,5 @@ body[data-page="contacts"] .c-fine { margin-top: 16px; font-size: 12.5px; text-a
 @media (max-width: 520px) {
   body[data-page="contacts"] .c-form { border-radius: 24px; }
 }
+body[data-page="contacts"] .field-err { margin: 6px 4px 0; font-size: 12.5px; line-height: 1.35; color: #c73600; }
+body[data-page="contacts"] .field-err[hidden] { display: none; }
