@@ -12,6 +12,9 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image><image:loc>https://antonioavanzato.github.io/images/velaa_trips.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/velaa-excursions.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/velaa-hotels.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/velaa-presets.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/case-daria-lukianova.html</loc>
@@ -21,6 +24,9 @@
     <image:image><image:loc>https://antonioavanzato.github.io/images/darialukianova.webp</image:loc></image:image>
     <image:image><image:loc>https://antonioavanzato.github.io/images/daria-admin-1.webp</image:loc></image:image>
     <image:image><image:loc>https://antonioavanzato.github.io/images/daria-admin-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/daria-directions.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/daria-process.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/daria-about.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/case-avanzato.html</loc>
@@ -40,6 +46,9 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image><image:loc>https://antonioavanzato.github.io/images/portanobile.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/portanobile-about.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/portanobile-categories.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/portanobile-projects.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/case-medical-fitness.html</loc>
@@ -47,6 +56,9 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image><image:loc>https://antonioavanzato.github.io/images/medfit.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/medfit-rehab.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/medfit-docs.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/medfit-price.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/case-alga.html</loc>
