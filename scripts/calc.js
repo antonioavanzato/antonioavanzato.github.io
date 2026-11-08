@@ -19,86 +19,39 @@
   function has(o, k) { return Object.prototype.hasOwnProperty.call(o, k); }
 
   function initCalculator(root) {
-    var state = { pkg: '', leads: '', photos: 0 };
-    var q = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var photos = 0;
+    var count = root.querySelector('.pc-count'), lines = root.querySelector('.pc-lines');
+    var sum = root.querySelector('.pc-total b'), go = root.querySelector('.pc-go');
+    var minus = root.querySelector('[data-step="-1"]'), plus = root.querySelector('[data-step="1"]');
 
-    var bar = document.createElement('div');
-    bar.className = 'pc-bar';
-    bar.innerHTML = '<div class="pc-bar-info" aria-live="polite"><span class="pc-bar-items"></span><b class="pc-bar-sum"></b></div>' +
-      '<a class="btn btn-primary pc-bar-btn" href="#pc-format"></a>';
-    document.body.appendChild(bar);
-    var items = bar.querySelector('.pc-bar-items'), sum = bar.querySelector('.pc-bar-sum'), go = bar.querySelector('.pc-bar-btn');
-
+    function picked(name) { return root.querySelector('input[name="' + name + '"]:checked').value; }
+    function line(name, price) {
+      var li = document.createElement('li'), a = document.createElement('span'), b = document.createElement('b');
+      a.textContent = name; b.textContent = price;
+      li.appendChild(a); li.appendChild(b); lines.appendChild(li);
+    }
     function render() {
-      q('[data-pkg]').forEach(function (li) { mark(li, li.getAttribute('data-pkg') === state.pkg); });
-      q('[data-leads]').forEach(function (li) { mark(li, li.getAttribute('data-leads') === state.leads); });
-      q('[data-preset]').forEach(function (li) {
-        var p = li.getAttribute('data-preset').split(',');
-        mark(li, p[0] === state.pkg && p[1] === state.leads && !state.photos);
-      });
-      var count = root.querySelector('.pc-count');
-      count.textContent = state.photos;
-      count.parentNode.parentNode.classList.toggle('is-on', state.photos > 0);
-      root.querySelector('[data-step="-1"]').disabled = state.photos <= 0;
-      root.querySelector('[data-step="1"]').disabled = state.photos >= PHOTO_MAX;
-
-      if (!state.pkg) {
-        items.textContent = 'Шаг 1';
-        sum.textContent = 'Выберите формат сайта';
-        go.textContent = 'Выбрать формат';
-        go.setAttribute('href', '#pc-format');
-        return;
-      }
-      var names = [FORMATS[state.pkg].name];
-      if (state.leads) names.push(LEADS[state.leads].name);
-      if (state.photos) names.push('ретушь ' + state.photos + ' фото');
-      items.textContent = names.join(' + ');
-      sum.textContent = 'от ' + money(total(state));
-      go.textContent = 'Обсудить проект';
-      var url = 'contacts.html?calc=1&pkg=' + state.pkg;
-      if (state.leads) url += '&leads=' + state.leads;
-      if (state.photos) url += '&photos=' + state.photos;
+      var s = { pkg: picked('pkg'), leads: picked('leads'), photos: photos };
+      lines.textContent = '';
+      line(FORMATS[s.pkg].name, 'от\u00a0' + money(FORMATS[s.pkg].price));
+      if (s.leads) line(LEADS[s.leads].name, '+' + money(LEADS[s.leads].price));
+      if (s.photos) line('Ретушь, ' + s.photos + ' фото', '+' + money(s.photos * PHOTO_PRICE));
+      sum.textContent = 'от\u00a0' + money(total(s));
+      count.textContent = photos;
+      minus.disabled = photos <= 0;
+      plus.disabled = photos >= PHOTO_MAX;
+      var url = 'contacts.html?calc=1&pkg=' + s.pkg;
+      if (s.leads) url += '&leads=' + s.leads;
+      if (s.photos) url += '&photos=' + s.photos;
       go.setAttribute('href', url);
     }
-    function mark(li, on) {
-      li.classList.toggle('is-on', on);
-      li.querySelector('button').setAttribute('aria-pressed', on ? 'true' : 'false');
-    }
-
-    q('[data-pkg] button').forEach(function (b) {
-      b.addEventListener('click', function () { state.pkg = b.closest('li').getAttribute('data-pkg'); render(); });
-    });
-    q('[data-leads] button').forEach(function (b) {
+    root.addEventListener('change', render);
+    [minus, plus].forEach(function (b) {
       b.addEventListener('click', function () {
-        var v = b.closest('li').getAttribute('data-leads');
-        state.leads = state.leads === v ? '' : v;
+        photos = Math.min(PHOTO_MAX, Math.max(0, photos + Number(b.getAttribute('data-step'))));
         render();
       });
     });
-    q('[data-preset] button').forEach(function (b) {
-      b.addEventListener('click', function () {
-        var p = b.closest('li').getAttribute('data-preset').split(',');
-        state.pkg = p[0]; state.leads = p[1]; state.photos = 0;
-        render();
-      });
-    });
-    q('[data-step]').forEach(function (b) {
-      b.addEventListener('click', function () {
-        state.photos = Math.min(PHOTO_MAX, Math.max(0, state.photos + Number(b.getAttribute('data-step'))));
-        render();
-      });
-    });
-    go.addEventListener('click', function (e) {
-      if (state.pkg) return;
-      e.preventDefault();
-      var f = document.getElementById('pc-format');
-      f.scrollIntoView({ block: 'center' });
-      f.classList.remove('pc-nudge'); void f.offsetWidth; f.classList.add('pc-nudge');
-    });
-
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (e) { bar.classList.toggle('is-visible', e[0].isIntersecting); }).observe(root);
-    } else bar.classList.add('is-visible');
     render();
   }
 
@@ -132,8 +85,8 @@
   }
 
   function start() {
-    var root = document.getElementById('price-list');
-    if (root && root.querySelector('[data-pkg]')) initCalculator(root);
+    var root = document.getElementById('pc-calc');
+    if (root) initCalculator(root);
     var form = document.getElementById('leadForm');
     if (form) prefillForm(form);
   }

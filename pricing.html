@@ -58,7 +58,7 @@ if(c==='1')arm()})();
 <link rel="preload" as="image" href="images/avanzato-logo-nav.webp">
 <link rel="stylesheet" href="styles/main.css?v=20261005c">
 <link rel="stylesheet" href="styles/theme.css?v=20261108b">
-<link rel="stylesheet" href="styles/pricing3d.css?v=20261108d">
+<link rel="stylesheet" href="styles/pricing3d.css?v=20261108e">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -485,26 +485,45 @@ if(c==='1')arm()})();
   <div class="wrap">
     <div class="section-label reveal"><span class="num">02</span><span class="eyebrow">Прейскурант</span><span class="line"></span></div>
     <h2 class="h-section reveal" style="margin-bottom:clamp(28px,4vw,44px)">Что <em>сколько</em> стоит</h2>
-    <p class="tiers-foot reveal" style="margin:0 0 clamp(20px,3vw,32px)">Выберите формат и добавьте нужное: сумма считается сразу, а заявка заполнится сама.</p>
-    <div class="extra reveal" id="pc-format">
-      <div class="extra-head">
-        <p class="eyebrow">Шаг 1 · Формат сайта</p>
-        <p>Что входит в каждый формат, описано в карточках выше.</p>
+    <p class="tiers-foot reveal" style="margin:0 0 clamp(20px,3vw,32px)">Ответьте на три вопроса и сразу увидите сумму. Остальные цены — ниже.</p>
+    <form class="pc reveal" id="pc-calc" onsubmit="return false" aria-label="Калькулятор стоимости сайта">
+      <div class="pc-steps">
+        <fieldset class="pc-step">
+          <legend><i>1</i>Какой сайт нужен?</legend>
+          <div class="pc-tiles pc-tiles-2">
+            <label class="pc-tile"><input type="radio" name="pkg" value="landing" checked><span class="pc-tile-t">Лендинг</span><span class="pc-tile-p">от 55 000 ₽</span><span class="pc-tile-h">Одна страница, 5–10 дней</span></label>
+            <label class="pc-tile"><input type="radio" name="pkg" value="multi"><span class="pc-tile-t">Многостраничный</span><span class="pc-tile-p">от 75 000 ₽</span><span class="pc-tile-h">Несколько разделов, 2–4 недели</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="pc-step">
+          <legend><i>2</i>Нужно получать заявки с сайта?</legend>
+          <div class="pc-tiles pc-tiles-3">
+            <label class="pc-tile"><input type="radio" name="leads" value="" checked><span class="pc-tile-t">Не нужно</span><span class="pc-tile-p">0 ₽</span><span class="pc-tile-h">Без формы заявки</span></label>
+            <label class="pc-tile"><input type="radio" name="leads" value="tg"><span class="pc-tile-t">Форма + Telegram</span><span class="pc-tile-p">+12 000 ₽</span><span class="pc-tile-h">Заявки приходят в мессенджер</span></label>
+            <label class="pc-tile"><input type="radio" name="leads" value="crm"><span class="pc-tile-t">Система заявок</span><span class="pc-tile-p">+25 000 ₽</span><span class="pc-tile-h">Telegram и личный кабинет</span></label>
+          </div>
+        </fieldset>
+        <div class="pc-step pc-step-row">
+          <div><p class="pc-legend"><i>3</i>Нужна ретушь фото?</p><p class="pc-note">1 000 ₽ за фото. Если не нужна, оставьте 0.</p></div>
+          <div class="pc-stepper" role="group" aria-label="Количество фото"><button type="button" data-step="-1" aria-label="Меньше фото">−</button><output class="pc-count" aria-live="polite">0</output><button type="button" data-step="1" aria-label="Больше фото">+</button></div>
+        </div>
       </div>
-      <ul class="extra-list">
-        <li class="pc-opt" data-pkg="landing"><b><button type="button" aria-pressed="false">Лендинг</button></b><span class="pval">от 55 000 ₽</span></li>
-        <li class="pc-opt" data-pkg="multi"><b><button type="button" aria-pressed="false">Многостраничный сайт</button></b><span class="pval">от 75 000 ₽</span></li>
-      </ul>
-    </div>
-
-    <div class="extra reveal" style="margin-top:clamp(20px,3vw,32px)">
+      <aside class="pc-sum">
+        <p class="eyebrow">Ваш проект</p>
+        <ul class="pc-lines"></ul>
+        <div class="pc-total"><span>Итого</span><b aria-live="polite"></b></div>
+        <a class="btn btn-primary pc-go" href="contacts.html">Отправить заявку с этим расчётом</a>
+        <p class="pc-note">Точная сумма после брифа. Домен и хостинг оплачиваются отдельно.</p>
+      </aside>
+    </form>
+    <div class="extra reveal">
       <div class="extra-head">
-        <p class="eyebrow">Шаг 2 · Заявки с сайта — по желанию</p>
+        <p class="eyebrow">Заявки с сайта — по желанию</p>
         <p>Форма в стиле сайта. <b>Форма + Telegram</b> — заявка сразу приходит вам в мессенджер. <b>Система заявок</b> — то же плюс личный кабинет (админка), где сохраняются все обращения. Данные хранятся в России, на вашем аккаунте в Яндекс Облаке, — этого требует 152-ФЗ. <a href="leads-system.html" style="color:var(--accent-ink);border-bottom:1px solid var(--hairline);white-space:nowrap">Подробнее и живое демо →</a></p>
       </div>
       <ul class="extra-list">
-        <li class="pc-opt" data-leads="tg"><b><button type="button" aria-pressed="false">Форма + Telegram</button></b><span class="pval">+12 000 ₽ к сайту</span></li>
-        <li class="pc-opt" data-leads="crm"><b><button type="button" aria-pressed="false">Система заявок с админкой</button></b><span class="pval">+25 000 ₽ к сайту</span></li>
+        <li><b>Форма + Telegram</b><span class="pval">+12 000 ₽ к сайту</span></li>
+        <li><b>Система заявок с админкой</b><span class="pval">+25 000 ₽ к сайту</span></li>
         <li><b>Отдельно, для готового сайта</b><span class="pval">от 20 000 ₽</span></li>
       </ul>
     </div>
@@ -516,7 +535,7 @@ if(c==='1')arm()})();
       </div>
       <ul class="extra-list">
         <li><b>Доработки после сдачи</b><span class="pval">5 000 ₽ / час</span></li>
-        <li class="pc-qty"><b>Цветокоррекция и ретушь фото</b><span class="pval">1 000 ₽ / фото</span><div class="pc-stepper" role="group" aria-label="Количество фото"><button type="button" data-step="-1" aria-label="Меньше фото">−</button><output class="pc-count" aria-live="polite">0</output><button type="button" data-step="1" aria-label="Больше фото">+</button></div></li>
+        <li><b>Цветокоррекция и ретушь фото</b><span class="pval">1 000 ₽ / фото</span></li>
         <li class="extra-link"><b><a href="https://avanzato.ru/price" target="_blank" rel="noopener">Фотосессия для главной</a></b><span>по прайсу фотографа</span></li>
       </ul>
     </div>
@@ -535,12 +554,12 @@ if(c==='1')arm()})();
     <div class="extra reveal" style="margin-top:clamp(20px,3vw,32px)">
       <div class="extra-head">
         <p class="eyebrow">Примеры расчёта</p>
-        <p>Нажмите на пример, чтобы подставить его в расчёт. Суммы ориентировочные, без домена и платформы.</p>
+        <p>Суммы ориентировочные, без домена и платформы.</p>
       </div>
       <ul class="extra-list">
-        <li class="pc-opt" data-preset="landing,tg"><b><button type="button" aria-pressed="false">Лендинг + форма с Telegram</button></b><span class="pval">от 67 000 ₽</span></li>
-        <li class="pc-opt" data-preset="landing,crm"><b><button type="button" aria-pressed="false">Лендинг + система заявок</button></b><span class="pval">от 80 000 ₽</span></li>
-        <li class="pc-opt" data-preset="multi,crm"><b><button type="button" aria-pressed="false">Многостраничный + система заявок</button></b><span class="pval">от 100 000 ₽</span></li>
+        <li><b>Лендинг + форма с Telegram</b><span class="pval">от 67 000 ₽</span></li>
+        <li><b>Лендинг + система заявок</b><span class="pval">от 80 000 ₽</span></li>
+        <li><b>Многостраничный + система заявок</b><span class="pval">от 100 000 ₽</span></li>
       </ul>
     </div>
   </div>
@@ -709,6 +728,6 @@ if(c==='1')arm()})();
 
 <script src="scripts/site.js?v=20261005c"></script>
 <script src="scripts/pricing3d.js?v=20260813a" defer></script>
-<script src="scripts/calc.js?v=20261108b" defer></script>
+<script src="scripts/calc.js?v=20261108c" defer></script>
 </body>
 </html>
