@@ -424,16 +424,22 @@ if(c==='1')arm()})();
 <script type="speculationrules">
 {"prerender":[{"source":"list","urls":["portfolio.html", "pricing.html", "contacts.html"],"eagerness":"moderate"}]}
 </script>
+<link rel="stylesheet" href="styles/home-photo.css?v=20261109a">
 </head>
 <body data-page="home">
 <main id="main">
 
 <header class="hero" data-screen-label="Hero">
   <div class="wrap hero-inner">
+    <div class="vf" aria-hidden="true">
+      <i class="vf-c tl"></i><i class="vf-c tr"></i><i class="vf-c bl"></i><i class="vf-c br"></i>
+      <span class="vf-exif vf-top"><b class="vf-rec"></b>AF-S&nbsp;·&nbsp;ƒ/1.8&nbsp;·&nbsp;1/125&nbsp;·&nbsp;ISO&nbsp;100</span>
+      <span class="vf-exif vf-bot">KAZAN&nbsp;·&nbsp;RAW&nbsp;·&nbsp;[&nbsp;09&nbsp;]</span>
+    </div>
     <h1 class="display hero-title">
       <span class="line"><span>Сайты,</span></span>
       <span class="line"><span>сделанные</span></span>
-      <span class="line"><span><em>со вкусом.</em></span></span>
+      <span class="line"><span><em class="af">со вкусом.</em></span></span>
       </h1>
     <p class="lede hero-lede">Объединяю эстетику профессиональной фотографии с передовыми
       веб-технологиями. Лендинги и многостраничные сайты — от брифа до запуска под ключ.</p>
@@ -490,26 +496,107 @@ if(c==='1')arm()})();
       <a class="btn btn-ghost reveal" href="contacts.html">Хочу так же
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
-    <div class="gallery gallery-teaser" id="portfolio-grid">
-      <a class="m-item tall reveal" data-d="0" href="case-velaa-trips.html" aria-label="Velaa Trips — смотреть разбор проекта">
-        <span class="m-frame"><img src="images/velaa_trips.webp?v=5" alt="Сайт Velaa Trips — работа Антона Аванзато" loading="lazy" decoding="async" width="1600" height="1035"><span class="m-arr" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
-        <span class="m-meta"><span class="m-num">01</span><span class="m-txt"><b>Velaa Trips</b><i>туристическое агентство на Мальдивах</i></span></span></a>
-      <a class="m-item reveal" data-d="1" href="case-avanzato.html" aria-label="Avanzato — смотреть разбор проекта">
-        <span class="m-frame"><img src="images/avanzato.webp?v=5" alt="Сайт фотографа Avanzato — работа Антона Аванзато" loading="lazy" decoding="async" width="1600" height="1035"><span class="m-arr" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
-        <span class="m-meta"><span class="m-num">02</span><span class="m-txt"><b>Avanzato</b><i>фотограф из Казани</i></span></span></a>
-      <a class="m-item reveal" data-d="2" href="case-porta-nobile.html" aria-label="Porta Nobile — смотреть разбор проекта">
-        <span class="m-frame"><img src="images/portanobile.webp?v=5" alt="Сайт Porta Nobile — работа Антона Аванзато" loading="lazy" decoding="async" width="1600" height="1035"><span class="m-arr" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
-        <span class="m-meta"><span class="m-num">03</span><span class="m-txt"><b>Porta Nobile</b><i>люксовая фурнитура в Москве</i></span></span></a>
+    <div class="film reveal" aria-label="Проекты, лента прокручивается вбок">
+      <div class="film-edge" aria-hidden="true"><span>AVANZATO 400</span><span>◂ 9 кадров ▸</span></div>
+      <ol class="film-track" tabindex="0">
+        <li class="film-frame">
+          <a href="case-velaa-trips.html" aria-label="Velaa Trips — смотреть разбор проекта">
+            <span class="film-pic develop"><img src="images/velaa_trips.webp?v=5" alt="Сайт Velaa Trips — работа Антона Аванзато" loading="lazy" decoding="async" width="1600" height="1035"></span>
+            <span class="film-cap"><span class="film-no">01</span><b>Velaa Trips</b><i>турагентство на Мальдивах</i></span>
+          </a>
+        </li>
+        <li class="film-frame">
+          <a href="case-avanzato.html" aria-label="Avanzato — смотреть разбор проекта">
+            <span class="film-pic develop"><img src="images/avanzato.webp?v=5" alt="Сайт Avanzato — работа Антона Аванзато" loading="lazy" decoding="async" width="1600" height="1035"></span>
+            <span class="film-cap"><span class="film-no">02A</span><b>Avanzato</b><i>фотограф из Казани</i></span>
+          </a>
+        </li>
+        <li class="film-frame">
+          <a href="case-porta-nobile.html" aria-label="Porta Nobile — смотреть разбор проекта">
+            <span class="film-pic develop"><img src="images/portanobile.webp?v=5" alt="Сайт Porta Nobile — работа Антона Аванзато" loading="lazy" decoding="async" width="1600" height="1035"></span>
+            <span class="film-cap"><span class="film-no">03</span><b>Porta Nobile</b><i>люксовая фурнитура</i></span>
+          </a>
+        </li>
+        <li class="film-frame">
+          <a href="case-medical-fitness.html" aria-label="Medical Fitness — смотреть разбор проекта">
+            <span class="film-pic develop"><img src="images/medfit.webp?v=5" alt="Сайт Medical Fitness — работа Антона Аванзато" loading="lazy" decoding="async" width="1600" height="1035"></span>
+            <span class="film-cap"><span class="film-no">04A</span><b>Medical Fitness</b><i>центр реабилитации</i></span>
+          </a>
+        </li>
+        <li class="film-frame">
+          <a href="case-alga.html" aria-label="ALGA — смотреть разбор проекта">
+            <span class="film-pic develop"><img src="images/alga_tour.webp" alt="Сайт ALGA — работа Антона Аванзато" loading="lazy" decoding="async" width="1600" height="1035"></span>
+            <span class="film-cap"><span class="film-no">05</span><b>ALGA</b><i>авторские туры и CRM</i></span>
+          </a>
+        </li>
+        <li class="film-frame">
+          <a href="case-maldives-elite.html" aria-label="Maldives Elite — смотреть разбор проекта">
+            <span class="film-pic develop"><img src="images/maldives_elite.webp" alt="Сайт Maldives Elite — работа Антона Аванзато" loading="lazy" decoding="async" width="1600" height="1035"></span>
+            <span class="film-cap"><span class="film-no">06A</span><b>Maldives Elite</b><i>турагентство</i></span>
+          </a>
+        </li>
+        <li class="film-frame">
+          <a href="case-yana-samoylova.html" aria-label="Яна Самойлова — смотреть разбор проекта">
+            <span class="film-pic develop"><img src="images/yanapro.webp" alt="Сайт Яна Самойлова — работа Антона Аванзато" loading="lazy" decoding="async" width="1600" height="1035"></span>
+            <span class="film-cap"><span class="film-no">07</span><b>Яна Самойлова</b><i>фитнес-тренер</i></span>
+          </a>
+        </li>
+        <li class="film-frame">
+          <a href="case-opora.html" aria-label="ОПОРА — смотреть разбор проекта">
+            <span class="film-pic develop"><img src="images/opora.webp" alt="Сайт ОПОРА — работа Антона Аванзато" loading="lazy" decoding="async" width="1600" height="1035"></span>
+            <span class="film-cap"><span class="film-no">08A</span><b>ОПОРА</b><i>бухгалтерия и CRM</i></span>
+          </a>
+        </li>
+        <li class="film-frame">
+          <a href="case-daria-lukianova.html" aria-label="Дарья Лукьянова — смотреть разбор проекта">
+            <span class="film-pic develop"><img src="images/darialukianova.webp?v=5" alt="Сайт Дарья Лукьянова — работа Антона Аванзато" loading="lazy" decoding="async" width="1600" height="1035"></span>
+            <span class="film-cap"><span class="film-no">09</span><b>Дарья Лукьянова</b><i>преподаватель вокала</i></span>
+          </a>
+        </li>
+      </ol>
+      <div class="film-edge" aria-hidden="true"><span>SAFETY FILM · 135</span><span>листайте ⟶</span></div>
     </div>
+    <div class="film-nav" aria-hidden="true"><button type="button" class="film-btn" data-dir="-1" tabindex="-1">←</button><button type="button" class="film-btn" data-dir="1" tabindex="-1">→</button></div>
     <a class="work-more reveal" href="portfolio.html">
       <span class="work-more-t">
         <b>Смотреть все работы</b>
-        <i>ещё 6 проектов в портфолио</i>
+        <i>все 9 проектов с разбором задач</i>
       </span>
       <span class="work-more-arr" aria-hidden="true">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </span>
     </a>
+  </div>
+</section>
+
+<section class="block" id="process">
+  <div class="wrap">
+    <div class="section-label reveal"><span class="num">03</span><span class="eyebrow">Как я работаю</span><span class="line"></span></div>
+    <div class="work-head">
+      <h2 class="h-section" data-anim="words">Три кадра —<br><em>и сайт в эфире.</em></h2>
+    </div>
+    <ol class="sheet">
+      <li class="sheet-f reveal" data-d="0">
+        <span class="sheet-no">01 ▸</span>
+        <div class="sheet-pic"><span class="sheet-big">Бриф</span></div>
+        <h3>Разбираемся в задаче</h3>
+        <p class="muted">Созваниваемся или переписываемся: цели, аудитория, конкуренты, сроки. Фиксирую структуру и цену.</p>
+      </li>
+      <li class="sheet-f reveal" data-d="1">
+        <span class="sheet-no">02 ▸</span>
+        <div class="sheet-pic"><span class="sheet-big">Съёмка</span></div>
+        <h3>Дизайн и тексты</h3>
+        <p class="muted">Собираю сайт как кадр: свет, композиция, ничего лишнего. Тексты, логотип, изображения.</p>
+      </li>
+      <li class="sheet-f is-pick reveal" data-d="2">
+        <span class="sheet-no">03 ▸</span>
+        <div class="sheet-pic"><span class="sheet-big">Запуск</span>
+          <svg class="sheet-mark" viewBox="0 0 200 120" preserveAspectRatio="none" aria-hidden="true"><path d="M30 64C22 30 92 10 150 22c46 10 46 62 4 80-40 18-118 12-128-26-4-16 8-30 26-38" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Публикация и SEO</h3>
+        <p class="muted">Домен, индексация в Яндексе и Google, аналитика. Показываю, как управлять сайтом самому.</p>
+      </li>
+    </ol>
   </div>
 </section>
 
@@ -532,7 +619,7 @@ if(c==='1')arm()})();
 
 <section class="block" id="seo-services">
   <div class="wrap">
-    <div class="section-label reveal"><span class="num">03</span><span class="eyebrow">Разработка сайтов под ключ</span><span class="line"></span></div>
+    <div class="section-label reveal"><span class="num">04</span><span class="eyebrow">Разработка сайтов под ключ</span><span class="line"></span></div>
     <div class="intro-grid">
       <div>
         <h2 class="h-section" data-anim="words">Создаю сайты под ключ<br><em>удалённо</em> — где&nbsp;бы вы ни были.</h2>
@@ -576,5 +663,6 @@ if(c==='1')arm()})();
 </main>
 
 <script src="scripts/site.js?v=20261108b"></script>
+<script src="scripts/home-photo.js?v=20261109a" defer></script>
 </body>
 </html>
