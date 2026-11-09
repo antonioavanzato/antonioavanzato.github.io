@@ -32,12 +32,28 @@
   /* ---------- плёнка ---------- */
   var track = document.querySelector('.film-track');
   if (track) {
-    var step = function () { var f = track.querySelector('.film-frame'); return f ? f.getBoundingClientRect().width + 14 : 300; };
+    var step = function () { var f = track.querySelectorAll('.film-frame'); return f.length > 1 ? f[1].offsetLeft - f[0].offsetLeft : 300; };
     [].forEach.call(document.querySelectorAll('.film-btn'), function (b) {
       b.addEventListener('click', function () {
         track.scrollBy({ left: step() * +b.getAttribute('data-dir'), behavior: reduce ? 'auto' : 'smooth' });
       });
     });
+    /* счётчик и полоса прогресса */
+    var cnt = document.querySelector('.film-count b'), bar = document.querySelector('.film-progress i');
+    var btns = [].slice.call(document.querySelectorAll('.film-btn'));
+    var total = track.querySelectorAll('.film-frame').length;
+    var sync = function () {
+      var max = track.scrollWidth - track.clientWidth;
+      var p = max > 0 ? track.scrollLeft / max : 1;
+      var i = Math.min(total, Math.round(track.scrollLeft / step()) + 1);
+      if (p > .995) i = total;
+      if (cnt) cnt.textContent = (i < 10 ? '0' : '') + i;
+      if (bar) bar.style.transform = 'scaleX(' + Math.max(1 / total, p).toFixed(3) + ')';
+      if (btns[0]) btns[0].disabled = track.scrollLeft < 4;
+      if (btns[1]) btns[1].disabled = p > .995;
+    };
+    track.addEventListener('scroll', sync, { passive: true }); addEventListener('resize', sync); sync();
+
     /* перетаскивание мышью, как плёнку на столе */
     var down = false, moved = false, sx = 0, sl = 0;
     track.addEventListener('pointerdown', function (e) {
