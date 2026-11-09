@@ -165,16 +165,6 @@ body .hero {
 body .block {
   padding: var(--gap) 0 0;
 }
-/* оранжевый акцент-надзаголовок («40+ проектов в эфире») */
-body .hero-eb {
-  color: var(--accent);
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(13px, 1.4vw, 16px);
-  letter-spacing: 0.01em;
-  text-transform: none;
-}
-body .hero-eb::before { display: none; }
 
 /* сам заголовок: гротеск, очень крупно и плотно */
 body .hero-title {
@@ -212,7 +202,6 @@ body .hero-meta .stat b {
   font-weight: 700;
   letter-spacing: -0.03em;
 }
-body .scroll-hint { color: var(--ink-3); }
 
 /* ============================================================
    Заголовки секций
@@ -284,35 +273,6 @@ body .m-txt b { font-family: var(--font-display); font-weight: 600; letter-spaci
 body .work-more { border-top: 1px solid var(--hairline); }
 body .work-more-arr { color: var(--accent); }
 body .work-more:hover .work-more-t b { color: var(--accent); }
-
-/* ============================================================
-   SEO-чипы
-   ============================================================ */
-/* спокойный статичный ряд ключевиков — без движения */
-body .seo-row {
-  position: relative;
-  margin-top: clamp(40px, 5vw, 64px);
-  padding: 4px 0;
-}
-body .seo-tags {
-  margin: 0;
-  flex-wrap: wrap;
-  width: auto;
-  gap: 12px;
-}
-body .seo-tags li {
-  flex: 0 0 auto;
-  font-size: 14px;
-  padding: 10px 18px;
-  border: 1px solid var(--hairline);
-  border-radius: 100px;
-  transition: color .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease);
-}
-body .seo-tags li:hover {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: #fff;
-}
 /* ============================================================
    CTA + футер
    ============================================================ */

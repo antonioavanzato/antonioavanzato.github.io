@@ -251,25 +251,6 @@
   .case-live, .case-back { transition: none; }
 }
 
-/* ---------- ссылка на разбор с карточки в портфолио ---------- */
-/* Основная ссылка карточки ведёт на живой сайт проекта — не трогаем её.
-   Разбор выносим отдельной строкой под карточкой. */
-.p3-case {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  margin-top: 2px;
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--accent-text);
-  text-decoration: none;
-  transition: gap .3s var(--ease), color .3s var(--ease);
-}
-.p3-case:hover { gap: 13px; color: var(--ink); }
-@media (prefers-reduced-motion: reduce) { .p3-case { transition: none; } }
-
 /* ============================================================
    Блок «Другие разборы» — перелинковка между кейсами
    Каждый кейс ведёт на два соседних по кольцу: обход роботом

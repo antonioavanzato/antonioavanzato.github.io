@@ -1,0 +1,131 @@
+/* ============================================================
+   AVANZATO — Портфолио: интерактивный список (portfolio.html)
+   Строки с крупными названиями; на устройствах с мышью за курсором
+   плывёт превью сайта, на тач-экранах превью показано в строке.
+   ============================================================ */
+
+.pl-hero { padding: clamp(130px, 18vw, 210px) 0 clamp(30px, 5vw, 60px); }
+.pl-title {
+  font-size: clamp(64px, 15vw, 210px);
+  line-height: .9; letter-spacing: -.055em; font-weight: 700;
+  margin: 14px 0 26px;
+}
+.pl-count {
+  font-size: .16em; letter-spacing: 0; font-weight: 500;
+  vertical-align: top; position: relative; top: .5em; margin-left: .35em;
+  color: var(--accent);
+}
+.pl-hero .lede { max-width: 560px; }
+
+body .block.pl-block { padding-top: 0; }
+
+/* ---------- фильтр ---------- */
+.pl-filter { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: clamp(22px, 3vw, 36px); }
+.pl-chip {
+  font: 500 14px/1 var(--font-sans); color: var(--ink);
+  background: transparent; border: 1px solid var(--hairline);
+  border-radius: 999px; padding: 11px 16px; cursor: pointer;
+  transition: background .25s, color .25s, border-color .25s;
+}
+.pl-chip span { color: var(--ink-3); margin-left: 4px; font-size: 12px; transition: color .25s; }
+.pl-chip:hover { border-color: var(--ink); }
+.pl-chip.is-on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.pl-chip.is-on span { color: rgba(255,255,255,.55); }
+.pl-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---------- список ---------- */
+.pl-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--hairline); }
+.pl-row { border-bottom: 1px solid var(--hairline); }
+.pl-row[hidden] { display: none; }
+.pl-link {
+  position: relative;
+  display: grid; align-items: center;
+  grid-template-columns: 56px minmax(0, 1fr) minmax(0, 300px) 110px 40px;
+  gap: 20px; padding: clamp(22px, 2.6vw, 34px) 0;
+  color: var(--ink); text-decoration: none;
+}
+.pl-num { font: 500 13px/1 var(--font-sans); color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.pl-name {
+  font: 700 clamp(30px, 4.6vw, 64px)/1 var(--font-display);
+  letter-spacing: -.045em;
+  transition: transform .5s cubic-bezier(.2,.7,.2,1), color .3s;
+}
+.pl-desc { font-size: 15px; line-height: 1.4; color: var(--ink-2); }
+.pl-cat {
+  font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3);
+  justify-self: start;
+}
+.pl-arrow {
+  justify-self: end; display: grid; place-items: center;
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid var(--hairline); color: var(--ink);
+  transition: background .3s, color .3s, border-color .3s, transform .5s cubic-bezier(.2,.7,.2,1);
+}
+.pl-thumb { display: none; }
+
+/* оранжевая полоса, которая вырастает снизу строки */
+.pl-link::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
+  background: var(--ink); transform: scaleX(0); transform-origin: left;
+  transition: transform .6s cubic-bezier(.2,.7,.2,1);
+}
+
+.pl-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+@media (hover: hover) and (pointer: fine) {
+  .pl-list:hover .pl-name { color: var(--ink-3); }
+  .pl-link:hover .pl-name { color: var(--ink); transform: translateX(18px); }
+  .pl-link:hover .pl-arrow { background: var(--accent); border-color: var(--accent); color: #fff; transform: rotate(45deg); }
+  .pl-link:hover::after { transform: scaleX(1); }
+}
+
+/* ---------- плавающее превью ---------- */
+.pl-preview {
+  position: fixed; left: 0; top: 0; z-index: 30; pointer-events: none;
+  width: clamp(300px, 30vw, 460px); aspect-ratio: 1600 / 1035;
+  opacity: 0; transform: translate3d(-50%, -50%, 0) scale(.86);
+  transition: opacity .3s ease, transform .45s cubic-bezier(.2,.7,.2,1);
+  will-change: transform, opacity;
+}
+.pl-preview.is-on { opacity: 1; }
+.pl-preview-in {
+  position: absolute; inset: 0; overflow: hidden; border-radius: 10px;
+  background: var(--surface);
+  box-shadow: 0 30px 70px -20px rgba(10,10,10,.35), 0 0 0 1px rgba(10,10,10,.06);
+}
+.pl-preview-in img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transform: scale(1.08);
+  transition: opacity .35s ease, transform .7s cubic-bezier(.2,.7,.2,1);
+}
+.pl-preview-in img.is-cur { opacity: 1; transform: scale(1); }
+
+/* ---------- планшеты ---------- */
+@media (max-width: 1100px) {
+  .pl-link { grid-template-columns: 44px minmax(0, 1fr) minmax(0, 220px) 40px; }
+  .pl-cat { display: none; }
+}
+
+/* ---------- телефоны и тач: превью прямо в строке ---------- */
+@media (hover: none), (max-width: 760px) {
+  .pl-preview { display: none; }
+  .pl-link {
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "thumb thumb" "name arrow" "desc arrow";
+    gap: 6px 16px; padding: 22px 0 26px;
+  }
+  .pl-thumb {
+    grid-area: thumb; display: block; position: relative; margin-bottom: 14px;
+    aspect-ratio: 1600 / 1035; overflow: hidden; border-radius: 8px; background: var(--surface);
+  }
+  .pl-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .pl-num { position: absolute; z-index: 1; top: 34px; left: 12px; padding: 6px 8px; border-radius: 999px; background: rgba(255,255,255,.9); color: var(--ink); }
+  .pl-name { grid-area: name; font-size: clamp(28px, 8vw, 40px); }
+  .pl-desc { grid-area: desc; font-size: 14px; }
+  .pl-cat { display: none; }
+  .pl-arrow { grid-area: arrow; align-self: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pl-name, .pl-arrow, .pl-link::after, .pl-preview, .pl-preview-in img { transition: none; }
+}
