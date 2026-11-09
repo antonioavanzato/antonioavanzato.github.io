@@ -41,17 +41,17 @@ body .hero-title em.af { position: relative; display: inline-block; }
     linear-gradient(var(--c) 0 0) bottom right / var(--w) var(--l);
   background-repeat: no-repeat;
 }
-.af::after { display: none; }
-.af-box.go { animation: af-lock 1.5s 1s cubic-bezier(.2,.7,.2,1) forwards; }
-@keyframes af-lock {
-  0%   { opacity: 0; transform: scale(1.18); }
-  35%  { opacity: 1; transform: scale(1); }
-  45%, 60% { opacity: .2; } 52%, 70% { opacity: 1; }
-  100% { opacity: 1; transform: scale(1); }
-}
-/* «наводка на резкость»: заголовок проявляется из размытия */
-html.js body .hero-title { animation: rack-focus 1.2s .15s cubic-bezier(.2,.7,.2,1) both; }
-@keyframes rack-focus { from { filter: blur(14px); opacity: .35; } to { filter: blur(0); opacity: 1; } }
+.af-box { transition: left .55s cubic-bezier(.3,.8,.2,1), top .55s cubic-bezier(.3,.8,.2,1), width .55s cubic-bezier(.3,.8,.2,1), height .55s cubic-bezier(.3,.8,.2,1), opacity .3s; }
+.af-box.on { opacity: 1; }
+.af-box.hunt { animation: af-hunt .55s ease-out; }
+.af-box.lock { animation: af-lock .7s ease-out; }
+@keyframes af-hunt { 0% { transform: scale(1.12); } 100% { transform: scale(1); } }
+@keyframes af-lock { 0%, 30%, 60% { opacity: 1; } 15%, 45% { opacity: .15; } 100% { opacity: 1; } }
+
+/* «наводка на резкость»: строки не в фокусе размыты */
+body .hero-title .line > span { transition: filter .5s ease, opacity .5s ease; }
+html.js body .hero-title.focusing .line > span { filter: blur(7px); opacity: .4; }
+html.js body .hero-title.focusing .line.sharp > span { filter: none; opacity: 1; }
 
 /* ---------- 2. Проявка ---------- */
 .develop img { transition: filter 1.8s cubic-bezier(.2,.7,.2,1), transform 1.8s cubic-bezier(.2,.7,.2,1); }
@@ -164,7 +164,7 @@ html:not(.js) .sheet-mark, .sheet-f.in .sheet-mark { stroke-dashoffset: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html.js body .hero-title, .af-box.go, .vf-rec { animation: none; }
+  .af-box, .vf-rec { animation: none !important; }
   .af-box { opacity: 1; }
   html.js .develop img { filter: none; transform: none; }
   .sheet-mark { transition: none; stroke-dashoffset: 0; }
