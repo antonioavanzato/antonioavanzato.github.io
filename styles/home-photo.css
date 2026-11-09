@@ -44,67 +44,49 @@ html.js body .hero-title.focusing .line:not(.sharp) em {
 
 /* ---------- 2. Проявка ---------- */
 .develop img { transition: filter 1.8s cubic-bezier(.2,.7,.2,1), transform 1.8s cubic-bezier(.2,.7,.2,1); }
-html.js .develop img { filter: grayscale(1) contrast(1.25) brightness(.55) blur(6px); transform: scale(1.06); }
+html.js .develop img { filter: grayscale(1) blur(4px); transform: scale(1.04); }
 html.js .develop.is-dev img { filter: none; transform: none; }
 
-/* ---------- 3. Плёнка ---------- */
-.film {
-  --film: #141312;
-  position: relative; margin-top: clamp(26px, 3.4vw, 44px);
-  background: var(--film); color: #e9e4da; border-radius: 4px;
-  padding: 0; overflow: hidden;
-  margin-left: calc(-1 * var(--gutter)); margin-right: calc(-1 * var(--gutter));
-}
-@media (min-width: 900px) { .film { margin-left: 0; margin-right: 0; } }
-.film::before, .film::after {
-  /* перфорация */
-  content: ""; position: absolute; left: 0; right: 0; height: 12px; z-index: 2; pointer-events: none;
-  background: radial-gradient(circle at 50% 50%, transparent 0 0, transparent 0) ,
-              repeating-linear-gradient(90deg, transparent 0 9px, #f3efe7 9px 21px, transparent 21px 32px);
-  -webkit-mask: linear-gradient(#000 0 0); opacity: .92;
-  border-radius: 2px;
-}
-.film::before { top: 10px; }
-.film::after  { bottom: 10px; }
-.film-edge {
-  display: flex; justify-content: space-between; gap: 16px;
-  padding: 28px 18px 6px; font: 600 10px/1 var(--font-sans); letter-spacing: .22em;
-  color: #e5a36b; text-transform: uppercase; opacity: .85;
-}
-.film-edge + .film-track + .film-edge, .film-track + .film-edge { padding: 6px 18px 28px; }
+/* ---------- 3. Лента работ ---------- */
+.film { position: relative; margin-top: clamp(26px, 3.4vw, 44px); margin-right: calc(-1 * var(--gutter)); }
 .film-track {
-  list-style: none; margin: 0; padding: 8px 18px;
-  display: flex; gap: 14px; overflow-x: auto; overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory; scrollbar-width: none; cursor: grab;
-  outline: none;
+  list-style: none; margin: 0; padding: 0 var(--gutter) 4px 0;
+  display: flex; gap: clamp(14px, 1.6vw, 22px); overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory; scrollbar-width: none; cursor: grab; outline: none;
 }
 .film-track::-webkit-scrollbar { display: none; }
 .film-track.is-drag { cursor: grabbing; scroll-snap-type: none; }
 .film-track.is-drag a { pointer-events: none; }
-.film-track:focus-visible { box-shadow: inset 0 0 0 2px var(--accent); }
-.film-frame { flex: 0 0 clamp(250px, 30vw, 420px); scroll-snap-align: start; }
+.film-track:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.film-frame { flex: 0 0 clamp(280px, 42vw, 620px); scroll-snap-align: start; }
 .film-frame a { display: block; color: inherit; text-decoration: none; }
 .film-pic {
   display: block; position: relative; aspect-ratio: 1600 / 1035; overflow: hidden;
-  border-radius: 3px; background: #2a2724;
+  border-radius: 14px; background: var(--surface);
 }
 .film-pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; user-select: none; -webkit-user-drag: none; }
-.film-frame a:hover .film-pic img { transform: scale(1.04); transition-duration: .6s; }
-.film-cap { display: grid; grid-template-columns: auto 1fr; column-gap: 10px; padding: 12px 2px 4px; align-items: baseline; }
-.film-no { grid-row: span 2; font: 600 11px/1 var(--font-sans); letter-spacing: .12em; color: #e5a36b; }
-.film-cap b { font: 600 17px/1.2 var(--font-display); letter-spacing: -.02em; color: #fff; }
-.film-cap i { font-style: normal; font-size: 13px; color: rgba(233,228,218,.6); }
-.film-frame a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.film-frame a:hover .film-pic img { transform: scale(1.03); transition-duration: .8s; }
+.film-cap { display: flex; align-items: baseline; gap: 12px; padding: 16px 2px 0; }
+.film-no { font: 500 12px/1 var(--font-sans); color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.film-cap b { font: 600 clamp(18px, 1.6vw, 22px)/1.2 var(--font-display); letter-spacing: -.025em; color: var(--ink); }
+.film-cap i { font-style: normal; font-size: 14px; color: var(--ink-2); margin-left: auto; text-align: right; }
+.film-frame a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 14px; }
 
-.film-nav { display: none; gap: 8px; justify-content: flex-end; margin-top: 14px; }
+.film-bar { display: flex; align-items: center; gap: clamp(16px, 2.4vw, 32px); margin-top: clamp(22px, 2.6vw, 32px); }
+.film-count { font: 500 14px/1 var(--font-sans); color: var(--ink-3); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.film-count b { color: var(--ink); font-weight: 600; }
+.film-progress { position: relative; flex: 1; height: 1px; background: var(--hairline); overflow: hidden; }
+.film-progress i { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; background: var(--ink); transform-origin: left; transform: scaleX(.11); transition: transform .4s ease; }
+.film-nav { display: none; gap: 8px; }
 @media (hover: hover) and (pointer: fine) { .film-nav { display: flex; } }
 .film-btn {
-  width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--hairline);
-  background: transparent; color: var(--ink); font: 400 18px/1 var(--font-sans); cursor: pointer;
+  display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%;
+  border: 1px solid var(--hairline); background: transparent; color: var(--ink); cursor: pointer;
   transition: background .25s, color .25s, border-color .25s;
 }
 .film-btn:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-body .work-more { margin-top: clamp(22px, 3vw, 34px); }
+.film-btn:disabled { opacity: .3; cursor: default; background: transparent; color: var(--ink); border-color: var(--hairline); }
+body .work-more { margin-top: clamp(26px, 3vw, 40px); }
 
 /* ---------- 4. Контактный лист ---------- */
 .sheet {
@@ -150,7 +132,8 @@ html:not(.js) .sheet-mark, .sheet-f.in .sheet-mark { stroke-dashoffset: 0; }
   .vf-top { left: var(--gutter); top: 4px; } .vf-bot { display: none; }
   .sheet { grid-template-columns: 1fr; }
   .sheet-pic { aspect-ratio: 16 / 7; }
-  .film-frame { flex-basis: 78vw; }
+  .film-frame { flex-basis: 82vw; }
+  .film-cap { flex-wrap: wrap; } .film-cap i { margin-left: 0; width: 100%; text-align: left; }
 }
 
 @media (prefers-reduced-motion: reduce) {
