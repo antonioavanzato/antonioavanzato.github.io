@@ -34,8 +34,8 @@
       var run = function () {
         var steps = lines.map(function (_, i) { return i; }).concat([null]);
         box.classList.add('on');
-        steps.forEach(function (st, n) { setTimeout(function () { focusOn(st); }, n * 700); });
-        setTimeout(function () { title.classList.remove('focusing'); }, steps.length * 700 + 400);
+        steps.forEach(function (st, n) { setTimeout(function () { focusOn(st); }, n * 1500); });
+        setTimeout(function () { title.classList.remove('focusing'); }, steps.length * 1500 + 900);
       };
       (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () { setTimeout(run, 1000); });
     }
