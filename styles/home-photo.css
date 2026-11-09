@@ -86,7 +86,64 @@ html.js .develop.is-dev img { filter: none; transform: none; }
 }
 .film-btn:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 .film-btn:disabled { opacity: .3; cursor: default; background: transparent; color: var(--ink); border-color: var(--hairline); }
-body .work-more { margin-top: clamp(26px, 3vw, 40px); }
+/* ---------- «Все работы»: поле точек с оранжевой волной (перекликается с панелью справа) ---------- */
+.wm {
+  position: relative; display: grid; align-items: center;
+  grid-template-columns: auto 1fr auto auto; gap: clamp(18px, 3vw, 44px);
+  margin-top: clamp(40px, 5vw, 64px); padding: clamp(26px, 3.4vw, 42px) 0;
+  border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);
+  color: var(--ink); text-decoration: none;
+}
+.wm-t { display: flex; flex-direction: column; gap: 8px; position: relative; z-index: 1; }
+.wm-t b { font: 700 clamp(30px, 4.4vw, 60px)/1 var(--font-display); letter-spacing: -.045em; }
+.wm-t i { font-style: normal; font-size: 14px; color: var(--ink-2); }
+.wm-num { font: 500 13px/1 var(--font-sans); color: var(--ink-3); font-variant-numeric: tabular-nums; position: relative; z-index: 1; }
+.wm-arr {
+  position: relative; z-index: 1; display: grid; place-items: center;
+  width: clamp(56px, 5vw, 72px); height: clamp(56px, 5vw, 72px); border-radius: 50%;
+  background: var(--ink); color: var(--bg);
+  transition: background .4s, transform .6s cubic-bezier(.2,.7,.2,1);
+}
+/* поле точек */
+.wm-dots {
+  grid-column: 2; grid-row: 1; align-self: center; position: relative; height: 75px;
+  --dot: radial-gradient(circle, currentColor 2.3px, transparent 2.8px);
+  color: rgba(10,10,10,.16);
+  background: var(--dot) 0 0 / 15px 15px;
+  -webkit-mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+          mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.wm-dots::after {
+  content: ""; position: absolute; inset: 0; color: var(--accent);
+  background: var(--dot) 0 0 / 15px 15px;
+  -webkit-mask: linear-gradient(90deg, transparent, #000 45% 55%, transparent) no-repeat;
+          mask: linear-gradient(90deg, transparent, #000 45% 55%, transparent) no-repeat;
+  -webkit-mask-size: 220px 100%; mask-size: 220px 100%;
+  -webkit-mask-position: left -240px top 0; mask-position: left -240px top 0;
+}
+/* волна сама пробегает один раз при появлении блока */
+.wm.in .wm-dots::after { animation: wm-wave 2.4s .5s ease-in-out; }
+@keyframes wm-wave {
+  from { -webkit-mask-position: left -240px top 0; mask-position: left -240px top 0; }
+  to   { -webkit-mask-position: right -240px top 0; mask-position: right -240px top 0; }
+}
+@media (hover: hover) {
+  .wm:hover .wm-dots::after { animation: wm-wave 1.4s ease-in-out infinite; }
+  .wm:hover .wm-dots { color: rgba(10,10,10,.24); }
+  .wm:hover .wm-arr { background: var(--accent); transform: translateX(4px); }
+  .wm:hover .wm-t b { color: var(--accent); }
+}
+.wm .wm-dots { transition: color .4s; }
+.wm .wm-t b { transition: color .35s; }
+.wm:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+@media (max-width: 760px) {
+  .wm { grid-template-columns: 1fr auto; row-gap: 22px; }
+  .wm-dots { grid-column: 1 / -1; grid-row: 2; height: 45px; }
+  .wm-num { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wm.in .wm-dots::after, .wm:hover .wm-dots::after { animation: none; }
+}
 
 /* ---------- 4. Контактный лист ---------- */
 .sheet {
