@@ -41,15 +41,15 @@ body .hero-title em.af { position: relative; display: inline-block; }
     linear-gradient(var(--c) 0 0) bottom right / var(--w) var(--l);
   background-repeat: no-repeat;
 }
-.af-box { transition: left .55s cubic-bezier(.3,.8,.2,1), top .55s cubic-bezier(.3,.8,.2,1), width .55s cubic-bezier(.3,.8,.2,1), height .55s cubic-bezier(.3,.8,.2,1), opacity .3s; }
+.af-box { transition: left 1.1s cubic-bezier(.45,.05,.2,1), top 1.1s cubic-bezier(.45,.05,.2,1), width 1.1s cubic-bezier(.45,.05,.2,1), height 1.1s cubic-bezier(.45,.05,.2,1), opacity .3s; }
 .af-box.on { opacity: 1; }
-.af-box.hunt { animation: af-hunt .55s ease-out; }
-.af-box.lock { animation: af-lock .7s ease-out; }
+.af-box.hunt { animation: af-hunt 1.1s ease-out; }
+.af-box.lock { animation: af-lock 1.2s ease-out; }
 @keyframes af-hunt { 0% { transform: scale(1.12); } 100% { transform: scale(1); } }
 @keyframes af-lock { 0%, 30%, 60% { opacity: 1; } 15%, 45% { opacity: .15; } 100% { opacity: 1; } }
 
 /* «наводка на резкость»: строки не в фокусе размыты */
-body .hero-title .line > span { transition: filter .5s ease, opacity .5s ease; }
+body .hero-title .line > span { transition: filter 1.1s ease, opacity 1.1s ease; }
 html.js body .hero-title.focusing .line > span { filter: blur(7px); opacity: .4; }
 html.js body .hero-title.focusing .line.sharp > span { filter: none; opacity: 1; }
 
