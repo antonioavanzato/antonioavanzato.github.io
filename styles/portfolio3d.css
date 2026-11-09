@@ -107,7 +107,6 @@ body[data-page="portfolio"] .p-hero { min-height: 88vh; align-items: center; pad
   transition: filter .6s var(--ease), transform .8s var(--ease);
   transform: scale(1.005);
 }
-.p3-glare { display: none; }
 
 /* подпись под окном — редакционный вид */
 .p3-cap { display: flex; align-items: baseline; gap: 18px; margin-top: 20px; padding: 0 2px; }
