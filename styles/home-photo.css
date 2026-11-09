@@ -164,8 +164,7 @@ html:not(.js) .sheet-mark, .sheet-f.in .sheet-mark { stroke-dashoffset: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .af-box, .vf-rec { animation: none !important; }
-  .af-box { opacity: 1; }
+  .vf-rec { animation: none; }
   html.js .develop img { filter: none; transform: none; }
   .sheet-mark { transition: none; stroke-dashoffset: 0; }
   .flash.go { animation: none; }

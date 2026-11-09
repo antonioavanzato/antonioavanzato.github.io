@@ -28,8 +28,8 @@
       place(); pulse(i == null ? 'lock' : 'hunt');
     };
     addEventListener('resize', place);
-    if (reduce) { box.classList.add('on'); place(); if (document.fonts) document.fonts.ready.then(place); }
-    else {
+    /* фокусировка без движения по экрану, поэтому запускается всегда */
+    {
       title.classList.add('focusing');
       var run = function () {
         var steps = lines.map(function (_, i) { return i; }).concat([null]);
