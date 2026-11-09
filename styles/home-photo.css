@@ -30,15 +30,16 @@ body .hero-inner { position: relative; }
    которые до этого анимировались сдвигом. */
 body .hero-title .line > span { --fc: var(--ink); }
 body .hero-title .line em { --fc: var(--accent); }
+/* радиус тени постоянный, меняется только прозрачность: так текст не дрожит при переходе */
 body .hero-title .line > span, body .hero-title .line em {
-  text-shadow: 0 0 0 transparent;
-  transition: color 1.1s ease, text-shadow 1.1s ease, opacity 1.1s ease;
+  text-shadow: 0 0 .09em transparent;
+  transition: color 1.1s ease, text-shadow 1.1s ease;
 }
+html.js body .hero-title .line > span { will-change: transform; transform: translateZ(0); backface-visibility: hidden; }
 html.js body .hero-title.focusing .line, html.js body .hero-title.focused .line { overflow: visible; }
-html.js body .hero-title.focusing .line:not(.sharp) > span { opacity: .45; }
 html.js body .hero-title.focusing .line:not(.sharp) > span,
 html.js body .hero-title.focusing .line:not(.sharp) em {
-  color: transparent; text-shadow: 0 0 .09em var(--fc);
+  color: transparent; text-shadow: 0 0 .09em color-mix(in srgb, var(--fc) 50%, transparent);
 }
 
 /* ---------- 2. Проявка ---------- */
