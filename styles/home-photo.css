@@ -25,31 +25,9 @@ body .hero-inner { position: relative; }
 .vf-rec { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: vf-blink 1.6s steps(1) infinite; }
 @keyframes vf-blink { 50% { opacity: 0; } }
 
-/* рамка автофокуса вокруг «со вкусом.» */
-body .hero-title em.af { position: relative; display: inline-block; }
-.af-box {
-  position: absolute; pointer-events: none; opacity: 0;
-  --l: clamp(14px, 2vw, 30px); --w: 3px; --c: var(--accent);
-  background:
-    linear-gradient(var(--c) 0 0) top left / var(--l) var(--w),
-    linear-gradient(var(--c) 0 0) top left / var(--w) var(--l),
-    linear-gradient(var(--c) 0 0) top right / var(--l) var(--w),
-    linear-gradient(var(--c) 0 0) top right / var(--w) var(--l),
-    linear-gradient(var(--c) 0 0) bottom left / var(--l) var(--w),
-    linear-gradient(var(--c) 0 0) bottom left / var(--w) var(--l),
-    linear-gradient(var(--c) 0 0) bottom right / var(--l) var(--w),
-    linear-gradient(var(--c) 0 0) bottom right / var(--w) var(--l);
-  background-repeat: no-repeat;
-}
-.af-box { transition: left 1.1s cubic-bezier(.45,.05,.2,1), top 1.1s cubic-bezier(.45,.05,.2,1), width 1.1s cubic-bezier(.45,.05,.2,1), height 1.1s cubic-bezier(.45,.05,.2,1), opacity .3s; }
-.af-box.on { opacity: 1; }
-.af-box.hunt { animation: af-hunt 1.1s ease-out; }
-.af-box.lock { animation: af-lock 1.2s ease-out; }
-@keyframes af-hunt { 0% { transform: scale(1.12); } 100% { transform: scale(1); } }
-@keyframes af-lock { 0%, 30%, 60% { opacity: 1; } 15%, 45% { opacity: .15; } 100% { opacity: 1; } }
-
 /* «наводка на резкость»: строки не в фокусе размыты */
 body .hero-title .line > span { transition: filter 1.1s ease, opacity 1.1s ease; }
+html.js body .hero-title.focusing .line, html.js body .hero-title.focused .line { overflow: visible; }
 html.js body .hero-title.focusing .line > span { filter: blur(7px); opacity: .4; }
 html.js body .hero-title.focusing .line.sharp > span { filter: none; opacity: 1; }
 
