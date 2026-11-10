@@ -650,11 +650,11 @@
     if (document.querySelector('.egg')) return;
     var lines = [
       'Ты нашёл тайник фотографа',
-      'Кадр сделан. Сайты — со вкусом',
-      'Здесь ничего нет. Кроме хорошего вкуса',
+      'Кадр сделан',
+      'Тут только хороший вкус',
       'Тяни сильнее — вдруг там скидка',
       'Снято в Казани · AVANZATO',
-      'Фокус пойман. Можно отпускать'
+      'Фокус пойман, отпускай'
     ];
     var egg = document.createElement('div');
     egg.className = 'egg'; egg.setAttribute('aria-hidden', 'true');
@@ -665,7 +665,7 @@
     var shot = false;
     window.addEventListener('scroll', function () {
       var y = window.pageYOffset;
-      if (y < -70 && !shot) { shot = true; egg.classList.add('shot'); setTimeout(function () { egg.classList.remove('shot'); }, 700); }
+      if (y < -40 && !shot) { shot = true; egg.classList.add('shot'); setTimeout(function () { egg.classList.remove('shot'); }, 700); }
       if (y >= 0) shot = false;
     }, { passive: true });
   }
