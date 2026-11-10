@@ -43,7 +43,7 @@
     { href:'https://avanzato.ru',        caseUrl:'case-avanzato.html',        title:'Avanzato',         desc:'фотограф из Казани',     size:'',
       src:'images/avanzato.webp?v=5' },
     { href:'https://portanobile.com',    caseUrl:'case-porta-nobile.html', title:'Porta Nobile',     desc:'люксовая фурнитура в Москве',      size:'tall',
-      src:'images/portanobile.webp?v=5' },
+      src:'images/portanobile.webp?v=6' },
     { href:'https://medfitclub.ru',      caseUrl:'case-medical-fitness.html', title:'Medical Fitness',  desc:'центр реабилитации в Москве',      size:'',
       src:'images/medfit.webp?v=5' },
     { href:'https://alga-tour.com',      caseUrl:'case-alga.html', title:'ALGA',             desc:'туристическое агентство на Мальдивах', size:'',
