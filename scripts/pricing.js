@@ -19,7 +19,12 @@
     copy(); new MutationObserver(copy).observe(total, { childList: true, characterData: true, subtree: true });
     mini.querySelector('a').addEventListener('click', function (e) { e.preventDefault(); sum.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
     var stepsIn = false, sumIn = false;
-    var upd = function () { mini.classList.toggle('on', stepsIn && !sumIn); };
+    var nav = document.querySelector('.navwrap .nav') || document.querySelector('.navwrap');
+    var upd = function () {
+      var on = stepsIn && !sumIn;
+      if (on && nav) { var b = nav.getBoundingClientRect().bottom; if (b > 0) mini.style.top = Math.round(b + 8) + 'px'; }
+      mini.classList.toggle('on', on);
+    };
     new IntersectionObserver(function (en) { stepsIn = en[0].isIntersecting; upd(); }, { rootMargin: '-30% 0px -30% 0px' }).observe(steps);
     new IntersectionObserver(function (en) { sumIn = en[0].isIntersecting; upd(); }).observe(sum);
   }
