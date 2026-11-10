@@ -83,10 +83,20 @@
   if (!reduce) {
     var flash = document.createElement('div'); flash.className = 'flash'; flash.setAttribute('aria-hidden', 'true');
     document.body.appendChild(flash);
-    [].forEach.call(document.querySelectorAll('.hero-cta .btn-primary'), function (b) {
+    [].forEach.call(document.querySelectorAll('.hero-cta .btn-primary, .cx-go'), function (b) {
       b.addEventListener('pointerdown', function () {
         flash.classList.remove('go'); void flash.offsetWidth; flash.classList.add('go');
       });
+    });
+  }
+
+  /* финальный блок: оранжевые точки подсвечиваются вокруг курсора */
+  var cx = document.querySelector('.cx');
+  if (cx && window.matchMedia('(hover: hover)').matches) {
+    cx.addEventListener('mousemove', function (e) {
+      var r = cx.getBoundingClientRect();
+      cx.style.setProperty('--cx-x', (e.clientX - r.left) + 'px');
+      cx.style.setProperty('--cx-y', (e.clientY - r.top) + 'px');
     });
   }
 })();
