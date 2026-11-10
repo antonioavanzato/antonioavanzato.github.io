@@ -551,12 +551,16 @@ body .footer nav { row-gap: 0; }
   border: 0;
 }
 
-/* Ссылка «к содержимому»: спрятана за верхним краем экрана и выезжает
-   только когда на неё встают клавишей Tab. Мышью её не увидеть. */
+/* Ссылка «к содержимому»: невидима и выезжает только когда на неё встают
+   клавишей Tab. Раньше она просто пряталась за верхним краем, и в iOS/Android
+   её было видно, если потянуть страницу вниз (pull-to-refresh) — теперь
+   вне фокуса она ещё и прозрачна и не перехватывает касания.
+   visibility: hidden не используем: тогда на ссылку нельзя встать клавишей Tab. */
 .skip-link {
   position: fixed;
   top: 0; left: 50%;
   transform: translate(-50%, -120%);
+  opacity: 0; pointer-events: none;
   z-index: 1000;
   padding: 13px 24px;
   background: var(--ink);
@@ -565,8 +569,9 @@ body .footer nav { row-gap: 0; }
   font-size: 14px; font-weight: 500;
   text-decoration: none;
   border-radius: 0 0 10px 10px;
-  transition: transform .25s var(--ease);
+  transition: transform .25s var(--ease), opacity .2s;
 }
+.skip-link:focus, .skip-link:focus-visible { opacity: 1; pointer-events: auto; }
 .skip-link:focus-visible {
   transform: translate(-50%, 0);
   outline: 2px solid var(--accent);
@@ -765,3 +770,27 @@ body[data-page="contacts"] .c-method-btn { min-height: 44px; border: 0; border-r
 body[data-page="contacts"] .c-method-btn:hover { color: var(--ink); }
 body[data-page="contacts"] .c-method-btn[aria-pressed="true"] { background: var(--ink); color: #fff; }
 body[data-page="contacts"] .c-method-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---------- Пасхалка над страницей: видна при оттягивании вниз (iOS) ---------- */
+.egg {
+  position: absolute; left: 0; right: 0; top: -170px; height: 170px; z-index: 0;
+  display: flex; align-items: center; justify-content: center; gap: 18px;
+  pointer-events: none; user-select: none;
+  background: radial-gradient(circle, rgba(10,10,10,.14) 1.4px, transparent 1.9px) 50% 0 / 14px 14px;
+  -webkit-mask: linear-gradient(transparent, #000 40%); mask: linear-gradient(transparent, #000 40%);
+}
+.egg-vf { position: relative; width: 54px; height: 40px; flex: 0 0 auto; }
+.egg-vf i { position: absolute; width: 12px; height: 12px; border: 0 solid var(--ink); }
+.egg-vf i:nth-child(1) { top: 0; left: 0; border-top-width: 2px; border-left-width: 2px; }
+.egg-vf i:nth-child(2) { top: 0; right: 0; border-top-width: 2px; border-right-width: 2px; }
+.egg-vf i:nth-child(3) { bottom: 0; left: 0; border-bottom-width: 2px; border-left-width: 2px; }
+.egg-vf i:nth-child(4) { bottom: 0; right: 0; border-bottom-width: 2px; border-right-width: 2px; }
+.egg-rec { position: absolute; left: 50%; top: 50%; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: var(--accent); }
+.egg-t { display: flex; flex-direction: column; gap: 2px; background: var(--bg); padding: 4px 8px; border-radius: 8px; }
+.egg-t b { font: 700 18px/1.1 var(--font-display); letter-spacing: -.02em; color: var(--ink); }
+.egg-t span { font-size: 12.5px; color: var(--ink-2); }
+.egg.shot .egg-vf { animation: egg-snap .6s ease-out; }
+.egg.shot .egg-rec { animation: egg-flash .6s ease-out; }
+@keyframes egg-snap { 0% { transform: scale(1.25); } 40% { transform: scale(.92); } 100% { transform: scale(1); } }
+@keyframes egg-flash { 0% { box-shadow: 0 0 0 0 rgba(255,77,0,.6); } 100% { box-shadow: 0 0 0 26px rgba(255,77,0,0); } }
+@media (prefers-reduced-motion: reduce) { .egg.shot .egg-vf, .egg.shot .egg-rec { animation: none; } }
