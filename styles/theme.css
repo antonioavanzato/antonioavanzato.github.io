@@ -551,12 +551,16 @@ body .footer nav { row-gap: 0; }
   border: 0;
 }
 
-/* Ссылка «к содержимому»: спрятана за верхним краем экрана и выезжает
-   только когда на неё встают клавишей Tab. Мышью её не увидеть. */
+/* Ссылка «к содержимому»: невидима и выезжает только когда на неё встают
+   клавишей Tab. Раньше она просто пряталась за верхним краем, и в iOS/Android
+   её было видно, если потянуть страницу вниз (pull-to-refresh) — теперь
+   вне фокуса она ещё и прозрачна и не перехватывает касания.
+   visibility: hidden не используем: тогда на ссылку нельзя встать клавишей Tab. */
 .skip-link {
   position: fixed;
   top: 0; left: 50%;
   transform: translate(-50%, -120%);
+  opacity: 0; pointer-events: none;
   z-index: 1000;
   padding: 13px 24px;
   background: var(--ink);
@@ -565,8 +569,9 @@ body .footer nav { row-gap: 0; }
   font-size: 14px; font-weight: 500;
   text-decoration: none;
   border-radius: 0 0 10px 10px;
-  transition: transform .25s var(--ease);
+  transition: transform .25s var(--ease), opacity .2s;
 }
+.skip-link:focus, .skip-link:focus-visible { opacity: 1; pointer-events: auto; }
 .skip-link:focus-visible {
   transform: translate(-50%, 0);
   outline: 2px solid var(--accent);
