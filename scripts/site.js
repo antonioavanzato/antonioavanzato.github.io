@@ -645,6 +645,31 @@
     document.querySelectorAll('.js-year').forEach(function (el) { el.textContent = y; });
   }
 
+  /* ---------- пасхалка: видна, только если потянуть страницу вниз (overscroll в iOS) ---------- */
+  function setupEgg() {
+    if (document.querySelector('.egg')) return;
+    var lines = [
+      'Ты нашёл тайник фотографа',
+      'Кадр сделан. Сайты — со вкусом',
+      'Здесь ничего нет. Кроме хорошего вкуса',
+      'Тяни сильнее — вдруг там скидка',
+      'Снято в Казани · AVANZATO',
+      'Фокус пойман. Можно отпускать'
+    ];
+    var egg = document.createElement('div');
+    egg.className = 'egg'; egg.setAttribute('aria-hidden', 'true');
+    egg.innerHTML = '<span class="egg-vf"><i></i><i></i><i></i><i></i><b class="egg-rec"></b></span>' +
+      '<span class="egg-t"><b>Щёлк!</b><span></span></span>';
+    egg.querySelector('.egg-t span').textContent = lines[(Math.random() * lines.length) | 0];
+    document.body.appendChild(egg);
+    var shot = false;
+    window.addEventListener('scroll', function () {
+      var y = window.pageYOffset;
+      if (y < -70 && !shot) { shot = true; egg.classList.add('shot'); setTimeout(function () { egg.classList.remove('shot'); }, 700); }
+      if (y >= 0) shot = false;
+    }, { passive: true });
+  }
+
   function init() {
     // встречная шторка (класс ставится инлайн-скриптом в <head>):
     // ждём первую отрисовку и мягко её растворяем
@@ -661,7 +686,7 @@
     renderPortfolio();
     parallaxEls = [].slice.call(document.querySelectorAll('[data-parallax]'));
     setupReveal(); setupWordReveal(); setupCounters(); setupAccordion(); setupForm();
-    setupMagnetic(); setupPageTransition();
+    setupMagnetic(); setupPageTransition(); setupEgg();
     onScrollProgress(); applyParallax();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', function () {
