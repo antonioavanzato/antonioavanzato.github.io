@@ -199,3 +199,60 @@ html:not(.js) .sheet-mark, .sheet-f.in .sheet-mark { stroke-dashoffset: 0; }
   .sheet-mark { transition: none; stroke-dashoffset: 0; }
   .flash.go { animation: none; }
 }
+
+/* ---------- Финальный призыв: тёмная панель, огромный заголовок, круглая кнопка с бегущим текстом ---------- */
+.cx {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: clamp(30px, 5vw, 80px);
+  padding: clamp(40px, 6vw, 90px) clamp(26px, 5vw, 80px); border-radius: 28px;
+  background: var(--ink); color: #f4f1ea;
+}
+.cx-dots {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(circle, rgba(244,241,234,.12) 1.6px, transparent 2.1px) 0 0 / 18px 18px;
+  -webkit-mask: radial-gradient(120% 90% at 85% 50%, #000 0%, transparent 70%); mask: radial-gradient(120% 90% at 85% 50%, #000 0%, transparent 70%);
+}
+.cx-dots::after {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle, rgba(255,77,0,.85) 1.6px, transparent 2.1px) 0 0 / 18px 18px;
+  -webkit-mask: radial-gradient(circle at var(--cx-x, 85%) var(--cx-y, 50%), #000 0, transparent 140px); mask: radial-gradient(circle at var(--cx-x, 85%) var(--cx-y, 50%), #000 0, transparent 140px);
+  opacity: 0; transition: opacity .4s;
+}
+.cx:hover .cx-dots::after { opacity: 1; }
+.cx .eyebrow { color: #ff8a52 !important; margin: 0 0 22px; }
+.cx-title {
+  margin: 0; font: 700 clamp(40px, 6.4vw, 104px)/.95 var(--font-display); letter-spacing: -.05em; color: #fff; max-width: 13ch;
+}
+.cx-title em { font-style: normal; color: var(--accent); }
+.cx-lede { margin: clamp(20px, 2.4vw, 30px) 0 0; max-width: 440px; font-size: clamp(15.5px, 1.4vw, 18px); line-height: 1.6; color: rgba(244,241,234,.62); }
+.cx-link {
+  display: inline-flex; align-items: center; gap: 10px; margin-top: clamp(24px, 3vw, 36px);
+  color: #fff; text-decoration: none; font-weight: 600; font-size: 15px;
+  padding-bottom: 4px; border-bottom: 1px solid rgba(244,241,234,.25); transition: color .3s, border-color .3s, gap .3s;
+}
+.cx-link:hover { color: var(--accent); border-color: var(--accent); gap: 14px; }
+/* круглая кнопка */
+.cx-go {
+  position: relative; display: grid; place-items: center; flex: 0 0 auto;
+  width: clamp(170px, 18vw, 250px); aspect-ratio: 1; border-radius: 50%;
+  color: #fff; text-decoration: none; transition: transform .6s cubic-bezier(.2,.7,.2,1);
+}
+.cx-ring { position: absolute; inset: 0; width: 100%; height: 100%; animation: cx-spin 18s linear infinite; }
+.cx-ring text { font: 600 13.5px var(--font-sans); letter-spacing: .2em; fill: rgba(244,241,234,.75); }
+.cx-core {
+  display: grid; place-items: center; width: 56%; aspect-ratio: 1; border-radius: 50%;
+  background: var(--accent); color: #fff; box-shadow: 0 20px 50px -18px rgba(255,77,0,.7);
+  transition: transform .6s cubic-bezier(.2,.7,.2,1), background .3s, color .3s;
+}
+.cx-core svg { transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+.cx-go:hover .cx-core { transform: scale(1.08); background: #fff; color: var(--ink); }
+.cx-go:hover .cx-core svg { transform: rotate(45deg); }
+.cx-go:hover .cx-ring { animation-duration: 6s; }
+.cx-go:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+@keyframes cx-spin { to { transform: rotate(360deg); } }
+@media (max-width: 760px) {
+  .cx { grid-template-columns: 1fr; text-align: left; }
+  .cx-go { justify-self: start; width: 160px; }
+  .cx-dots { -webkit-mask: radial-gradient(120% 70% at 30% 100%, #000 0%, transparent 70%); mask: radial-gradient(120% 70% at 30% 100%, #000 0%, transparent 70%); }
+}
+@media (prefers-reduced-motion: reduce) { .cx-ring { animation: none; } }
