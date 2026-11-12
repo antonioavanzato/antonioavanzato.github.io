@@ -9,13 +9,17 @@
     tg: { name: 'Форма + Telegram', price: 12000 },
     crm: { name: 'Система заявок с админкой', price: 25000 }
   };
+  var TGAPP = {
+    lite: { name: 'Telegram-приложение: визитка', price: 45000 },
+    pro: { name: 'Telegram-приложение с каталогом', price: 90000 }
+  };
   var EDU = { name: 'Платформа для обучения', price: 150000 };
   var PHOTO_PRICE = 1000, PHOTO_MAX = 200;
 
   function money(n) { return String(n).replace(/\B(?=(\d{3})+$)/g, ' ') + ' ₽'; }
   function total(s) {
     if (!FORMATS[s.pkg]) return 0;
-    return FORMATS[s.pkg].price + (LEADS[s.leads] ? LEADS[s.leads].price : 0) + (s.edu ? EDU.price : 0) + s.photos * PHOTO_PRICE;
+    return FORMATS[s.pkg].price + (LEADS[s.leads] ? LEADS[s.leads].price : 0) + (TGAPP[s.tg] ? TGAPP[s.tg].price : 0) + (s.edu ? EDU.price : 0) + s.photos * PHOTO_PRICE;
   }
   function has(o, k) { return Object.prototype.hasOwnProperty.call(o, k); }
 
@@ -33,10 +37,11 @@
       li.appendChild(a); li.appendChild(b); lines.appendChild(li);
     }
     function render() {
-      var s = { pkg: picked('pkg'), leads: picked('leads'), edu: picked('edu') === '1', photos: photos };
+      var s = { pkg: picked('pkg'), leads: picked('leads'), tg: picked('tg'), edu: picked('edu') === '1', photos: photos };
       lines.textContent = '';
       line(FORMATS[s.pkg].name, 'от\u00a0' + money(FORMATS[s.pkg].price));
       if (s.leads) line(LEADS[s.leads].name, '+' + money(LEADS[s.leads].price));
+      if (s.tg) line(TGAPP[s.tg].name, '+' + money(TGAPP[s.tg].price));
       if (s.edu) line(EDU.name, '+' + money(EDU.price));
       if (s.photos) line('Ретушь, ' + s.photos + ' фото', '+' + money(s.photos * PHOTO_PRICE));
       sum.textContent = 'от\u00a0' + money(total(s));
@@ -46,6 +51,7 @@
       reset.hidden = photos === 0;
       var url = 'contacts.html?calc=1&pkg=' + s.pkg;
       if (s.leads) url += '&leads=' + s.leads;
+      if (s.tg) url += '&tg=' + s.tg;
       if (s.edu) url += '&edu=1';
       if (s.photos) url += '&photos=' + s.photos;
       go.setAttribute('href', url);
@@ -67,12 +73,15 @@
     var pkg = p.get('pkg') || '', leads = p.get('leads') || '', photos = parseInt(p.get('photos'), 10) || 0;
     if (!has(FORMATS, pkg)) return;
     if (!has(LEADS, leads)) leads = '';
+    var tg = p.get('tg') || '';
+    if (!has(TGAPP, tg)) tg = '';
     photos = Math.min(PHOTO_MAX, Math.max(0, photos));
 
     var edu = p.get('edu') === '1';
-    var s = { pkg: pkg, leads: leads, edu: edu, photos: photos };
+    var s = { pkg: pkg, leads: leads, tg: tg, edu: edu, photos: photos };
     var lines = ['Собрано в калькуляторе:', '— ' + FORMATS[pkg].name + ': от ' + money(FORMATS[pkg].price)];
     if (leads) lines.push('— ' + LEADS[leads].name + ': +' + money(LEADS[leads].price));
+    if (tg) lines.push('— ' + TGAPP[tg].name + ': +' + money(TGAPP[tg].price));
     if (edu) lines.push('— ' + EDU.name + ': +' + money(EDU.price));
     if (photos) lines.push('— Ретушь фото, ' + photos + ' шт.: +' + money(photos * PHOTO_PRICE));
     lines.push('Итого: от ' + money(total(s)) + ', точная сумма после брифа');
