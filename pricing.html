@@ -31,7 +31,7 @@ if(c==='1')arm()})();
 <meta property="og:locale" content="ru_RU">
 <meta property="og:site_name" content="AVANZATO">
 <meta property="og:title" content="Калькулятор стоимости сайта под ключ — Антон Аванзато">
-<meta property="og:description" content="Лендинг от 55 000 ₽, многостраничный сайт от 75 000 ₽, система заявок и платформа для обучения. Посчитайте стоимость в калькуляторе.">
+<meta property="og:description" content="Лендинг от 55 000 ₽, многостраничный сайт от 75 000 ₽, система заявок, приложение в Telegram и платформа для обучения. Посчитайте стоимость в калькуляторе.">
 <meta property="og:url" content="https://antonioavanzato.github.io/pricing.html">
 <meta property="og:image" content="https://antonioavanzato.github.io/images/og-cover-2026b.jpg">
 <meta property="og:image:width" content="1200">
@@ -39,7 +39,7 @@ if(c==='1')arm()})();
 <meta property="og:image:alt" content="AVANZATO — разработка сайтов под ключ">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Калькулятор стоимости сайта под ключ — Антон Аванзато">
-<meta name="twitter:description" content="Лендинг от 55 000 ₽, многостраничный сайт от 75 000 ₽, система заявок и платформа для обучения. Посчитайте стоимость в калькуляторе.">
+<meta name="twitter:description" content="Лендинг от 55 000 ₽, многостраничный сайт от 75 000 ₽, система заявок, приложение в Telegram и платформа для обучения. Посчитайте стоимость в калькуляторе.">
 <meta name="twitter:image" content="https://antonioavanzato.github.io/images/og-cover-2026b.jpg">
 <meta name="twitter:image:alt" content="AVANZATO — разработка сайтов под ключ">
 <link rel="preload" as="font" type="font/woff2" href="fonts/onest-700-cyrillic.woff2" crossorigin>
@@ -239,6 +239,24 @@ if(c==='1')arm()})();
           },
           {
             "@type": "Offer",
+            "name": "Мини-приложение в Telegram — визитка",
+            "description": "Приложение в боте Telegram: услуги, цены, заявка, оформление бота.",
+            "priceCurrency": "RUB",
+            "price": "45000",
+            "priceValidUntil": "2026-12-31",
+            "priceSpecification": { "@type": "PriceSpecification", "minPrice": "45000", "priceCurrency": "RUB" }
+          },
+          {
+            "@type": "Offer",
+            "name": "Мини-приложение в Telegram с каталогом",
+            "description": "Несколько разделов, автообновление данных с сайта, два языка, анимации.",
+            "priceCurrency": "RUB",
+            "price": "90000",
+            "priceValidUntil": "2026-12-31",
+            "priceSpecification": { "@type": "PriceSpecification", "minPrice": "90000", "priceCurrency": "RUB" }
+          },
+          {
+            "@type": "Offer",
             "name": "Цветокоррекция и ретушь фото",
             "description": "Цена за одно фото.",
             "priceCurrency": "RUB",
@@ -387,6 +405,14 @@ if(c==='1')arm()})();
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "От 150 000 ₽ дополнительно к стоимости сайта. Точную сумму называю после брифа, а предварительно её можно посчитать в калькуляторе на этой странице."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно ли сделать приложение в Telegram?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Это мини-приложение, которое открывается прямо в Telegram по кнопке в боте: услуги, цены, портфолио и форма заявки, заявки приходят вам в мессенджер. Визитка — от 45 000 ₽, с каталогом из нескольких разделов, автообновлением с сайта и двумя языками — от 90 000 ₽. Можно заказать вместе с сайтом или отдельно."
           }
         }
       ]
@@ -557,7 +583,7 @@ if(c==='1')arm()})();
     <div class="section-label reveal"><span class="num">02</span><span class="eyebrow">Калькулятор</span><span class="line"></span></div>
     <div class="pr-head">
       <h2 class="h-section reveal">Что <em>сколько</em> стоит</h2>
-      <p class="muted reveal" data-d="1">Ответьте на четыре вопроса и сразу увидите сумму.</p>
+      <p class="muted reveal" data-d="1">Ответьте на пять вопросов и сразу увидите сумму.</p>
     </div>
     <form class="pc" id="pc-calc" onsubmit="return false" aria-label="Калькулятор стоимости сайта">
       <div class="pc-steps">
@@ -577,14 +603,22 @@ if(c==='1')arm()})();
           </div>
         </fieldset>
         <fieldset class="pc-step">
-          <legend><i>3</i>Нужна платформа для онлайн-обучения?</legend>
+          <legend><i>3</i>Нужно приложение в Telegram?</legend>
+          <div class="pc-tiles pc-tiles-3">
+            <label class="pc-tile"><input type="radio" name="tg" value="" checked><span class="pc-tile-t">Не нужно</span><span class="pc-tile-p">0 ₽</span><span class="pc-tile-h">Только сайт</span></label>
+            <label class="pc-tile"><input type="radio" name="tg" value="lite"><span class="pc-tile-t">Визитка в Telegram</span><span class="pc-tile-p">+45 000 ₽</span><span class="pc-tile-h">Услуги, цены и заявка прямо в чате</span></label>
+            <label class="pc-tile"><input type="radio" name="tg" value="pro"><span class="pc-tile-t">С каталогом</span><span class="pc-tile-p">+90 000 ₽</span><span class="pc-tile-h">Разделы, данные с сайта, два языка</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="pc-step">
+          <legend><i>4</i>Нужна платформа для онлайн-обучения?</legend>
           <div class="pc-tiles pc-tiles-2">
             <label class="pc-tile"><input type="radio" name="edu" value="" checked><span class="pc-tile-t">Не нужна</span><span class="pc-tile-p">0 ₽</span><span class="pc-tile-h">Обычный сайт без курсов</span></label>
             <label class="pc-tile"><input type="radio" name="edu" value="1"><span class="pc-tile-t">Платформа для обучения</span><span class="pc-tile-p">+150 000 ₽</span><span class="pc-tile-h">Курсы и уроки на вашем сайте</span></label>
           </div>
         </fieldset>
         <div class="pc-step pc-step-row">
-          <div><p class="pc-legend"><i>4</i>Нужна ретушь фото?</p><p class="pc-note">1 000 ₽ за фото. Если не нужна, оставьте 0.</p></div>
+          <div><p class="pc-legend"><i>5</i>Нужна ретушь фото?</p><p class="pc-note">1 000 ₽ за фото. Если не нужна, оставьте 0.</p></div>
           <div class="pc-qty"><button type="button" class="pc-reset" hidden>Убрать</button><div class="pc-stepper" role="group" aria-label="Количество фото"><button type="button" data-step="-1" aria-label="Меньше фото">−</button><output class="pc-count" aria-live="polite">0</output><button type="button" data-step="1" aria-label="Больше фото">+</button></div></div>
         </div>
       </div>
@@ -734,6 +768,10 @@ if(c==='1')arm()})();
         <button class="acc-q" aria-expanded="false"><span><span class="acc-num">15</span>Сколько стоит платформа для онлайн-обучения?</span><span class="acc-ic"></span></button>
         <div class="acc-a"><div class="acc-a-inner">От 150 000 ₽ дополнительно к стоимости сайта. Точную сумму называю после брифа, а предварительно её можно посчитать в калькуляторе на этой странице.</div></div>
       </div>
+      <div class="acc reveal" data-acc>
+        <button class="acc-q" aria-expanded="false"><span><span class="acc-num">16</span>Можно ли сделать приложение в Telegram?</span><span class="acc-ic"></span></button>
+        <div class="acc-a"><div class="acc-a-inner">Да. Это мини-приложение, которое открывается прямо в Telegram по кнопке в боте — клиенту не нужно ничего скачивать.<ul><li><strong>Визитка — от 45 000 ₽:</strong> услуги, цены, портфолио и форма заявки, заявки приходят вам в мессенджер, оформление бота с баннером и описанием.</li><li><strong>С каталогом — от 90 000 ₽:</strong> несколько разделов (туры, отели, товары), данные сами подтягиваются с вашего сайта, два языка, анимации.</li></ul>Можно заказать вместе с сайтом или отдельно. Пример — приложение турагентства <a href="case-alga.html">ALGA</a>.</div></div>
+      </div>
     </div>
     </div>
   </div>
@@ -763,7 +801,7 @@ if(c==='1')arm()})();
 </main>
 
 <script src="scripts/site.js?v=20261110b"></script>
-<script src="scripts/calc.js?v=20261108e" defer></script>
+<script src="scripts/calc.js?v=20261112a" defer></script>
 <script src="scripts/pricing.js?v=20261110a" defer></script>
 </body>
 </html>
