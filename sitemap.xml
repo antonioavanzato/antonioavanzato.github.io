@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://antonioavanzato.github.io/</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/case-velaa-trips.html</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image><image:loc>https://antonioavanzato.github.io/images/velaa_trips.webp</image:loc></image:image>
@@ -18,7 +18,7 @@
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/case-daria-lukianova.html</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image><image:loc>https://antonioavanzato.github.io/images/darialukianova.webp</image:loc></image:image>
@@ -30,7 +30,7 @@
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/case-avanzato.html</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image><image:loc>https://antonioavanzato.github.io/images/avanzato.webp</image:loc></image:image>
@@ -50,7 +50,7 @@
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/case-porta-nobile.html</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image><image:loc>https://antonioavanzato.github.io/images/portanobile.webp</image:loc></image:image>
@@ -60,7 +60,7 @@
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/case-medical-fitness.html</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image><image:loc>https://antonioavanzato.github.io/images/medfit.webp</image:loc></image:image>
@@ -70,7 +70,7 @@
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/case-alga.html</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image><image:loc>https://antonioavanzato.github.io/images/alga_tour.webp</image:loc></image:image>
@@ -82,7 +82,7 @@
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/case-maldives-elite.html</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image><image:loc>https://antonioavanzato.github.io/images/maldives_elite.webp</image:loc></image:image>
@@ -93,7 +93,7 @@
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/case-yana-samoylova.html</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image><image:loc>https://antonioavanzato.github.io/images/yanapro.webp</image:loc></image:image>
@@ -107,7 +107,7 @@
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/case-opora.html</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image><image:loc>https://antonioavanzato.github.io/images/opora.webp</image:loc></image:image>
@@ -117,19 +117,19 @@
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/portfolio.html</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/pricing.html</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://antonioavanzato.github.io/contacts.html</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
