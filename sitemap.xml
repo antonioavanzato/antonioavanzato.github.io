@@ -81,6 +81,20 @@
     <image:image><image:loc>https://antonioavanzato.github.io/images/alga-admin.webp</image:loc></image:image>
   </url>
   <url>
+    <loc>https://antonioavanzato.github.io/case-gulnara-golosnaya.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/gulnara.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/gulnara-brand.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/gulnara-services.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/gulnara-price.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/gulnara-booking.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/gulnara-mobile.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/gulnara-mobile-2.webp</image:loc></image:image>
+    <image:image><image:loc>https://antonioavanzato.github.io/images/gulnara-about.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://antonioavanzato.github.io/case-maldives-elite.html</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
