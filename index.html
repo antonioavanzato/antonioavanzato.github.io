@@ -5,22 +5,27 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://mc.yandex.ru https://mc.yandex.com https://yastatic.net; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https:; connect-src 'self' https://functions.yandexcloud.net https://script.google.com https://script.googleusercontent.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://mc.yandex.ru https://mc.yandex.com wss://mc.yandex.ru wss://mc.yandex.com; frame-src https://mc.yandex.ru https://mc.yandex.com; object-src 'none'; base-uri 'self'; form-action 'self'">
 <script>/* встречная шторка: если пришли по внутренней ссылке, страница проявляется из фона, без вспышки */
 document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav-veil')){document.documentElement.classList.add('arriving');sessionStorage.removeItem('nav-veil')}}catch(e){}</script>
-<!-- Аналитика (GA4 + Яндекс.Метрика): грузится после load или первого действия, чтобы не тормозить отрисовку -->
+<!-- Аналитика (GA4 + Яндекс.Метрика): грузится асинхронно после DOMContentLoaded -->
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-0PPJBJFKL2');
 window.ym=window.ym||function(){(ym.a=ym.a||[]).push(arguments)};ym.l=1*new Date();
 ym(110095373,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
-(function(){var done=false,ev=['scroll','pointerdown','keydown','touchstart'];
-function add(s){var e=document.createElement('script');e.async=true;e.src=s;document.head.appendChild(e)}
-function go(){if(done)return;done=true;ev.forEach(function(n){removeEventListener(n,go)});
-add('https://www.googletagmanager.com/gtag/js?id=G-0PPJBJFKL2');add('https://mc.yandex.ru/metrika/tag.js')}
-function arm(){ev.forEach(function(n){addEventListener(n,go,{once:true,passive:true})});
-if(document.readyState==='complete')setTimeout(go,3000);else addEventListener('load',function(){setTimeout(go,3000)})}
-/* 152-ФЗ: счётчики подключаются только после согласия в cookie-баннере */
-window.avConsentGranted=arm;var c=null;try{c=localStorage.getItem('cookie-notice-ack')}catch(e){}
-if(c==='1')arm()})();
+(function(){
+  var done=false;
+  function add(s){var e=document.createElement('script');e.async=true;e.src=s;document.head.appendChild(e)}
+  function go(){
+    if(done)return;done=true;
+    add('https://www.googletagmanager.com/gtag/js?id=G-0PPJBJFKL2');
+    add('https://mc.yandex.ru/metrika/tag.js');
+  }
+  window.avConsentGranted=go; // оставляем, чтобы не сломать вызов из scripts/site.js
+  var c=null;try{c=localStorage.getItem('cookie-notice-ack')}catch(e){}
+  if(c!=='0'){
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go,{once:true});
+    else go();
+  }
+})();
 </script>
-
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Разработка сайтов под ключ — Антон Аванзато</title>
