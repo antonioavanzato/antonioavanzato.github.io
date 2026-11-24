@@ -9,7 +9,11 @@
 body .hero-inner { position: relative; }
 .vf {
   position: absolute; pointer-events: none;
-  inset: calc(-1 * clamp(34px, 4vw, 56px)) calc(-1 * clamp(10px, 1.6vw, 26px)) calc(-1 * clamp(18px, 2vw, 28px));
+  inset: calc(-1 * clamp(34px, 4vw, 56px)) calc(-1 * clamp(10px, 1.6vw, 26px)) 0;
+  /* низ рамки внутри .hero (у него overflow:hidden), иначе подпись KAZAN·RAW режется пополам;
+     справа держим рамку левее панели с точками (68px), когда до края экрана мало места */
+  right: max(calc(-1 * clamp(10px, 1.6vw, 26px)), calc(76px - (100vw - 100%) / 2));
+  left: max(calc(-1 * clamp(10px, 1.6vw, 26px)), calc(8px - (100vw - 100%) / 2));
 }
 .vf-c { position: absolute; width: clamp(18px, 2.2vw, 30px); height: clamp(18px, 2.2vw, 30px); border: 0 solid var(--ink); opacity: .85; }
 .vf-c.tl { top: 0; left: 0; border-top-width: 1.5px; border-left-width: 1.5px; }
